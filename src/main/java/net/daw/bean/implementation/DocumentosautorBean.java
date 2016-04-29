@@ -67,7 +67,8 @@ public class DocumentosautorBean implements GenericBean {
         this.numautores = numautores;
     }
 
-    public String getColumns() {
+    @Override
+	public String getColumns() {
         String strColumns = "";
         strColumns += "id_usuario,";
         strColumns += "numautores";

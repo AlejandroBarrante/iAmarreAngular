@@ -29,39 +29,36 @@
 'use strict';
 moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
-  
-        
+
+
         $scope.ob = 'usuario';
         $scope.op = 'new';
         $scope.result = null;
-        
-        $scope.title = "Edición de usuario";
-        $scope.icon = "fa-file-text-o";
-        
+
+        $scope.title = "Alta de nuevo usuario";
+        $scope.icon = "fa fa-user";
+
         $scope.obj = {};
         $scope.obj.obj_tipousuario = {"id": 0};
         $scope.obj.obj_estado = {"id": 0};
-        
+
         if (sharedSpaceService.getFase() == 0) {
             if ($routeParams.tipousuario && $routeParams.tipousuario > 0) {
                 $scope.obj.obj_tipousuario.id = $routeParams.tipousuario;
-            }
-            if ($routeParams.estado && $routeParams.estado > 0) {
-                $scope.obj.obj_estado.id = $routeParams.estado;
             }
         } else {
             $scope.obj = sharedSpaceService.getObject();
             sharedSpaceService.setFase(0);
         }
-        
+
         $scope.chooseOne = function (foreignObjectName) {
             sharedSpaceService.setObject($scope.obj);
             sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
             sharedSpaceService.setFase(1);
             $location.path('/' + foreignObjectName + '/selection/1/10');
         }
-        
-        $scope.save = function () {    
+
+        $scope.save = function () {
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
@@ -73,13 +70,7 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
                 });
             }
         });
-        $scope.$watch('obj.obj_estado.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('estado', $scope.obj.obj_estado.id)).then(function (data2) {
-                    $scope.obj.obj_usuario = data2.message;
-                });
-            }
-        });
+
         $scope.back = function () {
             window.history.back();
         };
@@ -91,6 +82,6 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         };
 
 
-       
+
     }]);
 

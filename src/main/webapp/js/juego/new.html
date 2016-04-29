@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+
+openAUSIAS: The stunning micro-library that helps you to develop easily 
+            AJAX web applications by using Java and jQuery
+openAUSIAS is distributed under the MIT License (MIT)
+Sources at https://github.com/rafaelaznar/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+<div class="panel-heading" style="font-family: Oswald, serif;"
+     ng-include="'js/system/header.html'"></div>
+
+<div class="panel-body">
+
+    <form name="juegoForm" class="form-horizontal" ng-show="result == null"
+          novalidate>
+
+
+
+        <div id="titulo-group" class="form-group">
+            <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.titulo" type="text" id="titulo"
+                       class="form-control" name="titulo"
+                       ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ0-9 ]*$/" required>
+                <span
+                    ng-show="!juegoForm.$pristine && juegoForm.titulo.$error.required">Campo
+                    requerido.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.titulo.$error.pattern">El
+                    texto introducido no es correcto. No introducir caracteres
+                    especiales.</span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_editorial">Editorial:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_editorial_group">
+                    <span class="input-group-addon" id="obj_editorial_button"> <span
+                            class="glyphicon glyphicon-search"
+                            ng-click="chooseOne('editorial')"> </span>
+                    </span> <input ng-model="obj.obj_editorial.id" readonly="true"
+                                   aria-describedby="basic-addon2" class="form-control"
+                                   id="obj_editorial" name="obj_editorial" type="text" size="5"
+                                   maxlength="5"> <span class="input-group-addon"> <a
+                            href="#/editorial/view/{{obj.obj_editorial.id}}"> <span>{{obj.obj_editorial.nombre}}</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="fechaPublicacion">Fecha
+                de Publicación:</label>
+            <div class="control col-sm-1">
+                <input ng-model="obj.fechaPublicacion" type="number"
+                       placeholder="1900" id="fechaPublicacion" class="form-control"
+                       name="fechaPublicacion" ng-minlength="4" ng-maxlength="4"
+                       min="1900"> <span
+                       ng-show="!juegoForm.$pristine && juegoForm.fechaPublicacion.$error.minlength">La
+                    fecha introducida no es correcta.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.fechaPublicacion.$error.maxlength">La
+                    fecha introducida no es correcta.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.fechaPublicacion.$error.min">La
+                    fecha introducida no es correcta.</span>
+            </div>
+        </div>
+
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="numJugadores">Número
+                de Jugadores:</label>
+            <div class="control col-sm-2">
+                <input ng-model="obj.jugMin" type="number" id="jugMin"
+                       class="form-control" name="jugMin" placeholder="Mínimo"
+                       ng-maxlength="2" min="1" required> <span
+                       ng-show="!juegoForm.$pristine && juegoForm.jugMin.$error.min">Introduce
+                    al menos un jugador.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.jugMin.$error.required">Campo
+                    requerido.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.jugMin.$error.maxlength">Número
+                    de jugadores no válido.</span> <input ng-model="obj.jugMax" type="number"
+                                                      id="jugMax" class="form-control" name="jugMax"
+                                                      placeholder="Máximo" ng-maxlength="2"> <span
+                                                      ng-show="!juegoForm.$pristine && juegoForm.jugMax.$error.maxlength">Número
+                    de jugadores no válido.</span>
+            </div>
+        </div>
+
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="contenido">Duración:</label>
+            <div class="control col-sm-1">
+                <input ng-model="obj.duracion" type="number" id="duracion"
+                       class="form-control" name="duracion" ng-maxlength="4" min="1"
+                       required> <span
+                       ng-show="!juegoForm.$pristine && juegoForm.duracion.$error.maxlength">Duración
+                    no válida.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.duracion.$error.min">Introduce
+                    una duración.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.duracion.$error.required">Campo
+                    requerido.</span>
+            </div>
+        </div>
+
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="descripcion">Descripción:</label>
+            <div class="control col-sm-9">
+                <textarea class="form-control" ng-model="obj.descripcion"
+                          id="descripcion" name="descripcion" rows="6"></textarea>
+            </div>
+        </div>
+
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="edad">Edad:</label>
+            <div class="control col-sm-1">
+                <input ng-model="obj.edad" type="number" id="edad"
+                       class="form-control" name="edad" ng-maxlength="2" min="1" required>
+                <span
+                    ng-show="!juegoForm.$pristine && juegoForm.edad.$error.maxlength">Edad
+                    no válida.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.edad.$error.min">Introduce
+                    una edad.</span> <span
+                    ng-show="!juegoForm.$pristine && juegoForm.edad.$error.required">Campo
+                    requerido.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="obj_dependencialenguaje">Dependencia
+                del Lenguaje:</label>
+            <div class="control col-sm-3">
+                <div class="input-group foreign" id="obj_dependencialenguaje_group">
+                    <span class="input-group-addon" id="obj_dependencialenguaje_button">
+                        <span class="glyphicon glyphicon-search"
+                              ng-click="chooseOne('deplenguaje')"> </span>
+                    </span> <input ng-model="obj.obj_dependencialenguaje.id" readonly="true"
+                                   aria-describedby="basic-addon2" class="form-control"
+                                   id="obj_dependencialenguaje" name="obj_dependencialenguaje"
+                                   type="text" size="5" maxlength="5"> <span
+                                   class="input-group-addon"> <a
+                            href="#/editorial/view/{{obj.obj_dependencialenguaje.id}}"> <span>{{obj.obj_dependencialenguaje.descripcion}}</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="website">Website:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.website" type="text" id="website"
+                       class="form-control" name="website" size="15">
+            </div>
+        </div>
+
+    </form>
+
+    <form id="uploadForm" class="form-horizontal" action="upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file" class="col-sm-2 control-label">File: </label>  
+            <input type="file" name="file" id="file"/>
+            <input type="submit" value="upload file" /><br/>
+        </div>
+
+    </form>  
+
+
+
+    <br /> <br />
+
+    <div class="control-group text-center">
+        <div class="controls">
+            <a class="btn btn-primary" ng-click="save()"
+               ng-disabled="!juegoForm.$valid">Guardar</a> <a
+               class="btn btn-default" ng-click="plist()">Ir al listado de
+                Juegos</a> <a class="btn btn-default" ng-click="close()">Cerrar</a>
+        </div>
+    </div>
+
+
+    <div ng-show="result != null">
+        <div class="alert alert-success" ng-show="result.status == 200">
+            <h2>Se ha modificado el registro</h2>
+            <a ng-href="#/juego/plist">Volver al listado de juegos</a>
+        </div>
+        <div class="alert alert-danger" ng-show="result.status != 200">
+            <h2>Error al crear el documento: no se ha creado el documento</h2>
+            <h3>Código: {{result.status}}</h3>
+            <h3>Mensaje: {{result.message}}</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel-footer" style="font-family: Questrial, serif;"
+     ng-include="'js/system/footer.html'"></div>
+
+<script src="../../vendor/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                $("#uploadForm").submit(function () {
+                    var form = document.getElementById('uploadForm');
+                    $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
+                    oformData = new FormData(form);
+                    oformData.append("id", 4);
+                    oformData.append("value", "ajax...");
+                    this.timer = setTimeout(function () {
+                        $.ajax({
+                            url: 'upload',
+                            processData: false,
+                            contentType: false,
+                            enctype: 'multipart/form-data',
+                            mimeType: "multipart/form-data",
+                            data: oformData,
+                            type: 'post',
+                            success: function (msg) {
+                                msg = JSON.parse(msg);
+                                if (msg.status == 200) {
+                                    $("#spinner").empty();
+                                    //http://stackoverflow.com/questions/4285042/asychronously-load-images-with-jquery
+                                    var img = $("<img />").attr('src', msg.message.imglink).attr("width", 100)
+                                            .on('load', function () {
+                                                if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                                                    alert('broken image!');
+                                                } else {
+                                                    $("#info").empty().append("<p>Image was sucessfully uploaded:</p>");
+                                                    $("#info").append(img);
+                                                }
+                                            });
+                                } else {
+                                    $("#spinner").empty();
+                                    $("#info").empty().append("<h2>ERROR: " + msg.message + "</h2>");
+                                }
+                            }
+                        });
+                    }, 200);
+                    return false;
+                });
+            });
+</script>

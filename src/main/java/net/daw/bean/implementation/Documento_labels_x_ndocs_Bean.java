@@ -56,7 +56,8 @@ public class Documento_labels_x_ndocs_Bean implements GenericBean {
         this.numetiquetas = numetiquetas;
     }
 
-    public String getColumns() {
+    @Override
+	public String getColumns() {
         String strColumns = "";
         strColumns += "etiquetas,";
         strColumns += "numetiquetas";

@@ -77,7 +77,8 @@ public class Documento_labels_authors_x_ndocs_Bean implements GenericBean {
         this.obj_usuario = obj_usuario;
     }
 
-    public String getColumns() {
+    @Override
+	public String getColumns() {
         String strColumns = "";
         strColumns += "etiquetas,";
         strColumns += "numetiquetas,";

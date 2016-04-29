@@ -26,7 +26,6 @@
  */
 
 'use strict';
-
 angular.module('Services', [])
         .factory('serverService', function ($http) {
             function getFilter(filter, filteroperator, filtervalue) {
@@ -52,7 +51,7 @@ angular.module('Services', [])
             return {
                 date_toDate: function (input) {
                     var parts = input.split('/');
-                    return new Date(parts[2],parts[1]-1,parts[0]); 
+                    return new Date(parts[2], parts[1] - 1, parts[0]);
                 },
                 getAppName: function () {
                     var strPath = window.location.pathname;
@@ -66,11 +65,46 @@ angular.module('Services', [])
 //
 //                    });
                 },
+                //Estos dos métodos se tendrán que quitar cuando haga el mega-pojo
+                promise_getautorfiltradoporjuego: function (strClass, id_juego) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getautorfiltradoporjuego&id_juego=' + id_juego, 'GET', '');
+                },
+                promise_getTotalJuego: function (strClass, id_juego) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id_juego, 'GET', '');
+                },
+                promise_getilustradorfiltradoporjuego: function (strClass, id_juego) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getilustradorfiltradoporjuego&id_juego=' + id_juego, 'GET', '');
+                },
+                //
                 promise_getMeta: function (strClass) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getmetainformation', 'GET', '');
                 },
                 promise_getSome: function (strClass, rpp, page, filterParams, orderParams, systemfilterParams) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsome' + '&rpp=' + rpp + '&page=' + page + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeAutor: function (strClass, rpp, page, id_autor, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeautor' + '&rpp=' + rpp + '&page=' + page + '&id_autor=' + id_autor + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeAutor2: function (strClass, rpp, page, id_juego, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeautor' + '&rpp=' + rpp + '&page=' + page + '&id_juego=' + id_juego + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeUsuario: function (strClass, rpp, page, id_usuario, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeusuario' + '&rpp=' + rpp + '&page=' + page + '&id_usuario=' + id_usuario + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeJuego: function (strClass, rpp, page, id_juego, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomejuego' + '&rpp=' + rpp + '&page=' + page + '&id_juego=' + id_juego + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeIlustrador: function (strClass, rpp, page, id_ilustrador, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeilustrador' + '&rpp=' + rpp + '&page=' + page + '&id_ilustrador=' + id_ilustrador + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeIlustrador2: function (strClass, rpp, page, id_juego, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeilustrador' + '&rpp=' + rpp + '&page=' + page + '&id_juego=' + id_juego + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeCategoria: function (strClass, rpp, page, id_categoria, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomecategoria' + '&rpp=' + rpp + '&page=' + page + '&id_categoria=' + id_categoria + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
+                promise_getSomeCategoria2: function (strClass, rpp, page, id_juego, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomecategoria' + '&rpp=' + rpp + '&page=' + page + '&id_juego=' + id_juego + filterParams + orderParams + systemfilterParams, 'GET', '');
                 },
                 promise_getAll: function (strClass, filterParams, orderParams, systemfilterParams) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewall' + filterParams + orderParams + systemfilterParams, 'GET', '');
@@ -84,7 +118,23 @@ angular.module('Services', [])
                 promise_setOne: function (strClass, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
+                },  
+                promise_setOneColeccion: function (id_usuario) {
+                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                    return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=set&id_juego=' + id_usuario);
                 },
+                promise_setOneAutor: function (jsonfile) {
+                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                    return $http.get(configuration.getAppUrl() + '?ob=autorJuego' + '&op=set', {params: jsonfile});
+                }, 
+                promise_setOneIlustrador: function (jsonfile) {
+                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                    return $http.get(configuration.getAppUrl() + '?ob=ilustradorJuego' + '&op=set', {params: jsonfile});
+                }, 
+                promise_setOneCategoria: function (jsonfile) {
+                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                    return $http.get(configuration.getAppUrl() + '?ob=categoriaJuego' + '&op=set', {params: jsonfile});
+                }, 
                 getDataFromPromise: function (promise) {
                     return promise.then(function (result) {
                         return result.data;
@@ -273,4 +323,39 @@ angular.module('Services', [])
 
             };
         })
+
+        .factory('sharedSpaceJuego', function ($http) {
+            var obj = {};
+            var id_juego;
+            var link = "";
+            var fase = 0;
+            return {
+                getObject: function () {
+                    return obj;
+                },
+                setObject: function (value) {
+                    obj = value;
+                },
+                get_idJuego: function () {
+                    return id_juego;
+                },
+                set_idJuego: function (value) {
+                    id_juego = value;
+                },
+                getReturnLink: function () {
+                    return link;
+                },
+                setReturnLink: function (value) {
+                    link = value;
+                },
+                getFase: function () {
+                    return fase;
+                },
+                setFase: function (value) {
+                    fase = value;
+                }
+
+            };
+        })
+
         .value('version', '0.1');

@@ -188,7 +188,8 @@ public class DocumentoBean implements GenericBean {
         this.destacado = destacado;
     }
 
-    public String getColumns() {
+    @Override
+	public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
         strColumns += "titulo,";
@@ -205,7 +206,8 @@ public class DocumentoBean implements GenericBean {
         return strColumns;
     }
 
-    public String getValues() {
+    @Override
+	public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
         strColumns += EncodingUtilHelper.quotate(titulo) + ",";

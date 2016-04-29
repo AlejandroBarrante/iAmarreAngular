@@ -33,20 +33,20 @@
  */
 package net.daw.service.implementation;
 
+import static net.daw.helper.statics.AppConfigurationHelper.getSourceConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import net.daw.bean.implementation.UsuarioBean;
-import net.daw.bean.implementation.Documento_labels_authors_x_ndocs_Bean;
-import net.daw.connection.publicinterface.ConnectionInterface;
-import net.daw.dao.implementation.Documento_labels_authors_x_ndocs_Dao;
-import net.daw.dao.implementation.Documento_labels_x_ndocs_Dao;
-import net.daw.dao.implementation.DocumentosautorDao;
 
+import javax.servlet.http.HttpServletRequest;
+
+import net.daw.bean.implementation.Documento_labels_authors_x_ndocs_Bean;
+import net.daw.bean.implementation.UsuarioBean;
+import net.daw.connection.publicinterface.ConnectionInterface;
+import net.daw.dao.implementation.DocumentosautorDao;
 import net.daw.helper.statics.AppConfigurationHelper;
-import static net.daw.helper.statics.AppConfigurationHelper.getSourceConnection;
 import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.JsonMessage;

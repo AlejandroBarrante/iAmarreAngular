@@ -26,21 +26,24 @@
  */
 package net.daw.service.implementation;
 
-import com.google.gson.Gson;
+import static net.daw.helper.statics.AppConfigurationHelper.getSourceConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import com.google.gson.Gson;
+
 import net.daw.bean.implementation.DocumentoBean;
 import net.daw.bean.implementation.UsuarioBean;
 import net.daw.connection.implementation.BoneConnectionPoolImpl;
 import net.daw.connection.publicinterface.ConnectionInterface;
 import net.daw.dao.implementation.DocumentoDao;
-
 import net.daw.helper.statics.AppConfigurationHelper;
-import static net.daw.helper.statics.AppConfigurationHelper.getSourceConnection;
 import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.JsonMessage;
@@ -252,7 +255,7 @@ public class DocumentoService implements TableServiceInterface, ViewServiceInter
                 oConnection = oDataConnectionSource.newConnection();
                 oConnection.setAutoCommit(false);
                 DocumentoDao oDocumentoDao = new DocumentoDao(oConnection);
-                resultado = JsonMessage.getJson("200", (String) oDocumentoDao.remove(id).toString());
+                resultado = JsonMessage.getJson("200", oDocumentoDao.remove(id).toString());
                 oConnection.commit();
             } catch (Exception ex) {
                 oConnection.rollback();

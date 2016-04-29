@@ -26,6 +26,8 @@
  */
 package net.daw.dao.implementation;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
     private String strSQL = "select * from usuario where 1=1 ";
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
+    public static String MD5 = "MD5";
 
     public UsuarioDao(Connection oPooledConnection) throws Exception {
         try {
@@ -138,9 +141,12 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
 
     @Override
     public Integer set(UsuarioBean oUsuarioBean) throws Exception {
-          Integer iResult = null;
+        Integer iResult = null;
         try {
+            oUsuarioBean.setPassword(getStringMessageDigest(oUsuarioBean.getPassword(), MD5));
+            
             if (oUsuarioBean.getId() == 0) {
+
                 strSQL = "INSERT INTO " + strTable + " ";
                 strSQL += "(" + oUsuarioBean.getColumns() + ") ";
                 strSQL += "VALUES (" + oUsuarioBean.getValues() + ")";
@@ -158,6 +164,34 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return iResult;
     }
 
+    // Convierte un arreglo de bytes a String usando valores hexadecimales
+    private static String toHexadecimal(byte[] digest) {
+        String hash = "";
+        for (byte aux : digest) {
+            int b = aux & 0xff;
+            if (Integer.toHexString(b).length() == 1) {
+                hash += "0";
+            }
+            hash += Integer.toHexString(b);
+        }
+        return hash;
+    }
+
+    // Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
+    public static String getStringMessageDigest(String message, String algorithm) {
+        byte[] digest = null;
+        byte[] buffer = message.getBytes();
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
+            messageDigest.reset();
+            messageDigest.update(buffer);
+            digest = messageDigest.digest();
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("Error creando Digest");
+        }
+        return toHexadecimal(digest);
+    }
+
     @Override
     public Integer remove(Integer id) throws Exception {
         int result = 0;
@@ -169,7 +203,7 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return result;
     }
 
-public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
+    public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
         try {
             String strId = oMysql.getId("usuario", "login", oUsuario.getLogin());
             if (strId == null) {
@@ -178,6 +212,7 @@ public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
                 Integer intId = Integer.parseInt(strId);
                 oUsuario.setId(intId);
                 String pass = oUsuario.getPassword();
+                pass = getStringMessageDigest(pass, MD5);
                 oUsuario.setPassword(oMysql.getOne(strSQL, "password", oUsuario.getId()));
                 if (!pass.equals(oUsuario.getPassword())) {
                     oUsuario.setId(0);
@@ -190,4 +225,24 @@ public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
         }
     }
 
+    /*
+     public void encrypeUsername(String password) {
+     byte[] defaultBytes = password.getBytes();
+     try {
+     MessageDigest algorithm = MessageDigest.getInstance("MD5");
+     algorithm.reset();
+     algorithm.update(defaultBytes);
+     byte messageDigest[] = algorithm.digest();
+
+     StringBuffer hexString = new StringBuffer();
+     for (int i = 0; i < messageDigest.length; i++) {
+     hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+     }                                 
+            
+     //   System.out.println("sessionid " + sessionid + " md5 version is " + hexString.toString());
+     } catch (Exception e) {
+     e.printStackTrace();
+     }
+
+     }*/
 }

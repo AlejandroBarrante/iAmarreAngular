@@ -27,10 +27,10 @@
  */
 
 'use strict';
-moduloSistema.controller('LicenseController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
+moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
     function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
 
-        $scope.op = "License";
+        $scope.op = "Home";
 
     }
 ]

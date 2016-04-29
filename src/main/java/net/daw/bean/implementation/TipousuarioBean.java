@@ -71,7 +71,8 @@ public class TipousuarioBean implements GenericBean{
         return strJson;
     }
 
-    public String getColumns() {
+    @Override
+	public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
         strColumns += "descripcion";
