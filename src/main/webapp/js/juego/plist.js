@@ -39,6 +39,7 @@ moduloJuego.controller('JuegoPListController', ['$scope', '$routeParams', 'serve
         $scope.visibles.numJugadores = true;
         $scope.visibles.edad = true;
         $scope.visibles.duracion = true;
+        $scope.visibles.imagen = true;
 
 
         $scope.ob = "juego";

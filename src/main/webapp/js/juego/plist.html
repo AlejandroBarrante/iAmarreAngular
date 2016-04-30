@@ -233,8 +233,11 @@ THE SOFTWARE.
 
                 <br /> <br />
 
-                <ul ng-repeat="obj in page" class="text-center"
-                    style="display: inline-table;">
+                <ul ng-repeat="obj in page" style="display: inline-table;" class="text-center">
+                    <li ng_show="visibles.imagen" style="list-style: none;"> 
+                        <a  href="#/totalJuego/view/{{obj.id}}"><img src="{{obj.imagen}}" alt="mini" class="img-rounded"></a>
+                    </li>
+
                     <li ng-show="visibles.nombre" style="list-style: none;"><a
                             style="text-decoration: none;" href="#/totalJuego/view/{{obj.id}}">{{obj.titulo}}</a></li>
 
@@ -246,108 +249,11 @@ THE SOFTWARE.
         </div>
 
 
-        <!-- 			<table
-                class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
-                <thead>
-                        <tr>
-
-                                <th ng-show="visibles.nombre">Nombre<br /> <a
-                                        ng-show="visibles.nombre"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-up"></i></a> <a
-                                        ng-show="visibles.nombre"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=titulo&ordervalue=desc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                </th>
-                                <th ng-show="visibles.fechaPublicacion">Fecha de Publicación<br />
-                                        <a ng-show="visibles.fechaPublicacion"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaPublicacion&ordervalue=asc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-up"></i></a> <a
-                                        ng-show="visibles.fechaPublicacion"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaPublicacion&ordervalue=desc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-down"></i></a>
-
-
-                                </th>
-                                <th ng-show="visibles.numJugadores">Número de Jugadores<br />
-                                        <a ng-show="visibles.numJugadores"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=jugMin&ordervalue=asc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-up"></i></a> <a
-                                        ng-show="visibles.numJugadores"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=jugMin&ordervalue=desc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                </th>
-                                <th ng-show="visibles.edad">Edad Recomendada<br /> <a
-                                        ng-show="visibles.edad"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=edad&ordervalue=asc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-up"></i></a> <a
-                                        ng-show="visibles.edad"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=edad&ordervalue=desc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                </th>
-
-                                <th ng-show="visibles.duracion">Duración<br /> <a
-                                        ng-show="visibles.duracion"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=duracion&ordervalue=asc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-up"></i></a> <a
-                                        ng-show="visibles.duracion"
-                                        href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=duracion&ordervalue=desc{{paramsWithoutOrder}}"><i
-                                                class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                </th>
-                                <th>Acciones</th>
-                        </tr>
-                </thead>
-        <tbody>
-                        <tr ng-repeat="obj in page">
-
-                                <td ng-show="visibles.nombre"><a
-                                        href="#/totalJuego/view/{{obj.id}}">{{obj.titulo}}</a></td>
-                                <td ng-show="visibles.fechaPublicacion">{{obj.fechaPublicacion}}</td>
-                                <td ng-show="visibles.numJugadores"><span ng-if="obj.jugMax == 0">{{obj.jugMin}}</span>
-                                <span ng-if="obj.jugMax != 0">{{obj.jugMin}} - {{obj.jugMax}}</span></td>
-                                <td ng-show="visibles.edad">{{obj.edad}}+</td>
-                                <td ng-show="visibles.duracion">{{obj.duracion}} minutos</td>
-
-                                <td>
-                                        <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                        Acciones<span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                        <li><a class="btn btn-default action02"
-                                                                href="#/totalJuego/view/{{obj.id}}"><i
-                                                                        class="fa fa-eye fa-2g"></i> Ver</a></li>
-                                                        <li><a class="btn btn-default action03"
-                                                                href="#/{{ob}}/edit/{{obj.id}}"><i
-                                                                        class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                                        <li><a class="btn btn-default action04"
-                                                                href="#/{{ob}}/remove/{{obj.id}}"><i
-                                                                        class="fa fa-times fa-2g"></i> Borrar</a></li>
-                                                        <li><a class="btn btn-default action05"
-                                                                href="#/juegoAutor/plist/1/10/{{obj.id}}"><i
-                                                                        class="fa fa-male fa-2g"></i> Ver Autores</a></li>
-                                                        <li><a class="btn btn-default action06"
-                                                                href="#/juegoIlustrador/plist/1/10/{{obj.id}}"><i
-                                                                        class="fa fa-paint-brush fa-2g"></i> Ver Ilustradores</a></li>
-                                                        <li><a class="btn btn-default action07"
-                                                                href="#/juegoCategoria/plist/1/10/{{obj.id}}"><i
-                                                                        class="fa fa-map-o fa-2g"></i> Ver Categorías</a></li>
-                                                </ul>
-                                        </div>
-                                </td>
-                        </tr>
-                </tbody>
-        </table> -->
-
         <div class="text-center">
 
             <a class="btn btn-primary" href="#/juego/new/">Agregar Nuevo
                 Juego</a> <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+
         </div>
     </div>
 </div>

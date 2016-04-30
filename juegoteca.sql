@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
+-- version 4.4.13.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Apr 29, 2016 at 09:53 AM
--- Server version: 5.6.29
--- PHP Version: 5.6.20
+-- Servidor: localhost:3306
+-- Tiempo de generación: 30-04-2016 a las 06:20:29
+-- Versión del servidor: 5.6.26
+-- Versión de PHP: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,25 +17,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `juegoteca`
+-- Base de datos: `juegoteca`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autor`
+-- Estructura de tabla para la tabla `autor`
 --
 
-CREATE TABLE `autor` (
+CREATE TABLE IF NOT EXISTS `autor` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fechaNac` int(11) DEFAULT NULL,
   `bio` longtext COLLATE utf8_unicode_ci,
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `autor`
+-- Volcado de datos para la tabla `autor`
 --
 
 INSERT INTO `autor` (`id`, `nombre`, `fechaNac`, `bio`, `website`) VALUES
@@ -54,17 +54,17 @@ INSERT INTO `autor` (`id`, `nombre`, `fechaNac`, `bio`, `website`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autorjuego`
+-- Estructura de tabla para la tabla `autorjuego`
 --
 
-CREATE TABLE `autorjuego` (
+CREATE TABLE IF NOT EXISTS `autorjuego` (
   `id` int(11) NOT NULL,
   `id_autor` int(11) DEFAULT NULL,
   `id_juego` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `autorjuego`
+-- Volcado de datos para la tabla `autorjuego`
 --
 
 INSERT INTO `autorjuego` (`id`, `id_autor`, `id_juego`) VALUES
@@ -89,17 +89,17 @@ INSERT INTO `autorjuego` (`id`, `id_autor`, `id_juego`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria`
+-- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE `categoria` (
+CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descripcion` longtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`) VALUES
@@ -138,17 +138,17 @@ INSERT INTO `categoria` (`id`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriajuego`
+-- Estructura de tabla para la tabla `categoriajuego`
 --
 
-CREATE TABLE `categoriajuego` (
+CREATE TABLE IF NOT EXISTS `categoriajuego` (
   `id` int(11) NOT NULL,
   `id_categoria` int(11) DEFAULT NULL,
   `id_juego` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categoriajuego`
+-- Volcado de datos para la tabla `categoriajuego`
 --
 
 INSERT INTO `categoriajuego` (`id`, `id_categoria`, `id_juego`) VALUES
@@ -213,17 +213,17 @@ INSERT INTO `categoriajuego` (`id`, `id_categoria`, `id_juego`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coleccion`
+-- Estructura de tabla para la tabla `coleccion`
 --
 
-CREATE TABLE `coleccion` (
+CREATE TABLE IF NOT EXISTS `coleccion` (
   `id` int(11) NOT NULL,
   `id_juego` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `coleccion`
+-- Volcado de datos para la tabla `coleccion`
 --
 
 INSERT INTO `coleccion` (`id`, `id_juego`, `id_usuario`) VALUES
@@ -237,16 +237,16 @@ INSERT INTO `coleccion` (`id`, `id_juego`, `id_usuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dependencialenguaje`
+-- Estructura de tabla para la tabla `dependencialenguaje`
 --
 
-CREATE TABLE `dependencialenguaje` (
+CREATE TABLE IF NOT EXISTS `dependencialenguaje` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `dependencialenguaje`
+-- Volcado de datos para la tabla `dependencialenguaje`
 --
 
 INSERT INTO `dependencialenguaje` (`id`, `descripcion`) VALUES
@@ -258,26 +258,26 @@ INSERT INTO `dependencialenguaje` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documento`
+-- Estructura de tabla para la tabla `documento`
 --
 
-CREATE TABLE `documento` (
+CREATE TABLE IF NOT EXISTS `documento` (
   `id` int(6) NOT NULL COMMENT 'Num.',
-  `titulo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Titulo`,
+  `titulo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Titulo',
   `contenido` longtext COLLATE utf8_unicode_ci COMMENT 'Contenido',
-  `alta` date DEFAULT NULL COMMENT AS `Alta`,
-  `cambio` date DEFAULT NULL COMMENT AS `Cambio`,
-  `hits` int(10) DEFAULT NULL COMMENT AS `Hits`,
-  `id_usuario` int(6) DEFAULT NULL COMMENT AS `Usuario`,
-  `etiquetas` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Etiquetas`,
-  `publicado` tinyint(1) DEFAULT NULL COMMENT AS `Publicado`,
-  `portada` tinyint(1) DEFAULT NULL COMMENT AS `Portada`,
-  `destacado` tinyint(1) DEFAULT NULL COMMENT AS `Destacado`,
-  `id_tipodocumento` int(6) DEFAULT NULL COMMENT AS `Tipo`
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `alta` date DEFAULT NULL COMMENT 'Alta',
+  `cambio` date DEFAULT NULL COMMENT 'Cambio',
+  `hits` int(10) DEFAULT NULL COMMENT 'Hits',
+  `id_usuario` int(6) DEFAULT NULL COMMENT 'Usuario',
+  `etiquetas` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Etiquetas',
+  `publicado` tinyint(1) DEFAULT NULL COMMENT 'Publicado',
+  `portada` tinyint(1) DEFAULT NULL COMMENT 'Portada',
+  `destacado` tinyint(1) DEFAULT NULL COMMENT 'Destacado',
+  `id_tipodocumento` int(6) DEFAULT NULL COMMENT 'Tipo'
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `documento`
+-- Volcado de datos para la tabla `documento`
 --
 
 INSERT INTO `documento` (`id`, `titulo`, `contenido`, `alta`, `cambio`, `hits`, `id_usuario`, `etiquetas`, `publicado`, `portada`, `destacado`, `id_tipodocumento`) VALUES
@@ -375,18 +375,18 @@ INSERT INTO `documento` (`id`, `titulo`, `contenido`, `alta`, `cambio`, `hits`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `editorial`
+-- Estructura de tabla para la tabla `editorial`
 --
 
-CREATE TABLE `editorial` (
+CREATE TABLE IF NOT EXISTS `editorial` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bio` longtext COLLATE utf8_unicode_ci,
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `editorial`
+-- Volcado de datos para la tabla `editorial`
 --
 
 INSERT INTO `editorial` (`id`, `nombre`, `bio`, `website`) VALUES
@@ -399,19 +399,19 @@ INSERT INTO `editorial` (`id`, `nombre`, `bio`, `website`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ilustrador`
+-- Estructura de tabla para la tabla `ilustrador`
 --
 
-CREATE TABLE `ilustrador` (
+CREATE TABLE IF NOT EXISTS `ilustrador` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fechaNac` int(11) DEFAULT NULL,
   `bio` longtext COLLATE utf8_unicode_ci,
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ilustrador`
+-- Volcado de datos para la tabla `ilustrador`
 --
 
 INSERT INTO `ilustrador` (`id`, `nombre`, `fechaNac`, `bio`, `website`) VALUES
@@ -431,17 +431,17 @@ INSERT INTO `ilustrador` (`id`, `nombre`, `fechaNac`, `bio`, `website`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ilustradorjuego`
+-- Estructura de tabla para la tabla `ilustradorjuego`
 --
 
-CREATE TABLE `ilustradorjuego` (
+CREATE TABLE IF NOT EXISTS `ilustradorjuego` (
   `id` int(11) NOT NULL,
   `id_ilustrador` int(11) DEFAULT NULL,
   `id_juego` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ilustradorjuego`
+-- Volcado de datos para la tabla `ilustradorjuego`
 --
 
 INSERT INTO `ilustradorjuego` (`id`, `id_ilustrador`, `id_juego`) VALUES
@@ -462,10 +462,10 @@ INSERT INTO `ilustradorjuego` (`id`, `id_ilustrador`, `id_juego`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `juego`
+-- Estructura de tabla para la tabla `juego`
 --
 
-CREATE TABLE `juego` (
+CREATE TABLE IF NOT EXISTS `juego` (
   `id` int(11) NOT NULL,
   `titulo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fechaPublicacion` int(11) DEFAULT NULL,
@@ -475,44 +475,45 @@ CREATE TABLE `juego` (
   `descripcion` longtext COLLATE utf8_unicode_ci,
   `edad` int(11) DEFAULT NULL,
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `imagen` longtext COLLATE utf8_unicode_ci,
   `id_editorial` int(11) DEFAULT NULL,
   `id_dependencialenguaje` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `juego`
+-- Volcado de datos para la tabla `juego`
 --
 
-INSERT INTO `juego` (`id`, `titulo`, `fechaPublicacion`, `jugMin`, `jugMax`, `duracion`, `descripcion`, `edad`, `website`, `id_editorial`, `id_dependencialenguaje`) VALUES
-(1, 'Catan', 1995, 3, 4, 60, 'En Catan (anteriormente conocido como Los Colonos de Catan), los jugadores intentan convertirse en la fuerza dominante en la isla de Catan mediante la construcción de asentamientos, ciudades y carreteras. En cada turno, los dados son lanzados para determinar qué recursos produce la isla. Los jugadores recolectan estos recursos (cartas): madera, trigo, ladrillo, oveja y piedra. El objetivo es construir su civilización y obtener 10 puntos de victoria para ganar el juego. \r\n\r\nLos puntos se acumulan mediante la construcción de asentamientos y ciudades, obteniendo la carretera más larga, teniendo el ejército más grande u obteniendo ciertas cartas de puntuación. Cuando un jugador alcanza 10 puntos de victoria (algunos de los cuales pueden ser secretos), anuncia que ha obtenido los puntos necesarios y se proclama vencedor. \r\n\r\nCatan ha recibido múltiples premios y uno de los juegos más populares de los últimos tipos debido a su asombrosa habilidad para atraer por igual a jugadores expertos como novatos.\r\n\r\n', 8, 'http://www.catan.com/', 1, 5),
-(2, 'Carcassonne', 2000, 2, 5, 30, 'Carcassonne es un juego de colocación de losetas en el cual los jugadores roban y colocan una pieza cuadrada que contiene un trozo de paisaje típico del sur de Francia. La loseta puede contener una ciudad, una carretera, un monasterio, campos o una mezcla de todo ello, y debe ser colocada adyacente a otra loseta que haya sido jugada previamente. Las ciudades deben conectar entre sí, al igual que los caminos. \r\n\r\nUna vez colocada la loseta, el jugador debe decidir si colocar una de sus figuras (meeple) en alguna de las áreas de la loseta: un caballero en una ciudad, un ladrón en un camino, un monje en un monasterio o un granjero en un campo. Cuando un área concreta está completa, ese meeple obtiene cierta puntuación para su dueño.\r\n\r\nDurante una partida de Carcassonne, los jugadores se enfrentan a decisiones como: \'¿Vale la pena colocar mi último meeple ahí?\' o \'¿Debería utilizar esta loseta para expandir mi ciudad, o debería colocarla cerca de mi rival para entorpecer sus obras?\'. Dado que los jugadores únicamente poseen una loseta por turno y solo pueden colocar un meeple en ella, el turno de juego es rápido pero lleno de posibilidades y decisiones a tomar. ', 8, 'http://www.zmangames.com/carcassonne-universe.html', 1, 4),
-(8, 'Race for the Galaxy', 2007, 2, 4, 60, 'En el juego de cartas Race for the Galaxy los jugadores construyen civilizaciones galácticas mediante la colocación de cartas que representan planetas o avances tecnológicos y sociales. Algunos de los planetas permiten a los jugadores producir bienes, que pueden ser consumidos más tarde para obtener más cartas o puntos de victoria. \r\n\r\nLos puntos de victoria son obtenidos principalmente por cartas de Desarrollo y Planetas que no tienen la capacidad de producir bienes, aunque ciertos planetas extraños hacen ambas cosas. \r\n\r\nAl comienzo de cada ronda, los jugadores seleccionan (de forma secreta y simultáneamente), una de entre 7 Cartas de Acción que se corresponde con una de las fases del juego. Al seleccionar una carta de Acción, los jugadores la activan en la fase correspondiente de esa ronda, concediendo a cada jugador la oportunidad de ejecutar la acción correspondiente a esa fase. Por ejemplo, si un jugador elige la carta de Colonizar, cada jugador tiene la oportunidad de colonizar uno de los planetas (cartas) que tienen en su mano. El jugador que eligió la carta, además, obtiene una bonificación que únicamente se aplica a él. Bonificaciones adicionales pueden ser obtenidas a través de la compra de cartas de Desarrollo, por lo que debes estar atento a las cartas jugadas por los demás jugadores, porque podrían obtener beneficios adicionales de tu Carta de Acción jugada.\r\n\r\n', 12, 'http://riograndegames.com/games.html?id=240', 4, 5),
-(9, 'Agricola', 2007, 1, 5, 60, 'En Agricola representas ser un granjero que vive con su pareja en una cabaña de madera. En tu turno únicamente puedes ejecutar 2 acciones, una por tí y otra por tu pareja, de entre las que se pueden realizar en una granja: recoger arcilla, madera o piedra; construir vallados; cultivar campos y muchas más. Posiblemente pienses en tener hijos para obtener más acciones por turno y conseguir más rápidamente tus objetivos, pero para ello antes deberás ampliar tu casa. ¿Y qué piensas hacer con todos esos pequeñajos?\r\n\r\nEl juego está pensado para jugarse con diferentes niveles de complejidad, a través del uso (o no) de ciertas cartas (Adquisiciones Menores y Ocupaciones). En la versión para principiantes, llamada Variante Familiar, estas cartas no se utilizan para nada. Para partidas avanzadas se incluyen tres mazos de cartas: Básico (mazo E), Interactivo (mazo I) y Complejo (mazo K). El propio manual del juego te invita a experimentar con las distintas variantes.\r\n\r\nAgricola es un juego basado en turnos (concretamente hay 14) y se ejecutan en 6 grandes rondas. Al final de cada una de ellas (tras los turnos 4, 7, 9, 11, 13 y 14) se produce la Cosecha, en la cual los jugadores deberán alimentar a sus familias. Cada jugador comienza con dos fichas de juego (el granjero y su pareja) y se ejecutan 2 acciones por turno. A medida que el juego avanza las opciones se van ampliando, aunque existe un problema: una acción únicamente se puede ejecutar por un único personaje en cada turno, por lo que hay que tomar importantes decisiones sobre qué acciones son prioritarias. \r\n\r\nEn definitiva, es un juego tenso, táctico y con múltiples decisiones a tomar en cada turno. Al final de la partida se hace un recuento de puntos de victoria que se basa en la calidad y cantidad de elementos de cada granja. El que obtiene más puntos de victoria gana la partida.', 12, 'http://www.devir.es/producto/agricola/', 1, 5),
-(10, 'Descent: Journeys in the Dark 2nd Edition', 2012, 2, 5, 120, 'Descent: Journeys in the Dark (Segunda Edición) es un juego de mesa en el que un jugador toma el papel de un traicionero Señor Oscuro y hasta cuatro jugadores toman el rol de héroes valerosos. Durante cada partida los héroes embarcan en apasionantes aventuras y se adentran en peligrosas cuevas, antiguas ruinas y oscuras mazmorras para luchar contra monstruos, obtener riquezas e intentar detener el maligno plan del Señor Oscuro. \r\n\r\nHabiendo peligros acechando en cada esquina, el combate es una necesidad. Para estas ocasiones, Descent utiliza un sistema único de dados. Los jugadores construyen una reserva de dados de acuerdo con sus habilidades y armas. Cada dado contribuye al ataque de diferentes modos: Ataques, Curaciones y Símbolos Especiales. \r\n\r\nEl juego incluye piezas de mapa a doble cara modulares, incontables héroes y combinaciones de habilidades y una campaña narrativa inmersiva que transporta a los héroes a un reino de fantasía vibrante en el que deben permanecer unidos contra el Mal Antiguo que acecha en las tierras de Terrinoth.', 10, 'http://www.edgeent.com/juegos/articulo/descent_viaje_a_las_tinieblas/descent_viaje_a_las_tinieblas_segunda_edicion', 2, 7),
-(11, 'Patchwork', 2014, 2, 0, 30, 'Patchwork es una técnica de costura en la que se van cosiendo trozos de tela unos a otros para crear una pieza más grande. Antiguamente, era una manera de usar retales de tela sobrantes para crear ropa y colchas\r\n\r\nHoy en día, el Patchwork se considera un arte, en el cual se usan telas de calidad para crear un bello diseño. Piezas de diferentes telas producen unos resultados que pueden llegar a considerarse verdaderas obras de arte.\r\n\r\nElaborar una preciosa colcha requiere mucho tiempo y esfuerzo, puesto que los retales disponibles no encajan fácilmente. Escoge tus parches sabiamente, colócalos en tu colcha, acumula una gran reserva de botones y no dejes demasiados huecos… o te costarán la partida.', 8, '', 3, 4),
-(12, 'El principito: Hazme un planeta', 2013, 2, 5, 25, 'En El Principito: Hazme un planeta, cada jugador construirá su propio planeta para proveer de un bello hogar a los adorables animales de la novela El Principito: el zorro, la oveja, el elefante y la serpiente. ¡Pero asegúrate que no haya demasiados baobabs o volcanes!\r\n\r\nEn cada ronda, el jugador inicial elige una de entre cuatro pilas de losetas y coge tantas losetas como el número de jugadores. Muestra todas las losetas, elige la que más le guste y elige a otro jugador para que elija otra. Esto es así hasta que todos los jugadores tienen una loseta, que procederán a colocar en su zona de juego para construir sus respectivos planetas.\r\n\r\nEn algunas losetas crecen árboles baobab, y tener demasiados de estos árboles es perjudicial. Si un jugador tiene tres baobab en su planeta, las tres losetas que los contienen se tendrán que voltear boca abajo, perdiendo su puntuación al final de la partida. \r\n\r\nAl final de la partida, cuando todo el mundo ha completado su planeta, cada jugador coloca 4 personajes (sacados de la novela original) que establecerán de qué manera puntuará el jugador. Cada volcán que posea un jugador en su planeta le restará un punto de victoria. Tras el recuento de puntos de victoria, el que sume más puntos gana la partida. ', 8, '', 0, 4),
-(14, 'Bohnanza', 1997, 2, 7, 45, 'Bohnanza es el primer juego de una serie de juegos familiares, publicados en distintas editoriales a lo largo de los años. Es un juego de cartas cuya mecánica más interesante consiste en que no puedes reponer tu mano de cartas de la forma normal. Cada carta contiene una ilustración de una habichuela antropomórfica de colores vivos, y el objetivo del juego es acumular monedas para plantar campos de estas habichuelas para, posteriormente, cosecharlas. Para conseguir las habichuelas de los colores que necesitas, tendrás que comerciar con los demás jugadores y llegar a acuerdos.\r\n', 13, '', 5, 4),
-(15, 'Ora et Labora', 2011, 1, 4, 180, '', 12, '', 1, 5),
-(16, 'Battlestar Galactica: El juego de mesa', 2008, 3, 6, 120, 'Battlestar Galactica: El juego de mesa es un juego semi-cooperativo de 3 a 6 jugadores en el que cada uno elige un personaje de entre los pilotos, líderes políticos, jefes militares o ingenieros pertenecientes a la serie de TV Galactica. \r\n\r\nCada jugador recibe una carta de Lealtad al principio del juego para determinar si es un humano o un infiltrado Cylon. Cada tarjeta de personaje además tiene unas habilidades especiales que lo diferencian del resto de personajes. \r\n\r\nLos jugadores mueven y toman acciones cada turno, ya sea en la nave Galactica, en la Colonial One o en un caza Viper. El objetivo es acumular cartas de habilidad, expulsar a los cylon y mantener a Galactica a salvo durante su viaje. Al final de cada turno, se saca una carta de Crisis, con una serie de tareas que los jugadores deben superar para superarla. Los cylons infiltrados, a su vez, intentarán sabotear estas pruebas que no se superen las Crisis y entorpecer el viaje de Galactica lo más posible. \r\n\r\nEl objetivo del juego es obtener 8 puntos de viaje para llegar al planeta Kobol. Si esto sucede, los humanos ganan la partida. Si Galactica es destruida o alguno de sus recursos (Combustible, Moral, Alimentos o Población) llega a 0, los cylons ganan la partida. \r\n\r\n', 14, 'http://www.edgeent.com/juegos/coleccion/battlestar_galactica', 2, 7),
-(17, 'Mansiones de la Locura', 2011, 2, 5, 120, 'Horrendos monstruos y presencias espectrales acechan en mansiones, criptas, escuelas y monasterios cercanos a Arkham, Massachussets. Algunos elaboran oscuras conspiraciones mientras otros esperan pacientes para devorar a sus víctimas. \r\n\r\nEstá en la mano de un grupo de valientes investigadores el explorar estos lugares malditos y descubrir la verdad acerca de las pesadillas que habitan en ellos.\r\n\r\nDiseñado por Corey Konieczka, Mansiones de la Locura es un juego macabro de terror, locura y misterio para 2 a 5 jugadores. Cada partida transcurre en una historia pre-diseñada que proporciona a los jugadores un mapa único y diferentes combinaciones de subtramas. Estas subtramas afectan a los monstruos que los investigadores pueden encontrar, las pistas que necesitan encontrar y el clímax de la historia.\r\n\r\nUno de los jugadores adopta el papel del Guardián, controlando a los monstruos y demás poderes maliciosos de la historia. Los otros jugadores se convierten en los investigadores que buscan respuestas mientras luchan para sobrevivir con sus mentes intactas. ¿Os atreveréis a penetrar en las Mansiones de la Locura?\r\n', 14, 'http://www.edgeent.com/libros/coleccion/las_mansiones_de_la_locura', 2, 7),
-(18, 'Guerra del Anillo', 2012, 2, 4, 150, 'En Guerra del Anillo, un jugador toma el control de los Pueblos Libres mientras que el otro controla el Ejército de la Sombra. Inicialmente, los Pueblos Libres son reacios a alzarse en armas contra Sauron, por lo que deben ser atacados previamente o ser persuadidos por Gandalf u otros compañeros antes de comenzar a guerrear. \r\n\r\nLa victoria se puede obtener mediante Victoria Militar, si Sauron conquista un determinado número de Baluartes de los Pueblos Libres. Estos, por otra parte, ponen sus esperanzas en la misión del Portador del Anillo.\r\n\r\n The game can be won by a military victory, if Sauron conquers a certain number of Free People cities and strongholds or vice versa. But the true hope of the Free Peoples lies with the quest of the Ringbearer: while the armies clash across Middle Earth, the Fellowship of the Ring is trying to get secretly to Mount Doom to destroy the One Ring. Sauron is not aware of the real intention of his enemies but is looking across Middle Earth for the precious Ring, so that the Fellowship is going to face numerous dangers, represented by the rules of The Hunt for the Ring. But the Companions can spur the Free Peoples to the fight against Sauron, so the Free People player must balance the need to protect the Ringbearer from harm, against the attempt to raise a proper defense against the armies of the Shadow, so that they do not overrun Middle Earth before the Ringbearer completes his quest.  Each game turn revolves around the roll of Action Dice: each die corresponds to an action that a player can do during a turn. Depending on the face rolled on each die, different actions are possible (moving armies, characters, recruiting troops, advancing a Political Track).  Action dice can also be used to draw or play Event Cards. Event Cards are played to represent specific events from the story (or events which could possibly have happened) which cannot be portrayed through normal game-play. Each Event Card can also create an unexpected turn in the game, allowing special actions or altering the course of a battle.', 14, 'http://www.aresgames.eu/games/war-of-the-ring-line/war-of-the-ring-second-edition', 1, 7),
-(19, 'Sid Meier\'s Civilization: El juego de mesa', 2010, 2, 4, 180, 'Before you lies a vast bounty of land, ripe for the plucking. Your meager beginnings will influence the paths you must take. Lead your people well and they will take you to infinite heights of greatness. If civilization manages to endure the ages, your name will hang in every whisper of its legacy...  Fantasy Flight Games is excited to announce the upcoming release of Sid Meier’s Civilization: The Board Game! Forge an empire to stand the test of time using innovative game mechanics with multiple paths to victory.  Will you lead the greatest army in the world to conquer your foes? Or will you be the first to journey to the stars, becoming the most technologically advanced civilization known to man? The choice is yours.  Designed by Kevin Wilson, Civilization: The Board Game is inspired by the legendary video game series created by Sid Meier. Players are tasked with guiding an entire civilization throughout the ages, taking ownership of your people’s technology, economy, culture, and military, as well as all the choices that go along with them. There are four different paths to victory, and each is riddled with opposition.  In Civilization: The Board Game, 2-4 players take on the roles of famous leaders in charge of historical civilizations, each with their own abilities. Players will be able to explore a module game board, build cities and buildings, fight battles, research powerful technology, and attract great people by advancing their culture. No matter what your play style is, there is a civilization for you!  Fans of Sid Meier’s classic video game franchise will find familiar footing in Civilization: The Board Game. Staying true to the foundations of its video game predecessor while creating a new and unique way to play, Civilization: The Board Game captures the spirit and grandeur of carving out a magnificent empire from modest beginnings.  Players start off with a single city, one army figure, and one scout, and from these meager origins you must forge through the ages and become the greatest civilization in the world.  Those unfamiliar with the video game series will find Civilization: The Board Game a great way to enter into the world of Civilization. The strategy and tactical decisions involved in Civilization: The Board Game will appeal to strategy gamers and war gamers alike, and the ability to win through culture and technological advancement will give those who only wish to focus on their own empire a chance at victory as well.', 14, 'http://www.edgeent.com/libros/coleccion/civilization', 2, 7),
-(20, 'Twilight Struggle', 2011, 2, 0, 180, 'Twilight Struggle es un juego de mesa temático de guerra y estrategia para dos jugadores ambientado en la Guerra Fría. Un jugador representa a los Estados Unidos y el otro a la Unión Soviética.\r\n\r\nEl tablero es un mapa del mundo a finales de la Guerra Fría. Está dividido en seis regiones geo-políticas: África, América central, Asia (con la sub-región del sudeste asiático), Europa (dividida en oriental y occidental), Oriente Medio y Sudamérica. Las fronteras entre los países responden más a consideraciones de su relación durante el período en cuestión que a la geografía, pues países limítrofes en el mundo real pueden no tener relación directa en el tablero o viceversa. Además, posee múltiples áreas donde se colocan los marcadores usados para los diversos aspectos del juego, como la puntuación, la carrera espacial o la DEFCON actual.\r\n\r\nEl juego incluye 103 cartas (110 en la edición de lujo y una carta especial en la edición en español), 228 marcadores, el reglamento, dos cartillas de ayuda y dos dados de seis caras.', 14, 'http://www.devir.es/producto/twilight-struggle-la-guerra-fria-1945-1989/', 1, 7);
+INSERT INTO `juego` (`id`, `titulo`, `fechaPublicacion`, `jugMin`, `jugMax`, `duracion`, `descripcion`, `edad`, `website`, `imagen`, `id_editorial`, `id_dependencialenguaje`) VALUES
+(1, 'Catan', 1995, 3, 4, 60, 'En Catan (anteriormente conocido como Los Colonos de Catan), los jugadores intentan convertirse en la fuerza dominante en la isla de Catan mediante la construcción de asentamientos, ciudades y carreteras. En cada turno, los dados son lanzados para determinar qué recursos produce la isla. Los jugadores recolectan estos recursos (cartas): madera, trigo, ladrillo, oveja y piedra. El objetivo es construir su civilización y obtener 10 puntos de victoria para ganar el juego. \r\n\r\nLos puntos se acumulan mediante la construcción de asentamientos y ciudades, obteniendo la carretera más larga, teniendo el ejército más grande u obteniendo ciertas cartas de puntuación. Cuando un jugador alcanza 10 puntos de victoria (algunos de los cuales pueden ser secretos), anuncia que ha obtenido los puntos necesarios y se proclama vencedor. \r\n\r\nCatan ha recibido múltiples premios y uno de los juegos más populares de los últimos tipos debido a su asombrosa habilidad para atraer por igual a jugadores expertos como novatos.\r\n\r\n', 8, 'http://www.catan.com/', '/images/catan.jpg', 1, 5),
+(2, 'Carcassonne', 2000, 2, 5, 30, 'Carcassonne es un juego de colocación de losetas en el cual los jugadores roban y colocan una pieza cuadrada que contiene un trozo de paisaje típico del sur de Francia. La loseta puede contener una ciudad, una carretera, un monasterio, campos o una mezcla de todo ello, y debe ser colocada adyacente a otra loseta que haya sido jugada previamente. Las ciudades deben conectar entre sí, al igual que los caminos. \r\n\r\nUna vez colocada la loseta, el jugador debe decidir si colocar una de sus figuras (meeple) en alguna de las áreas de la loseta: un caballero en una ciudad, un ladrón en un camino, un monje en un monasterio o un granjero en un campo. Cuando un área concreta está completa, ese meeple obtiene cierta puntuación para su dueño.\r\n\r\nDurante una partida de Carcassonne, los jugadores se enfrentan a decisiones como: ''¿Vale la pena colocar mi último meeple ahí?'' o ''¿Debería utilizar esta loseta para expandir mi ciudad, o debería colocarla cerca de mi rival para entorpecer sus obras?''. Dado que los jugadores únicamente poseen una loseta por turno y solo pueden colocar un meeple en ella, el turno de juego es rápido pero lleno de posibilidades y decisiones a tomar. ', 8, 'http://www.zmangames.com/carcassonne-universe.html', '/images/carca.jpg', 1, 4),
+(8, 'Race for the Galaxy', 2007, 2, 4, 60, 'En el juego de cartas Race for the Galaxy los jugadores construyen civilizaciones galácticas mediante la colocación de cartas que representan planetas o avances tecnológicos y sociales. Algunos de los planetas permiten a los jugadores producir bienes, que pueden ser consumidos más tarde para obtener más cartas o puntos de victoria. \r\n\r\nLos puntos de victoria son obtenidos principalmente por cartas de Desarrollo y Planetas que no tienen la capacidad de producir bienes, aunque ciertos planetas extraños hacen ambas cosas. \r\n\r\nAl comienzo de cada ronda, los jugadores seleccionan (de forma secreta y simultáneamente), una de entre 7 Cartas de Acción que se corresponde con una de las fases del juego. Al seleccionar una carta de Acción, los jugadores la activan en la fase correspondiente de esa ronda, concediendo a cada jugador la oportunidad de ejecutar la acción correspondiente a esa fase. Por ejemplo, si un jugador elige la carta de Colonizar, cada jugador tiene la oportunidad de colonizar uno de los planetas (cartas) que tienen en su mano. El jugador que eligió la carta, además, obtiene una bonificación que únicamente se aplica a él. Bonificaciones adicionales pueden ser obtenidas a través de la compra de cartas de Desarrollo, por lo que debes estar atento a las cartas jugadas por los demás jugadores, porque podrían obtener beneficios adicionales de tu Carta de Acción jugada.\r\n\r\n', 12, 'http://riograndegames.com/games.html?id=240', '/images/race.jpg', 4, 5),
+(9, 'Agricola', 2007, 1, 5, 60, 'En Agricola representas ser un granjero que vive con su pareja en una cabaña de madera. En tu turno únicamente puedes ejecutar 2 acciones, una por tí y otra por tu pareja, de entre las que se pueden realizar en una granja: recoger arcilla, madera o piedra; construir vallados; cultivar campos y muchas más. Posiblemente pienses en tener hijos para obtener más acciones por turno y conseguir más rápidamente tus objetivos, pero para ello antes deberás ampliar tu casa. ¿Y qué piensas hacer con todos esos pequeñajos?\r\n\r\nEl juego está pensado para jugarse con diferentes niveles de complejidad, a través del uso (o no) de ciertas cartas (Adquisiciones Menores y Ocupaciones). En la versión para principiantes, llamada Variante Familiar, estas cartas no se utilizan para nada. Para partidas avanzadas se incluyen tres mazos de cartas: Básico (mazo E), Interactivo (mazo I) y Complejo (mazo K). El propio manual del juego te invita a experimentar con las distintas variantes.\r\n\r\nAgricola es un juego basado en turnos (concretamente hay 14) y se ejecutan en 6 grandes rondas. Al final de cada una de ellas (tras los turnos 4, 7, 9, 11, 13 y 14) se produce la Cosecha, en la cual los jugadores deberán alimentar a sus familias. Cada jugador comienza con dos fichas de juego (el granjero y su pareja) y se ejecutan 2 acciones por turno. A medida que el juego avanza las opciones se van ampliando, aunque existe un problema: una acción únicamente se puede ejecutar por un único personaje en cada turno, por lo que hay que tomar importantes decisiones sobre qué acciones son prioritarias. \r\n\r\nEn definitiva, es un juego tenso, táctico y con múltiples decisiones a tomar en cada turno. Al final de la partida se hace un recuento de puntos de victoria que se basa en la calidad y cantidad de elementos de cada granja. El que obtiene más puntos de victoria gana la partida.', 12, 'http://www.devir.es/producto/agricola/', '/images/agri.jpg', 1, 5),
+(10, 'Descent: Journeys in the Dark', 2012, 2, 5, 120, 'Descent: Journeys in the Dark (Segunda Edición) es un juego de mesa en el que un jugador toma el papel de un traicionero Señor Oscuro y hasta cuatro jugadores toman el rol de héroes valerosos. Durante cada partida los héroes embarcan en apasionantes aventuras y se adentran en peligrosas cuevas, antiguas ruinas y oscuras mazmorras para luchar contra monstruos, obtener riquezas e intentar detener el maligno plan del Señor Oscuro. \r\n\r\nHabiendo peligros acechando en cada esquina, el combate es una necesidad. Para estas ocasiones, Descent utiliza un sistema único de dados. Los jugadores construyen una reserva de dados de acuerdo con sus habilidades y armas. Cada dado contribuye al ataque de diferentes modos: Ataques, Curaciones y Símbolos Especiales. \r\n\r\nEl juego incluye piezas de mapa a doble cara modulares, incontables héroes y combinaciones de habilidades y una campaña narrativa inmersiva que transporta a los héroes a un reino de fantasía vibrante en el que deben permanecer unidos contra el Mal Antiguo que acecha en las tierras de Terrinoth.', 10, 'http://www.edgeent.com/juegos/articulo/descent_viaje_a_las_tinieblas/descent_viaje_a_las_tinieblas_segunda_edicion', '/images/descent.jpg', 2, 7),
+(11, 'Patchwork', 2014, 2, 0, 30, 'Patchwork es una técnica de costura en la que se van cosiendo trozos de tela unos a otros para crear una pieza más grande. Antiguamente, era una manera de usar retales de tela sobrantes para crear ropa y colchas\r\n\r\nHoy en día, el Patchwork se considera un arte, en el cual se usan telas de calidad para crear un bello diseño. Piezas de diferentes telas producen unos resultados que pueden llegar a considerarse verdaderas obras de arte.\r\n\r\nElaborar una preciosa colcha requiere mucho tiempo y esfuerzo, puesto que los retales disponibles no encajan fácilmente. Escoge tus parches sabiamente, colócalos en tu colcha, acumula una gran reserva de botones y no dejes demasiados huecos… o te costarán la partida.', 8, '', '/images/patch.jpg', 3, 4),
+(12, 'El principito: Hazme un planeta', 2013, 2, 5, 25, 'En El Principito: Hazme un planeta, cada jugador construirá su propio planeta para proveer de un bello hogar a los adorables animales de la novela El Principito: el zorro, la oveja, el elefante y la serpiente. ¡Pero asegúrate que no haya demasiados baobabs o volcanes!\r\n\r\nEn cada ronda, el jugador inicial elige una de entre cuatro pilas de losetas y coge tantas losetas como el número de jugadores. Muestra todas las losetas, elige la que más le guste y elige a otro jugador para que elija otra. Esto es así hasta que todos los jugadores tienen una loseta, que procederán a colocar en su zona de juego para construir sus respectivos planetas.\r\n\r\nEn algunas losetas crecen árboles baobab, y tener demasiados de estos árboles es perjudicial. Si un jugador tiene tres baobab en su planeta, las tres losetas que los contienen se tendrán que voltear boca abajo, perdiendo su puntuación al final de la partida. \r\n\r\nAl final de la partida, cuando todo el mundo ha completado su planeta, cada jugador coloca 4 personajes (sacados de la novela original) que establecerán de qué manera puntuará el jugador. Cada volcán que posea un jugador en su planeta le restará un punto de victoria. Tras el recuento de puntos de victoria, el que sume más puntos gana la partida. ', 8, '', '/images/prince.jpg', 0, 4),
+(14, 'Bohnanza', 1997, 2, 7, 45, 'Bohnanza es el primer juego de una serie de juegos familiares, publicados en distintas editoriales a lo largo de los años. Es un juego de cartas cuya mecánica más interesante consiste en que no puedes reponer tu mano de cartas de la forma normal. Cada carta contiene una ilustración de una habichuela antropomórfica de colores vivos, y el objetivo del juego es acumular monedas para plantar campos de estas habichuelas para, posteriormente, cosecharlas. Para conseguir las habichuelas de los colores que necesitas, tendrás que comerciar con los demás jugadores y llegar a acuerdos.\r\n', 13, '', '/images/bona.jpg', 5, 4),
+(15, 'Ora et Labora', 2011, 1, 4, 180, '', 12, '', '/images/ora.jpg', 1, 5),
+(16, 'Galactica: El juego de mesa', 2008, 3, 6, 120, 'Battlestar Galactica: El juego de mesa es un juego semi-cooperativo de 3 a 6 jugadores en el que cada uno elige un personaje de entre los pilotos, líderes políticos, jefes militares o ingenieros pertenecientes a la serie de TV Galactica. \r\n\r\nCada jugador recibe una carta de Lealtad al principio del juego para determinar si es un humano o un infiltrado Cylon. Cada tarjeta de personaje además tiene unas habilidades especiales que lo diferencian del resto de personajes. \r\n\r\nLos jugadores mueven y toman acciones cada turno, ya sea en la nave Galactica, en la Colonial One o en un caza Viper. El objetivo es acumular cartas de habilidad, expulsar a los cylon y mantener a Galactica a salvo durante su viaje. Al final de cada turno, se saca una carta de Crisis, con una serie de tareas que los jugadores deben superar para superarla. Los cylons infiltrados, a su vez, intentarán sabotear estas pruebas que no se superen las Crisis y entorpecer el viaje de Galactica lo más posible. \r\n\r\nEl objetivo del juego es obtener 8 puntos de viaje para llegar al planeta Kobol. Si esto sucede, los humanos ganan la partida. Si Galactica es destruida o alguno de sus recursos (Combustible, Moral, Alimentos o Población) llega a 0, los cylons ganan la partida. \r\n\r\n', 14, 'http://www.edgeent.com/juegos/coleccion/battlestar_galactica', '/images/galac.jpg', 2, 7),
+(17, 'Mansiones de la Locura', 2011, 2, 5, 120, 'Horrendos monstruos y presencias espectrales acechan en mansiones, criptas, escuelas y monasterios cercanos a Arkham, Massachussets. Algunos elaboran oscuras conspiraciones mientras otros esperan pacientes para devorar a sus víctimas. \r\n\r\nEstá en la mano de un grupo de valientes investigadores el explorar estos lugares malditos y descubrir la verdad acerca de las pesadillas que habitan en ellos.\r\n\r\nDiseñado por Corey Konieczka, Mansiones de la Locura es un juego macabro de terror, locura y misterio para 2 a 5 jugadores. Cada partida transcurre en una historia pre-diseñada que proporciona a los jugadores un mapa único y diferentes combinaciones de subtramas. Estas subtramas afectan a los monstruos que los investigadores pueden encontrar, las pistas que necesitan encontrar y el clímax de la historia.\r\n\r\nUno de los jugadores adopta el papel del Guardián, controlando a los monstruos y demás poderes maliciosos de la historia. Los otros jugadores se convierten en los investigadores que buscan respuestas mientras luchan para sobrevivir con sus mentes intactas. ¿Os atreveréis a penetrar en las Mansiones de la Locura?\r\n', 14, 'http://www.edgeent.com/libros/coleccion/las_mansiones_de_la_locura', '/images/mansiones.jpg', 2, 7),
+(18, 'Guerra del Anillo', 2012, 2, 4, 150, 'En Guerra del Anillo, un jugador toma el control de los Pueblos Libres mientras que el otro controla el Ejército de la Sombra. Inicialmente, los Pueblos Libres son reacios a alzarse en armas contra Sauron, por lo que deben ser atacados previamente o ser persuadidos por Gandalf u otros compañeros antes de comenzar a guerrear. \r\n\r\nLa victoria se puede obtener mediante Victoria Militar, si Sauron conquista un determinado número de Baluartes de los Pueblos Libres. Estos, por otra parte, ponen sus esperanzas en la misión del Portador del Anillo.\r\n\r\n The game can be won by a military victory, if Sauron conquers a certain number of Free People cities and strongholds or vice versa. But the true hope of the Free Peoples lies with the quest of the Ringbearer: while the armies clash across Middle Earth, the Fellowship of the Ring is trying to get secretly to Mount Doom to destroy the One Ring. Sauron is not aware of the real intention of his enemies but is looking across Middle Earth for the precious Ring, so that the Fellowship is going to face numerous dangers, represented by the rules of The Hunt for the Ring. But the Companions can spur the Free Peoples to the fight against Sauron, so the Free People player must balance the need to protect the Ringbearer from harm, against the attempt to raise a proper defense against the armies of the Shadow, so that they do not overrun Middle Earth before the Ringbearer completes his quest.  Each game turn revolves around the roll of Action Dice: each die corresponds to an action that a player can do during a turn. Depending on the face rolled on each die, different actions are possible (moving armies, characters, recruiting troops, advancing a Political Track).  Action dice can also be used to draw or play Event Cards. Event Cards are played to represent specific events from the story (or events which could possibly have happened) which cannot be portrayed through normal game-play. Each Event Card can also create an unexpected turn in the game, allowing special actions or altering the course of a battle.', 14, 'http://www.aresgames.eu/games/war-of-the-ring-line/war-of-the-ring-second-edition', '/images/anillo.jpg', 1, 7),
+(19, 'Civilization: El juego de mesa', 2010, 2, 4, 180, 'Before you lies a vast bounty of land, ripe for the plucking. Your meager beginnings will influence the paths you must take. Lead your people well and they will take you to infinite heights of greatness. If civilization manages to endure the ages, your name will hang in every whisper of its legacy...  Fantasy Flight Games is excited to announce the upcoming release of Sid Meier’s Civilization: The Board Game! Forge an empire to stand the test of time using innovative game mechanics with multiple paths to victory.  Will you lead the greatest army in the world to conquer your foes? Or will you be the first to journey to the stars, becoming the most technologically advanced civilization known to man? The choice is yours.  Designed by Kevin Wilson, Civilization: The Board Game is inspired by the legendary video game series created by Sid Meier. Players are tasked with guiding an entire civilization throughout the ages, taking ownership of your people’s technology, economy, culture, and military, as well as all the choices that go along with them. There are four different paths to victory, and each is riddled with opposition.  In Civilization: The Board Game, 2-4 players take on the roles of famous leaders in charge of historical civilizations, each with their own abilities. Players will be able to explore a module game board, build cities and buildings, fight battles, research powerful technology, and attract great people by advancing their culture. No matter what your play style is, there is a civilization for you!  Fans of Sid Meier’s classic video game franchise will find familiar footing in Civilization: The Board Game. Staying true to the foundations of its video game predecessor while creating a new and unique way to play, Civilization: The Board Game captures the spirit and grandeur of carving out a magnificent empire from modest beginnings.  Players start off with a single city, one army figure, and one scout, and from these meager origins you must forge through the ages and become the greatest civilization in the world.  Those unfamiliar with the video game series will find Civilization: The Board Game a great way to enter into the world of Civilization. The strategy and tactical decisions involved in Civilization: The Board Game will appeal to strategy gamers and war gamers alike, and the ability to win through culture and technological advancement will give those who only wish to focus on their own empire a chance at victory as well.', 14, 'http://www.edgeent.com/libros/coleccion/civilization', '/images/civi.jpg', 2, 7),
+(20, 'Twilight Struggle', 2011, 2, 0, 180, 'Twilight Struggle es un juego de mesa temático de guerra y estrategia para dos jugadores ambientado en la Guerra Fría. Un jugador representa a los Estados Unidos y el otro a la Unión Soviética.\r\n\r\nEl tablero es un mapa del mundo a finales de la Guerra Fría. Está dividido en seis regiones geo-políticas: África, América central, Asia (con la sub-región del sudeste asiático), Europa (dividida en oriental y occidental), Oriente Medio y Sudamérica. Las fronteras entre los países responden más a consideraciones de su relación durante el período en cuestión que a la geografía, pues países limítrofes en el mundo real pueden no tener relación directa en el tablero o viceversa. Además, posee múltiples áreas donde se colocan los marcadores usados para los diversos aspectos del juego, como la puntuación, la carrera espacial o la DEFCON actual.\r\n\r\nEl juego incluye 103 cartas (110 en la edición de lujo y una carta especial en la edición en español), 228 marcadores, el reglamento, dos cartillas de ayuda y dos dados de seis caras.', 14, 'http://www.devir.es/producto/twilight-struggle-la-guerra-fria-1945-1989/', '/images/twil.jpg', 1, 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipodocumento`
+-- Estructura de tabla para la tabla `tipodocumento`
 --
 
-CREATE TABLE `tipodocumento` (
+CREATE TABLE IF NOT EXISTS `tipodocumento` (
   `id` int(6) NOT NULL,
   `descripcion` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `privado` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tipodocumento`
+-- Volcado de datos para la tabla `tipodocumento`
 --
 
 INSERT INTO `tipodocumento` (`id`, `descripcion`, `privado`) VALUES
@@ -531,16 +532,16 @@ INSERT INTO `tipodocumento` (`id`, `descripcion`, `privado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipousuario`
+-- Estructura de tabla para la tabla `tipousuario`
 --
 
-CREATE TABLE `tipousuario` (
+CREATE TABLE IF NOT EXISTS `tipousuario` (
   `id` int(11) NOT NULL COMMENT 'Identificador',
-  `descripcion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Descripción`
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `descripcion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Descripción'
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tipousuario`
+-- Volcado de datos para la tabla `tipousuario`
 --
 
 INSERT INTO `tipousuario` (`id`, `descripcion`) VALUES
@@ -551,20 +552,20 @@ INSERT INTO `tipousuario` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(6) NOT NULL COMMENT 'Identificador',
-  `login` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Nombre de usuario`,
-  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Contraseña`,
-  `id_tipousuario` int(11) DEFAULT NULL COMMENT AS `Tipo de usuario`,
-  `ciudad` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Ciudad`,
-  `firma` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT AS `Firma`
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `login` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Nombre de usuario',
+  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Contraseña',
+  `id_tipousuario` int(11) DEFAULT NULL COMMENT 'Tipo de usuario',
+  `ciudad` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Ciudad',
+  `firma` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Firma'
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `login`, `password`, `id_tipousuario`, `ciudad`, `firma`) VALUES
@@ -573,167 +574,167 @@ INSERT INTO `usuario` (`id`, `login`, `password`, `id_tipousuario`, `ciudad`, `f
 (35, 'Rafael', '9135d8523ad3da99d8a4eb83afac13d1', 1, 'Valencia', 'The Best');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `autor`
+-- Indices de la tabla `autor`
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `autorjuego`
+-- Indices de la tabla `autorjuego`
 --
 ALTER TABLE `autorjuego`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categoria`
+-- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categoriajuego`
+-- Indices de la tabla `categoriajuego`
 --
 ALTER TABLE `categoriajuego`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `coleccion`
+-- Indices de la tabla `coleccion`
 --
 ALTER TABLE `coleccion`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dependencialenguaje`
+-- Indices de la tabla `dependencialenguaje`
 --
 ALTER TABLE `dependencialenguaje`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `documento`
+-- Indices de la tabla `documento`
 --
 ALTER TABLE `documento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `editorial`
+-- Indices de la tabla `editorial`
 --
 ALTER TABLE `editorial`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ilustrador`
+-- Indices de la tabla `ilustrador`
 --
 ALTER TABLE `ilustrador`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ilustradorjuego`
+-- Indices de la tabla `ilustradorjuego`
 --
 ALTER TABLE `ilustradorjuego`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `juego`
+-- Indices de la tabla `juego`
 --
 ALTER TABLE `juego`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipodocumento`
+-- Indices de la tabla `tipodocumento`
 --
 ALTER TABLE `tipodocumento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipousuario`
+-- Indices de la tabla `tipousuario`
 --
 ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `autor`
+-- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
--- AUTO_INCREMENT for table `autorjuego`
+-- AUTO_INCREMENT de la tabla `autorjuego`
 --
 ALTER TABLE `autorjuego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
--- AUTO_INCREMENT for table `categoriajuego`
+-- AUTO_INCREMENT de la tabla `categoriajuego`
 --
 ALTER TABLE `categoriajuego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
 --
--- AUTO_INCREMENT for table `coleccion`
+-- AUTO_INCREMENT de la tabla `coleccion`
 --
 ALTER TABLE `coleccion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `dependencialenguaje`
+-- AUTO_INCREMENT de la tabla `dependencialenguaje`
 --
 ALTER TABLE `dependencialenguaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `documento`
+-- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Num.', AUTO_INCREMENT=111;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Num.',AUTO_INCREMENT=111;
 --
--- AUTO_INCREMENT for table `editorial`
+-- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `ilustrador`
+-- AUTO_INCREMENT de la tabla `ilustrador`
 --
 ALTER TABLE `ilustrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT for table `ilustradorjuego`
+-- AUTO_INCREMENT de la tabla `ilustradorjuego`
 --
 ALTER TABLE `ilustradorjuego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `juego`
+-- AUTO_INCREMENT de la tabla `juego`
 --
 ALTER TABLE `juego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `tipodocumento`
+-- AUTO_INCREMENT de la tabla `tipodocumento`
 --
 ALTER TABLE `tipodocumento`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `tipousuario`
+-- AUTO_INCREMENT de la tabla `tipousuario`
 --
 ALTER TABLE `tipousuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador',AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=36;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Identificador',AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

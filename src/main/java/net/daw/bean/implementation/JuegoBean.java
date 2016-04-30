@@ -55,6 +55,8 @@ public class JuegoBean implements GenericBean {
     private Integer edad = 0;
     @Expose
     private String website = "";
+    @Expose
+    private String imagen = "";
     @Expose(serialize = false)
     private Integer id_editorial = 0;
     @Expose(deserialize = false)
@@ -63,6 +65,7 @@ public class JuegoBean implements GenericBean {
     private Integer id_dependencialenguaje = 0;
     @Expose(deserialize = false)
     private DependenciaLenguajeBean obj_dependencialenguaje = null;
+    
 
     public JuegoBean() {
         this.id = 0;
@@ -144,6 +147,14 @@ public class JuegoBean implements GenericBean {
         this.website = website;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public Integer getId_editorial() {
         return id_editorial;
     }
@@ -188,14 +199,13 @@ public class JuegoBean implements GenericBean {
         strJson += "descripcion:" + descripcion + ",";
         strJson += "edad:" + edad + ",";
         strJson += "website:" + website + ",";
+        strJson += "imagen" + imagen + ",";
         if (expand) {
             strJson += "obj_editorial:" + obj_editorial.toJson(false) + ",";
             strJson += "obj_dependencialenguaje:" + obj_dependencialenguaje.toJson(false) + ",";
-
         } else {
             strJson += "id_editorial:" + id_editorial + ",";
             strJson += "id_dependencialenguaje:" + id_dependencialenguaje + ",";
-
         }
         strJson += "}";
         return strJson;
@@ -214,6 +224,7 @@ public class JuegoBean implements GenericBean {
         strColumns += "descripcion,";
         strColumns += "edad,";
         strColumns += "website,";
+        strColumns += "imagen";
         strColumns += "id_editorial,";
         strColumns += "id_dependencialenguaje";
 
@@ -232,6 +243,7 @@ public class JuegoBean implements GenericBean {
         strColumns += EncodingUtilHelper.quotate(descripcion) + ",";
         strColumns += edad.toString() + ",";
         strColumns += EncodingUtilHelper.quotate(website) + ",";
+        strColumns += EncodingUtilHelper.quotate(imagen) + ",";
         strColumns += id_editorial + ",";
         strColumns += id_dependencialenguaje;
 
@@ -250,6 +262,7 @@ public class JuegoBean implements GenericBean {
         strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion) + ",";
         strPairs += "edad=" + edad + ",";
         strPairs += "website=" + EncodingUtilHelper.quotate(website) + ",";
+        strPairs += "imagen=" + EncodingUtilHelper.quotate(imagen) + ",";
         strPairs += "id_editorial=" + id_editorial + ",";
         strPairs += "id_dependencialenguaje=" + id_dependencialenguaje;
 
@@ -267,6 +280,7 @@ public class JuegoBean implements GenericBean {
         this.setDescripcion(oResultSet.getString("descripcion"));
         this.setEdad(oResultSet.getInt("edad"));
         this.setWebsite(oResultSet.getString("website"));
+        this.setImagen(oResultSet.getString("imagen"));
         if (expand > 0) {
             EditorialBean oEditorialBean = new EditorialBean();
             EditorialDao oEditorialDao = new EditorialDao(pooledConnection);
