@@ -31,14 +31,15 @@
 
 moduloCategoriaJuego.controller('CategoriaJuegoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
+
+        $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.nombre = true;
         $scope.visibles.fechaPublicacion = true;
         $scope.visibles.numJugadores = true;
         $scope.visibles.edad = true;
         $scope.visibles.duracion = true;
+        $scope.visibles.imagen = true;
 
 
         $scope.ob = "categoriaJuego";
@@ -114,7 +115,7 @@ moduloCategoriaJuego.controller('CategoriaJuegoPListController', ['$scope', '$ro
 
                 $scope.page = data.message.page.message;
                 //$scope.registers = data.message.registers.message;
-               // $scope.status = "";
+                // $scope.status = "";
             }
         });
 

@@ -39,6 +39,7 @@ moduloAutorJuego.controller('AutorJuegoPListController', ['$scope', '$routeParam
         $scope.visibles.numJugadores = true;
         $scope.visibles.edad = true;
         $scope.visibles.duracion = true;
+        $scope.visibles.imagen = true;
 
 
         $scope.ob = "autorJuego";
