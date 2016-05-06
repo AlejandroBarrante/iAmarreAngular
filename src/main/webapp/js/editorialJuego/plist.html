@@ -148,6 +148,7 @@ THE SOFTWARE.
     
 <h1 class="text-center" ng-repeat="obj in page| limitTo:1">{{obj.nombre}}</h1>
 
+
     <div id="datos">
 
         <div class="row fluid">
@@ -159,7 +160,7 @@ THE SOFTWARE.
                                             [this.selectedIndex].value">
                     <option></option>
                     <option
-                        value="#/editorialJuego/plist/{{numpage}}/{{rpp}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
+                        value="#/editorialJuego/plist/{{numpage}}/{{rpp}}/{{id}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
                         por nombre</option>
                     <option ng-show="visibles.edad"
                             value="#/editorialJuego/plist/{{numpage}}/{{rpp}}?order=edad&ordervalue=asc{{paramsWithoutOrder}}">Ordenar

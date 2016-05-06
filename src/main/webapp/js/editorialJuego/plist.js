@@ -76,7 +76,7 @@ moduloEditorialJuego.controller('EditorialJuegoPListController', ['$scope', '$ro
         if ($routeParams.order && $routeParams.ordervalue) {
             $scope.order = $routeParams.order;
             $scope.ordervalue = $routeParams.ordervalue;
-            $scope.orderParams = "&id_editorial=" + $routeParams.id_editorial + "&order=" + $routeParams.order + "&ordervalue=" + $routeParams.ordervalue;
+            $scope.orderParams = "&order=" + $routeParams.order + "&ordervalue=" + $routeParams.ordervalue;
             $scope.paramsWithoutFilter += $scope.orderParams;
             $scope.paramsWithoutSystemFilter += $scope.orderParams;
         } else {
