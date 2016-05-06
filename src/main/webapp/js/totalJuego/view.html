@@ -26,122 +26,123 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-	ng-include="'js/system/header.html'"></div>
+     ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
-	<div class="row-fluid">
-		<div class="col-md-12">
+    <div class="row-fluid">
+        <div class="col-md-12">
 
-					<h3 class="text-center">{{bean.titulo}}</h3>
+            <h3 class="text-center">{{bean.titulo}}</h3>
 
-		</div>
-	</div>
-	<br /> <br /> <br /> <br />
+        </div>
+    </div>
+    <br /> <br /> <br /> <br />
 
-	<div class="row-fluid">
-		<div class="col-md-6">
+    <div class="row-fluid">
+        <div class="col-md-6">
 
-              <!--      <img href="{{bean.imagen}}"> -->
+            <!--      <img href="{{bean.imagen}}"> -->
 
-		</div>
-
-
-		<div class="col-md-6">
+        </div>
 
 
-			<p>{{bean.descripcion}}</p>
-			
-				<br />
-
-			<table>
-
-				<tr>
-					<td>Autores</td>
-					<td><li ng-repeat="autor in bean.array_autor"><a
-							href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
-				</tr>
-
-				<tr>
-					<td>Ilustradores</td>
-					<td><li ng-repeat="ilustrador in bean.array_ilustrador"><a
-							href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li></td>
-				</tr>
-
-				<tr>
-					<td>Editorial</td>
-					<td>{{bean.obj_editorial.nombre}}</td>
-				</tr>
-				<tr>
-					<td>Fecha de Publicación</td>
-					<td>{{bean.fechaPublicacion}}</td>
-				</tr>
-				<tr>
-					<td>Número de Jugadores</td>
-					<td><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
-						ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
-				</tr>
-				<tr>
-					<td>Duración</td>
-					<td>{{bean.duracion}} minutos</td>
-				</tr>
+        <div class="col-md-6">
 
 
-				<tr>
-					<td>Categorías</td>
-					<td><li ng-repeat="categoria in bean.array_categoria"><a
-							href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li></td>
-				</tr>
+            <p>{{bean.descripcion}}</p>
 
-				<tr>
-					<td>Edad</td>
-					<td>{{bean.edad}}+</td>
-				</tr>
-				<tr>
-					<td>Dependencia del Lenguaje</td>
-					<td>{{bean.obj_dependencialenguaje.descripcion}}</td>
-				</tr>
-				<tr>
-					<td>Website</td>
-					<td><a href="{{bean.website}}">{{bean.website}}</a></td>
-				</tr>
+            <br />
 
-			</table>
+            <table>
 
-		</div>
+                <tr>
+                    <td>Autores</td>
+                    <td><li ng-repeat="autor in bean.array_autor"><a
+                        href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
+                </tr>
 
-	</div>
+                <tr>
+                    <td>Ilustradores</td>
+                    <td><li ng-repeat="ilustrador in bean.array_ilustrador"><a
+                        href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li></td>
+                </tr>
+
+                <tr>
+                    <td>Editorial</td>
+                    <td>{{bean.obj_editorial.nombre}}</td>
+                </tr>
+                <tr>
+                    <td>Fecha de Publicación</td>
+                    <td>{{bean.fechaPublicacion}}</td>
+                </tr>
+                <tr>
+                    <td>Número de Jugadores</td>
+                    <td><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
+                            ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
+                </tr>
+                <tr>
+                    <td>Duración</td>
+                    <td>{{bean.duracion}} minutos</td>
+                </tr>
+
+
+                <tr>
+                    <td>Categorías</td>
+                    <td><li ng-repeat="categoria in bean.array_categoria"><a
+                        href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li></td>
+                </tr>
+
+                <tr>
+                    <td>Edad</td>
+                    <td>{{bean.edad}}+</td>
+                </tr>
+                <tr>
+                    <td>Dependencia del Lenguaje</td>
+                    <td>{{bean.obj_dependencialenguaje.descripcion}}</td>
+                </tr>
+                <tr>
+                    <td>Website</td>
+                    <td><a href="{{bean.website}}">{{bean.website}}</a></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
 
 
 
-	<div class="row-fluid">
+    <div class="row-fluid">
 
-		<div class="col-md-12">
-		
-		<br /> <br />
+        <div class="col-md-12">
 
-			<div class="coleccion text-center">
-				<div class="btn-group" role="group" aria-label="añadir">
-					<a class="btn btn-default action02" ng-click="go(bean.id)"><i
-						class="fa fa-check fa-2g"></i> Añadir a mi colección</a> <a
-						class="btn btn-default" href="#/juego/plist/">Ir al listado de
-						Juegos</a> <a class="btn btn-default" href="/juegoteca/#/">Ir al
-						Inicio</a>
-				</div>
-			</div>
+            <br /> <br />
 
-			<br />
+            <div class="coleccion text-center">
+                <div class="btn-group" role="group" aria-label="añadir">
+                    <a class="btn btn-default action02" ng-click="go(bean.id)"><i
+                            class="fa fa-check fa-2g"></i> Añadir a mi colección</a> 
+                    <a
+                        class="btn btn-default" href="#/juego/plist/">Ir al listado de
+                        Juegos</a> <a class="btn btn-default" href="/juegoteca/#/">Ir al
+                        Inicio</a>
+                </div>
+            </div>
 
-			<div class="text-center">
-				<h3>Panel de Administración</h3>
-				<a class="btn btn-primary" href="#/juego/edit/{{bean.id}}">Editar</a>
-				<a class="btn btn-danger" href="#/juego/remove/{{bean.id}}">Borrar</a>
-			</div>
-		</div>
+            <br />
 
-	</div>
+            <div class="text-center">
+                <h3>Panel de Administración</h3>
+                <a class="btn btn-primary" href="#/juego/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-danger" href="#/juego/remove/{{bean.id}}">Borrar</a>
+            </div>
+        </div>
+
+    </div>
 
 
 </div>
 
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
-	ng-include="'js/system/footer.html'"></div>
+     ng-include="'js/system/footer.html'"></div>

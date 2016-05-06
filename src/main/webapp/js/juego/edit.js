@@ -27,8 +27,8 @@
  */
 
 'use strict';
-moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', 'sharedSpaceJuego',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, sharedSpaceJuego) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
         $scope.ob = 'juego';
@@ -95,6 +95,13 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
+
+        $scope.chooseOne = function (foreignObjectName) {
+
+            sharedSpaceJuego.setReturnLink('juego/edit/' + $scope.id);
+            sharedSpaceJuego.set_idJuego($scope.id);
+            $location.path('/' + foreignObjectName + '/selection/1/100/' + $scope.id);
+        }
 
 
 
