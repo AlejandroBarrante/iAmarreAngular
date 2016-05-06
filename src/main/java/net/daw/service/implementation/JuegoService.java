@@ -240,6 +240,130 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
+    
+    	public String getaggregateviewsomeeditorial() throws Exception {
+		if (this.checkpermission("getaggregateviewsomeeditorial")) {
+			String data = null;
+			try {
+
+				String pageEditorial = this.getpageeditorial();
+				String pagesEditorial = this.getpageseditorial();
+				String registersEditorial = this.getcounteditorial();
+				data = "{" + "\"page\":" + pageEditorial + ",\"pages\":" + pagesEditorial + ",\"registers\":" + registersEditorial
+						+ "}";
+				data = JsonMessage.getJson("200", data);
+			} catch (Exception ex) {
+				ExceptionBooster.boost(
+						new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+			}
+			return data;
+		} else {
+			return JsonMessage.getJsonMsg("401", "Unauthorized");
+		}
+	}
+        
+        public String getpageeditorial() throws Exception {
+		if (this.checkpermission("getpage")) {
+			int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
+			;
+			int intPage = ParameterCook.preparePage(oRequest);
+			int id_editorial = ParameterCook.prepareInt("id_editorial", oRequest);
+			ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+			HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+			String data = null;
+			Connection oConnection = null;
+			ConnectionInterface oDataConnectionSource = null;
+			try {
+				oDataConnectionSource = getSourceConnection();
+				oConnection = oDataConnectionSource.newConnection();
+				JuegoDao oAutorJuegoDao = new JuegoDao(oConnection);
+				List<JuegoBean> arrBeans = oAutorJuegoDao.getPageEditorial(id_editorial, intRegsPerPag, intPage, alFilter,
+						hmOrder, AppConfigurationHelper.getJsonDepth());
+				data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+			} catch (Exception ex) {
+				ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+			} finally {
+				if (oConnection != null) {
+					oConnection.close();
+				}
+				if (oDataConnectionSource != null) {
+					oDataConnectionSource.disposeConnection();
+				}
+			}
+			return data;
+		} else {
+			return JsonMessage.getJsonMsg("401", "Unauthorized");
+		}
+	}
+
+	public String getpageseditorial() throws Exception {
+		if (this.checkpermission("getpages")) {
+			int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
+			ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+			int id_editorial = ParameterCook.prepareInt("id_editorial", oRequest);
+			String data = null;
+			Connection oConnection = null;
+			ConnectionInterface oDataConnectionSource = null;
+			try {
+				oDataConnectionSource = getSourceConnection();
+				oConnection = oDataConnectionSource.newConnection();
+				JuegoDao oAutorJuegoDao = new JuegoDao(oConnection);
+				data = JsonMessage.getJson("200",
+						Integer.toString(oAutorJuegoDao.getPagesEditorial(id_editorial, intRegsPerPag, alFilter)));
+			} catch (Exception ex) {
+				ExceptionBooster
+						.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+			} finally {
+				if (oConnection != null) {
+					oConnection.close();
+				}
+				if (oDataConnectionSource != null) {
+					oDataConnectionSource.disposeConnection();
+				}
+			}
+			return data;
+		} else {
+			return JsonMessage.getJsonMsg("401", "Unauthorized");
+		}
+	}
+
+	public String getcounteditorial() throws Exception {
+		if (this.checkpermission("getcount")) {
+			String data = null;
+			ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+			int id_editorial = ParameterCook.prepareInt("id_editorial", oRequest);
+			Connection oConnection = null;
+			ConnectionInterface oDataConnectionSource = null;
+			try {
+				oDataConnectionSource = getSourceConnection();
+				oConnection = oDataConnectionSource.newConnection();
+				JuegoDao oAutorJuegoDao = new JuegoDao(oConnection);
+				data = JsonMessage.getJson("200", Integer.toString(oAutorJuegoDao.getCountEditorial(id_editorial, alFilter)));
+			} catch (Exception ex) {
+				ExceptionBooster
+						.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+			} finally {
+				if (oConnection != null) {
+					oConnection.close();
+				}
+				if (oDataConnectionSource != null) {
+					oDataConnectionSource.disposeConnection();
+				}
+			}
+			return data;
+		} else {
+			return JsonMessage.getJsonMsg("401", "Unauthorized");
+		}
+	}
+        
+        
+        
+        
+        
+        
+        
+        
+      //  *************
 
     @Override
     public String remove() throws Exception {

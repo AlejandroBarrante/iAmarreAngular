@@ -48,6 +48,7 @@ var openAusias = angular.module('myApp', [
     'categoriaControllers',
     'depLenguajeControllers',
     'categoriaJuegoControllers',
+    'editorialJuegoControllers',
     'totalJuegoControllers',
     'coleccionControllers',
     'menuControllers',
@@ -117,10 +118,9 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/coleccion/view/:id', {templateUrl: 'js/coleccion/view.html', controller: 'ColeccionViewController'});
         //------------
         $routeProvider.when('/autorJuego/plist/:page?/:rpp?/:id_autor?', {templateUrl: 'js/autorJuego/plist.html', controller: 'AutorJuegoPListController'});
-        $routeProvider.when('/autorJuego/view/:id', {templateUrl: 'js/autorJuego/view.html', controller: 'AutorJuegoViewController'});
-        //------------
         $routeProvider.when('/ilustradorJuego/plist/:page?/:rpp?/:id_ilustrador?', {templateUrl: 'js/ilustradorJuego/plist.html', controller: 'IlustradorJuegoPListController'});
         $routeProvider.when('/categoriaJuego/plist/:page?/:rpp?/:id_categoria?', {templateUrl: 'js/categoriaJuego/plist.html', controller: 'CategoriaJuegoPListController'});
+        $routeProvider.when('/editorialJuego/plist/:page?/:rpp?/:id_editorial?', {templateUrl: 'js/editorialJuego/plist.html', controller: 'EditorialJuegoPListController'});
         //------------
         $routeProvider.when('/juegoEditorial/plist/:page?/:rpp?/:id_editorial?', {templateUrl: 'js/juegoEditorial/plist.html', controller: 'JuegoEditorialPListController'});
         //------------
@@ -147,12 +147,13 @@ var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloJuego = angular.module('juegoControllers', []);
 var moduloAutor = angular.module('autorControllers', []);
-var moduloAutorJuego = angular.module('autorJuegoControllers', []);
 var moduloEditorial = angular.module('editorialControllers', []);
 var moduloIlustrador = angular.module('ilustradorControllers', []);
-var moduloIlustradorJuego = angular.module('ilustradorJuegoControllers', []);
 var moduloCategoria = angular.module('categoriaControllers', []);
+var moduloAutorJuego = angular.module('autorJuegoControllers', []);
+var moduloIlustradorJuego = angular.module('ilustradorJuegoControllers', []);
 var moduloCategoriaJuego = angular.module('categoriaJuegoControllers', []);
+var moduloEditorialJuego = angular.module('editorialJuegoControllers', []);
 var moduloDepLenguaje = angular.module('depLenguajeControllers', []);
 var moduloTotalJuego = angular.module('totalJuegoControllers', []);
 var moduloColeccion = angular.module('coleccionControllers', []);

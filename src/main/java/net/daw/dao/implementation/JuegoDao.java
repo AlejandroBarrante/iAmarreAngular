@@ -98,6 +98,56 @@ public class JuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInterface<
 		}
 		return arrJuego;
 	}
+        
+        	// MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE AUTOR Y JUEGO
+	public int getPagesEditorial(int id_editorial, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+		strSQL += "AND id_editorial=" + id_editorial;
+		int pages = 0;
+		try {
+			pages = oMysql.getPages(strSQL, intRegsPerPag);
+		} catch (Exception ex) {
+			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+		}
+		return pages;
+	}
+
+	public int getCountEditorial(int id_editorial, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+		strSQL += "AND id_editorial=" + id_editorial;
+		int pages = 0;
+		try {
+			pages = oMysql.getCount(strSQL);
+		} catch (Exception ex) {
+			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+		}
+		return pages;
+	}
+
+	public ArrayList<JuegoBean> getPageEditorial(int id_editorial, int intRegsPerPag, int intPage,
+			ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+		strSQL += "AND id_editorial=" + id_editorial;
+		strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+		ArrayList<JuegoBean> arrAutorJuegoBean = new ArrayList<>();
+		try {
+			ResultSet oResultSet = oMysql.getAllSql(strSQL);
+			if (oResultSet != null) {
+				while (oResultSet.next()) {
+					JuegoBean oJuegoBean = new JuegoBean();
+					arrAutorJuegoBean.add(oJuegoBean.fill(oResultSet, oConnection, expand));
+				}
+			}
+		} catch (Exception ex) {
+			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+		}
+		return arrAutorJuegoBean;
+	}
+        
+        
+        
+        // *****************
 
 	@Override
 	public ArrayList<JuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,

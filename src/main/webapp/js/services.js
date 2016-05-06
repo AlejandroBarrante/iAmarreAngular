@@ -85,6 +85,9 @@ angular.module('Services', [])
                 promise_getSomeAutor: function (strClass, rpp, page, id_autor, filterParams, orderParams, systemfilterParams) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeautor' + '&rpp=' + rpp + '&page=' + page + '&id_autor=' + id_autor + filterParams + orderParams + systemfilterParams, 'GET', '');
                 },
+                promise_getSomeEditorial: function (strClass, rpp, page, id_editorial, filterParams, orderParams, systemfilterParams) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeeditorial' + '&rpp=' + rpp + '&page=' + page + '&id_editorial=' + id_editorial + filterParams + orderParams + systemfilterParams, 'GET', '');
+                },
                 promise_getSomeAutor2: function (strClass, rpp, page, id_juego, filterParams, orderParams, systemfilterParams) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomeautor' + '&rpp=' + rpp + '&page=' + page + '&id_juego=' + id_juego + filterParams + orderParams + systemfilterParams, 'GET', '');
                 },
