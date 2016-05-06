@@ -79,6 +79,14 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
             $location.path('/usuario/plist');
         };
 
+        $scope.mostrarCont = function () {
+                if ($('#mostrar').is(':checked')) {
+                    $('#password').attr('type', 'text');
+                } else {
+                    $('#password').attr('type', 'password');
+                }
+        };
+
 
 
     }]);

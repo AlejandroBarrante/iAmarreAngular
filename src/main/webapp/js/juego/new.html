@@ -180,7 +180,7 @@ THE SOFTWARE.
         <div class="form-group">
             <label for="file" class="col-sm-2 control-label">File: </label>  
             <input type="file" name="file" id="file"/>
-            <input type="submit" value="upload file" /><br/>
+            <input type="submit" value="upload file" ng-click="upload()" /><br/>
         </div>
 
     </form>  
@@ -217,46 +217,3 @@ THE SOFTWARE.
      ng-include="'js/system/footer.html'"></div>
 
 <script src="../../vendor/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-            $(document).ready(function () {
-                debugger;
-                $("#uploadForm").submit(function () {
-                    var form = document.getElementById('uploadForm');
-                    $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
-                    oformData = new FormData(form);
-                    oformData.append("id", 4);
-                    oformData.append("value", "ajax...");
-                    this.timer = setTimeout(function () {
-                        $.ajax({
-                            url: 'upload',
-                            processData: false,
-                            contentType: false,
-                            enctype: 'multipart/form-data',
-                            mimeType: "multipart/form-data",
-                            data: oformData,
-                            type: 'post',
-                            success: function (msg) {
-                                msg = JSON.parse(msg);
-                                if (msg.status == 200) {
-                                    $("#spinner").empty();
-                                    //http://stackoverflow.com/questions/4285042/asychronously-load-images-with-jquery
-                                    var img = $("<img />").attr('src', msg.message.imglink).attr("width", 100)
-                                            .on('load', function () {
-                                                if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                                                    alert('broken image!');
-                                                } else {
-                                                    $("#info").empty().append("<p>Image was sucessfully uploaded:</p>");
-                                                    $("#info").append(img);
-                                                }
-                                            });
-                                } else {
-                                    $("#spinner").empty();
-                                    $("#info").empty().append("<h2>ERROR: " + msg.message + "</h2>");
-                                }
-                            }
-                        });
-                    }, 200);
-                    return false;
-                });
-            });
-</script>

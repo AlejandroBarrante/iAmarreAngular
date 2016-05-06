@@ -41,7 +41,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
         $scope.obj = {};
         $scope.obj.obj_editorial = {"id": 0};
         $scope.obj.obj_dependencialenguaje = {"id": 0};
-        
+
 
         if (sharedSpaceService.getFase() == 0) {
             if ($routeParams.editorial && $routeParams.editorial > 0) {
@@ -102,5 +102,44 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
             $location.path('/juego/view/');
         };
 
+        $scope.upload = function () {
+            var form = document.getElementById('uploadForm');
+            $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
+            oformData = new FormData(form);
+            oformData.append("id", 4);
+            oformData.append("value", "ajax...");
+            this.timer = setTimeout(function () {
+                $.ajax({
+                    url: 'upload',
+                    processData: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    mimeType: "multipart/form-data",
+                    data: oformData,
+                    type: 'post',
+                    success: function (msg) {
+                        msg = JSON.parse(msg);
+                        if (msg.status == 200) {
+                            $("#spinner").empty();
+                            //http://stackoverflow.com/questions/4285042/asychronously-load-images-with-jquery
+                            var img = $("<img />").attr('src', msg.message.imglink).attr("width", 100)
+                                    .on('load', function () {
+                                        if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                                            alert('broken image!');
+                                        } else {
+                                            $("#info").empty().append("<p>Image was sucessfully uploaded:</p>");
+                                            $("#info").append(img);
+                                        }
+                                    });
+                        } else {
+                            $("#spinner").empty();
+                            $("#info").empty().append("<h2>ERROR: " + msg.message + "</h2>");
+                        }
+                    }
+                });
+            }, 200);
+            return false;
+
+        };
 
     }]);

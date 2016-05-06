@@ -62,7 +62,7 @@ THE SOFTWARE.
                 <input ng-model="obj.password" type="password" id="password"
                        class="form-control" name="password" required > 
                 <!-- checkbox que nos permite activar o desactivar la opcion -->
-                <input type="checkbox" id="mostrar_contrasena"> Mostrar Contraseña</input>
+                <input type="checkbox" id="mostrar" ng-click="mostrarCont()"> Mostrar Contraseña</input>
             </div>
             <span
                 ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo
@@ -137,19 +137,3 @@ THE SOFTWARE.
      ng-include="'js/system/footer.html'"></div>
 
 <script src="../../vendor/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script>
-                 $(document).ready(function () {
-                     /*
-                      * Al hacer clic sobre el checkbox verificamos si esta activado o no
-                      * y asi alternamos entre el tipo de input donde esta la contrasena
-                      * entre text y password
-                      */
-                     $('#mostrar_contrasena').click(function () {
-                         if ($('#mostrar_contrasena').is(':checked')) {
-                             $('#password').attr('type', 'text');
-                         } else {
-                             $('#password').attr('type', 'password');
-                         }
-                     });
-                 });
-</script>
