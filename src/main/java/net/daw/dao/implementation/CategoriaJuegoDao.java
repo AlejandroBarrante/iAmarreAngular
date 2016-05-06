@@ -165,8 +165,8 @@ public class CategoriaJuegoDao implements ViewDaoInterface<CategoriaJuegoBean>, 
 
     public ArrayList<CategoriaJuegoBean> getPageCategoria(int id_categoria, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         strSQL += "AND cj.id_categoria=" + id_categoria;
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
         ArrayList<CategoriaJuegoBean> arrCategoriaJuegoBean = new ArrayList<>();
         try {
@@ -257,4 +257,3 @@ public class CategoriaJuegoDao implements ViewDaoInterface<CategoriaJuegoBean>, 
     }
 
 }
-

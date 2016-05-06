@@ -40,199 +40,200 @@ import net.daw.helper.statics.SqlBuilder;
 
 public class AutorDao implements ViewDaoInterface<AutorBean>, TableDaoInterface<AutorBean> {
 
-	private String strTable = "autor";
-	private String strSQL = "select * from autor where 1=1 ";
-	private MysqlDataSpImpl oMysql = null;
-	private Connection oConnection = null;
+    private String strTable = "autor";
+    private String strSQL = "select * from autor where 1=1 ";
+    private MysqlDataSpImpl oMysql = null;
+    private Connection oConnection = null;
 
-	public AutorDao(Connection oPooledConnection) throws Exception {
-		try {
-			oConnection = oPooledConnection;
-			oMysql = new MysqlDataSpImpl(oConnection);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
-		}
-	}
+    public AutorDao(Connection oPooledConnection) throws Exception {
+        try {
+            oConnection = oPooledConnection;
+            oMysql = new MysqlDataSpImpl(oConnection);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
+        }
+    }
 
-	@Override
-	public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getPages(strSQL, intRegsPerPag);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	@Override
-	public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getCount(strSQL);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    @Override
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	@Override
-	public ArrayList<AutorBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
-			HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-		ArrayList<AutorBean> arrAutor = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					AutorBean oAutorBean = new AutorBean();
-					arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrAutor;
-	}
+    @Override
+    public ArrayList<AutorBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
+            HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+        ArrayList<AutorBean> arrAutor = new ArrayList<>();
+        try {
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    AutorBean oAutorBean = new AutorBean();
+                    arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
+                }
+            }
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        }
+        return arrAutor;
+    }
 
-	@Override
-	public ArrayList<AutorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-			Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		ArrayList<AutorBean> arrAutor = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					AutorBean oAutorBean = new AutorBean();
-					arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrAutor;
-	}
+    @Override
+    public ArrayList<AutorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
+            Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        ArrayList<AutorBean> arrAutor = new ArrayList<>();
+        try {
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    AutorBean oAutorBean = new AutorBean();
+                    arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
+                }
+            }
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        }
+        return arrAutor;
+    }
 
-	@Override
-	public AutorBean get(AutorBean oAutorBean, Integer expand) throws Exception {
-		if (oAutorBean.getId() > 0) {
-			try {
-				ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oAutorBean.getId() + " ");
-				if (oResultSet != null) {
-					while (oResultSet.next()) {
-						oAutorBean = oAutorBean.fill(oResultSet, oConnection, expand);
-					}
-				}
-			} catch (Exception ex) {
-				ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-			}
-		} else {
-			oAutorBean.setId(0);
-		}
-		return oAutorBean;
-	}
+    @Override
+    public AutorBean get(AutorBean oAutorBean, Integer expand) throws Exception {
+        if (oAutorBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oAutorBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oAutorBean = oAutorBean.fill(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oAutorBean.setId(0);
+        }
+        return oAutorBean;
+    }
 
-	@Override
-	public Integer set(AutorBean oAutorBean) throws Exception {
-		Integer iResult = null;
-		try {
-			if (oAutorBean.getId() == 0) {
-				strSQL = "INSERT INTO " + strTable + " ";
-				strSQL += "(" + oAutorBean.getColumns() + ")";
-				strSQL += "VALUES(" + oAutorBean.getValues() + ")";
-				iResult = oMysql.executeInsertSQL(strSQL);
-			} else {
-				strSQL = "UPDATE " + strTable + " ";
-				strSQL += " SET " + oAutorBean.toPairs();
-				strSQL += " WHERE id=" + oAutorBean.getId();
-				iResult = oMysql.executeUpdateSQL(strSQL);
-			}
+    @Override
+    public Integer set(AutorBean oAutorBean) throws Exception {
+        Integer iResult = null;
+        try {
+            if (oAutorBean.getId() == 0) {
+                strSQL = "INSERT INTO " + strTable + " ";
+                strSQL += "(" + oAutorBean.getColumns() + ")";
+                strSQL += "VALUES(" + oAutorBean.getValues() + ")";
+                iResult = oMysql.executeInsertSQL(strSQL);
+            } else {
+                strSQL = "UPDATE " + strTable + " ";
+                strSQL += " SET " + oAutorBean.toPairs();
+                strSQL += " WHERE id=" + oAutorBean.getId();
+                iResult = oMysql.executeUpdateSQL(strSQL);
+            }
 
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
-		}
-		return iResult;
-	}
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+        }
+        return iResult;
+    }
 
-	@Override
-	public Integer remove(Integer id) throws Exception {
-		int result = 0;
-		try {
-			result = oMysql.removeOne(id, strTable);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
-		}
-		return result;
-	}
+    @Override
+    public Integer remove(Integer id) throws Exception {
+        int result = 0;
+        try {
+            result = oMysql.removeOne(id, strTable);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+        }
+        return result;
+    }
 
-	// MÉTODOS PARA ASIGNACIÓN DE AUTORES
-	public int getPagesAutor(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";
-		int pages = 0;
-		try {
-			pages = oMysql.getPages(strSQL, intRegsPerPag);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    // MÉTODOS PARA ASIGNACIÓN DE AUTORES
+    public int getPagesAutor(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	public int getCountAutor(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";
-		int pages = 0;
-		try {
-			pages = oMysql.getCount(strSQL);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    public int getCountAutor(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	public ArrayList<AutorBean> getPageAutor(int id_juego, int intRegsPerPag, int intPage,
-			ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";
-		strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-		ArrayList<AutorBean> arrAutorBean = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					AutorBean oAutorBean = new AutorBean();
-					arrAutorBean.add(oAutorBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrAutorBean;
-	}
+    public ArrayList<AutorBean> getPageAutor(int id_juego, int intRegsPerPag, int intPage,
+            ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
 
-	public ArrayList<AutorBean> getAllJuegoAutor(Integer id_juego, ArrayList<FilterBeanHelper> alFilter,
-			HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL = "select * from autor a, autorjuego aj where a.id=aj.id_autor and aj.id_juego=" + id_juego;
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		ArrayList<AutorBean> arrAutor = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					AutorBean oAutorBean = new AutorBean();
-					arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrAutor;
-	}
+        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+        ArrayList<AutorBean> arrAutorBean = new ArrayList<>();
+        try {
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    AutorBean oAutorBean = new AutorBean();
+                    arrAutorBean.add(oAutorBean.fill(oResultSet, oConnection, expand));
+                }
+            }
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        }
+        return arrAutorBean;
+    }
+
+    public ArrayList<AutorBean> getAllJuegoAutor(Integer id_juego, ArrayList<FilterBeanHelper> alFilter,
+            HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL = "select * from autor a, autorjuego aj where a.id=aj.id_autor and aj.id_juego=" + id_juego;
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        ArrayList<AutorBean> arrAutor = new ArrayList<>();
+        try {
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    AutorBean oAutorBean = new AutorBean();
+                    arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
+                }
+            }
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        }
+        return arrAutor;
+    }
 
 }

@@ -59,11 +59,6 @@ angular.module('Services', [])
                 },
                 promise_getOne: function (strClass, id) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
-//                                   return $http({
-//                        url: configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewone&id=' + id,
-//                        method: "GET"
-//
-//                    });
                 },
                 //Estos dos métodos se tendrán que quitar cuando haga el mega-pojo
                 promise_getautorfiltradoporjuego: function (strClass, id_juego) {

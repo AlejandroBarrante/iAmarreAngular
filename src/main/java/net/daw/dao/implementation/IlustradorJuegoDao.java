@@ -165,8 +165,8 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
 
     public ArrayList<IlustradorJuegoBean> getPageIlustrador(int id_ilustrador, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         strSQL += "AND ij.id_ilustrador=" + id_ilustrador;
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
         ArrayList<IlustradorJuegoBean> arrIlustradorJuegoBean = new ArrayList<>();
         try {
