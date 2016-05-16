@@ -38,6 +38,7 @@ moduloEditorial.controller('EditorialPListController', ['$scope', '$routeParams'
         $scope.visibles.fechaNac = true;
         $scope.visibles.bio = true;
         $scope.visibles.website = true;
+        $scope.visibles.imagen = true;
 
 
         $scope.ob = "editorial";

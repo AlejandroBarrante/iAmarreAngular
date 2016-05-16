@@ -103,6 +103,8 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
         };
 
         $scope.upload = function () {
+
+          //  sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
             var form = document.getElementById('uploadForm');
             $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
             oformData = new FormData(form);
@@ -129,6 +131,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
                                         } else {
                                             $("#info").empty().append("<p>Image was sucessfully uploaded:</p>");
                                             $("#info").append(img);
+                                          //  $location.path(sharedSpaceService.getReturnLink());
                                         }
                                     });
                         } else {
@@ -139,6 +142,9 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
                 });
             }, 200);
             return false;
+
+
+
 
         };
 

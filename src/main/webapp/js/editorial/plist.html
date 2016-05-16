@@ -140,47 +140,56 @@ THE SOFTWARE.
     <!-- --------------------------------- -->
 
     <div id="datos">
-        <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
-            <thead>             
-                <tr>                                                   
-                    <th ng-show="visibles.nombre">
-                        Nombre<br/>
-                        <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                        <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                    </th>
-                    <th  ng-show="visibles.website" class="text-center">
-                        Website<br/>
-                    </th>
-                    <th>
-                        Acciones
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="obj in page">
-                    <!-- <td ng-show="visibles.id" class="text-right">{{obj.id}}</td> -->
-                    <td ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}">{{obj.nombre}}</a></td>
-                    <td ng-show="visibles.website"><a href="{{obj.website}}">{{obj.website}}</a></td>   
-                    <td>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Acciones<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="btn btn-default action02" href="#/{{ob}}/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
-                                <li><a class="btn btn-default action03" href="#/{{ob}}/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                <li><a class="btn btn-default action04" href="#/{{ob}}/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
-                                <li><a class="btn btn-default action05" href="#/editorialJuego/plist/1/10/{{obj.id}}"><i class="fa fa-gamepad fa-2g"></i> Ver sus juegos</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>  
-        <a class="btn btn-primary" href="#/editorial/new/">Agregar Nueva Editorial</a>
-        <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+
+        <div class="row fluid">
+
+            <div class="col-md-12 text-right">
+
+                <SELECT
+                    onchange="window.location.href = this.options
+                                            [this.selectedIndex].value">
+                    <option></option>
+                    <option
+                        value="#/editorial/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}">Ordenar alfabéticamente A-Z</option>
+                    <option
+                        value="#/editorial/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}">Ordenar alfabéticamente Z-A</option>
+                </SELECT>
+
+            </div>
+
+        </div>
+
+        <div class="row fluid">
+
+            <div class="col-md-12">
+
+                <br /> <br />
+
+                <ul ng-repeat="obj in page" style="display: inline-table;" class="text-center">
+                    <li ng_show="visibles.imagen" style="list-style: none;"> 
+                        <a  href="#/editorial/view/{{obj.id}}"><img src="{{obj.imagen}}" alt="mini" class="img-rounded"></a>
+                    </li>
+
+                    <li ng-show="visibles.nombre" style="list-style: none;"><a
+                            style="text-decoration: none;" href="#/editorial/view/{{obj.id}}">{{obj.nombre}}</a></li>
+
+                </ul>
+
+                <br /> <br />
+
+            </div>
+        </div>
+
+
+        <div class="text-center">
+
+            <a class="btn btn-primary" href="#/editorial/new/">Agregar Nueva Editorial</a> 
+            <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+
+        </div>
     </div>
 </div>
-<div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
 
 
+<div class="panel-footer" style="font-family: Questrial, serif;"
+     ng-include="'js/system/footer.html'"></div>

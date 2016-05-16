@@ -43,8 +43,10 @@ public class EditorialBean implements GenericBean {
     private String bio = "";
     @Expose
     private String website = "";
-    
-        public EditorialBean() {
+    @Expose
+    private String imagen = "";
+
+    public EditorialBean() {
         this.id = 0;
     }
 
@@ -84,13 +86,24 @@ public class EditorialBean implements GenericBean {
         this.website = website;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    
+
     // ---------------------------------------------
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
         strJson += "nombre:" + nombre + ",";
         strJson += "bio:" + bio + ",";
-        strJson += "website:" + website;
+        strJson += "website:" + website  + ",";
+        strJson += "imagen:" + imagen  + ",";
         strJson += "}";
         return strJson;
 
@@ -102,7 +115,8 @@ public class EditorialBean implements GenericBean {
         strColumns += "id,";
         strColumns += "nombre,";
         strColumns += "bio,";
-        strColumns += "website";
+        strColumns += "website,";
+        strColumns += "imagen";
 
         return strColumns;
     }
@@ -113,7 +127,8 @@ public class EditorialBean implements GenericBean {
         strColumns += id.toString() + ",";
         strColumns += EncodingUtilHelper.quotate(nombre) + ",";
         strColumns += EncodingUtilHelper.quotate(bio) + ",";
-        strColumns += EncodingUtilHelper.quotate(website);
+        strColumns += EncodingUtilHelper.quotate(website)  + ",";
+        strColumns += EncodingUtilHelper.quotate(imagen);
 
         return strColumns;
     }
@@ -124,7 +139,8 @@ public class EditorialBean implements GenericBean {
         strPairs += "id=" + id + ",";
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
         strPairs += "bio=" + EncodingUtilHelper.quotate(bio) + ",";
-        strPairs += "website=" + EncodingUtilHelper.quotate(website);
+        strPairs += "website=" + EncodingUtilHelper.quotate(website)  + ",";
+        strPairs += "imagen=" + EncodingUtilHelper.quotate(imagen);
 
         return strPairs;
     }
@@ -135,7 +151,7 @@ public class EditorialBean implements GenericBean {
         this.setNombre(oResultSet.getString("nombre"));
         this.setBio(oResultSet.getString("bio"));
         this.setWebsite(oResultSet.getString("website"));
-
+        this.setImagen(oResultSet.getString("imagen"));
         return this;
 
     }
