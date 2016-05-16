@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-04-2016 a las 06:20:29
+-- Tiempo de generación: 16-05-2016 a las 02:30:25
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.30
 
@@ -382,19 +382,20 @@ CREATE TABLE IF NOT EXISTS `editorial` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bio` longtext COLLATE utf8_unicode_ci,
-  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `imagen` longtext COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `editorial`
 --
 
-INSERT INTO `editorial` (`id`, `nombre`, `bio`, `website`) VALUES
-(1, 'Devir', 'Devir es un grupo editorial brasileño fundado en 1987 y especializado en productos de ocio y entretenimiento: literatura fantástica, cómics y juegos de toda clase como juegos de rol, de tablero, de cartas coleccionables, de naipes, de miniaturas etc. El grupo tiene filiales en cinco países diferentes: Brasil, Portugal, España, Estados Unidos y Chile.', 'http://www.devir.es/'),
-(2, 'Edge Entertainment', 'Edge Entertainment es una editorial española especializada en la publicación de juegos de rol, aunque también publica juegos de tablero, de cartas y de miniaturas. Publica también historietas desde 2009 y libros de literatura desde 2011.\r\n\r\nOrganiza anualmente los Edge Days, unas jornadas nacionales dedicadas a demostraciones y campeonatos de muchos de los juegos de su catálogo.', 'http://www.edgeent.com/index.php/'),
-(3, 'Maldito Games', 'Maldito Games es una editorial de juegos de mesa de reciente creación.  A finales de noviembre llegará a las tiendas nuestro primer juego, “Patchwork”, un juego para dos jugadores de Uwe Rosenberg, diseñador de éxitos como Agrícola, Le Havre, Caverna…  Un magnífico juego de dos jugadores, que pese a no llevar ni un año en el mercado, ya se ha colado entre los cien mejores juegos de la BGG.  Ahora estamos trabajando en sacar el crowdfunding del Xia: Legends of a Drift System, un 4x del espacio, con 21 miniaturas pintadas, monedas de metal y muchas componentes más. La campaña está ahora mismo activa en Verkami.  Por favor, haznos un favor y regálanos un like en Facebook o siguénos en Twitter, que acabamos de empezar y toda ayuda es importante.  ¡ A jugar !', 'http://www.malditogames.com/'),
-(4, 'Rio Grande Games', 'Rio Grande Games is dedicated to bringing you the best in family entertainment. We offer the best family strategy games available! We have games for younger children to play with their older siblings and parents, games for their older siblings to play with their friends, and games for teens and parents to play with each other or when they get together for social occasions.  We publish a large variety of our own games, but also import many multi-lingual games (in English, French, and, occasionally, other languages), that we feel could have a place in your homes.', 'http://www.riograndegames.com/'),
-(5, 'Mercurio', 'Mercurio Distribuciones es una empresa nacida en 2005 con el fin de distribuir ocio para toda la familia. Nuestras líneas de trabajo han sido muy amplias desde entonces, pero desde 2013 tomamos la decisión de dedicarnos plenamente a los juegos educativos, actualmente distribuyendo juegos de las marcas ThinkFun, Amigo y Zoch entre otras.     Somos un equipo formado por personas preparadas y concienciadas con su trabajo y con los productos que ofrecemos. Nuestra filosofía es acercar al público nuevos juegos en los que se prime el aprendizaje, el desarrollo de habilidades, la relación entre las personas y, en general, el fomento de la curiosidad humana a través del juego. Por eso, nosotros somos los primeros en probar nuestros juegos ¡y en disfrutarlos!  En nuestro catálogo podrás encontrar juegos para niños desde los 18 meses hasta los 99 años ¡y más! Creemos que el juego no tiene edad y es una manera saludable de ejercitar nuestras mentes.', 'http://www.mercurio.com.es/');
+INSERT INTO `editorial` (`id`, `nombre`, `bio`, `website`, `imagen`) VALUES
+(1, 'Devir', 'Devir es un grupo editorial brasileño fundado en 1987 y especializado en productos de ocio y entretenimiento: literatura fantástica, cómics y juegos de toda clase como juegos de rol, de tablero, de cartas coleccionables, de naipes, de miniaturas etc. El grupo tiene filiales en cinco países diferentes: Brasil, Portugal, España, Estados Unidos y Chile.', 'http://www.devir.es/', '/images/devir.jpg'),
+(2, 'Edge Entertainment', 'Edge Entertainment es una editorial española especializada en la publicación de juegos de rol, aunque también publica juegos de tablero, de cartas y de miniaturas. Publica también historietas desde 2009 y libros de literatura desde 2011.\r\n\r\nOrganiza anualmente los Edge Days, unas jornadas nacionales dedicadas a demostraciones y campeonatos de muchos de los juegos de su catálogo.', 'http://www.edgeent.com/index.php/', '/images/edge.jpg'),
+(3, 'Maldito Games', 'Maldito Games es una editorial de juegos de mesa de reciente creación.  A finales de noviembre llegará a las tiendas nuestro primer juego, “Patchwork”, un juego para dos jugadores de Uwe Rosenberg, diseñador de éxitos como Agrícola, Le Havre, Caverna…  Un magnífico juego de dos jugadores, que pese a no llevar ni un año en el mercado, ya se ha colado entre los cien mejores juegos de la BGG.  Ahora estamos trabajando en sacar el crowdfunding del Xia: Legends of a Drift System, un 4x del espacio, con 21 miniaturas pintadas, monedas de metal y muchas componentes más. La campaña está ahora mismo activa en Verkami.  Por favor, haznos un favor y regálanos un like en Facebook o siguénos en Twitter, que acabamos de empezar y toda ayuda es importante.  ¡ A jugar !', 'http://www.malditogames.com/', '/images/maldito.jpg'),
+(4, 'Rio Grande Games', 'Rio Grande Games is dedicated to bringing you the best in family entertainment. We offer the best family strategy games available! We have games for younger children to play with their older siblings and parents, games for their older siblings to play with their friends, and games for teens and parents to play with each other or when they get together for social occasions.  We publish a large variety of our own games, but also import many multi-lingual games (in English, French, and, occasionally, other languages), that we feel could have a place in your homes.', 'http://www.riograndegames.com/', '/images/rio.jpg'),
+(5, 'Mercurio', 'Mercurio Distribuciones es una empresa nacida en 2005 con el fin de distribuir ocio para toda la familia. Nuestras líneas de trabajo han sido muy amplias desde entonces, pero desde 2013 tomamos la decisión de dedicarnos plenamente a los juegos educativos, actualmente distribuyendo juegos de las marcas ThinkFun, Amigo y Zoch entre otras.     Somos un equipo formado por personas preparadas y concienciadas con su trabajo y con los productos que ofrecemos. Nuestra filosofía es acercar al público nuevos juegos en los que se prime el aprendizaje, el desarrollo de habilidades, la relación entre las personas y, en general, el fomento de la curiosidad humana a través del juego. Por eso, nosotros somos los primeros en probar nuestros juegos ¡y en disfrutarlos!  En nuestro catálogo podrás encontrar juegos para niños desde los 18 meses hasta los 99 años ¡y más! Creemos que el juego no tiene edad y es una manera saludable de ejercitar nuestras mentes.', 'http://www.mercurio.com.es/', '/images/mercurio.jpg');
 
 -- --------------------------------------------------------
 
@@ -562,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `id_tipousuario` int(11) DEFAULT NULL COMMENT 'Tipo de usuario',
   `ciudad` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Ciudad',
   `firma` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Firma'
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -734,7 +735,7 @@ ALTER TABLE `tipousuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Identificador',AUTO_INCREMENT=36;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Identificador',AUTO_INCREMENT=41;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
