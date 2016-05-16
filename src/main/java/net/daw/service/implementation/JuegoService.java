@@ -66,7 +66,7 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
 
     @Override
     public String getcount() throws Exception {
-        if (this.checkpermission("getcount")) {
+
             String data = null;
             ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
             Connection oConnection = null;
@@ -87,14 +87,12 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
                 }
             }
             return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
+
     }
 
     @Override
     public String get() throws Exception {
-        if (this.checkpermission("get")) {
+
             int id = ParameterCook.prepareId(oRequest);
             String data = null;
             Connection oConnection = null;
@@ -119,14 +117,11 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
             }
             return data;
 
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
     }
 
     @Override
     public String getall() throws Exception {
-        if (this.checkpermission("getall")) {
+
             ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
             HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
             String data = null;
@@ -151,15 +146,13 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
             }
 
             return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
+
     }
 
     @Override
     @SuppressWarnings("empty-statement")
     public String getpage() throws Exception {
-        if (this.checkpermission("getpage")) {
+
             int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
             int intPage = ParameterCook.preparePage(oRequest);
             ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
@@ -184,14 +177,12 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
                 }
             }
             return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
+
     }
 
     @Override
     public String getpages() throws Exception {
-        if (this.checkpermission("getpages")) {
+
             int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
             ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
             String data = null;
@@ -213,14 +204,12 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
                 }
             }
             return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
+
     }
 
     @Override
     public String getaggregateviewsome() throws Exception {
-        if (this.checkpermission("getaggregateviewsome")) {
+
             String data = null;
             try {
                 String page = this.getpage();
@@ -236,13 +225,11 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
                 ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
             }
             return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
+
     }
     
     	public String getaggregateviewsomeeditorial() throws Exception {
-		if (this.checkpermission("getaggregateviewsomeeditorial")) {
+
 			String data = null;
 			try {
 
@@ -257,13 +244,11 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
 						new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
 			}
 			return data;
-		} else {
-			return JsonMessage.getJsonMsg("401", "Unauthorized");
-		}
+
 	}
         
         public String getpageeditorial() throws Exception {
-		if (this.checkpermission("getpage")) {
+
 			int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
 			;
 			int intPage = ParameterCook.preparePage(oRequest);
@@ -291,13 +276,10 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
 				}
 			}
 			return data;
-		} else {
-			return JsonMessage.getJsonMsg("401", "Unauthorized");
-		}
 	}
 
 	public String getpageseditorial() throws Exception {
-		if (this.checkpermission("getpages")) {
+
 			int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
 			ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
 			int id_editorial = ParameterCook.prepareInt("id_editorial", oRequest);
@@ -322,13 +304,11 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
 				}
 			}
 			return data;
-		} else {
-			return JsonMessage.getJsonMsg("401", "Unauthorized");
-		}
+
 	}
 
 	public String getcounteditorial() throws Exception {
-		if (this.checkpermission("getcount")) {
+
 			String data = null;
 			ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
 			int id_editorial = ParameterCook.prepareInt("id_editorial", oRequest);
@@ -351,17 +331,10 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
 				}
 			}
 			return data;
-		} else {
-			return JsonMessage.getJsonMsg("401", "Unauthorized");
-		}
+
 	}
         
-        
-        
-        
-        
-        
-        
+            
         
       //  *************
 

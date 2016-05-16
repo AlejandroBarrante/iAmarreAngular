@@ -92,44 +92,6 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-//    // MÉTODO PARA MOSTRAR AL AUTOR EN LA PANTALLA DE JUEGO VIEW
-//    public String getautorfiltradoporjuego() throws Exception {
-//        if (this.checkpermission("get")) {
-//
-//            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-//
-//            String data = null;
-//            Connection oConnection = null;
-//            ConnectionInterface oDataConnectionSource = null;
-//            try {
-//                oDataConnectionSource = getSourceConnection();
-//                oConnection = oDataConnectionSource.newConnection();
-//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-//
-//                ColeccionBean oColeccionBean = new ColeccionBean();
-//
-//                oColeccionBean.setId_juego(id_juego);
-//
-//                oColeccionBean = oColeccionDao.getJuegosFiltradosPorJuego(oColeccionBean, AppConfigurationHelper.getJsonDepth());
-//                Gson gson = AppConfigurationHelper.getGson();
-//                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oColeccionBean));
-//
-//            } catch (Exception ex) {
-//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-//            } finally {
-//                if (oConnection != null) {
-//                    oConnection.close();
-//                }
-//                if (oDataConnectionSource != null) {
-//                    oDataConnectionSource.disposeConnection();
-//                }
-//            }
-//            return data;
-//
-//        } else {
-//            return JsonMessage.getJsonMsg("401", "Unauthorized");
-//        }
-//    }
     @Override
     public String getall() throws Exception {
         if (this.checkpermission("getall")) {

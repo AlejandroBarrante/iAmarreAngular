@@ -66,179 +66,166 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
 
     @Override
     public String getcount() throws Exception {
-        if (this.checkpermission("getcount")) {
-            String data = null;
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getCount(alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+
+        String data = null;
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getCount(alFilter)));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
     @Override
     public String get() throws Exception {
-        if (this.checkpermission("get")) {
-            int id = ParameterCook.prepareId(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                CategoriaBean oCategoriaBean = new CategoriaBean(id);
-                oCategoriaBean = oCategoriaDao.get(oCategoriaBean, AppConfigurationHelper.getJsonDepth());
-                //Gson gson = AppConfigurationHelper.getGson();
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oCategoriaBean));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
 
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        int id = ParameterCook.prepareId(oRequest);
+        String data = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            CategoriaBean oCategoriaBean = new CategoriaBean(id);
+            oCategoriaBean = oCategoriaDao.get(oCategoriaBean, AppConfigurationHelper.getJsonDepth());
+            //Gson gson = AppConfigurationHelper.getGson();
+            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oCategoriaBean));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
     @Override
     public String getall() throws Exception {
-        if (this.checkpermission("getall")) {
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
 
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                ArrayList<CategoriaBean> arrBeans = oCategoriaDao.getAll(alFilter, hmOrder, 1);
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+        String data = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            ArrayList<CategoriaBean> arrBeans = oCategoriaDao.getAll(alFilter, hmOrder, 1);
+            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+
+        return data;
+
     }
 
     @Override
     @SuppressWarnings("empty-statement")
     public String getpage() throws Exception {
-        if (this.checkpermission("getpage")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
-            int intPage = ParameterCook.preparePage(oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                List<CategoriaBean> arrBeans = oCategoriaDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+
+        int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
+        int intPage = ParameterCook.preparePage(oRequest);
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+        String data = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            List<CategoriaBean> arrBeans = oCategoriaDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
+            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
     @Override
     public String getpages() throws Exception {
-        if (this.checkpermission("getpages")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getPages(intRegsPerPag, alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+
+        int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        String data = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getPages(intRegsPerPag, alFilter)));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
     @Override
     public String getaggregateviewsome() throws Exception {
-        if (this.checkpermission("getaggregateviewsome")) {
-            String data = null;
-            try {
-                String page = this.getpage();
-                String pages = this.getpages();
-                String registers = this.getcount();
-                data = "{"
-                        + "\"page\":" + page
-                        + ",\"pages\":" + pages
-                        + ",\"registers\":" + registers
-                        + "}";
-                data = JsonMessage.getJson("200", data);
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+
+        String data = null;
+        try {
+            String page = this.getpage();
+            String pages = this.getpages();
+            String registers = this.getcount();
+            data = "{"
+                    + "\"page\":" + page
+                    + ",\"pages\":" + pages
+                    + ",\"registers\":" + registers
+                    + "}";
+            data = JsonMessage.getJson("200", data);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
         }
+        return data;
+
     }
 
     @Override
@@ -313,117 +300,109 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
-    
+
     // MÉTODOS PARA ASIGNACIÓN DE CATEGORÍAS
     public String getaggregateviewsomecategoria() throws Exception {
-        if (this.checkpermission("getaggregateviewsomecategoria")) {
-            String data = null;
-            try {
-                String pageCategoria = this.getpagecategoria();
-                String pagesCategoria = this.getpagescategoria();
-                String registersCategoria = this.getcountcategoria();
-                data = "{"
-                        + "\"page\":" + pageCategoria
-                        + ",\"pages\":" + pagesCategoria
-                        + ",\"registers\":" + registersCategoria
-                        + "}";
-                data = JsonMessage.getJson("200", data);
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+
+        String data = null;
+        try {
+            String pageCategoria = this.getpagecategoria();
+            String pagesCategoria = this.getpagescategoria();
+            String registersCategoria = this.getcountcategoria();
+            data = "{"
+                    + "\"page\":" + pageCategoria
+                    + ",\"pages\":" + pagesCategoria
+                    + ",\"registers\":" + registersCategoria
+                    + "}";
+            data = JsonMessage.getJson("200", data);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
         }
+        return data;
+
     }
 
-   public String getpagecategoria() throws Exception {
-        if (this.checkpermission("getpage")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
-            int intPage = ParameterCook.preparePage(oRequest);
-            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                List<CategoriaBean> arrBeans = oCategoriaDao.getPageCategoria(id_juego, intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+    public String getpagecategoria() throws Exception {
+
+        int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
+        int intPage = ParameterCook.preparePage(oRequest);
+        int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+        String data = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            List<CategoriaBean> arrBeans = oCategoriaDao.getPageCategoria(id_juego, intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
+            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
     public String getpagescategoria() throws Exception {
-        if (this.checkpermission("getpages")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getPagesCategoria(id_juego, intRegsPerPag, alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+
+        int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+        String data = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getPagesCategoria(id_juego, intRegsPerPag, alFilter)));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
     public String getcountcategoria() throws Exception {
-        if (this.checkpermission("getcount")) {
-            String data = null;
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getCountCategoria(id_juego, alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
+
+        String data = null;
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+        int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
+            data = JsonMessage.getJson("200", Integer.toString(oCategoriaDao.getCountCategoria(id_juego, alFilter)));
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
             }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
         }
+        return data;
+
     }
 
 }
