@@ -153,7 +153,7 @@ public class UsuarioBean implements GenericBean {
         strColumns += EncodingUtilHelper.quotate(password) + ",";
         strColumns += EncodingUtilHelper.quotate(ciudad) + ",";
         strColumns += EncodingUtilHelper.quotate(firma) + ",";
-        strColumns += id_tipousuario;
+        strColumns += 2;
 
         return strColumns;
     }

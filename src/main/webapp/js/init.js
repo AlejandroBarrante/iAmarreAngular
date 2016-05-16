@@ -169,8 +169,7 @@ init = {
                                                                                 dom.div('class="form-group"',
                                                                                         dom.input('class="form-control" id="broth_input_password" placeholder="Password" name="password" type="password" value="daw1516"', '')
                                                                                         ) +
-                                                                                dom.a('href="index.html" id="broth_button_login" class="btn btn-lg btn-success btn-block"', 'Login') +
-                                                                                dom.a('href="/juegoteca/#/usuario/new" id="broth_button_login" class="btn btn-lg btn-success btn-block"', 'Crear cuenta de usuario')
+                                                                                dom.a('href="index.html" id="broth_button_login" class="btn btn-lg btn-success btn-block"', 'Iniciar Sesión')
                                                                                 )
 
                                                                         )
