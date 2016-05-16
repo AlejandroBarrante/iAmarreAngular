@@ -26,90 +26,86 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-	ng-include="'js/system/header.html'"></div>
+     ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
-	<!--  <div class="row-fluid">
-        <div class="span6 offset3">                
-            <table class="table table-striped table-condensed">
-                <thead>                
-                    <tr>    
-                        <th>campo</th>
-                        <th>valor</th>
-                    </tr>
-                </thead>
-                <tbody>  
-                    <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr> 
-                    <tr><td>Biografía</td><td>{{bean.bio}}</td></tr> 
-                    <tr><td>Website</td><td><a href="{{bean.website}}">{{bean.website}}</a></td></tr>                         
-                </tbody>
-            </table>  -->
+    <!--  <div class="row-fluid">
+    <div class="span6 offset3">                
+        <table class="table table-striped table-condensed">
+            <thead>                
+                <tr>    
+                    <th>campo</th>
+                    <th>valor</th>
+                </tr>
+            </thead>
+            <tbody>  
+                <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr> 
+                <tr><td>Biografía</td><td>{{bean.bio}}</td></tr> 
+                <tr><td>Website</td><td><a href="{{bean.website}}">{{bean.website}}</a></td></tr>                         
+            </tbody>
+        </table>  -->
 
 
-	<div class="row-fluid">
-		<div class="col-md-12">
+    <div class="row-fluid">
+        <div class="col-md-12">
 
-			<h3 class="text-center">{{bean.nombre}}</h3>
+            <h3 class="text-center">{{bean.nombre}}</h3>
 
-		</div>
-	</div>
-	<br /> <br /> <br /> <br />
+        </div>
+    </div>
+    <br /> <br /> <br /> <br />
 
-	<div class="row-fluid">
-		<div class="col-md-6">
+    <div class="row-fluid">
+        <div class="col-md-4">
 
-			<br />
+            <br />
 
-			<p>Aquí va una imagen de la editorial</p>
+            <img src="{{bean.imagen}}" alt="mini" WIDTH=600 HEIGHT=200 class="img-rounded">
 
-		</div>
-
-
-		<div class="col-md-6">
+        </div>
 
 
-			<p>{{bean.descripcion}}</p>
+        <div class="col-md-8">
+
+            <table>
+
+                <tr>
+                    <td>{{bean.bio}}</td>
+                </tr>
 
 
-			<table>
+            </table>
 
-				<tr>
-					<td>{{bean.bio}}</td>
-				</tr>
+            <br /> <a class="text-left" href="{{bean.website}}">Web Oficial</a>
 
+        </div>
 
-			</table>
+    </div>
 
-			<br /> <a class="text-center" href="{{bean.website}}">{{bean.website}}</a>
+    <div class="row-fluid">
 
-		</div>
+        <div class="col-md-12">
 
-	</div>
+            <br /> <br />
 
-	<div class="row-fluid">
+            <div class="coleccion text-center">
+                <a class="btn btn-default" ng-click="plist()">Ir al listado de
+                    Editoriales</a> <a class="btn btn-default" ng-click="close()">Ir al
+                    Inicio</a>
+            </div>
 
-		<div class="col-md-12">
+            <br />
 
-			<br /> <br />
+            <div class="text-center">
+                <h3>Panel de Administración</h3>
+                <a class="btn btn-primary" href="#/editorial/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-danger" href="#/editorial/remove/{{bean.id}}">Borrar</a>
+            </div>
+        </div>
 
-			<div class="coleccion text-center">
-				<a class="btn btn-default" ng-click="plist()">Ir al listado de
-					Editoriales</a> <a class="btn btn-default" ng-click="close()">Ir al
-					Inicio</a>
-			</div>
-
-			<br />
-
-			<div class="text-center">
-				<h3>Panel de Administración</h3>
-				<a class="btn btn-primary" href="#/editorial/edit/{{bean.id}}">Editar</a>
-				<a class="btn btn-danger" href="#/editorial/remove/{{bean.id}}">Borrar</a>
-			</div>
-		</div>
-
-	</div>
+    </div>
 
 
 </div>
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
-	ng-include="'js/system/footer.html'"></div>
+     ng-include="'js/system/footer.html'"></div>
