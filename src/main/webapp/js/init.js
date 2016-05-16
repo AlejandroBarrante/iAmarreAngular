@@ -79,7 +79,7 @@ init = {
         $('#broth_username_id').text("Login");
         $('.broth_show_when_logged_in').hide();
         $('.broth_show_when_logged_out').show();
-        init.loadLoginForm();
+        //init.loadLoginForm();
     },
     checkAndUpdateUserConnectionState: function () {
         init.getSessionPromise().done(function (data) {
@@ -99,14 +99,14 @@ init = {
         $("#broth_button_login").click(function () {
             username = $("#broth_input_login").val();
             password = $("#broth_input_password").val();
-            $("#broth_login_modal_footer").html("Please, wait while contacting server for authentication...");
+            $("#broth_login_modal_footer").html("Contactando con el servidor...");
             init.getLoginPromise(username, password).done(function (response) {
                 if (response.status == 200) {
-                    $("#broth_login_modal_footer").html("Welcome, you're allowed to enter the site!");
+                    $("#broth_login_modal_footer").html("¡Te damos la bienvenida!");
                     init.unloadLoginForm();
                     init.updateConnectedState(response.message)
                 } else {
-                    $("#broth_login_modal_footer").html("Login, password or both are incorrect. Please try it again.");
+                    $("#broth_login_modal_footer").html("Usuario o Contraseña erróneos. Por favor inténtelo de nuevo.");
                     init.updateDisconnectedState();
                 }
             })
