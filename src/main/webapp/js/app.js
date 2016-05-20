@@ -51,7 +51,6 @@ var openAusias = angular.module('myApp', [
     'editorialJuegoControllers',
     'totalJuegoControllers',
     'coleccionControllers',
-    'menuControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
@@ -77,9 +76,6 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
         $routeProvider.when('/usuario/selection/:page?/:rpp?', {templateUrl: 'js/tipousuario/selection.html', controller: 'UsuarioSelectionController'});
         //------------
-        $routeProvider.when('/tipodocumento/view/:id', {templateUrl: 'js/tipodocumento/view.html', controller: 'TipodocumentoViewController'});
-        $routeProvider.when('/tipodocumento/selection/:page/:rpp', {templateUrl: 'js/tipodocumento/selection.html', controller: 'TipodocumentoSelectionController'});
-        //------------   
         $routeProvider.when('/tipousuario/selection/:page/:rpp', {templateUrl: 'js/tipousuario/selection.html', controller: 'TipousuarioSelectionController'});
         //------------
         $routeProvider.when('/juego/plist/:page?/:rpp?', {templateUrl: 'js/juego/plist.html', controller: 'JuegoPListController'});
@@ -115,27 +111,17 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/deplenguaje/selection/:page/:rpp', {templateUrl: 'js/deplenguaje/selection.html', controller: 'DepLenguajeSelectionController'});
         //------------
         $routeProvider.when('/coleccion/plist/:page?/:rpp?/:id_usuario?', {templateUrl: 'js/coleccion/plist.html', controller: 'ColeccionPListController'});
-        $routeProvider.when('/coleccion/view/:id?', {templateUrl: 'js/coleccion/view.html', controller: 'ColeccionViewController'});
         //------------
         $routeProvider.when('/autorJuego/plist/:page?/:rpp?/:id_autor?', {templateUrl: 'js/autorJuego/plist.html', controller: 'AutorJuegoPListController'});
         $routeProvider.when('/ilustradorJuego/plist/:page?/:rpp?/:id_ilustrador?', {templateUrl: 'js/ilustradorJuego/plist.html', controller: 'IlustradorJuegoPListController'});
         $routeProvider.when('/categoriaJuego/plist/:page?/:rpp?/:id_categoria?', {templateUrl: 'js/categoriaJuego/plist.html', controller: 'CategoriaJuegoPListController'});
         $routeProvider.when('/editorialJuego/plist/:page?/:rpp?/:id_editorial?', {templateUrl: 'js/editorialJuego/plist.html', controller: 'EditorialJuegoPListController'});
         //------------
-        $routeProvider.when('/juegoEditorial/plist/:page?/:rpp?/:id_editorial?', {templateUrl: 'js/juegoEditorial/plist.html', controller: 'JuegoEditorialPListController'});
-        //------------
-        $routeProvider.when('/juegoIlustrador/plist/:page?/:rpp?/:id_juego?', {templateUrl: 'js/juegoIlustrador/plist.html', controller: 'JuegoIlustradorPListController'});
-        $routeProvider.when('/juegoIlustrador/selection/:page/:rpp/:id_juego?', {templateUrl: 'js/juegoIlustrador/selection.html', controller: 'JuegoIlustradorSelectionController'});
-        //------------
-        $routeProvider.when('/juegoCategoria/plist/:page?/:rpp?/:id_juego?', {templateUrl: 'js/juegoCategoria/plist.html', controller: 'JuegoCategoriaPListController'});
-        $routeProvider.when('/juegoCategoria/selection/:page/:rpp/:id_juego?', {templateUrl: 'js/juegoCategoria/selection.html', controller: 'JuegoCategoriaSelectionController'});
-        //------------
-        $routeProvider.when('/juegoAutor/plist/:page?/:rpp?/:id_juego?', {templateUrl: 'js/juegoAutor/plist.html', controller: 'JuegoAutorPListController'});
-        $routeProvider.when('/juegoAutor/selection/:page/:rpp/:id_juego?', {templateUrl: 'js/juegoAutor/selection.html', controller: 'JuegoAutorSelectionController'});
-        //------------
         $routeProvider.when('/totalJuego/view/:id', {templateUrl: 'js/totalJuego/view.html', controller: 'TotalJuegoViewController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
+        
+        
 
 
     }]);
@@ -157,4 +143,3 @@ var moduloEditorialJuego = angular.module('editorialJuegoControllers', []);
 var moduloDepLenguaje = angular.module('depLenguajeControllers', []);
 var moduloTotalJuego = angular.module('totalJuegoControllers', []);
 var moduloColeccion = angular.module('coleccionControllers', []);
-var moduloMenu = angular.module('menuControllers', []);

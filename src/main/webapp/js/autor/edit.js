@@ -63,33 +63,6 @@ moduloAutor.controller('AutorEditController', ['$scope', '$routeParams', '$locat
             });
         };
 
-
-        /*
-         
-         $scope.$watch('obj.obj_tipousuario.id', function () {
-         if ($scope.obj) {
-         serverService.getDataFromPromise(serverService.promise_getOne('tipousuario', $scope.obj.obj_tipousuario.id)).then(function (data2) {
-         $scope.obj.obj_tipousuario = data2.message;
-         });
-         }
-         });
-         
-         */
-
-
-
-//        $scope.$watch('obj.obj_usuario.id', function () {
-//            if ($scope.obj) {
-//                serverService.getDataFromPromise(serverService.promise_getOne('usuario', $scope.obj.obj_usuario.id)).then(function (data2) {
-//                    $scope.obj.obj_usuario = data2.message;
-//                });
-//            }
-//        });
-
-
-
-
-
         $scope.back = function () {
             window.history.back();
         };

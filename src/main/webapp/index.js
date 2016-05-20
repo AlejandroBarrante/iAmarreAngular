@@ -27,10 +27,15 @@
  */
 
 'use strict';
-moduloMenu.controller('MenuController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', 'sharedSpaceJuego',
+    function ($scope, $location, serverService, sharedSpaceService) {
+        $scope.obj = null;
+        $scope.ob = 'usuario';
 
-        $scope.op = "Home";
-    }
-]
-        );
+        serverService.getDataFromPromise(serverService.promise_getUserSession($scope.ob)).then(function (data) {
+            $scope.obj = data.message;
+        });
+
+
+
+    }]);
