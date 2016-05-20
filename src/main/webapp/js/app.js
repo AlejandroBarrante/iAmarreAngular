@@ -51,6 +51,7 @@ var openAusias = angular.module('myApp', [
     'editorialJuegoControllers',
     'totalJuegoControllers',
     'coleccionControllers',
+    'sessionControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
@@ -59,15 +60,11 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
+        $routeProvider.when('/session/sessionopen', {templateUrl: 'js/session/sessionopen.html', controller: 'SessionController'});
+        //------------
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
         //------------       
         $routeProvider.when('/menu', {templateUrl: 'js/system/menu.html', controller: 'MenuController'});
-        //------------
-        $routeProvider.when('/documento/view/:id', {templateUrl: 'js/documento/view.html', controller: 'DocumentoViewController'});
-        $routeProvider.when('/documento/new', {templateUrl: 'js/documento/newedit.html', controller: 'DocumentoNewController'});
-        $routeProvider.when('/documento/edit/:id', {templateUrl: 'js/documento/newedit.html', controller: 'DocumentoEditController'});
-        $routeProvider.when('/documento/remove/:id', {templateUrl: 'js/documento/remove.html', controller: 'DocumentoRemoveController'});
-        $routeProvider.when('/documento/plist/:page?/:rpp?', {templateUrl: 'js/documento/plist.html', controller: 'DocumentoPListController'});
         //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
@@ -143,3 +140,4 @@ var moduloEditorialJuego = angular.module('editorialJuegoControllers', []);
 var moduloDepLenguaje = angular.module('depLenguajeControllers', []);
 var moduloTotalJuego = angular.module('totalJuegoControllers', []);
 var moduloColeccion = angular.module('coleccionControllers', []);
+var moduloSession = angular.module('sessionControllers', []);

@@ -31,11 +31,11 @@ moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location
     function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
 
         $scope.op = "Home";
-        $scope.obj = null;
+        $scope.bean = null;
         $scope.ob = 'usuario';
 
         serverService.getDataFromPromise(serverService.promise_getUserSession($scope.ob)).then(function (data) {
-            $scope.obj = data.message;
+            $scope.bean = data.message;
             //actualizar menu con jquery
 
 //            $("#rafa").html = '<a href="#/coleccion/plist/1/50/' + {{obj.id}} + "><i class="fa fa-fw fa-gamepad"></i> Mi colección</a>

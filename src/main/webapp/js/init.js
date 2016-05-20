@@ -105,6 +105,7 @@ init = {
                     $("#broth_login_modal_footer").html("¡Te damos la bienvenida!");
                     init.unloadLoginForm();
                     init.updateConnectedState(response.message)
+                    location.reload();
                 } else {
                     $("#broth_login_modal_footer").html("Usuario o Contraseña erróneos. Por favor inténtelo de nuevo.");
                     init.updateDisconnectedState();
