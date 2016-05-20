@@ -31,12 +31,6 @@ moduloMenu.controller('MenuController', ['$scope', '$routeParams', '$location', 
     function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
 
         $scope.op = "Home";
-        $scope.ob = 'usuario';
-        $scope.id = $routeParams.id;
-        serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
-            $scope.obj = data.message;
-        });
-
     }
 ]
         );
