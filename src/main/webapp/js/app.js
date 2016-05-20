@@ -115,7 +115,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/deplenguaje/selection/:page/:rpp', {templateUrl: 'js/deplenguaje/selection.html', controller: 'DepLenguajeSelectionController'});
         //------------
         $routeProvider.when('/coleccion/plist/:page?/:rpp?/:id_usuario?', {templateUrl: 'js/coleccion/plist.html', controller: 'ColeccionPListController'});
-        $routeProvider.when('/coleccion/view/:id', {templateUrl: 'js/coleccion/view.html', controller: 'ColeccionViewController'});
+        $routeProvider.when('/coleccion/view/:id?', {templateUrl: 'js/coleccion/view.html', controller: 'ColeccionViewController'});
         //------------
         $routeProvider.when('/autorJuego/plist/:page?/:rpp?/:id_autor?', {templateUrl: 'js/autorJuego/plist.html', controller: 'AutorJuegoPListController'});
         $routeProvider.when('/ilustradorJuego/plist/:page?/:rpp?/:id_ilustrador?', {templateUrl: 'js/ilustradorJuego/plist.html', controller: 'IlustradorJuegoPListController'});

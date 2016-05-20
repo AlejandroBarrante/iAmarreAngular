@@ -84,25 +84,16 @@ THE SOFTWARE.
                             </div>
 
 
-                            <div class="col-lg-2  col-md-2 col-sm-4 text-center">
+                            <div class="col-lg-2  col-md-2 col-sm-4 text-right">
                                 Buscar: <br>
-                                <form class="navbar-form navbar-right" role="form" action="json" method="post" id="empresaForm">
+                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
                                     <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
-                                    <input type="submit" class="btn" id="btnFiltrarClient" name="btnFiltrarClient" value="Filtrar">
                                 </form>
                             </div>
                         </div>
                         <p></p>
                     </div>
-                    <div role="tabpanel" id="pane3" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p></p>
 
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +126,7 @@ THE SOFTWARE.
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="obj in page">
+                <tr ng-repeat="obj in page | filter: searchText">
                     <!-- <td ng-show="visibles.id" class="text-right">{{obj.id}}</td> -->
                     <td ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}">{{obj.nombre}}</a></td>
                     <td ng-show="visibles.fechaNac">{{obj.fechaNac}}</td>

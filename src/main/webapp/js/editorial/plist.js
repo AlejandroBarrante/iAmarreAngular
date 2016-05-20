@@ -39,7 +39,7 @@ moduloEditorial.controller('EditorialPListController', ['$scope', '$routeParams'
         $scope.visibles.bio = true;
         $scope.visibles.website = true;
         $scope.visibles.imagen = true;
-
+        $scope.searchText="";
 
         $scope.ob = "editorial";
         $scope.op = "plist";

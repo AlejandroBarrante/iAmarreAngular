@@ -34,11 +34,12 @@ moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams'
         
         $scope.visibles={};
         $scope.visibles.id = true;
-        $scope.visibles.nombre = true;
+        $scope.visibles.titulo = true;
         $scope.visibles.fechaPublicacion = true;
         $scope.visibles.numJugadores = true;
         $scope.visibles.edad = true;
         $scope.visibles.duracion = true;
+        $scope.visibles.imagen = true;
 
 
         $scope.ob = "coleccion";

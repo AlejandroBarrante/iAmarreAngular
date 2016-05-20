@@ -94,7 +94,18 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
 			return JsonMessage.getJsonMsg("401", "Unauthorized");
 		}
 	}
-
+//
+//        @Override
+//	public String getIdFromSession() throws Exception {
+//            UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
+//		if (oUserBean != null) {
+//			return true;
+//		} else {
+//			return JsonMessage.getJsonMsg("401", "Unauthorized");
+//		}
+//        }
+        
+        
 	@Override
 	public String get() throws Exception {
 		if (this.checkpermission("get")) {
