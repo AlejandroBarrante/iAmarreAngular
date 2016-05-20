@@ -96,16 +96,16 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
     }
 
     public String getuserfromsession() throws Exception {
-        if (this.checkpermission("getuserfromsession")) {
             
             String data = null;
             UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
+            if (oUserBean != null){
             Gson gson = AppConfigurationHelper.getGson();
             data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oUserBean));
             return data;
 
         } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
+            return JsonMessage.getJsonMsg("401", "No hay sesión");
         }
     }
 

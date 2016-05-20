@@ -36,7 +36,18 @@ moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location
 
         serverService.getDataFromPromise(serverService.promise_getUserSession($scope.ob)).then(function (data) {
             $scope.obj = data.message;
+            //actualizar menu con jquery
+
+//            $("#rafa").html = '<a href="#/coleccion/plist/1/50/' + {{obj.id}} + "><i class="fa fa-fw fa-gamepad"></i> Mi colección</a>
+//<a href="#/coleccion/plist/1/50/' + $scope.obj.id + '">';
+
         });
+//
+//        $scope.cerrar = function () {
+//            serverService.getDataFromPromise(serverService.promise_getUserSession($scope.ob)).then(function (data) {
+//                $scope.obj = data.message;
+//            });
+//        };
 
 
 
