@@ -70,6 +70,8 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu dropdown">
+                                <li><a href="#/usuario/view/{{bean.id}}"><i class="fa fa-fw fa-gear"></i>
+                                        Ver mi perfil</a></li>
                                 <li><a href="#/usuario/edit/{{bean.id}}"><i class="fa fa-fw fa-gear"></i>
                                         Editar mi perfil</a></li>
                                 <li class="divider"></li>
@@ -180,21 +182,21 @@
 
 
         <script type="text/javascript">
-                                    //application's bootstrap with jquery
-                                    $(document).ready(function () {
-                                        configuration.resetCSS();
-                                        $('.broth_show_when_logged_in').hide();
-                                        $('.broth_show_when_logged_out').show();
-                                        $("#broth_login").click(function () {
-                                            init.loadLoginForm();
-                                            return false;
-                                        });
-                                        $("#broth_logout").click(function () {
-                                            init.logout();
-                                            return false;
-                                        });
-                                        init.checkAndUpdateUserConnectionState();
-                                    });
+                                            //application's bootstrap with jquery
+                                            $(document).ready(function () {
+                                                configuration.resetCSS();
+                                                $('.broth_show_when_logged_in').hide();
+                                                $('.broth_show_when_logged_out').show();
+                                                $("#broth_login").click(function () {
+                                                    init.loadLoginForm();
+                                                    return false;
+                                                });
+                                                $("#broth_logout").click(function () {
+                                                    init.logout();
+                                                    return false;
+                                                });
+                                                init.checkAndUpdateUserConnectionState();
+                                            });
         </script>
     </body>
 </html>

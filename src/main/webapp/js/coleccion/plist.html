@@ -186,11 +186,20 @@ THE SOFTWARE.
 
         <div class="row fluid">
 
+            <div class="col-md-12">
+
+                <h1 class="text-center" ng-repeat="obj in page| limitTo:1 ">{{obj.obj_usuario.login}}</h1>
+
+            </div>
+        </div>
+
+        <div class="row fluid">
+
             <div class="col-md-12 text-right">
 
                 <SELECT
                     onchange="window.location.href = this.options
-                                    [this.selectedIndex].value">
+                                            [this.selectedIndex].value">
                     <option></option>
                     <option
                         value="#/coleccion/plist/{{numpage}}/{{rpp}}/{{id}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
