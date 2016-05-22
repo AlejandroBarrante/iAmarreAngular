@@ -532,13 +532,42 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
 
     }
 
-    // --------------------
-    // MÉTODOS NO IMPLEMENTADOS
     @Override
     public String remove() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.checkpermission("remove")) {
+            UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
+            Integer id_usuario = oUserBean.getId();
+            Integer id_juego = ParameterCook.prepareInt("id", oRequest);
+            String resultado = null;
+            Connection oConnection = null;
+            ConnectionInterface oDataConnectionSource = null;
+            try {
+                oDataConnectionSource = getSourceConnection();
+                oConnection = oDataConnectionSource.newConnection();
+                oConnection.setAutoCommit(false);
+                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+                resultado = JsonMessage.getJson("200", oColeccionDao.removeColeccion(id_usuario,id_juego).toString());
+                oConnection.commit();
+            } catch (Exception ex) {
+                oConnection.rollback();
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oDataConnectionSource != null) {
+                    oDataConnectionSource.disposeConnection();
+                }
+            }
+            return resultado;
+        } else {
+            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        }
+
     }
 
+        // --------------------
+    // MÉTODOS NO IMPLEMENTADOS
     @Override
     public String get() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -57,10 +57,24 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
             serverService.getDataFromPromise(serverService.promise_setOneColeccion(num).then(function (data) {
                 $scope.result = data;
                 $location.path(sharedSpaceJuego.getReturnLink());
+            }));
+        };
+
+        $scope.eliminar = function (num) {
+
+            sharedSpaceJuego.setReturnLink('totalJuego/view/' + $scope.id);
+            var coleccion = new Object();
+            coleccion.id = 0;
+            coleccion.id_juego = num;
+            serverService.getDataFromPromise(serverService.promise_removeOneColeccion(num).then(function (data) {
+                $scope.result = data;
+                $location.path(sharedSpaceJuego.getReturnLink());
                 //if ($scope.result.status == "200"){
                 //    $(".coleccion").appendTo().text("Se ha añadido el juego a tu colección");
                 //}
 
             }));
         };
+
+
     }]);

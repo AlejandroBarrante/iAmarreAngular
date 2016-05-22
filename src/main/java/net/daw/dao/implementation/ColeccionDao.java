@@ -244,7 +244,7 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
                     iResult = oMysql.executeInsertSQL(strSQL);
 
                 } else {
-                    System.out.println("Ya tienes este juego");
+                    System.out.println("Ya tienes este juego.");
                 }
 
             } catch (Exception ex) {
@@ -257,12 +257,32 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         return iResult;
     }
 
-    // MÉTODOS NO IMPLEMENTADOS
-    @Override
-    public Integer remove(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer removeColeccion(Integer id_usuario, Integer id_juego) throws Exception {
+
+        int result = 0;
+        try {
+            String strSQLValida = "SELECT * FROM coleccion WHERE id_usuario = " + id_usuario + " AND id_juego = " + id_juego;
+
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQLValida);
+                if (oResultSet.next()) {
+                    result = oMysql.removeOneColeccion(id_usuario, id_juego, strTable);
+
+                } else {
+                    System.out.println("No tienes este juego.");
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+            }
+
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+        }
+        return result;
+
     }
 
+// MÉTODOS NO IMPLEMENTADOS
     @Override
     public ColeccionBean get(ColeccionBean oBean, Integer expand) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -270,6 +290,11 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
 
     @Override
     public Integer set(ColeccionBean oBean) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer remove(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

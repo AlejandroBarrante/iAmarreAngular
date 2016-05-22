@@ -113,6 +113,9 @@
                         promise_removeOne: function (strClass, id) {
                         return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
                         },
+                        promise_removeOneColeccion: function (id_juego) {
+                        return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=remove&id=' + id_juego, 'GET', '');
+                        },
                         promise_getPromise: function (strClass, operation, params) {
                         return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=' + operation + params, 'GET', '');
                         },
@@ -124,9 +127,9 @@
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                                 return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=setjuego' + '&filename=' + filename, {params: jsonfile});
                         },
-                        promise_setOneColeccion: function (id_usuario) {
+                        promise_setOneColeccion: function (id_juego) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                                return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=setcoleccion&id_juego=' + id_usuario);
+                                return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=setcoleccion&id_juego=' + id_juego);
                         },
                         promise_setOneAutor: function (jsonfile) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
