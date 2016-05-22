@@ -224,7 +224,7 @@ public class JuegoBean implements GenericBean {
         strColumns += "descripcion,";
         strColumns += "edad,";
         strColumns += "website,";
-        strColumns += "imagen";
+        strColumns += "imagen,";
         strColumns += "id_editorial,";
         strColumns += "id_dependencialenguaje";
 

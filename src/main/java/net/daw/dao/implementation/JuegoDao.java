@@ -184,8 +184,8 @@ public class JuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInterface<
         return oJuegoBean;
     }
 
-    @Override
-    public Integer set(JuegoBean oJuegoBean) throws Exception {
+
+    public Integer setjuego(JuegoBean oJuegoBean) throws Exception {
         Integer iResult = null;
         try {
             if (oJuegoBean.getId() == 0) {
@@ -215,6 +215,11 @@ public class JuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInterface<
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
         }
         return result;
+    }
+
+    @Override
+    public Integer set(JuegoBean oBean) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

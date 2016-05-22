@@ -77,7 +77,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         //------------
         $routeProvider.when('/juego/plist/:page?/:rpp?', {templateUrl: 'js/juego/plist.html', controller: 'JuegoPListController'});
         $routeProvider.when('/juego/edit/:id', {templateUrl: 'js/juego/edit.html', controller: 'JuegoEditController'});
-        $routeProvider.when('/juego/new', {templateUrl: 'js/juego/new.html', controller: 'JuegoNewController'});
+        $routeProvider.when('/juego/new/:filename?', {templateUrl: 'js/juego/new.html', controller: 'JuegoNewController'});
         $routeProvider.when('/juego/remove/:id', {templateUrl: 'js/juego/remove.html', controller: 'JuegoRemoveController'});
         //------------
         $routeProvider.when('/autor/view/:id', {templateUrl: 'js/autor/view.html', controller: 'AutorViewController'});

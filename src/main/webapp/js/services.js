@@ -120,6 +120,10 @@
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                                 return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
                         },
+                        promise_setImage: function (strClass, filename, jsonfile) {
+                        $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                                return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=setjuego' + '&filename=' + filename, {params: jsonfile});
+                        },
                         promise_setOneColeccion: function (id_usuario) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                                 return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=setcoleccion&id_juego=' + id_usuario);

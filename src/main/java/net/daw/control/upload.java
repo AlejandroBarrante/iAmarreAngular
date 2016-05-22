@@ -58,42 +58,42 @@ public class upload extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       response.setContentType("application/json;charset=UTF-8");
-       try (PrintWriter out = response.getWriter()) {
-           String name = "";
-           String strMessage = "";
-           HashMap<String, String> hash = new HashMap<>();
-           if (ServletFileUpload.isMultipartContent(request)) {
-               try {
-                   List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-                   for (FileItem item : multiparts) {
-                       if (!item.isFormField()) {
-                           name = new File(item.getName()).getName();
-                           item.write(new File(".//..//webapps//images//" + name));
-                       } else {
-                           hash.put(item.getFieldName(), item.getString());
-                       }
-                   }
-                   Gson oGson = new Gson();
-                   Map<String, String> data = new HashMap<>();
-                   Iterator it = hash.entrySet().iterator();
-                   while (it.hasNext()) {
-                       Map.Entry e = (Map.Entry) it.next();
-                       data.put(e.getKey().toString(), e.getValue().toString());
-                   }
-                   data.put("imglink", "http://" + request.getServerName() + ":" + request.getServerPort() + "/images/" + name);
-                   out.print("{\"status\":200,\"message\":" + oGson.toJson(data) + "}");
-               } catch (Exception ex) {
-                   strMessage += "File Upload Failed: " + ex;
-                   out.print("{\"status\":500,\"message\":\"" + strMessage + "\"}");
-               }
-           } else {
-               strMessage += "Only serve file upload requests";
-               out.print("{\"status\":500,\"message\":\"" + strMessage + "\"}");
-           }
-       }
-   }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String name = "";
+            String strMessage = "";
+            HashMap<String, String> hash = new HashMap<>();
+            if (ServletFileUpload.isMultipartContent(request)) {
+                try {
+                    List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                    for (FileItem item : multiparts) {
+                        if (!item.isFormField()) {
+                            name = new File(item.getName()).getName();
+                            item.write(new File(".//..//webapps//images//" + name));
+                        } else {
+                            hash.put(item.getFieldName(), item.getString());
+                        }
+                    }
+                    Gson oGson = new Gson();
+                    Map<String, String> data = new HashMap<>();
+                    Iterator it = hash.entrySet().iterator();
+                    while (it.hasNext()) {
+                        Map.Entry e = (Map.Entry) it.next();
+                        data.put(e.getKey().toString(), e.getValue().toString());
+                    }
+                    data.put("imglink", "http://" + request.getServerName() + ":" + request.getServerPort() + "/images/" + name);
+                    out.print("{\"status\":200,\"message\":" + oGson.toJson(data) + "}");
+                } catch (Exception ex) {
+                    strMessage += "File Upload Failed: " + ex;
+                    out.print("{\"status\":500,\"message\":\"" + strMessage + "\"}");
+                }
+            } else {
+                strMessage += "Only serve file upload requests";
+                out.print("{\"status\":500,\"message\":\"" + strMessage + "\"}");
+            }
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
