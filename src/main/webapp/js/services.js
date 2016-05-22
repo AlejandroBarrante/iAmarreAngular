@@ -122,7 +122,7 @@
                         },
                         promise_setOneColeccion: function (id_usuario) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                                return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=set&id_juego=' + id_usuario);
+                                return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=setcoleccion&id_juego=' + id_usuario);
                         },
                         promise_setOneAutor: function (jsonfile) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';

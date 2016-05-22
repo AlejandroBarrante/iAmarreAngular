@@ -36,39 +36,31 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
         $scope.title = "Vista de Juego";
         $scope.icon = "fa-gamepad";
         $scope.ob = 'totalJuego';
+        $scope.ob2 = "usuario";
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getTotalJuego($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });
-
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
 
         $scope.back = function () {
             window.history.back();
         };
-
         $scope.go = function (num) {
 
             sharedSpaceJuego.setReturnLink('totalJuego/view/' + $scope.id);
-
             var coleccion = new Object();
             coleccion.id = 0;
             coleccion.id_juego = num;
-
-
             serverService.getDataFromPromise(serverService.promise_setOneColeccion(num).then(function (data) {
                 $scope.result = data;
                 $location.path(sharedSpaceJuego.getReturnLink());
-                if ($scope.result.status == "200"){
-                    $(".coleccion").appendTo().text("Se ha añadido el juego a tu colección");
-                }
+                //if ($scope.result.status == "200"){
+                //    $(".coleccion").appendTo().text("Se ha añadido el juego a tu colección");
+                //}
 
             }));
-
-
         };
-        
-        
-
-
-
     }]);

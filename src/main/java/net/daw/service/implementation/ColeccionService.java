@@ -454,7 +454,7 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
                 oColeccionBean.setId_juego(id_juego);
                 //   oColeccionBean = AppConfigurationHelper.getGson().fromJson(jason, oColeccionBean.getClass());
                 if (oColeccionBean != null) {
-                    Integer iResult = oColeccionDao.setColeccion(oColeccionBean, id_usuario);
+                    Integer iResult = oColeccionDao.setColeccion(oColeccionBean, id_usuario, id_juego);
                     if (iResult >= 1) {
                         resultado = JsonMessage.getJson("200", iResult.toString());
                     } else {

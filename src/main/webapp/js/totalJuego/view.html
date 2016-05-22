@@ -120,11 +120,11 @@ THE SOFTWARE.
 
             <div class="coleccion text-center">
                 <div class="btn-group" role="group" aria-label="añadir">
-                    <a class="btn btn-default action02" ng-click="go(bean.id)"><i
+                    <a class="btn btn-default action02" ng-click="go(bean.id)" data-toggle="modal" data-target="#myModal"><i
                             class="fa fa-check fa-2g"></i> Añadir a mi colección</a> 
-                    <a
-                        class="btn btn-default" href="#/juego/plist/">Ir al listado de
-                        Juegos</a> <a class="btn btn-default" href="/juegoteca/#/">Ir al
+                    <a class="btn btn-default action02" ng-click="remove(bean.id)" data-toggle="modal" data-target="#myModal2"><i
+                            class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
+                    <a class="btn btn-default" href="#/juego/plist/">Ir al listado de Juegos</a> <a class="btn btn-default" href="/juegoteca/#/">Ir al
                         Inicio</a>
                 </div>
             </div>
@@ -146,3 +146,54 @@ THE SOFTWARE.
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
      ng-include="'js/system/footer.html'"></div>
+
+
+<!-- Modal 1 -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-p">El juego ha sido añadido a tu colección</p>
+            </div>
+            <div class="modal-footer">
+                <a id="vercol" class="btn btn-default" href="#/coleccion/plist/1/50/{{bean2.id}}">Ver colección</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal 1 -->
+
+<!-- Modal 2 -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-p">El juego ha sido eliminado de tu colección</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal 2 -->
+
+
+<script type="text/javascript">
+            //application's bootstrap with jquery
+            $(document).ready(function () {
+
+                $("#vercol").click(function () {
+                    $('#myModal').attr("data-dismiss", "modal");
+                    
+                });
+
+            });
+</script>
+
+
