@@ -73,7 +73,7 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
      */
     private Boolean checkpermission(String strMethodName) throws Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-        if (oUserBean != null && oUserBean.getId_tipousuario() == 1) {
+        if (oUserBean != null) {
             return true;
         } else {
             return false;
