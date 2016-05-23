@@ -71,18 +71,31 @@ THE SOFTWARE.
             </div>
         </div>
 
-
-
-
-        <div class="control-group text-center">
-            <div class="controls">
-                <a class="btn btn-primary" ng-click="save()"
-                   ng-disabled="!editorialForm.$valid">Guardar</a> <a
-                   class="btn btn-default" ng-click="plist()">Ir al listado de
-                    Editoriales</a> <a class="btn btn-default" ng-click="close()">Cerrar</a>
-            </div>
-        </div>
     </form>
+
+
+    <form id="uploadForm" class="form-horizontal" action="upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file" class="col-sm-2 control-label">Imagen: </label>  
+            <input type="file" name="file" id="file"/>
+            <!--    AQUI HAY QUE METER UN CARTEL QUE INDIQUE QUE MAX. 300x100 PIXELES -->
+        </div>
+
+    </form>  
+
+    <br /> <br />
+
+    <div class="control-group text-center">
+        <div class="controls">
+            <a class="btn btn-primary" ng-click="save()"
+               ng-disabled="!editorialForm.$valid">Guardar</a> <a
+               class="btn btn-default" ng-click="plist()">Ir al listado de
+                Editoriales</a> <a class="btn btn-default" ng-click="close()">Cerrar</a>
+        </div>
+    </div>
+
+
+
     <div ng-show="result != null">
         <div class="alert alert-success" ng-show="result.status == 200">
             <h2>Se ha modificado el registro</h2>

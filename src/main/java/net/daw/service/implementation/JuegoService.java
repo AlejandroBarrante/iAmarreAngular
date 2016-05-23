@@ -436,12 +436,12 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
     }
 
     /**
-     * Método SET Juego
+     * Método SET con Imagen para Juego
      *
      * @return resultado
      * @throws Exception
      */
-    public String setjuego() throws Exception {
+    public String setconimagen() throws Exception {
 
         if (this.checkpermission("set")) {
             String jason = ParameterCook.prepareJson(oRequest);
@@ -456,13 +456,14 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
                 oConnection.setAutoCommit(false);
+                
                 JuegoDao oJuegoDao = new JuegoDao(oConnection);
                 JuegoBean oJuegoBean = new JuegoBean();
                 oJuegoBean = AppConfigurationHelper.getGson().fromJson(jason, oJuegoBean.getClass());
                 oJuegoBean.setImagen(nombreCambiado);
 
                 if (oJuegoBean != null) {
-                    Integer iResult = oJuegoDao.setjuego(oJuegoBean);
+                    Integer iResult = oJuegoDao.set(oJuegoBean);
                     if (iResult >= 1) {
                         resultado = JsonMessage.getJson("200", iResult.toString());
                     } else {

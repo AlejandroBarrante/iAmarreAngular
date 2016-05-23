@@ -81,9 +81,10 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    /** Método GET de Editorial
+    /**
+     * Método GET de Editorial
      *
-     * @return data 
+     * @return data
      * @throws Exception
      */
     @Override
@@ -144,7 +145,8 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
 //        return data;
 //
 //    }
-    /** MÉTODOS PARA MOSTRAR LISTADOS DE EDITORIALES
+    /**
+     * MÉTODOS PARA MOSTRAR LISTADOS DE EDITORIALES
      *
      * @return data
      * @throws Exception
@@ -267,7 +269,8 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
 
     }
 
-    /** Método REMOVE de Editorial
+    /**
+     * Método REMOVE de Editorial
      *
      * @return resultado
      * @throws Exception
@@ -303,15 +306,19 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    /** Método SET de Editorial
+    /**
+     * Método SET con Imagen de Editorial
      *
      * @return resultado
      * @throws Exception
      */
-    @Override
-    public String set() throws Exception {
+    public String setconimagen() throws Exception {
         if (this.checkpermission("set")) {
             String jason = ParameterCook.prepareJson(oRequest);
+            String filename = ParameterCook.prepareString("filename", oRequest);
+
+            String nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
+
             String resultado = null;
             Connection oConnection = null;
             ConnectionInterface oDataConnectionSource = null;
@@ -319,9 +326,12 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
                 oConnection.setAutoCommit(false);
+
                 EditorialDao oEditorialDao = new EditorialDao(oConnection);
                 EditorialBean oEditorialBean = new EditorialBean();
                 oEditorialBean = AppConfigurationHelper.getGson().fromJson(jason, oEditorialBean.getClass());
+                oEditorialBean.setImagen(nombreCambiado);
+
                 if (oEditorialBean != null) {
                     Integer iResult = oEditorialDao.set(oEditorialBean);
                     if (iResult >= 1) {
@@ -350,6 +360,53 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
         }
     }
 
+//    /**
+//     * Método SET de Editorial
+//     *
+//     * @return resultado
+//     * @throws Exception
+//     */
+//    @Override
+//    public String set() throws Exception {
+//        if (this.checkpermission("set")) {
+//            String jason = ParameterCook.prepareJson(oRequest);
+//            String resultado = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                oConnection.setAutoCommit(false);
+//                EditorialDao oEditorialDao = new EditorialDao(oConnection);
+//                EditorialBean oEditorialBean = new EditorialBean();
+//                oEditorialBean = AppConfigurationHelper.getGson().fromJson(jason, oEditorialBean.getClass());
+//                if (oEditorialBean != null) {
+//                    Integer iResult = oEditorialDao.set(oEditorialBean);
+//                    if (iResult >= 1) {
+//                        resultado = JsonMessage.getJson("200", iResult.toString());
+//                    } else {
+//                        resultado = JsonMessage.getJson("500", "Error during registry set");
+//                    }
+//                } else {
+//                    resultado = JsonMessage.getJson("500", "Error during registry set");
+//                }
+//                oConnection.commit();
+//            } catch (Exception ex) {
+//                oConnection.rollback();
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return resultado;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
     // MÉTODOS NO IMPLEMENTADOS
     /**
      *
@@ -357,6 +414,15 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
      */
     @Override
     public String getall() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String set() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -70,8 +70,10 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
             console.log("save");
             console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});
             //strValues = serverService.array_identificarArray(thisObject.form_getFormValues(strClass));
-
             //  sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
+
+            //INICIO UPLOAD
+
             var form = document.getElementById('uploadForm');
             $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
             var oformData = new FormData(form);
@@ -111,6 +113,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
 
             $scope.filename = document.getElementById('file').value.toString();
 
+            //FIN UPLOAD
 
             serverService.getDataFromPromise(serverService.promise_setImage($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;

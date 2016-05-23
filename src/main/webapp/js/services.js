@@ -113,7 +113,7 @@ angular.module('Services', [])
                 },
                 promise_setImage: function (strClass, filename, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=setjuego' + '&filename=' + filename, {params: jsonfile});
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=setconimagen' + '&filename=' + filename, {params: jsonfile});
                 },
                 promise_setOne: function (strClass, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
