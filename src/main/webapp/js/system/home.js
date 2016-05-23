@@ -36,7 +36,6 @@ moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location
 
         serverService.getDataFromPromise(serverService.promise_getUserSession($scope.ob)).then(function (data) {
             $scope.bean = data.message;
-            //actualizar menu con jquery
 
         });
     }]
