@@ -35,9 +35,7 @@ var openAusias = angular.module('myApp', [
     'Services',
     'Directives',
     'systemControllers',
-    'documentoControllers',
     'usuarioControllers',
-    'tipodocumentoControllers',
     'tipousuarioControllers',
     'juegoControllers',
     'autorControllers',
@@ -60,11 +58,8 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
-        $routeProvider.when('/session/sessionopen', {templateUrl: 'js/session/sessionopen.html', controller: 'SessionController'});
-        //------------
+        $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
-        //------------       
-        $routeProvider.when('/menu', {templateUrl: 'js/system/menu.html', controller: 'MenuController'});
         //------------
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController'});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/new.html', controller: 'UsuarioNewController'});
@@ -132,8 +127,6 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
 
 
-
-
     }]);
 
 var moduloSistema = angular.module('systemControllers', []);
@@ -152,5 +145,4 @@ var moduloDepLenguaje = angular.module('depLenguajeControllers', []);
 var moduloTotalJuego = angular.module('totalJuegoControllers', []);
 var moduloColeccion = angular.module('coleccionControllers', []);
 var moduloSession = angular.module('sessionControllers', []);
-
 
