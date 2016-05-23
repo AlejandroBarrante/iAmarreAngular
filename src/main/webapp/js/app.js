@@ -49,6 +49,7 @@ var openAusias = angular.module('myApp', [
     'editorialJuegoControllers',
     'totalJuegoControllers',
     'coleccionControllers',
+    'menuControllers',
     'sessionControllers',
     'ui.bootstrap',
     'ngSanitize'
@@ -145,4 +146,5 @@ var moduloDepLenguaje = angular.module('depLenguajeControllers', []);
 var moduloTotalJuego = angular.module('totalJuegoControllers', []);
 var moduloColeccion = angular.module('coleccionControllers', []);
 var moduloSession = angular.module('sessionControllers', []);
+var moduloMenu = angular.module('menuControllers', []);
 
