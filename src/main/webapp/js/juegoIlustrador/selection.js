@@ -29,25 +29,15 @@
 
 'use strict';
 
-moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
-        $scope.visibles.id = true;
-        $scope.visibles.titulo = true;
-        $scope.visibles.fechaPublicacion = true;
-        $scope.visibles.numJugadores = true;
-        $scope.visibles.edad = true;
-        $scope.visibles.duracion = true;
-        $scope.visibles.imagen = true;
+moduloIlustradorJuego.controller('JuegoIlustradorSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego) {
 
-
-        $scope.ob = "coleccion";
-        $scope.op = "plist";
-        $scope.title = "Listado de Juegos por Usuario";
-        $scope.icon = "fa-gamepad";
+        $scope.ob = "ilustrador";
+        $scope.op = "selection";
+        $scope.title = "Selección de Ilustrador para un Juego";
+        $scope.icon = "fa-paint-brush";
         $scope.neighbourhood = 2;
-        $scope.id = $routeParams.id_usuario;
+        $scope.id_juego = $routeParams.id_juego;
 
         if (!$routeParams.page) {
             $routeParams.page = 1;
@@ -105,7 +95,7 @@ moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams'
         $scope.params = ($scope.orderParams + $scope.filterParams + $scope.systemFilterParams);
         $scope.params = $scope.params.replace('&', '?');
 
-        serverService.getDataFromPromise(serverService.promise_getSomeColeccionUsuario($scope.ob, $scope.rpp, $scope.numpage, $scope.id, $scope.filterParams, $scope.orderParams, $scope.systemFilterParams)).then(function (data) {
+        serverService.getDataFromPromise(serverService.promise_getSomeAsignaIlustrador($scope.ob, $scope.rpp, $scope.numpage, $scope.id_juego, $scope.filterParams, $scope.orderParams, $scope.systemFilterParams)).then(function (data) {
             if (data.status != 200) {
                 $scope.status = "Error en la recepción de datos del servidor";
             } else {
@@ -114,8 +104,8 @@ moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams'
                     $scope.numpage = $scope.pages;
 
                 $scope.page = data.message.page.message;
-                //$scope.registers = data.message.registers.message;
-               // $scope.status = "";
+                $scope.registers = data.message.registers.message;
+                $scope.status = "";
             }
         });
 
@@ -148,5 +138,22 @@ moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams'
             return false;
         };
 
+        $scope.go = function (num) {
+
+            var id_juego = sharedSpaceJuego.get_idJuego();
+
+            var juegoIlustrador = new Object();
+            juegoIlustrador.id = 0;
+            juegoIlustrador.id_juego = id_juego;
+            juegoIlustrador.id_ilustrador = num;
+
+
+            serverService.getDataFromPromise(serverService.promise_setOneIlustrador({json: JSON.stringify(juegoIlustrador)}).then(function (data) {
+                $scope.result = data;
+                $location.path(sharedSpaceJuego.getReturnLink());
+
+            }));
+
+        };
 
     }]);

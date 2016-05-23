@@ -170,7 +170,8 @@ public class AutorDao implements ViewDaoInterface<AutorBean>, TableDaoInterface<
         return result;
     }
 
-    // MÉTODOS PARA ASIGNACIÓN DE AUTORES
+    // MÉTODOS PARA FILTRADO DE AUTORES EN PANTALLAS INTERMEDIAS
+    
     public int getPagesAutor(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += "and autor.id not in (select aj.id_autor from  autorjuego aj where aj.id_juego=" + id_juego + ")";

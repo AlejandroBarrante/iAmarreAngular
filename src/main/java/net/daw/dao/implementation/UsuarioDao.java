@@ -164,6 +164,8 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return iResult;
     }
 
+    // -- MÉTODOS PARA AUTENTICACIÓN --
+    
     // Convierte un arreglo de bytes a String usando valores hexadecimales
     private static String toHexadecimal(byte[] digest) {
         String hash = "";
@@ -191,6 +193,8 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         }
         return toHexadecimal(digest);
     }
+    
+    // ----------------------
 
     @Override
     public Integer remove(Integer id) throws Exception {

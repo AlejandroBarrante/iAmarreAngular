@@ -33,125 +33,202 @@ import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.helper.statics.EncodingUtilHelper;
 
+/**
+ *
+ * @author abarrante
+ */
 public class AutorBean implements GenericBean {
 
-	@Expose
-	private Integer id;
-	@Expose
-	private String nombre = "";
-	@Expose
-	private Integer fechaNac = null;
-	@Expose
-	private String bio = "";
-	@Expose
-	private String website = "";
+    @Expose
+    private Integer id;
+    @Expose
+    private String nombre = "";
+    @Expose
+    private Integer fechaNac = null;
+    @Expose
+    private String bio = "";
+    @Expose
+    private String website = "";
 
-	public AutorBean() {
-		this.id = 0;
-	}
+    /**
+     *
+     */
+    public AutorBean() {
+        this.id = 0;
+    }
 
-	public AutorBean(Integer id) {
-		this.id = id;
-	}
+    /**
+     *
+     * @param id
+     */
+    public AutorBean(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    /**
+     *
+     * @return id
+     */
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    /**
+     *
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    /**
+     *
+     * @return nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    /**
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public Integer getFechaNac() {
-		return fechaNac;
-	}
+    /**
+     *
+     * @return fechaNac
+     */
+    public Integer getFechaNac() {
+        return fechaNac;
+    }
 
-	public void setFechaNac(Integer fechaNac) {
-		this.fechaNac = fechaNac;
-	}
+    /**
+     *
+     * @param fechaNac
+     */
+    public void setFechaNac(Integer fechaNac) {
+        this.fechaNac = fechaNac;
+    }
 
-	public String getBio() {
-		return bio;
-	}
+    /**
+     *
+     * @return bio
+     */
+    public String getBio() {
+        return bio;
+    }
 
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
+    /**
+     *
+     * @param bio
+     */
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
-	public String getWebsite() {
-		return website;
-	}
+    /**
+     *
+     * @return website
+     */
+    public String getWebsite() {
+        return website;
+    }
 
-	public void setWebsite(String website) {
-		this.website = website;
-	}
+    /**
+     *
+     * @param website
+     */
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
-	// ---------------------------------------------
-	public String toJson(Boolean expand) {
-		String strJson = "{";
-		strJson += "id:" + id + ",";
-		strJson += "nombre:" + nombre + ",";
-		strJson += "fechaNac:" + fechaNac + ",";
-		strJson += "bio:" + bio + ",";
-		strJson += "website:" + website + ",";
-		strJson += "}";
-		return strJson;
-	}
+    // ---------------------------------------------
+    /**
+     *
+     * @param expand
+     * @return strJson
+     */
+    public String toJson(Boolean expand) {
+        String strJson = "{";
+        strJson += "id:" + id + ",";
+        strJson += "nombre:" + nombre + ",";
+        strJson += "fechaNac:" + fechaNac + ",";
+        strJson += "bio:" + bio + ",";
+        strJson += "website:" + website + ",";
+        strJson += "}";
+        return strJson;
+    }
 
-	@Override
-	public String getColumns() {
-		String strColumns = "";
-		strColumns += "id,";
-		strColumns += "nombre,";
-		strColumns += "fechaNac,";
-		strColumns += "bio,";
-		strColumns += "website";
+    /**
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getColumns() {
+        String strColumns = "";
+        strColumns += "id,";
+        strColumns += "nombre,";
+        strColumns += "fechaNac,";
+        strColumns += "bio,";
+        strColumns += "website";
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String getValues() {
-		String strColumns = "";
-		strColumns += id.toString() + ",";
-		strColumns += EncodingUtilHelper.quotate(nombre) + ",";
-		strColumns += fechaNac + ",";
-		strColumns += EncodingUtilHelper.quotate(bio) + ",";
-		strColumns += EncodingUtilHelper.quotate(website);
+    /**
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getValues() {
+        String strColumns = "";
+        strColumns += id.toString() + ",";
+        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
+        strColumns += fechaNac + ",";
+        strColumns += EncodingUtilHelper.quotate(bio) + ",";
+        strColumns += EncodingUtilHelper.quotate(website);
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String toPairs() {
-		String strPairs = "";
-		strPairs += "id=" + id + ",";
-		strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
-		strPairs += "fechaNac=" + fechaNac + ",";
-		strPairs += "bio=" + EncodingUtilHelper.quotate(bio) + ",";
-		strPairs += "website=" + EncodingUtilHelper.quotate(website);
+    /**
+     *
+     * @return strPairs
+     */
+    @Override
+    public String toPairs() {
+        String strPairs = "";
+        strPairs += "id=" + id + ",";
+        strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
+        strPairs += "fechaNac=" + fechaNac + ",";
+        strPairs += "bio=" + EncodingUtilHelper.quotate(bio) + ",";
+        strPairs += "website=" + EncodingUtilHelper.quotate(website);
 
-		return strPairs;
-	}
+        return strPairs;
+    }
 
-	@Override
-	public AutorBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
-			throws SQLException, Exception {
-		this.setId(oResultSet.getInt("id"));
-		this.setNombre(oResultSet.getString("nombre"));
-		this.setFechaNac(oResultSet.getInt("fechaNac"));
-		this.setBio(oResultSet.getString("bio"));
-		this.setWebsite(oResultSet.getString("website"));
+    /**
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
+    @Override
+    public AutorBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
+            throws SQLException, Exception {
+        this.setId(oResultSet.getInt("id"));
+        this.setNombre(oResultSet.getString("nombre"));
+        this.setFechaNac(oResultSet.getInt("fechaNac"));
+        this.setBio(oResultSet.getString("bio"));
+        this.setWebsite(oResultSet.getString("website"));
 
-		return this;
-	}
+        return this;
+    }
 
 }
