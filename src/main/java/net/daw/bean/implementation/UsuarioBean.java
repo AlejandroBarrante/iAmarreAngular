@@ -34,6 +34,10 @@ import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.TipousuarioDao;
 import net.daw.helper.statics.EncodingUtilHelper;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class UsuarioBean implements GenericBean {
 
     @Expose
@@ -51,71 +55,140 @@ public class UsuarioBean implements GenericBean {
     @Expose
     private String firma = "";
 
+    /**
+     *
+     */
     public UsuarioBean() {
         this.id = 0;
     }
 
+    /**
+     *
+     * @param id
+     */
     public UsuarioBean(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     *
+     * @param login
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId_tipousuario() {
         return id_tipousuario;
     }
 
+    /**
+     *
+     * @param id_tipousuario
+     */
     public void setId_tipousuario(Integer id_tipousuario) {
         this.id_tipousuario = id_tipousuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public TipousuarioBean getObj_tipousuario() {
         return obj_tipousuario;
     }
 
+    /**
+     *
+     * @param obj_tipousuario
+     */
     public void setObj_tipousuario(TipousuarioBean obj_tipousuario) {
         this.obj_tipousuario = obj_tipousuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCiudad() {
         return ciudad;
     }
 
+    /**
+     *
+     * @param ciudad
+     */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirma() {
         return firma;
     }
 
+    /**
+     *
+     * @param firma
+     */
     public void setFirma(String firma) {
         this.firma = firma;
     }
 
     // ---------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
@@ -132,6 +205,11 @@ public class UsuarioBean implements GenericBean {
         return strJson;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
     @Override
     public String getColumns() {
         String strColumns = "";
@@ -145,6 +223,11 @@ public class UsuarioBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
     @Override
     public String getValues() {
         String strColumns = "";
@@ -158,6 +241,11 @@ public class UsuarioBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairs
+     */
     @Override
     public String toPairs() {
         String strPairs = "";
@@ -171,6 +259,16 @@ public class UsuarioBean implements GenericBean {
         return strPairs;
     }
 
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
     @Override
     public UsuarioBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));

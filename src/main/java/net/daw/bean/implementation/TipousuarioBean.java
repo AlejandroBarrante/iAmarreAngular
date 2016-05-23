@@ -32,37 +32,71 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
 
-public class TipousuarioBean implements GenericBean{
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
+public class TipousuarioBean implements GenericBean {
 
     @Expose
     private Integer id;
     @Expose
     private String descripcion = "";
 
+    /**
+     *
+     */
     public TipousuarioBean() {
         this.id = 0;
     }
 
+    /**
+     *
+     * @param id
+     */
     public TipousuarioBean(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    // **********************************
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
@@ -71,8 +105,13 @@ public class TipousuarioBean implements GenericBean{
         return strJson;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
     @Override
-	public String getColumns() {
+    public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
         strColumns += "descripcion";
@@ -80,6 +119,11 @@ public class TipousuarioBean implements GenericBean{
         return strColumns;
     }
 
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
     @Override
     public String getValues() {
         String strColumns = "";
@@ -89,6 +133,11 @@ public class TipousuarioBean implements GenericBean{
         return strColumns;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairs
+     */
     @Override
     public String toPairs() {
         String strPairs = "";
@@ -98,6 +147,16 @@ public class TipousuarioBean implements GenericBean{
         return strPairs;
     }
 
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
     @Override
     public TipousuarioBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));

@@ -34,110 +34,177 @@ import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.IlustradorDao;
 import net.daw.dao.implementation.JuegoDao;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class IlustradorJuegoBean implements GenericBean {
 
-	@Expose(serialize = false)
-	private Integer id_ilustrador = 0;
-	@Expose(deserialize = false)
-	private IlustradorBean obj_ilustrador = null;
-	@Expose(serialize = false)
-	private Integer id_juego = 0;
-	@Expose(deserialize = false)
-	private JuegoBean obj_juego = null;
+    @Expose(serialize = false)
+    private Integer id_ilustrador = 0;
+    @Expose(deserialize = false)
+    private IlustradorBean obj_ilustrador = null;
+    @Expose(serialize = false)
+    private Integer id_juego = 0;
+    @Expose(deserialize = false)
+    private JuegoBean obj_juego = null;
 
-	public Integer getId_ilustrador() {
-		return id_ilustrador;
-	}
+    /**
+     *
+     * @return
+     */
+    public Integer getId_ilustrador() {
+        return id_ilustrador;
+    }
 
-	public void setId_ilustrador(Integer id_ilustrador) {
-		this.id_ilustrador = id_ilustrador;
-	}
+    /**
+     *
+     * @param id_ilustrador
+     */
+    public void setId_ilustrador(Integer id_ilustrador) {
+        this.id_ilustrador = id_ilustrador;
+    }
 
-	public IlustradorBean getObj_ilustrador() {
-		return obj_ilustrador;
-	}
+    /**
+     *
+     * @return
+     */
+    public IlustradorBean getObj_ilustrador() {
+        return obj_ilustrador;
+    }
 
-	public void setObj_ilustrador(IlustradorBean obj_ilustrador) {
-		this.obj_ilustrador = obj_ilustrador;
-	}
+    /**
+     *
+     * @param obj_ilustrador
+     */
+    public void setObj_ilustrador(IlustradorBean obj_ilustrador) {
+        this.obj_ilustrador = obj_ilustrador;
+    }
 
-	public Integer getId_juego() {
-		return id_juego;
-	}
+    /**
+     *
+     * @return
+     */
+    public Integer getId_juego() {
+        return id_juego;
+    }
 
-	public void setId_juego(Integer id_juego) {
-		this.id_juego = id_juego;
-	}
+    /**
+     *
+     * @param id_juego
+     */
+    public void setId_juego(Integer id_juego) {
+        this.id_juego = id_juego;
+    }
 
-	public JuegoBean getObj_juego() {
-		return obj_juego;
-	}
+    /**
+     *
+     * @return
+     */
+    public JuegoBean getObj_juego() {
+        return obj_juego;
+    }
 
-	public void setObj_juego(JuegoBean obj_juego) {
-		this.obj_juego = obj_juego;
-	}
+    /**
+     *
+     * @param obj_juego
+     */
+    public void setObj_juego(JuegoBean obj_juego) {
+        this.obj_juego = obj_juego;
+    }
 
-	// ---------------------------------------------
-	public String toJson(Boolean expand) {
-		String strJson = "{";
-		strJson += "id_ilustrador:" + id_ilustrador + ",";
-		strJson += "id_juego:" + id_juego + ",";
-		strJson += "}";
-		return strJson;
-	}
+    // ---------------------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
+    public String toJson(Boolean expand) {
+        String strJson = "{";
+        strJson += "id_ilustrador:" + id_ilustrador + ",";
+        strJson += "id_juego:" + id_juego + ",";
+        strJson += "}";
+        return strJson;
+    }
 
-	@Override
-	public String getColumns() {
-		String strColumns = "";
-		strColumns += "id_ilustrador,";
-		strColumns += "id_juego";
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getColumns() {
+        String strColumns = "";
+        strColumns += "id_ilustrador,";
+        strColumns += "id_juego";
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String getValues() {
-		String strColumns = "";
-		strColumns += id_ilustrador.toString() + ",";
-		strColumns += id_juego.toString();
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getValues() {
+        String strColumns = "";
+        strColumns += id_ilustrador.toString() + ",";
+        strColumns += id_juego.toString();
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String toPairs() {
-		String strPairs = "";
-		strPairs += "id=" + id_ilustrador + ",";
-		strPairs += "id=" + id_juego;
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairss
+     */
+    @Override
+    public String toPairs() {
+        String strPairs = "";
+        strPairs += "id=" + id_ilustrador + ",";
+        strPairs += "id=" + id_juego;
 
-		return strPairs;
-	}
+        return strPairs;
+    }
 
-	@Override
-	public IlustradorJuegoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
-			throws SQLException, Exception {
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
+    @Override
+    public IlustradorJuegoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
+            throws SQLException, Exception {
 
-		if (expand > 0) {
-			IlustradorBean oIlustradorBean = new IlustradorBean();
-			IlustradorDao oIlustradorDao = new IlustradorDao(pooledConnection);
-			oIlustradorBean.setId(oResultSet.getInt("id_ilustrador"));
-			oIlustradorBean = oIlustradorDao.get(oIlustradorBean, expand - 1);
-			this.setObj_ilustrador(oIlustradorBean);
-		} else {
-			this.setId_ilustrador(oResultSet.getInt("id_ilustrador"));
-		}
-		if (expand > 0) {
-			JuegoBean oJuegoBean = new JuegoBean();
-			JuegoDao oJuegoDao = new JuegoDao(pooledConnection);
-			oJuegoBean.setId(oResultSet.getInt("id_juego"));
-			oJuegoBean = oJuegoDao.get(oJuegoBean, expand - 1);
-			this.setObj_juego(oJuegoBean);
-		} else {
-			this.setId_juego(oResultSet.getInt("id_juego"));
-		}
+        if (expand > 0) {
+            IlustradorBean oIlustradorBean = new IlustradorBean();
+            IlustradorDao oIlustradorDao = new IlustradorDao(pooledConnection);
+            oIlustradorBean.setId(oResultSet.getInt("id_ilustrador"));
+            oIlustradorBean = oIlustradorDao.get(oIlustradorBean, expand - 1);
+            this.setObj_ilustrador(oIlustradorBean);
+        } else {
+            this.setId_ilustrador(oResultSet.getInt("id_ilustrador"));
+        }
+        if (expand > 0) {
+            JuegoBean oJuegoBean = new JuegoBean();
+            JuegoDao oJuegoDao = new JuegoDao(pooledConnection);
+            oJuegoBean.setId(oResultSet.getInt("id_juego"));
+            oJuegoBean = oJuegoDao.get(oJuegoBean, expand - 1);
+            this.setObj_juego(oJuegoBean);
+        } else {
+            this.setId_juego(oResultSet.getInt("id_juego"));
+        }
 
-		return this;
+        return this;
 
-	}
+    }
 
 }

@@ -35,6 +35,10 @@ import net.daw.dao.implementation.DependenciaLenguajeDao;
 import net.daw.dao.implementation.EditorialDao;
 import net.daw.helper.statics.EncodingUtilHelper;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class JuegoBean implements GenericBean {
 
     @Expose
@@ -65,129 +69,253 @@ public class JuegoBean implements GenericBean {
     private Integer id_dependencialenguaje = 0;
     @Expose(deserialize = false)
     private DependenciaLenguajeBean obj_dependencialenguaje = null;
-    
 
+    /**
+     *
+     */
     public JuegoBean() {
         this.id = 0;
     }
 
+    /**
+     *
+     * @param id
+     */
     public JuegoBean(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitulo() {
         return titulo;
     }
 
+    /**
+     *
+     * @param titulo
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getFechaPublicacion() {
         return fechaPublicacion;
     }
 
+    /**
+     *
+     * @param fechaPublicacion
+     */
     public void setFechaPublicacion(Integer fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getJugMin() {
         return jugMin;
     }
 
+    /**
+     *
+     * @param jugMin
+     */
     public void setJugMin(Integer jugMin) {
         this.jugMin = jugMin;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getJugMax() {
         return jugMax;
     }
 
+    /**
+     *
+     * @param jugMax
+     */
     public void setJugMax(Integer jugMax) {
         this.jugMax = jugMax;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getDuracion() {
         return duracion;
     }
 
+    /**
+     *
+     * @param duracion
+     */
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getEdad() {
         return edad;
     }
 
+    /**
+     *
+     * @param edad
+     */
     public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getWebsite() {
         return website;
     }
 
+    /**
+     *
+     * @param website
+     */
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getImagen() {
         return imagen;
     }
 
+    /**
+     *
+     * @param imagen
+     */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId_editorial() {
         return id_editorial;
     }
 
+    /**
+     *
+     * @param id_editorial
+     */
     public void setId_editorial(Integer id_editorial) {
         this.id_editorial = id_editorial;
     }
 
+    /**
+     *
+     * @return
+     */
     public EditorialBean getObj_editorial() {
         return obj_editorial;
     }
 
+    /**
+     *
+     * @param obj_editorial
+     */
     public void setObj_editorial(EditorialBean obj_editorial) {
         this.obj_editorial = obj_editorial;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId_dependencialenguaje() {
         return id_dependencialenguaje;
     }
 
+    /**
+     *
+     * @param id_dependencialenguaje
+     */
     public void setId_dependencialenguaje(Integer id_dependencialenguaje) {
         this.id_dependencialenguaje = id_dependencialenguaje;
     }
 
+    /**
+     *
+     * @return
+     */
     public DependenciaLenguajeBean getObj_dependencialenguaje() {
         return obj_dependencialenguaje;
     }
 
+    /**
+     *
+     * @param obj_dependencialenguaje
+     */
     public void setObj_dependencialenguaje(DependenciaLenguajeBean obj_dependencialenguaje) {
         this.obj_dependencialenguaje = obj_dependencialenguaje;
     }
 
     // ---------------------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
@@ -212,6 +340,11 @@ public class JuegoBean implements GenericBean {
 
     }
 
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
     @Override
     public String getColumns() {
         String strColumns = "";
@@ -231,6 +364,11 @@ public class JuegoBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
     @Override
     public String getValues() {
         String strColumns = "";
@@ -250,6 +388,11 @@ public class JuegoBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairs
+     */
     @Override
     public String toPairs() {
         String strPairs = "";
@@ -269,6 +412,16 @@ public class JuegoBean implements GenericBean {
         return strPairs;
     }
 
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
     @Override
     public JuegoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));

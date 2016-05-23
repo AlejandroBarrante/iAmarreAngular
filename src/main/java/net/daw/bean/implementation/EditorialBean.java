@@ -33,6 +33,10 @@ import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.helper.statics.EncodingUtilHelper;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class EditorialBean implements GenericBean {
 
     @Expose
@@ -46,69 +50,125 @@ public class EditorialBean implements GenericBean {
     @Expose
     private String imagen = "";
 
+    /**
+     *
+     */
     public EditorialBean() {
         this.id = 0;
     }
 
+    /**
+     *
+     * @param id
+     */
     public EditorialBean(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBio() {
         return bio;
     }
 
+    /**
+     *
+     * @param bio
+     */
     public void setBio(String bio) {
         this.bio = bio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getWebsite() {
         return website;
     }
 
+    /**
+     *
+     * @param website
+     */
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getImagen() {
         return imagen;
     }
 
+    /**
+     *
+     * @param imagen
+     */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-    
-    
 
     // ---------------------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
         strJson += "nombre:" + nombre + ",";
         strJson += "bio:" + bio + ",";
-        strJson += "website:" + website  + ",";
-        strJson += "imagen:" + imagen  + ",";
+        strJson += "website:" + website + ",";
+        strJson += "imagen:" + imagen + ",";
         strJson += "}";
         return strJson;
 
     }
 
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
     @Override
     public String getColumns() {
         String strColumns = "";
@@ -121,30 +181,50 @@ public class EditorialBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
     @Override
     public String getValues() {
         String strColumns = "";
         strColumns += id.toString() + ",";
         strColumns += EncodingUtilHelper.quotate(nombre) + ",";
         strColumns += EncodingUtilHelper.quotate(bio) + ",";
-        strColumns += EncodingUtilHelper.quotate(website)  + ",";
+        strColumns += EncodingUtilHelper.quotate(website) + ",";
         strColumns += EncodingUtilHelper.quotate(imagen);
 
         return strColumns;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairs
+     */
     @Override
     public String toPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
         strPairs += "bio=" + EncodingUtilHelper.quotate(bio) + ",";
-        strPairs += "website=" + EncodingUtilHelper.quotate(website)  + ",";
+        strPairs += "website=" + EncodingUtilHelper.quotate(website) + ",";
         strPairs += "imagen=" + EncodingUtilHelper.quotate(imagen);
 
         return strPairs;
     }
 
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
     @Override
     public EditorialBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));

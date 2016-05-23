@@ -35,7 +35,7 @@ import net.daw.helper.statics.EncodingUtilHelper;
 
 /**
  *
- * @author abarrante
+ * @author Alejandro Barrante Cano
  */
 public class AutorBean implements GenericBean {
 
@@ -147,6 +147,7 @@ public class AutorBean implements GenericBean {
 
     // ---------------------------------------------
     /**
+     * Método JSONeador
      *
      * @param expand
      * @return strJson
@@ -163,6 +164,7 @@ public class AutorBean implements GenericBean {
     }
 
     /**
+     * Método que obtiene las columnas en caso de NEW
      *
      * @return strColumns
      */
@@ -179,6 +181,7 @@ public class AutorBean implements GenericBean {
     }
 
     /**
+     * Método que recupera los valores introducidos en un formulario
      *
      * @return strColumns
      */
@@ -195,6 +198,7 @@ public class AutorBean implements GenericBean {
     }
 
     /**
+     * Método que obtiene las columnas en caso de EDIT
      *
      * @return strPairs
      */
@@ -211,6 +215,7 @@ public class AutorBean implements GenericBean {
     }
 
     /**
+     * Método que rellena el POJO
      *
      * @param oResultSet
      * @param pooledConnection

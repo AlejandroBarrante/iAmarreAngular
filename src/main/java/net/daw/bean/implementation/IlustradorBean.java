@@ -33,7 +33,10 @@ import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.helper.statics.EncodingUtilHelper;
 
-
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class IlustradorBean implements GenericBean {
 
     @Expose
@@ -47,55 +50,108 @@ public class IlustradorBean implements GenericBean {
     @Expose
     private String website = "";
 
+    /**
+     *
+     */
     public IlustradorBean() {
         this.id = 0;
     }
 
+    /**
+     *
+     * @param id
+     */
     public IlustradorBean(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getFechaNac() {
         return fechaNac;
     }
 
+    /**
+     *
+     * @param fechaNac
+     */
     public void setFechaNac(Integer fechaNac) {
         this.fechaNac = fechaNac;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBio() {
         return bio;
     }
 
+    /**
+     *
+     * @param bio
+     */
     public void setBio(String bio) {
         this.bio = bio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getWebsite() {
         return website;
     }
 
+    /**
+     *
+     * @param website
+     */
     public void setWebsite(String website) {
         this.website = website;
     }
 
     // ---------------------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
     public String toJson(Boolean expand) {
         String strJson = "{";
         strJson += "id:" + id + ",";
@@ -107,6 +163,11 @@ public class IlustradorBean implements GenericBean {
         return strJson;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
     @Override
     public String getColumns() {
         String strColumns = "";
@@ -119,6 +180,11 @@ public class IlustradorBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
     @Override
     public String getValues() {
         String strColumns = "";
@@ -131,6 +197,11 @@ public class IlustradorBean implements GenericBean {
         return strColumns;
     }
 
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairs
+     */
     @Override
     public String toPairs() {
         String strPairs = "";
@@ -143,6 +214,16 @@ public class IlustradorBean implements GenericBean {
         return strPairs;
     }
 
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
     @Override
     public IlustradorBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));

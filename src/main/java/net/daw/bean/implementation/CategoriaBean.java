@@ -33,95 +33,161 @@ import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.helper.statics.EncodingUtilHelper;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class CategoriaBean implements GenericBean {
 
-	@Expose
-	private Integer id;
-	@Expose
-	private String nombre = "";
-	@Expose
-	private String descripcion = "";
+    @Expose
+    private Integer id;
+    @Expose
+    private String nombre = "";
+    @Expose
+    private String descripcion = "";
 
-	public CategoriaBean() {
-		this.id = 0;
-	}
+    /**
+     *
+     */
+    public CategoriaBean() {
+        this.id = 0;
+    }
 
-	public CategoriaBean(Integer id) {
-		this.id = id;
-	}
+    /**
+     *
+     * @param id
+     */
+    public CategoriaBean(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    /**
+     *
+     * @return
+     */
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    /**
+     *
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    /**
+     *
+     * @return
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    /**
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    /**
+     *
+     * @return
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    /**
+     *
+     * @param descripcion
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	// ---------------------------------------------
-	public String toJson(Boolean expand) {
-		String strJson = "{";
-		strJson += "id:" + id + ",";
-		strJson += "nombre:" + nombre + ",";
-		strJson += "descripcion:" + descripcion + ",";
-		strJson += "}";
-		return strJson;
-	}
+    // ---------------------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
+    public String toJson(Boolean expand) {
+        String strJson = "{";
+        strJson += "id:" + id + ",";
+        strJson += "nombre:" + nombre + ",";
+        strJson += "descripcion:" + descripcion + ",";
+        strJson += "}";
+        return strJson;
+    }
 
-	@Override
-	public String getColumns() {
-		String strColumns = "";
-		strColumns += "id,";
-		strColumns += "nombre,";
-		strColumns += "descripcion";
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getColumns() {
+        String strColumns = "";
+        strColumns += "id,";
+        strColumns += "nombre,";
+        strColumns += "descripcion";
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String getValues() {
-		String strColumns = "";
-		strColumns += id.toString() + ",";
-		strColumns += EncodingUtilHelper.quotate(nombre) + ",";
-		strColumns += EncodingUtilHelper.quotate(descripcion);
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getValues() {
+        String strColumns = "";
+        strColumns += id.toString() + ",";
+        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
+        strColumns += EncodingUtilHelper.quotate(descripcion);
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String toPairs() {
-		String strPairs = "";
-		strPairs += "id=" + id + ",";
-		strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
-		strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion);
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strPairs
+     */
+    @Override
+    public String toPairs() {
+        String strPairs = "";
+        strPairs += "id=" + id + ",";
+        strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
+        strPairs += "descripcion=" + EncodingUtilHelper.quotate(descripcion);
 
-		return strPairs;
-	}
+        return strPairs;
+    }
 
-	@Override
-	public CategoriaBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
-			throws SQLException, Exception {
-		this.setId(oResultSet.getInt("id"));
-		this.setNombre(oResultSet.getString("nombre"));
-		this.setDescripcion(oResultSet.getString("descripcion"));
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
+    @Override
+    public CategoriaBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
+            throws SQLException, Exception {
+        this.setId(oResultSet.getInt("id"));
+        this.setNombre(oResultSet.getString("nombre"));
+        this.setDescripcion(oResultSet.getString("descripcion"));
 
-		return this;
-	}
+        return this;
+    }
 
 }

@@ -34,110 +34,177 @@ import net.daw.bean.publicinterface.GenericBean;
 import net.daw.dao.implementation.AutorDao;
 import net.daw.dao.implementation.JuegoDao;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class AutorJuegoBean implements GenericBean {
 
-	@Expose(serialize = false)
-	private Integer id_autor = 0;
-	@Expose(deserialize = false)
-	private AutorBean obj_autor = null;
-	@Expose(serialize = false)
-	private Integer id_juego = 0;
-	@Expose(deserialize = false)
-	private JuegoBean obj_juego = null;
+    @Expose(serialize = false)
+    private Integer id_autor = 0;
+    @Expose(deserialize = false)
+    private AutorBean obj_autor = null;
+    @Expose(serialize = false)
+    private Integer id_juego = 0;
+    @Expose(deserialize = false)
+    private JuegoBean obj_juego = null;
 
-	public Integer getId_autor() {
-		return id_autor;
-	}
+    /**
+     *
+     * @return
+     */
+    public Integer getId_autor() {
+        return id_autor;
+    }
 
-	public void setId_autor(Integer id_autor) {
-		this.id_autor = id_autor;
-	}
+    /**
+     *
+     * @param id_autor
+     */
+    public void setId_autor(Integer id_autor) {
+        this.id_autor = id_autor;
+    }
 
-	public AutorBean getObj_autor() {
-		return obj_autor;
-	}
+    /**
+     *
+     * @return
+     */
+    public AutorBean getObj_autor() {
+        return obj_autor;
+    }
 
-	public void setObj_autor(AutorBean obj_autor) {
-		this.obj_autor = obj_autor;
-	}
+    /**
+     *
+     * @param obj_autor
+     */
+    public void setObj_autor(AutorBean obj_autor) {
+        this.obj_autor = obj_autor;
+    }
 
-	public Integer getId_juego() {
-		return id_juego;
-	}
+    /**
+     *
+     * @return
+     */
+    public Integer getId_juego() {
+        return id_juego;
+    }
 
-	public void setId_juego(Integer id_juego) {
-		this.id_juego = id_juego;
-	}
+    /**
+     *
+     * @param id_juego
+     */
+    public void setId_juego(Integer id_juego) {
+        this.id_juego = id_juego;
+    }
 
-	public JuegoBean getObj_juego() {
-		return obj_juego;
-	}
+    /**
+     *
+     * @return
+     */
+    public JuegoBean getObj_juego() {
+        return obj_juego;
+    }
 
-	public void setObj_juego(JuegoBean obj_juego) {
-		this.obj_juego = obj_juego;
-	}
+    /**
+     *
+     * @param obj_juego
+     */
+    public void setObj_juego(JuegoBean obj_juego) {
+        this.obj_juego = obj_juego;
+    }
 
-	// ---------------------------------------------
-	public String toJson(Boolean expand) {
-		String strJson = "{";
-		strJson += "id_autor:" + id_autor + ",";
-		strJson += "id_juego:" + id_juego + ",";
-		strJson += "}";
-		return strJson;
-	}
+    // ---------------------------------------------
+    /**
+     * Método JSONeador
+     *
+     * @param expand
+     * @return strJson
+     */
+    public String toJson(Boolean expand) {
+        String strJson = "{";
+        strJson += "id_autor:" + id_autor + ",";
+        strJson += "id_juego:" + id_juego + ",";
+        strJson += "}";
+        return strJson;
+    }
 
-	@Override
-	public String getColumns() {
-		String strColumns = "";
-		strColumns += "id_autor,";
-		strColumns += "id_juego";
+    /**
+     * Método que obtiene las columnas en caso de NEW
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getColumns() {
+        String strColumns = "";
+        strColumns += "id_autor,";
+        strColumns += "id_juego";
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String getValues() {
-		String strColumns = "";
-		strColumns += id_autor.toString() + ",";
-		strColumns += id_juego.toString();
+    /**
+     * Método que recupera los valores introducidos en un formulario
+     *
+     * @return strColumns
+     */
+    @Override
+    public String getValues() {
+        String strColumns = "";
+        strColumns += id_autor.toString() + ",";
+        strColumns += id_juego.toString();
 
-		return strColumns;
-	}
+        return strColumns;
+    }
 
-	@Override
-	public String toPairs() {
-		String strPairs = "";
-		strPairs += "id_autor=" + id_autor + ",";
-		strPairs += "id_juego=" + id_juego;
+    /**
+     * Método que obtiene las columnas en caso de EDIT
+     *
+     * @return strPairs
+     */
+    @Override
+    public String toPairs() {
+        String strPairs = "";
+        strPairs += "id_autor=" + id_autor + ",";
+        strPairs += "id_juego=" + id_juego;
 
-		return strPairs;
-	}
+        return strPairs;
+    }
 
-	@Override
-	public AutorJuegoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
-			throws SQLException, Exception {
+    /**
+     * Método que rellena el POJO
+     *
+     * @param oResultSet
+     * @param pooledConnection
+     * @param expand
+     * @return this
+     * @throws SQLException
+     * @throws Exception
+     */
+    @Override
+    public AutorJuegoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand)
+            throws SQLException, Exception {
 
-		if (expand > 0) {
-			AutorBean oAutorBean = new AutorBean();
-			AutorDao oAutorDao = new AutorDao(pooledConnection);
-			oAutorBean.setId(oResultSet.getInt("id_autor"));
-			oAutorBean = oAutorDao.get(oAutorBean, expand - 1);
-			this.setObj_autor(oAutorBean);
-		} else {
-			this.setId_autor(oResultSet.getInt("id_autor"));
-		}
-		if (expand > 0) {
-			JuegoBean oJuegoBean = new JuegoBean();
-			JuegoDao oJuegoDao = new JuegoDao(pooledConnection);
-			oJuegoBean.setId(oResultSet.getInt("id_juego"));
-			oJuegoBean = oJuegoDao.get(oJuegoBean, expand - 1);
-			this.setObj_juego(oJuegoBean);
-		} else {
-			this.setId_juego(oResultSet.getInt("id_juego"));
-		}
+        if (expand > 0) {
+            AutorBean oAutorBean = new AutorBean();
+            AutorDao oAutorDao = new AutorDao(pooledConnection);
+            oAutorBean.setId(oResultSet.getInt("id_autor"));
+            oAutorBean = oAutorDao.get(oAutorBean, expand - 1);
+            this.setObj_autor(oAutorBean);
+        } else {
+            this.setId_autor(oResultSet.getInt("id_autor"));
+        }
+        if (expand > 0) {
+            JuegoBean oJuegoBean = new JuegoBean();
+            JuegoDao oJuegoDao = new JuegoDao(pooledConnection);
+            oJuegoBean.setId(oResultSet.getInt("id_juego"));
+            oJuegoBean = oJuegoDao.get(oJuegoBean, expand - 1);
+            this.setObj_juego(oJuegoBean);
+        } else {
+            this.setId_juego(oResultSet.getInt("id_juego"));
+        }
 
-		return this;
+        return this;
 
-	}
+    }
 
 }
