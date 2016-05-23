@@ -46,48 +46,46 @@ import net.daw.helper.statics.ParameterCook;
 import net.daw.service.publicinterface.TableServiceInterface;
 import net.daw.service.publicinterface.ViewServiceInterface;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class AutorService implements TableServiceInterface, ViewServiceInterface {
 
+    /**
+     *
+     */
     protected HttpServletRequest oRequest = null;
 
+    /**
+     *
+     * @param request
+     */
     public AutorService(HttpServletRequest request) {
         oRequest = request;
     }
 
+    /**
+     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
+     *
+     * @return
+     * @throws Exception
+     */
     private Boolean checkpermission(String strMethodName) throws Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-        if (oUserBean != null) {
+        if (oUserBean != null && oUserBean.getId_tipousuario() == 1) {
             return true;
         } else {
             return false;
         }
     }
 
-    @Override
-    public String getcount() throws Exception {
-        String data = null;
-        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-        Connection oConnection = null;
-        ConnectionInterface oDataConnectionSource = null;
-        try {
-            oDataConnectionSource = getSourceConnection();
-            oConnection = oDataConnectionSource.newConnection();
-            AutorDao oAutorDao = new AutorDao(oConnection);
-            data = JsonMessage.getJson("200", Integer.toString(oAutorDao.getCount(alFilter)));
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        } finally {
-            if (oConnection != null) {
-                oConnection.close();
-            }
-            if (oDataConnectionSource != null) {
-                oDataConnectionSource.disposeConnection();
-            }
-        }
-        return data;
-
-    }
-
+    /**
+     * Método para obtener un Autor
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String get() throws Exception {
         int id = ParameterCook.prepareId(oRequest);
@@ -116,22 +114,78 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
 
     }
 
+//    OBSOLETO
+//    @Override
+//    public String getall() throws Exception {
+//        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+//        String data = null;
+//        Connection oConnection = null;
+//        ConnectionInterface oDataConnectionSource = null;
+//
+//        try {
+//            oDataConnectionSource = getSourceConnection();
+//            oConnection = oDataConnectionSource.newConnection();
+//            AutorDao oAutorDao = new AutorDao(oConnection);
+//            ArrayList<AutorBean> arrBeans = oAutorDao.getAll(alFilter, hmOrder, 1);
+//            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
+//        } finally {
+//            if (oConnection != null) {
+//                oConnection.close();
+//            }
+//            if (oDataConnectionSource != null) {
+//                oDataConnectionSource.disposeConnection();
+//            }
+//        }
+//
+//        return data;
+//
+//    }
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
-    public String getall() throws Exception {
-        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+    public String getaggregateviewsome() throws Exception {
         String data = null;
+        try {
+            String page = this.getpage();
+            String pages = this.getpages();
+            String registers = this.getcount();
+            data = "{"
+                    + "\"page\":" + page
+                    + ",\"pages\":" + pages
+                    + ",\"registers\":" + registers
+                    + "}";
+            data = JsonMessage.getJson("200", data);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+        }
+        return data;
+
+    }
+
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
+    @Override
+    public String getcount() throws Exception {
+        String data = null;
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
         Connection oConnection = null;
         ConnectionInterface oDataConnectionSource = null;
-
         try {
             oDataConnectionSource = getSourceConnection();
             oConnection = oDataConnectionSource.newConnection();
             AutorDao oAutorDao = new AutorDao(oConnection);
-            ArrayList<AutorBean> arrBeans = oAutorDao.getAll(alFilter, hmOrder, 1);
-            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+            data = JsonMessage.getJson("200", Integer.toString(oAutorDao.getCount(alFilter)));
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
         } finally {
             if (oConnection != null) {
                 oConnection.close();
@@ -140,11 +194,15 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
                 oDataConnectionSource.disposeConnection();
             }
         }
-
         return data;
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     @SuppressWarnings("empty-statement")
     public String getpage() throws Exception {
@@ -175,6 +233,11 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String getpages() throws Exception {
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
@@ -201,26 +264,12 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
 
     }
 
-    @Override
-    public String getaggregateviewsome() throws Exception {
-        String data = null;
-        try {
-            String page = this.getpage();
-            String pages = this.getpages();
-            String registers = this.getcount();
-            data = "{"
-                    + "\"page\":" + page
-                    + ",\"pages\":" + pages
-                    + ",\"registers\":" + registers
-                    + "}";
-            data = JsonMessage.getJson("200", data);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-        }
-        return data;
-
-    }
-
+    /**
+     * Método para REMOVE
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String remove() throws Exception {
         if (this.checkpermission("remove")) {
@@ -252,6 +301,12 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
         }
     }
 
+    /**
+     * Método para SET
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String set() throws Exception {
         if (this.checkpermission("set")) {
@@ -295,6 +350,11 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
     }
 
     // MÉTODOS PARA ASIGNACIÓN DE AUTORES
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getaggregateviewsomeautor() throws Exception {
         String data = null;
         try {
@@ -314,6 +374,11 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpageautor() throws Exception {
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
         int intPage = ParameterCook.preparePage(oRequest);
@@ -343,6 +408,11 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpagesautor() throws Exception {
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
         ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
@@ -369,6 +439,11 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getcountautor() throws Exception {
         String data = null;
         ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
@@ -392,5 +467,15 @@ public class AutorService implements TableServiceInterface, ViewServiceInterface
         }
         return data;
 
+    }
+
+    // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String getall() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

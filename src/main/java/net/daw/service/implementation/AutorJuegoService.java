@@ -26,7 +26,6 @@
  */
 package net.daw.service.implementation;
 
-import com.google.gson.Gson;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,14 +45,31 @@ import net.daw.helper.statics.ParameterCook;
 import net.daw.service.publicinterface.TableServiceInterface;
 import net.daw.service.publicinterface.ViewServiceInterface;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class AutorJuegoService implements TableServiceInterface, ViewServiceInterface {
 
+    /**
+     *
+     */
     protected HttpServletRequest oRequest = null;
 
+    /**
+     *
+     * @param request
+     */
     public AutorJuegoService(HttpServletRequest request) {
         oRequest = request;
     }
 
+    /**
+     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
+     *
+     * @return
+     * @throws Exception
+     */
     private Boolean checkpermission(String strMethodName) throws Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         if (oUserBean != null) {
@@ -97,6 +113,12 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 //        }
 //        return data;
 //    }
+    /**
+     * Obtiene todos los registros
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String getall() throws Exception {
         ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
@@ -221,7 +243,12 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 //        }
 //        return data;
 //    }
-    // MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE AUTOR Y JUEGO
+    // MÉTODOS PARA SACAR LISTADOS DE JUEGOS FILTRADOS POR AUTOR
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getaggregateviewsomeautor() throws Exception {
         String data = null;
         try {
@@ -239,6 +266,11 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
         return data;
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpageautor() throws Exception {
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
         ;
@@ -269,6 +301,11 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
         return data;
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpagesautor() throws Exception {
 
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
@@ -298,6 +335,11 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getcountautor() throws Exception {
 
         String data = null;
@@ -325,6 +367,12 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    // MÉTODOS PARA SACAR LISTADOS DE AUTORES FILTRADOS POR JUEGO
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getaggregateviewsomejuego() throws Exception {
         String data = null;
         try {
@@ -342,6 +390,11 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
         return data;
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpagejuego() throws Exception {
 
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
@@ -374,6 +427,11 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpagesjuego() throws Exception {
 
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
@@ -403,6 +461,11 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getcountjuego() throws Exception {
 
         String data = null;
@@ -429,6 +492,12 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
         return data;
     }
 
+    /**
+     * Método de asignación de autores a un juego
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String set() throws Exception {
 
@@ -475,31 +544,55 @@ public class AutorJuegoService implements TableServiceInterface, ViewServiceInte
 
     // --------------------
     // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String get() throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String remove() throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String getpage() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String getpages() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String getcount() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String getaggregateviewsome() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

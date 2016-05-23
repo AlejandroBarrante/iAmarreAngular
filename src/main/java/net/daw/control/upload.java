@@ -45,7 +45,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author Elwood Barry
+ * @author Alejandro Barrante Cano
  */
 public class upload extends HttpServlet {
 

@@ -47,14 +47,31 @@ import net.daw.helper.statics.ParameterCook;
 import net.daw.service.publicinterface.TableServiceInterface;
 import net.daw.service.publicinterface.ViewServiceInterface;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class ColeccionService implements TableServiceInterface, ViewServiceInterface {
 
+    /**
+     *
+     */
     protected HttpServletRequest oRequest = null;
 
+    /**
+     *
+     * @param request
+     */
     public ColeccionService(HttpServletRequest request) {
         oRequest = request;
     }
 
+    /**
+     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
+     *
+     * @return
+     * @throws Exception
+     */
     private Boolean checkpermission(String strMethodName) throws Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         if (oUserBean != null) {
@@ -64,150 +81,154 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    @Override
-    public String getcount() throws Exception {
-        if (this.checkpermission("getcount")) {
-            String data = null;
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getCount(alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    @Override
-    public String getall() throws Exception {
-        if (this.checkpermission("getall")) {
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                ArrayList<ColeccionBean> arrBeans = oColeccionDao.getAll(alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    @Override
-    public String getpage() throws Exception {
-        if (this.checkpermission("getpage")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
-            int intPage = ParameterCook.preparePage(oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                List<ColeccionBean> arrBeans = oColeccionDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    @Override
-    public String getpages() throws Exception {
-        if (this.checkpermission("getpages")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getPages(intRegsPerPag, alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    @Override
-    public String getaggregateviewsome() throws Exception {
-        if (this.checkpermission("getaggregateviewsome")) {
-            String data = null;
-            try {
-                String page = this.getpage();
-                String pages = this.getpages();
-                String registers = this.getcount();
-                data = "{"
-                        + "\"page\":" + page
-                        + ",\"pages\":" + pages
-                        + ",\"registers\":" + registers
-                        + "}";
-                data = JsonMessage.getJson("200", data);
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    // MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE USUARIO Y JUEGO
+//    @Override
+//    public String getall() throws Exception {
+//        if (this.checkpermission("getall")) {
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+//            String data = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                ArrayList<ColeccionBean> arrBeans = oColeccionDao.getAll(alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
+//                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+    // PROBAR QUE FUNCIONE CON ESTOS MÉTODOS COMENTADOS, LUEGO BORRAR
+//    @Override
+//    public String getaggregateviewsome() throws Exception {
+//        if (this.checkpermission("getaggregateviewsome")) {
+//            String data = null;
+//            try {
+//                String page = this.getpage();
+//                String pages = this.getpages();
+//                String registers = this.getcount();
+//                data = "{"
+//                        + "\"page\":" + page
+//                        + ",\"pages\":" + pages
+//                        + ",\"registers\":" + registers
+//                        + "}";
+//                data = JsonMessage.getJson("200", data);
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+//
+//    @Override
+//    public String getcount() throws Exception {
+//        if (this.checkpermission("getcount")) {
+//            String data = null;
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getCount(alFilter)));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+//
+//    @Override
+//    public String getpage() throws Exception {
+//        if (this.checkpermission("getpage")) {
+//            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
+//            int intPage = ParameterCook.preparePage(oRequest);
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+//            String data = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                List<ColeccionBean> arrBeans = oColeccionDao.getPage(intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
+//                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+//
+//    @Override
+//    public String getpages() throws Exception {
+//        if (this.checkpermission("getpages")) {
+//            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            String data = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getPages(intRegsPerPag, alFilter)));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+    // MÉTODOS PARA OBTENER COLECCIÓN FILTRADO POR USUARIO
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getaggregateviewsomeusuario() throws Exception {
         if (this.checkpermission("getaggregateviewsomeusuario")) {
             String data = null;
@@ -231,29 +252,11 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    public String getaggregateviewsomejuego() throws Exception {
-        if (this.checkpermission("getaggregateviewsomejuego")) {
-            String data = null;
-            try {
-
-                String pageJuego = this.getpagejuego();
-                String pagesJuego = this.getpagesjuego();
-                String registersJuego = this.getcountjuego();
-                data = "{"
-                        + "\"page\":" + pageJuego
-                        + ",\"pages\":" + pagesJuego
-                        + ",\"registers\":" + registersJuego
-                        + "}";
-                data = JsonMessage.getJson("200", data);
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpageusuario() throws Exception {
         if (this.checkpermission("getpage")) {
             int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
@@ -286,6 +289,11 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
         }
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpagesusuario() throws Exception {
         if (this.checkpermission("getpages")) {
             int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
@@ -315,6 +323,11 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
         }
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getcountusuario() throws Exception {
         if (this.checkpermission("getcount")) {
             String data = null;
@@ -343,98 +356,125 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    public String getpagejuego() throws Exception {
-        if (this.checkpermission("getpage")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
-            int intPage = ParameterCook.preparePage(oRequest);
-            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                List<ColeccionBean> arrBeans = oColeccionDao.getPageJuego(id_juego, intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
-                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    public String getpagesjuego() throws Exception {
-        if (this.checkpermission("getpages")) {
-            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-            String data = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getPagesJuego(id_juego, intRegsPerPag, alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    public String getcountjuego() throws Exception {
-        if (this.checkpermission("getcount")) {
-            String data = null;
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getCountJuego(id_juego, alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
+//    public String getaggregateviewsomejuego() throws Exception {
+//        if (this.checkpermission("getaggregateviewsomejuego")) {
+//            String data = null;
+//            try {
+//
+//                String pageJuego = this.getpagejuego();
+//                String pagesJuego = this.getpagesjuego();
+//                String registersJuego = this.getcountjuego();
+//                data = "{"
+//                        + "\"page\":" + pageJuego
+//                        + ",\"pages\":" + pagesJuego
+//                        + ",\"registers\":" + registersJuego
+//                        + "}";
+//                data = JsonMessage.getJson("200", data);
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+//
+//    public String getpagejuego() throws Exception {
+//        if (this.checkpermission("getpage")) {
+//            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
+//            int intPage = ParameterCook.preparePage(oRequest);
+//            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+//            String data = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                List<ColeccionBean> arrBeans = oColeccionDao.getPageJuego(id_juego, intRegsPerPag, intPage, alFilter, hmOrder, AppConfigurationHelper.getJsonDepth());
+//                data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+//
+//    public String getpagesjuego() throws Exception {
+//        if (this.checkpermission("getpages")) {
+//            int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+//            String data = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getPagesJuego(id_juego, intRegsPerPag, alFilter)));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+//
+//    public String getcountjuego() throws Exception {
+//        if (this.checkpermission("getcount")) {
+//            String data = null;
+//            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//            int id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                data = JsonMessage.getJson("200", Integer.toString(oColeccionDao.getCountJuego(id_juego, alFilter)));
+//            } catch (Exception ex) {
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return data;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//    }
+    /**
+     * Método para SET de la colección
+     *
+     * @return resultado
+     * @throws Exception
+     */
     public String setcoleccion() throws Exception {
 
-        // TENGO QUE PASARLE EL PARÁMETRO ID-USUARIO
         if (this.checkpermission("set")) {
             UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
             Integer id_usuario = oUserBean.getId();
@@ -482,58 +522,62 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
 
     }
 
-    @Override
-    public String set() throws Exception {
-
-        if (this.checkpermission("set")) {
-            UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-            Integer id_usuario = oUserBean.getId();
-            Integer id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-
-            //String jason = ParameterCook.prepareJson(oRequest);
-            String resultado = null;
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                oConnection.setAutoCommit(false);
-                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                ColeccionBean oColeccionBean = new ColeccionBean();
-                oColeccionBean.setId_usuario(id_usuario);
-                oColeccionBean.setId_juego(id_juego);
-                //   oColeccionBean = AppConfigurationHelper.getGson().fromJson(jason, oColeccionBean.getClass());
-                if (oColeccionBean != null) {
-                    Integer iResult = oColeccionDao.set(oColeccionBean);
-                    if (iResult >= 1) {
-                        resultado = JsonMessage.getJson("200", iResult.toString());
-                    } else {
-                        resultado = JsonMessage.getJson("500", "Error during registry set");
-                    }
-                } else {
-                    resultado = JsonMessage.getJson("500", "Error during registry set");
-                }
-                oConnection.commit();
-            } catch (Exception ex) {
-                oConnection.rollback();
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return resultado;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-
-    }
-
-    @Override
-    public String remove() throws Exception {
+//    @Override
+//    public String set() throws Exception {
+//
+//        if (this.checkpermission("set")) {
+//            UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
+//            Integer id_usuario = oUserBean.getId();
+//            Integer id_juego = ParameterCook.prepareInt("id_juego", oRequest);
+//
+//            //String jason = ParameterCook.prepareJson(oRequest);
+//            String resultado = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oDataConnectionSource = null;
+//            try {
+//                oDataConnectionSource = getSourceConnection();
+//                oConnection = oDataConnectionSource.newConnection();
+//                oConnection.setAutoCommit(false);
+//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
+//                ColeccionBean oColeccionBean = new ColeccionBean();
+//                oColeccionBean.setId_usuario(id_usuario);
+//                oColeccionBean.setId_juego(id_juego);
+//                //   oColeccionBean = AppConfigurationHelper.getGson().fromJson(jason, oColeccionBean.getClass());
+//                if (oColeccionBean != null) {
+//                    Integer iResult = oColeccionDao.set(oColeccionBean);
+//                    if (iResult >= 1) {
+//                        resultado = JsonMessage.getJson("200", iResult.toString());
+//                    } else {
+//                        resultado = JsonMessage.getJson("500", "Error during registry set");
+//                    }
+//                } else {
+//                    resultado = JsonMessage.getJson("500", "Error during registry set");
+//                }
+//                oConnection.commit();
+//            } catch (Exception ex) {
+//                oConnection.rollback();
+//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (oDataConnectionSource != null) {
+//                    oDataConnectionSource.disposeConnection();
+//                }
+//            }
+//            return resultado;
+//        } else {
+//            return JsonMessage.getJsonMsg("401", "Unauthorized");
+//        }
+//
+//    }
+    /**
+     * Método para REMOVE de la colección
+     *
+     * @return resultado
+     * @throws Exception
+     */
+    public String removecoleccion() throws Exception {
         if (this.checkpermission("remove")) {
             UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
             Integer id_usuario = oUserBean.getId();
@@ -546,7 +590,7 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
                 oConnection = oDataConnectionSource.newConnection();
                 oConnection.setAutoCommit(false);
                 ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-                resultado = JsonMessage.getJson("200", oColeccionDao.removeColeccion(id_usuario,id_juego).toString());
+                resultado = JsonMessage.getJson("200", oColeccionDao.removeColeccion(id_usuario, id_juego).toString());
                 oConnection.commit();
             } catch (Exception ex) {
                 oConnection.rollback();
@@ -566,10 +610,79 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
 
     }
 
-        // --------------------
+    // --------------------
     // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @return @throws Exception
+     */
     @Override
     public String get() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String set() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String getpage() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String getpages() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String getcount() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String getaggregateviewsome() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String getall() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public String remove() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -5,21 +5,25 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author Herman Alonso Barrates Víquez
+ * @author Alejandro Barrante Cano
  */
 public class Autenticacion {
 
-    //algoritmos
-//    public static String MD2 = "MD2";
+//algoritmos
+    public static String MD2 = "MD2";
     public static String MD5 = "MD5";
-//    public static String SHA1 = "SHA-1";
-//   public static String SHA256 = "SHA-256";
-//   public static String SHA384 = "SHA-384";
-//   public static String SHA512 = "SHA-512";
+    public static String SHA1 = "SHA-1";
+    public static String SHA256 = "SHA-256";
+    public static String SHA384 = "SHA-384";
+    public static String SHA512 = "SHA-512";
 
 
-     // Convierte un arreglo de bytes a String usando valores hexadecimales
-
+    /**
+     * Convierte un arreglo de bytes a String usando valores hexadecimales.
+     *
+     * @param byte[] digest
+     * @return hash
+     */
     private static String toHexadecimal(byte[] digest) {
         String hash = "";
         for (byte aux : digest) {
@@ -32,9 +36,13 @@ public class Autenticacion {
         return hash;
     }
 
-
-     // Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
-
+    /**
+     * Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
+     *
+     * @param message
+     * @param algorithm
+     * @return
+     */
     public static String getStringMessageDigest(String message, String algorithm) {
         byte[] digest = null;
         byte[] buffer = message.getBytes();

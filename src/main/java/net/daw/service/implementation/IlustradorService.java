@@ -47,14 +47,31 @@ import net.daw.helper.statics.ParameterCook;
 import net.daw.service.publicinterface.TableServiceInterface;
 import net.daw.service.publicinterface.ViewServiceInterface;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class IlustradorService implements TableServiceInterface, ViewServiceInterface {
 
+    /**
+     *
+     */
     protected HttpServletRequest oRequest = null;
 
+    /**
+     *
+     * @param request
+     */
     public IlustradorService(HttpServletRequest request) {
         oRequest = request;
     }
 
+    /**
+     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
+     *
+     * @return
+     * @throws Exception
+     */
     private Boolean checkpermission(String strMethodName) throws Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         if (oUserBean != null) {
@@ -64,32 +81,12 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
         }
     }
 
-    @Override
-    public String getcount() throws Exception {
-
-        String data = null;
-        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-        Connection oConnection = null;
-        ConnectionInterface oDataConnectionSource = null;
-        try {
-            oDataConnectionSource = getSourceConnection();
-            oConnection = oDataConnectionSource.newConnection();
-            IlustradorDao oIlustradorDao = new IlustradorDao(oConnection);
-            data = JsonMessage.getJson("200", Integer.toString(oIlustradorDao.getCount(alFilter)));
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        } finally {
-            if (oConnection != null) {
-                oConnection.close();
-            }
-            if (oDataConnectionSource != null) {
-                oDataConnectionSource.disposeConnection();
-            }
-        }
-        return data;
-
-    }
-
+    /**
+     * Método GET Ilustrador
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String get() throws Exception {
 
@@ -119,23 +116,85 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
 
     }
 
+//    /**
+//     *
+//     * @return data
+//     * @throws Exception
+//     */
+//    @Override
+//    public String getall() throws Exception {
+//
+//        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+//        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
+//        String data = null;
+//        Connection oConnection = null;
+//        ConnectionInterface oDataConnectionSource = null;
+//
+//        try {
+//            oDataConnectionSource = getSourceConnection();
+//            oConnection = oDataConnectionSource.newConnection();
+//            IlustradorDao oIlustradorDao = new IlustradorDao(oConnection);
+//            ArrayList<IlustradorBean> arrBeans = oIlustradorDao.getAll(alFilter, hmOrder, 1);
+//            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
+//        } finally {
+//            if (oConnection != null) {
+//                oConnection.close();
+//            }
+//            if (oDataConnectionSource != null) {
+//                oDataConnectionSource.disposeConnection();
+//            }
+//        }
+//
+//        return data;
+//
+//    }
+    /**
+     * MÉTODOS PARA LISTAR ILUSTRADORES
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
-    public String getall() throws Exception {
+    public String getaggregateviewsome() throws Exception {
 
-        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
         String data = null;
+        try {
+            String page = this.getpage();
+            String pages = this.getpages();
+            String registers = this.getcount();
+            data = "{"
+                    + "\"page\":" + page
+                    + ",\"pages\":" + pages
+                    + ",\"registers\":" + registers
+                    + "}";
+            data = JsonMessage.getJson("200", data);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+        }
+        return data;
+    }
+
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
+    @Override
+    public String getcount() throws Exception {
+
+        String data = null;
+        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
         Connection oConnection = null;
         ConnectionInterface oDataConnectionSource = null;
-
         try {
             oDataConnectionSource = getSourceConnection();
             oConnection = oDataConnectionSource.newConnection();
             IlustradorDao oIlustradorDao = new IlustradorDao(oConnection);
-            ArrayList<IlustradorBean> arrBeans = oIlustradorDao.getAll(alFilter, hmOrder, 1);
-            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
+            data = JsonMessage.getJson("200", Integer.toString(oIlustradorDao.getCount(alFilter)));
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
         } finally {
             if (oConnection != null) {
                 oConnection.close();
@@ -144,11 +203,15 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
                 oDataConnectionSource.disposeConnection();
             }
         }
-
         return data;
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     @SuppressWarnings("empty-statement")
     public String getpage() throws Exception {
@@ -180,6 +243,11 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String getpages() throws Exception {
 
@@ -207,26 +275,12 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
 
     }
 
-    @Override
-    public String getaggregateviewsome() throws Exception {
-
-        String data = null;
-        try {
-            String page = this.getpage();
-            String pages = this.getpages();
-            String registers = this.getcount();
-            data = "{"
-                    + "\"page\":" + page
-                    + ",\"pages\":" + pages
-                    + ",\"registers\":" + registers
-                    + "}";
-            data = JsonMessage.getJson("200", data);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-        }
-        return data;
-    }
-
+    /**
+     * Método REMOVE Ilustrador
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String remove() throws Exception {
         if (this.checkpermission("remove")) {
@@ -258,6 +312,12 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
         }
     }
 
+    /**
+     * Método SET Ilustrador
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String set() throws Exception {
         if (this.checkpermission("set")) {
@@ -300,7 +360,12 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
         }
     }
 
-    // MÉTODOS PARA ASIGNACIÓN DE ILUSTRADORES
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE ILUSTRADORES
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getaggregateviewsomeilustrador() throws Exception {
 
         String data = null;
@@ -320,6 +385,11 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
         return data;
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpageilustrador() throws Exception {
 
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);;
@@ -350,6 +420,11 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getpagesilustrador() throws Exception {
 
         int intRegsPerPag = ParameterCook.prepareRpp(oRequest);
@@ -377,6 +452,11 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
 
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     public String getcountilustrador() throws Exception {
 
         String data = null;
@@ -401,6 +481,16 @@ public class IlustradorService implements TableServiceInterface, ViewServiceInte
         }
         return data;
 
+    }
+
+    // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @return @throws Exception
+     */
+    @Override
+    public String getall() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

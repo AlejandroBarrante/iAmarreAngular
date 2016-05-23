@@ -60,9 +60,6 @@ angular.module('Services', [])
                 promise_getAll: function (strClass, filterParams, orderParams, systemfilterParams) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewall' + filterParams + orderParams + systemfilterParams, 'GET', '');
                 },
-                promise_getTotalJuego: function (strClass, id_juego) {
-                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id_juego, 'GET', '');
-                },
                 promise_getMeta: function (strClass) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getmetainformation', 'GET', '');
                 },
@@ -102,6 +99,9 @@ angular.module('Services', [])
                 promise_getSomeJuego: function (strClass, rpp, page, id_juego, filterParams, orderParams, systemfilterParams) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsomejuego' + '&rpp=' + rpp + '&page=' + page + '&id_juego=' + id_juego + filterParams + orderParams + systemfilterParams, 'GET', '');
                 },
+                promise_getTotalJuego: function (strClass, id_juego) {
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id_juego, 'GET', '');
+                },
                 promise_getUserSession: function (strClass) {
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getuserfromsession', 'GET', '');
                 },
@@ -109,7 +109,7 @@ angular.module('Services', [])
                     return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
                 },
                 promise_removeOneColeccion: function (id_juego) {
-                    return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=remove&id=' + id_juego, 'GET', '');
+                    return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=removecoleccion&id=' + id_juego, 'GET', '');
                 },
                 promise_setImage: function (strClass, filename, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';

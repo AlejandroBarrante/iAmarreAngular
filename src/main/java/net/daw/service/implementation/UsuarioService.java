@@ -49,14 +49,31 @@ import net.daw.helper.statics.ParameterCook;
 import net.daw.service.publicinterface.TableServiceInterface;
 import net.daw.service.publicinterface.ViewServiceInterface;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class UsuarioService implements TableServiceInterface, ViewServiceInterface {
 
+    /**
+     *
+     */
     protected HttpServletRequest oRequest = null;
 
+    /**
+     *
+     * @param request
+     */
     public UsuarioService(HttpServletRequest request) {
         oRequest = request;
     }
 
+    /**
+     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
+     *
+     * @return
+     * @throws Exception
+     */
     private Boolean checkpermission(String strMethodName) throws Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         if (oUserBean != null) {
@@ -66,49 +83,12 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
-    @Override
-    public String getcount() throws Exception {
-        if (this.checkpermission("getcount")) {
-            String data = null;
-            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-            Connection oConnection = null;
-            ConnectionInterface oDataConnectionSource = null;
-            try {
-                oDataConnectionSource = getSourceConnection();
-                oConnection = oDataConnectionSource.newConnection();
-                UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
-                data = JsonMessage.getJson("200", Integer.toString(oUsuarioDao.getCount(alFilter)));
-            } catch (Exception ex) {
-                ExceptionBooster
-                        .boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oDataConnectionSource != null) {
-                    oDataConnectionSource.disposeConnection();
-                }
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
-    public String getuserfromsession() throws Exception {
-            
-            String data = null;
-            UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-            if (oUserBean != null){
-            Gson gson = AppConfigurationHelper.getGson();
-            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oUserBean));
-            return data;
-
-        } else {
-            return JsonMessage.getJsonMsg("401", "No hay sesión");
-        }
-    }
-
+    /**
+     * Método GET Usuario
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String get() throws Exception {
         if (this.checkpermission("get")) {
@@ -141,6 +121,32 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
+    /**
+     * Método para obtener el Usuario que está logueado
+     *
+     * @return data
+     * @throws Exception
+     */
+    public String getuserfromsession() throws Exception {
+
+        String data = null;
+        UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
+        if (oUserBean != null) {
+            Gson gson = AppConfigurationHelper.getGson();
+            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(oUserBean));
+            return data;
+
+        } else {
+            return JsonMessage.getJsonMsg("401", "No hay sesión");
+        }
+    }
+
+    /**
+     * Método GETALL Usuario
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String getall() throws Exception {
         if (this.checkpermission("getall")) {
@@ -173,6 +179,71 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
+    /**
+     * Métodos para listar Usuarios
+     *
+     * @return data
+     * @throws Exception
+     */
+    @Override
+    public String getaggregateviewsome() throws Exception {
+        if (this.checkpermission("getaggregateviewsome")) {
+            String data = null;
+            try {
+                String page = this.getpage();
+                String pages = this.getpages();
+                String registers = this.getcount();
+                data = "{" + "\"page\":" + page + ",\"pages\":" + pages + ",\"registers\":" + registers + "}";
+                data = JsonMessage.getJson("200", data);
+            } catch (Exception ex) {
+                ExceptionBooster.boost(
+                        new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
+            }
+            return data;
+        } else {
+            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        }
+    }
+
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
+    @Override
+    public String getcount() throws Exception {
+        if (this.checkpermission("getcount")) {
+            String data = null;
+            ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
+            Connection oConnection = null;
+            ConnectionInterface oDataConnectionSource = null;
+            try {
+                oDataConnectionSource = getSourceConnection();
+                oConnection = oDataConnectionSource.newConnection();
+                UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
+                data = JsonMessage.getJson("200", Integer.toString(oUsuarioDao.getCount(alFilter)));
+            } catch (Exception ex) {
+                ExceptionBooster
+                        .boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oDataConnectionSource != null) {
+                    oDataConnectionSource.disposeConnection();
+                }
+            }
+            return data;
+        } else {
+            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        }
+    }
+
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     @SuppressWarnings("empty-statement")
     public String getpage() throws Exception {
@@ -208,6 +279,11 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
+    /**
+     *
+     * @return data
+     * @throws Exception
+     */
     @Override
     public String getpages() throws Exception {
         if (this.checkpermission("getpages")) {
@@ -238,26 +314,12 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
-    @Override
-    public String getaggregateviewsome() throws Exception {
-        if (this.checkpermission("getaggregateviewsome")) {
-            String data = null;
-            try {
-                String page = this.getpage();
-                String pages = this.getpages();
-                String registers = this.getcount();
-                data = "{" + "\"page\":" + page + ",\"pages\":" + pages + ",\"registers\":" + registers + "}";
-                data = JsonMessage.getJson("200", data);
-            } catch (Exception ex) {
-                ExceptionBooster.boost(
-                        new Exception(this.getClass().getName() + ":getAggregateViewSome ERROR: " + ex.getMessage()));
-            }
-            return data;
-        } else {
-            return JsonMessage.getJsonMsg("401", "Unauthorized");
-        }
-    }
-
+    /**
+     * Método REMOVE Usuario
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String remove() throws Exception {
         if (this.checkpermission("remove")) {
@@ -289,6 +351,12 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         }
     }
 
+    /**
+     * Método SET Usuario
+     *
+     * @return resultado
+     * @throws Exception
+     */
     @Override
     public String set() throws Exception {
         String jason = ParameterCook.prepareJson(oRequest);
@@ -327,6 +395,12 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         return resultado;
     }
 
+    /**
+     * Método para el login
+     *
+     * @return @throws SQLException
+     * @throws Exception
+     */
     public String login() throws SQLException, Exception {
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         String strAnswer = null;
@@ -369,11 +443,21 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         return JsonMessage.getJsonMsg(strCode, strAnswer);
     }
 
+    /**
+     * Método para el logout
+     *
+     * @return
+     */
     public String logout() {
         oRequest.getSession().invalidate();
         return JsonMessage.getJsonMsg("200", "Bye");
     }
 
+    /**
+     * Método para obtener el status de sesión
+     *
+     * @return
+     */
     public String getsessionstatus() {
         String strAnswer = null;
         UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
@@ -383,15 +467,4 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
             return JsonMessage.getJsonMsg("200", oUserBean.getLogin());
         }
     }
-
-    /*	public int sessionuserlevel() {
-		String strAnswer = null;
-		UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-		if (oUserBean == null) {
-			return 0;
-		} else {
-			return oUserBean.getId_estado();
-		}
-	}
-     */
 }
