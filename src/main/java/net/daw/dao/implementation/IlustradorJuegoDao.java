@@ -38,6 +38,10 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>, TableDaoInterface<IlustradorJuegoBean> {
 
     private String strSQL = "SELECT * FROM ilustradorjuego ij, juego j, ilustrador i WHERE j.id = ij.id_juego AND i.id = ij.id_ilustrador AND 1=1 ";
@@ -45,6 +49,11 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
     private Connection oConnection = null;
     private String strTable = "ilustradorJuego";
 
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
     public IlustradorJuegoDao(Connection oPooledConnection) throws Exception {
         try {
             oConnection = oPooledConnection;
@@ -54,51 +63,59 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         }
     }
 
-    // OPERACIONES BÁSICAS
-    @Override
-    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    @Override
-    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    @Override
-    public ArrayList<IlustradorJuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<IlustradorJuegoBean> arrIlustradorJuegoBean = new ArrayList<>();
-        try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    IlustradorJuegoBean oIlustradorJuegoBean = new IlustradorJuegoBean();
-                    arrIlustradorJuegoBean.add(oIlustradorJuegoBean.fill(oResultSet, oConnection, expand));
-                }
-            }
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-        }
-        return arrIlustradorJuegoBean;
-    }
-
+//    // OPERACIONES BÁSICAS
+//    @Override
+//    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        int pages = 0;
+//        try {
+//            pages = oMysql.getPages(strSQL, intRegsPerPag);
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+//        }
+//        return pages;
+//    }
+//
+//    @Override
+//    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        int pages = 0;
+//        try {
+//            pages = oMysql.getCount(strSQL);
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+//        }
+//        return pages;
+//    }
+//
+//    @Override
+//    public ArrayList<IlustradorJuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+//        ArrayList<IlustradorJuegoBean> arrIlustradorJuegoBean = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    IlustradorJuegoBean oIlustradorJuegoBean = new IlustradorJuegoBean();
+//                    arrIlustradorJuegoBean.add(oIlustradorJuegoBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrIlustradorJuegoBean;
+//    }
+    /**
+     * Método GETALL IlustradorJuego
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
     @Override
     public ArrayList<IlustradorJuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -117,52 +134,38 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return arrIlustradorJuego;
     }
 
-    // -----------------
-    // MÉTODO PARA SACAR AL ILUSTRADOR EN LA PANTALLA DE JUEGO VIEW
-    public IlustradorJuegoBean getIlustradorFiltradoPorJuego(IlustradorJuegoBean oIlustradorJuegoBean, Integer expand) throws Exception {
-        ResultSet oResultSet = null;
-        try {
-
-            oResultSet = oMysql.getAllSql(strSQL + " AND ij.id_juego= " + oIlustradorJuegoBean.getId_juego());
-
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    oIlustradorJuegoBean = oIlustradorJuegoBean.fill(oResultSet, oConnection, expand);
-                }
-            }
-
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-        }
-
-        return oIlustradorJuegoBean;
-    }
-
-    // MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE AUTOR Y JUEGO
-    public int getPagesIlustrador(int id_ilustrador, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND ij.id_ilustrador=" + id_ilustrador;
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    public int getCountIlustrador(int id_ilustrador, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND ij.id_ilustrador=" + id_ilustrador;
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
+//    // -----------------
+//    // MÉTODO PARA SACAR AL ILUSTRADOR EN LA PANTALLA DE JUEGO VIEW
+//    public IlustradorJuegoBean getIlustradorFiltradoPorJuego(IlustradorJuegoBean oIlustradorJuegoBean, Integer expand) throws Exception {
+//        ResultSet oResultSet = null;
+//        try {
+//
+//            oResultSet = oMysql.getAllSql(strSQL + " AND ij.id_juego= " + oIlustradorJuegoBean.getId_juego());
+//
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    oIlustradorJuegoBean = oIlustradorJuegoBean.fill(oResultSet, oConnection, expand);
+//                }
+//            }
+//
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+//        }
+//
+//        return oIlustradorJuegoBean;
+//    }
+    /**
+     * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
+     *
+     * @param id_ilustrador
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrIlustradorJuegoBean
+     * @throws Exception
+     */
     public ArrayList<IlustradorJuegoBean> getPageIlustrador(int id_ilustrador, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += "AND ij.id_ilustrador=" + id_ilustrador;
@@ -183,9 +186,18 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return arrIlustradorJuegoBean;
     }
 
-    public int getPagesJuego(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+    /**
+     * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
+     *
+     * @param id_ilustrador
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getPagesIlustrador(int id_ilustrador, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND ij.id_juego=" + id_juego;
+        strSQL += "AND ij.id_ilustrador=" + id_ilustrador;
         int pages = 0;
         try {
             pages = oMysql.getPages(strSQL, intRegsPerPag);
@@ -195,9 +207,17 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return pages;
     }
 
-    public int getCountJuego(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+    /**
+     * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
+     *
+     * @param id_ilustrador
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getCountIlustrador(int id_ilustrador, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND ij.id_juego=" + id_juego;
+        strSQL += "AND ij.id_ilustrador=" + id_ilustrador;
         int pages = 0;
         try {
             pages = oMysql.getCount(strSQL);
@@ -207,6 +227,18 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return pages;
     }
 
+    /**
+     * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrIlustradorJuegoBean
+     * @throws Exception
+     */
     public ArrayList<IlustradorJuegoBean> getPageJuego(int id_juego, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -227,6 +259,54 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return arrIlustradorJuegoBean;
     }
 
+    /**
+     * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getPagesJuego(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "AND ij.id_juego=" + id_juego;
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
+     *
+     * @param id_juego
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getCountJuego(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "AND ij.id_juego=" + id_juego;
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * Método SET IlustradorJuego
+     *
+     * @param oBean
+     * @return iResult
+     * @throws Exception
+     */
     @Override
     public Integer set(IlustradorJuegoBean oBean) throws Exception {
 
@@ -244,22 +324,66 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return iResult;
     }
 
-    // --------------------------------
     // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @Override
     public Integer remove(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param oBean
+     * @param expand
+     * @return
+     * @throws Exception
+     */
     @Override
     public IlustradorJuegoBean get(IlustradorJuegoBean oBean, Integer expand) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-}
+    /**
+     *
+     * @param intRegsPerPag
+     * @param alFilter
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-//// POSIBLE CONSULTA
-//
-//select * 
-//from autor a, autorjuego aj 
-//where a.id = aj.id_autor AND 1=1 AND id_autor NOT LIKE 1 AND id_autor NOT LIKE 20 
+    /**
+     *
+     * @param alFilter
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<IlustradorJuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

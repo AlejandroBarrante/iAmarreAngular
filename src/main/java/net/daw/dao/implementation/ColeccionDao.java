@@ -38,6 +38,10 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoInterface<ColeccionBean> {
 
     private String strSQL = "SELECT * FROM coleccion c, juego j, usuario u WHERE j.id = c.id_juego AND u.id = c.id_usuario AND 1=1 ";
@@ -45,6 +49,11 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
     private Connection oConnection = null;
     private String strTable = "coleccion";
 
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
     public ColeccionDao(Connection oPooledConnection) throws Exception {
         try {
             oConnection = oPooledConnection;
@@ -54,69 +63,67 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         }
     }
 
-    // OPERACIONES BÁSICAS
-    @Override
-    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    @Override
-    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    @Override
-    public ArrayList<ColeccionBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-        ArrayList<ColeccionBean> arrColeccionBean = new ArrayList<>();
-        try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    ColeccionBean oColeccionBean = new ColeccionBean();
-                    arrColeccionBean.add(oColeccionBean.fill(oResultSet, oConnection, expand));
-                }
-            }
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-        }
-        return arrColeccionBean;
-    }
-
-    @Override
-    public ArrayList<ColeccionBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<ColeccionBean> arrAutorJuego = new ArrayList<>();
-        try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    ColeccionBean oColeccionBean = new ColeccionBean();
-                    arrAutorJuego.add(oColeccionBean.fill(oResultSet, oConnection, expand));
-                }
-            }
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-        }
-        return arrAutorJuego;
-    }
-
+    // OPERACIONES BÁSICAS, borrar si funciona sin ellas
+//    @Override
+//    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        int pages = 0;
+//        try {
+//            pages = oMysql.getPages(strSQL, intRegsPerPag);
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+//        }
+//        return pages;
+//    }
+//
+//    @Override
+//    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        int pages = 0;
+//        try {
+//            pages = oMysql.getCount(strSQL);
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+//        }
+//        return pages;
+//    }
+//
+//    @Override
+//    public ArrayList<ColeccionBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+//        ArrayList<ColeccionBean> arrColeccionBean = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    ColeccionBean oColeccionBean = new ColeccionBean();
+//                    arrColeccionBean.add(oColeccionBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrColeccionBean;
+//    }
+//    @Override
+//    public ArrayList<ColeccionBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        ArrayList<ColeccionBean> arrAutorJuego = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    ColeccionBean oColeccionBean = new ColeccionBean();
+//                    arrAutorJuego.add(oColeccionBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrAutorJuego;
+//    }
 //    // -----------------
 //    // MÉTODO PARA SACAR LOS JUEGOS DE UN USUARIO 
 //    public ColeccionBean getJuegosFiltradosPorUsuario(ColeccionBean oColeccionBean, Integer expand) throws Exception {
@@ -137,31 +144,18 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
 //
 //        return oColeccionBean;
 //    }
-    // MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE USUARIO Y JUEGO
-    public int getPagesUsuario(int id_usuario, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND c.id_usuario=" + id_usuario;
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
-    public int getCountUsuario(int id_usuario, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND c.id_usuario=" + id_usuario;
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
+    /**
+     * MÉTODOS PARA HACER CONSULTAS DE COLECCIÓN
+     *
+     * @param id_usuario
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrColeccionBean
+     * @throws Exception
+     */
     public ArrayList<ColeccionBean> getPageUsuario(int id_usuario, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -182,9 +176,18 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         return arrColeccionBean;
     }
 
-    public int getPagesJuego(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+    /**
+     * MÉTODOS PARA HACER CONSULTAS DE COLECCIÓN
+     *
+     * @param id_usuario
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getPagesUsuario(int id_usuario, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND c.id_juego=" + id_juego;
+        strSQL += "AND c.id_usuario=" + id_usuario;
         int pages = 0;
         try {
             pages = oMysql.getPages(strSQL, intRegsPerPag);
@@ -194,9 +197,17 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         return pages;
     }
 
-    public int getCountJuego(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+    /**
+     * MÉTODOS PARA HACER CONSULTAS DE COLECCIÓN
+     *
+     * @param id_usuario
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getCountUsuario(int id_usuario, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "AND c.id_juego=" + id_juego;
+        strSQL += "AND c.id_usuario=" + id_usuario;
         int pages = 0;
         try {
             pages = oMysql.getCount(strSQL);
@@ -206,6 +217,18 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         return pages;
     }
 
+    /**
+     * MÉTODOS PARA HACER CONSULTAS DE COLECCIÓN
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrColeccionBean
+     * @throws Exception
+     */
     public ArrayList<ColeccionBean> getPageJuego(int id_juego, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -226,7 +249,56 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         return arrColeccionBean;
     }
 
-    // --------------------------------
+    /**
+     * MÉTODOS PARA HACER CONSULTAS DE COLECCIÓN
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getPagesJuego(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "AND c.id_juego=" + id_juego;
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * MÉTODOS PARA HACER CONSULTAS DE COLECCIÓN
+     *
+     * @param id_juego
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getCountJuego(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "AND c.id_juego=" + id_juego;
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * Método SET Colección
+     *
+     * @param oBean
+     * @param id_usuario
+     * @param id_juego
+     * @return iResult
+     * @throws Exception
+     */
     public Integer setColeccion(ColeccionBean oBean, int id_usuario, int id_juego) throws Exception {
 
         Integer iResult = null;
@@ -257,6 +329,14 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
         return iResult;
     }
 
+    /**
+     * Método REMOVE Colección
+     *
+     * @param id_usuario
+     * @param id_juego
+     * @return result
+     * @throws Exception
+     */
     public Integer removeColeccion(Integer id_usuario, Integer id_juego) throws Exception {
 
         int result = 0;
@@ -283,18 +363,88 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
     }
 
 // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @param oBean
+     * @param expand
+     * @return
+     * @throws Exception
+     */
     @Override
     public ColeccionBean get(ColeccionBean oBean, Integer expand) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param oBean
+     * @return
+     * @throws Exception
+     */
     @Override
     public Integer set(ColeccionBean oBean) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @Override
     public Integer remove(Integer id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param intRegsPerPag
+     * @param alFilter
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param alFilter
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<ColeccionBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<ColeccionBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

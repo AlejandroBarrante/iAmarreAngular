@@ -38,6 +38,10 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class TipousuarioDao implements ViewDaoInterface<TipousuarioBean>, TableDaoInterface<TipousuarioBean> {
 
     private String strTable = "tipousuario";
@@ -45,6 +49,11 @@ public class TipousuarioDao implements ViewDaoInterface<TipousuarioBean>, TableD
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
 
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
     public TipousuarioDao(Connection oPooledConnection) throws Exception {
         try {
             oConnection = oPooledConnection;
@@ -54,30 +63,71 @@ public class TipousuarioDao implements ViewDaoInterface<TipousuarioBean>, TableD
         }
     }
 
+    /**
+     * Método GET TipoUsuario
+     *
+     * @param oTipousuarioBean
+     * @param expand
+     * @return oTipoUsuarioBean
+     * @throws Exception
+     */
     @Override
-    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+    public TipousuarioBean get(TipousuarioBean oTipousuarioBean, Integer expand) throws Exception {
+        if (oTipousuarioBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oTipousuarioBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oTipousuarioBean = oTipousuarioBean.fill(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oTipousuarioBean.setId(0);
         }
-        return pages;
+        return oTipousuarioBean;
     }
 
+    /**
+     * Método GETALL TipoUsuario
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrTipoUsuario
+     * @throws Exception
+     */
     @Override
-    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
+    public ArrayList<TipousuarioBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        ArrayList<TipousuarioBean> arrTipousuario = new ArrayList<>();
         try {
-            pages = oMysql.getCount(strSQL);
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    TipousuarioBean oTipousuarioBean = new TipousuarioBean();
+                    arrTipousuario.add(oTipousuarioBean.fill(oResultSet, oConnection, expand));
+                }
+            }
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
-        return pages;
+        return arrTipousuario;
     }
 
+    /**
+     * Métodos para listados de TipoUsuario
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrTipousuario
+     * @throws Exception
+     */
     @Override
     public ArrayList<TipousuarioBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
@@ -98,43 +148,52 @@ public class TipousuarioDao implements ViewDaoInterface<TipousuarioBean>, TableD
         return arrTipousuario;
     }
 
+    /**
+     * Métodos para listados de TipoUsuario
+     *
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public ArrayList<TipousuarioBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<TipousuarioBean> arrTipousuario = new ArrayList<>();
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
         try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    TipousuarioBean oTipousuarioBean = new TipousuarioBean();
-                    arrTipousuario.add(oTipousuarioBean.fill(oResultSet, oConnection, expand));
-                }
-            }
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
         }
-        return arrTipousuario;
+        return pages;
     }
 
+    /**
+     * Métodos para listados de TipoUsuario
+     *
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public TipousuarioBean get(TipousuarioBean oTipousuarioBean, Integer expand) throws Exception {
-        if (oTipousuarioBean.getId() > 0) {
-            try {
-                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oTipousuarioBean.getId() + " ");
-                if (oResultSet != null) {
-                    while (oResultSet.next()) {
-                        oTipousuarioBean = oTipousuarioBean.fill(oResultSet, oConnection, expand);
-                    }
-                }
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-            }
-        } else {
-            oTipousuarioBean.setId(0);
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
         }
-        return oTipousuarioBean;
+        return pages;
     }
 
+    /**
+     * Método SET TipoUsuario
+     *
+     * @param oTipousuarioBean
+     * @return iResult
+     * @throws Exception
+     */
     @Override
     public Integer set(TipousuarioBean oTipousuarioBean) throws Exception {
         Integer iResult = null;
@@ -157,6 +216,13 @@ public class TipousuarioDao implements ViewDaoInterface<TipousuarioBean>, TableD
         return iResult;
     }
 
+    /**
+     * Método REMOVE TipoUsuario
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
     @Override
     public Integer remove(Integer id) throws Exception {
         int result = 0;

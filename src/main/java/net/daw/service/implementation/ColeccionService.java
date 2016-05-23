@@ -668,8 +668,7 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
 
     /**
      *
-     * @return
-     * @throws Exception
+     * @return @throws Exception
      */
     @Override
     public String getall() throws Exception {
@@ -678,8 +677,7 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
 
     /**
      *
-     * @return
-     * @throws Exception
+     * @return @throws Exception
      */
     @Override
     public String remove() throws Exception {

@@ -38,136 +38,206 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class EditorialDao implements ViewDaoInterface<EditorialBean>, TableDaoInterface<EditorialBean> {
 
-	private String strTable = "editorial";
-	private String strSQL = "select * from editorial where 1=1 ";
-	private MysqlDataSpImpl oMysql = null;
-	private Connection oConnection = null;
+    private String strTable = "editorial";
+    private String strSQL = "select * from editorial where 1=1 ";
+    private MysqlDataSpImpl oMysql = null;
+    private Connection oConnection = null;
 
-	public EditorialDao(Connection oPooledConnection) throws Exception {
-		try {
-			oConnection = oPooledConnection;
-			oMysql = new MysqlDataSpImpl(oConnection);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
-		}
-	}
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
+    public EditorialDao(Connection oPooledConnection) throws Exception {
+        try {
+            oConnection = oPooledConnection;
+            oMysql = new MysqlDataSpImpl(oConnection);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
+        }
+    }
 
-	@Override
-	public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getPages(strSQL, intRegsPerPag);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    /**
+     * Método GET Editorial
+     *
+     * @param oEditorialBean
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public EditorialBean get(EditorialBean oEditorialBean, Integer expand) throws Exception {
+        if (oEditorialBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oEditorialBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oEditorialBean = oEditorialBean.fill(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oEditorialBean.setId(0);
+        }
+        return oEditorialBean;
+    }
 
-	@Override
-	public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getCount(strSQL);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    /**
+     * Métodos para listar las editoriales
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrEditorial
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<EditorialBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
+            HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+        ArrayList<EditorialBean> arrEditorial = new ArrayList<>();
+        try {
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    EditorialBean oEditorialBean = new EditorialBean();
+                    arrEditorial.add(oEditorialBean.fill(oResultSet, oConnection, expand));
+                }
+            }
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        }
+        return arrEditorial;
+    }
 
-	@Override
-	public ArrayList<EditorialBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
-			HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-		ArrayList<EditorialBean> arrEditorial = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					EditorialBean oEditorialBean = new EditorialBean();
-					arrEditorial.add(oEditorialBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrEditorial;
-	}
+    /**
+     * Métodos para listar las editoriales
+     *
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	@Override
-	public ArrayList<EditorialBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-			Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		ArrayList<EditorialBean> arrEditorial = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					EditorialBean oEditorialBean = new EditorialBean();
-					arrEditorial.add(oEditorialBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrEditorial;
-	}
+    /**
+     * Métodos para listar las editoriales
+     *
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    @Override
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	@Override
-	public EditorialBean get(EditorialBean oEditorialBean, Integer expand) throws Exception {
-		if (oEditorialBean.getId() > 0) {
-			try {
-				ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oEditorialBean.getId() + " ");
-				if (oResultSet != null) {
-					while (oResultSet.next()) {
-						oEditorialBean = oEditorialBean.fill(oResultSet, oConnection, expand);
-					}
-				}
-			} catch (Exception ex) {
-				ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-			}
-		} else {
-			oEditorialBean.setId(0);
-		}
-		return oEditorialBean;
-	}
+//	@Override
+//	public ArrayList<EditorialBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
+//			Integer expand) throws Exception {
+//		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//		ArrayList<EditorialBean> arrEditorial = new ArrayList<>();
+//		try {
+//			ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//			if (oResultSet != null) {
+//				while (oResultSet.next()) {
+//					EditorialBean oEditorialBean = new EditorialBean();
+//					arrEditorial.add(oEditorialBean.fill(oResultSet, oConnection, expand));
+//				}
+//			}
+//		} catch (Exception ex) {
+//			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//		}
+//		return arrEditorial;
+//	}
+    /**
+     * Método SET Editorial
+     *
+     * @param oEditorialBean
+     * @return iResult
+     * @throws Exception
+     */
+    @Override
+    public Integer set(EditorialBean oEditorialBean) throws Exception {
+        Integer iResult = null;
+        try {
+            if (oEditorialBean.getId() == 0) {
+                strSQL = "INSERT INTO " + strTable + " ";
+                strSQL += "(" + oEditorialBean.getColumns() + ")";
+                strSQL += "VALUES(" + oEditorialBean.getValues() + ")";
+                iResult = oMysql.executeInsertSQL(strSQL);
+            } else {
+                strSQL = "UPDATE " + strTable + " ";
+                strSQL += " SET " + oEditorialBean.toPairs();
+                strSQL += " WHERE id=" + oEditorialBean.getId();
+                iResult = oMysql.executeUpdateSQL(strSQL);
+            }
 
-	@Override
-	public Integer set(EditorialBean oEditorialBean) throws Exception {
-		Integer iResult = null;
-		try {
-			if (oEditorialBean.getId() == 0) {
-				strSQL = "INSERT INTO " + strTable + " ";
-				strSQL += "(" + oEditorialBean.getColumns() + ")";
-				strSQL += "VALUES(" + oEditorialBean.getValues() + ")";
-				iResult = oMysql.executeInsertSQL(strSQL);
-			} else {
-				strSQL = "UPDATE " + strTable + " ";
-				strSQL += " SET " + oEditorialBean.toPairs();
-				strSQL += " WHERE id=" + oEditorialBean.getId();
-				iResult = oMysql.executeUpdateSQL(strSQL);
-			}
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+        }
+        return iResult;
+    }
 
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
-		}
-		return iResult;
-	}
+    /**
+     * Método REMOVE Editorial
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
+    @Override
+    public Integer remove(Integer id) throws Exception {
+        int result = 0;
+        try {
+            result = oMysql.removeOne(id, strTable);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+        }
+        return result;
+    }
 
-	@Override
-	public Integer remove(Integer id) throws Exception {
-		int result = 0;
-		try {
-			result = oMysql.removeOne(id, strTable);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
-		}
-		return result;
-	}
+    // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<EditorialBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

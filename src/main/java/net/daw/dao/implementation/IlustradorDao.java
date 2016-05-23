@@ -38,6 +38,10 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDaoInterface<IlustradorBean> {
 
     private String strTable = "ilustrador";
@@ -45,6 +49,11 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
 
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
     public IlustradorDao(Connection oPooledConnection) throws Exception {
         try {
             oConnection = oPooledConnection;
@@ -54,30 +63,44 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
         }
     }
 
+    /**
+     * Método GET Ilustrador
+     *
+     * @param oIlustradorBean
+     * @param expand
+     * @return
+     * @throws Exception
+     */
     @Override
-    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+    public IlustradorBean get(IlustradorBean oIlustradorBean, Integer expand) throws Exception {
+        if (oIlustradorBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oIlustradorBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oIlustradorBean = oIlustradorBean.fill(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oIlustradorBean.setId(0);
         }
-        return pages;
+        return oIlustradorBean;
     }
 
-    @Override
-    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
+    /**
+     * Métodos para listar Ilustradores
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrIlustrador
+     * @throws Exception
+     */
     @Override
     public ArrayList<IlustradorBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
@@ -98,43 +121,69 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
         return arrIlustrador;
     }
 
+    /**
+     * Métodos para listar Ilustradores
+     *
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public ArrayList<IlustradorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<IlustradorBean> arrIlustrador = new ArrayList<>();
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
         try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    IlustradorBean oIlustradorBean = new IlustradorBean();
-                    arrIlustrador.add(oIlustradorBean.fill(oResultSet, oConnection, expand));
-                }
-            }
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
         }
-        return arrIlustrador;
+        return pages;
     }
 
+    /**
+     * Métodos para listar Ilustradores
+     *
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public IlustradorBean get(IlustradorBean oIlustradorBean, Integer expand) throws Exception {
-        if (oIlustradorBean.getId() > 0) {
-            try {
-                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oIlustradorBean.getId() + " ");
-                if (oResultSet != null) {
-                    while (oResultSet.next()) {
-                        oIlustradorBean = oIlustradorBean.fill(oResultSet, oConnection, expand);
-                    }
-                }
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-            }
-        } else {
-            oIlustradorBean.setId(0);
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
         }
-        return oIlustradorBean;
+        return pages;
     }
 
+//    @Override
+//    public ArrayList<IlustradorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        ArrayList<IlustradorBean> arrIlustrador = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    IlustradorBean oIlustradorBean = new IlustradorBean();
+//                    arrIlustrador.add(oIlustradorBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrIlustrador;
+//    }
+    /**
+     * Método SET Ilustrador
+     *
+     * @param oIlustradorBean
+     * @return iResult
+     * @throws Exception
+     */
     @Override
     public Integer set(IlustradorBean oIlustradorBean) throws Exception {
         Integer iResult = null;
@@ -157,6 +206,13 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
         return iResult;
     }
 
+    /**
+     * Método REMOVE Ilustrador
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
     @Override
     public Integer remove(Integer id) throws Exception {
         int result = 0;
@@ -167,33 +223,19 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
         }
         return result;
     }
-    
-    // MÉTODOS PARA ASIGNACIÓN DE ILUSTRADORES
-    
-     public int getPagesIlustrador(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "and ilustrador.id not in (select ij.id_ilustrador from  ilustradorjuego ij where ij.id_juego=" + id_juego + ")";
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
 
-    public int getCountIlustrador(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "and ilustrador.id not in (select ij.id_ilustrador from  ilustradorjuego ij where ij.id_juego=" + id_juego + ")";
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE ILUSTRADORES
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrIlustradorBean
+     * @throws Exception
+     */
     public ArrayList<IlustradorBean> getPageIlustrador(int id_juego, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -213,7 +255,58 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
         }
         return arrIlustradorBean;
     }
-    
+
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE ILUSTRADORES
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getPagesIlustrador(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and ilustrador.id not in (select ij.id_ilustrador from  ilustradorjuego ij where ij.id_juego=" + id_juego + ")";
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE ILUSTRADORES
+     *
+     * @param id_juego
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getCountIlustrador(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and ilustrador.id not in (select ij.id_ilustrador from  ilustradorjuego ij where ij.id_juego=" + id_juego + ")";
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * Método para crear el array de Ilustrador en TotalJuegoBean
+     *
+     * @param id_juego
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrIlustrador
+     * @throws Exception
+     */
     public ArrayList<IlustradorBean> getAllJuegoIlustrador(Integer id_juego, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL = "select * from ilustrador i, ilustradorjuego ij where i.id=ij.id_ilustrador and ij.id_juego=" + id_juego;
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -230,6 +323,20 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
         return arrIlustrador;
+    }
+
+    // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<IlustradorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

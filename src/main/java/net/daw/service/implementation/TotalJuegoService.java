@@ -29,9 +29,6 @@ package net.daw.service.implementation;
 import static net.daw.helper.statics.AppConfigurationHelper.getSourceConnection;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,11 +36,9 @@ import net.daw.bean.implementation.JuegoBean;
 import net.daw.bean.implementation.TotalJuegoBean;
 import net.daw.bean.implementation.UsuarioBean;
 import net.daw.connection.publicinterface.ConnectionInterface;
-import net.daw.dao.implementation.JuegoDao;
 import net.daw.dao.implementation.TotalJuegoDao;
 import net.daw.helper.statics.AppConfigurationHelper;
 import net.daw.helper.statics.ExceptionBooster;
-import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.JsonMessage;
 import net.daw.helper.statics.ParameterCook;
 import net.daw.service.publicinterface.TableServiceInterface;

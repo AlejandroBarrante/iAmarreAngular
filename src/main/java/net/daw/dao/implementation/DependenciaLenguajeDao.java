@@ -38,140 +38,210 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class DependenciaLenguajeDao
-		implements ViewDaoInterface<DependenciaLenguajeBean>, TableDaoInterface<DependenciaLenguajeBean> {
+        implements ViewDaoInterface<DependenciaLenguajeBean>, TableDaoInterface<DependenciaLenguajeBean> {
 
-	private String strTable = "dependencialenguaje";
-	private String strSQL = "select * from dependencialenguaje where 1=1 ";
-	private MysqlDataSpImpl oMysql = null;
-	private Connection oConnection = null;
+    private String strTable = "dependencialenguaje";
+    private String strSQL = "select * from dependencialenguaje where 1=1 ";
+    private MysqlDataSpImpl oMysql = null;
+    private Connection oConnection = null;
 
-	public DependenciaLenguajeDao(Connection oPooledConnection) throws Exception {
-		try {
-			oConnection = oPooledConnection;
-			oMysql = new MysqlDataSpImpl(oConnection);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
-		}
-	}
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
+    public DependenciaLenguajeDao(Connection oPooledConnection) throws Exception {
+        try {
+            oConnection = oPooledConnection;
+            oMysql = new MysqlDataSpImpl(oConnection);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
+        }
+    }
 
-	@Override
-	public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getPages(strSQL, intRegsPerPag);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    /**
+     * Método GET DepLenguaje
+     *
+     * @param oDepLenguajeBean
+     * @param expand
+     * @return oDepLenguajeBean
+     * @throws Exception
+     */
+    @Override
+    public DependenciaLenguajeBean get(DependenciaLenguajeBean oDepLenguajeBean, Integer expand) throws Exception {
+        if (oDepLenguajeBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oDepLenguajeBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oDepLenguajeBean = oDepLenguajeBean.fill(oResultSet, oConnection,
+                                expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oDepLenguajeBean.setId(0);
+        }
+        return oDepLenguajeBean;
+    }
 
-	@Override
-	public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getCount(strSQL);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    /**
+     * Métodos para sacar listados DepLenguaje
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrDepLenguaje
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<DependenciaLenguajeBean> getPage(int intRegsPerPag, int intPage,
+            ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+        ArrayList<DependenciaLenguajeBean> arrDepLenguaje = new ArrayList<>();
+        try {
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    DependenciaLenguajeBean oDepLenguajeBean = new DependenciaLenguajeBean();
+                    arrDepLenguaje
+                            .add(oDepLenguajeBean.fill(oResultSet, oConnection, expand));
+                }
+            }
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+        }
+        return arrDepLenguaje;
+    }
 
-	@Override
-	public ArrayList<DependenciaLenguajeBean> getPage(int intRegsPerPag, int intPage,
-			ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-		ArrayList<DependenciaLenguajeBean> arrDepLenguaje = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					DependenciaLenguajeBean oDepLenguajeBean = new DependenciaLenguajeBean();
-					arrDepLenguaje
-							.add(oDepLenguajeBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrDepLenguaje;
-	}
+    /**
+     * Métodos para sacar listados DepLenguaje
+     *
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	@Override
-	public ArrayList<DependenciaLenguajeBean> getAll(ArrayList<FilterBeanHelper> alFilter,
-			HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		ArrayList<DependenciaLenguajeBean> arrDepLenguaje = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					DependenciaLenguajeBean oDepLenguajeBean = new DependenciaLenguajeBean();
-					arrDepLenguaje
-							.add(oDepLenguajeBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrDepLenguaje;
-	}
+    /**
+     * Métodos para sacar listados DepLenguaje
+     *
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    @Override
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
 
-	@Override
-	public DependenciaLenguajeBean get(DependenciaLenguajeBean oDepLenguajeBean, Integer expand) throws Exception {
-		if (oDepLenguajeBean.getId() > 0) {
-			try {
-				ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oDepLenguajeBean.getId() + " ");
-				if (oResultSet != null) {
-					while (oResultSet.next()) {
-						oDepLenguajeBean = oDepLenguajeBean.fill(oResultSet, oConnection,
-								expand);
-					}
-				}
-			} catch (Exception ex) {
-				ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-			}
-		} else {
-			oDepLenguajeBean.setId(0);
-		}
-		return oDepLenguajeBean;
-	}
+//    @Override
+//    public ArrayList<DependenciaLenguajeBean> getAll(ArrayList<FilterBeanHelper> alFilter,
+//            HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        ArrayList<DependenciaLenguajeBean> arrDepLenguaje = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    DependenciaLenguajeBean oDepLenguajeBean = new DependenciaLenguajeBean();
+//                    arrDepLenguaje
+//                            .add(oDepLenguajeBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrDepLenguaje;
+//    }
+    /**
+     * Método SET DepLenguaje
+     *
+     * @param oDepLenguajeBean
+     * @return iResult
+     * @throws Exception
+     */
+    @Override
+    public Integer set(DependenciaLenguajeBean oDepLenguajeBean) throws Exception {
+        Integer iResult = null;
+        try {
+            if (oDepLenguajeBean.getId() == 0) {
+                strSQL = "INSERT INTO " + strTable + " ";
+                strSQL += "(" + oDepLenguajeBean.getColumns() + ")";
+                strSQL += "VALUES(" + oDepLenguajeBean.getValues() + ")";
+                iResult = oMysql.executeInsertSQL(strSQL);
+            } else {
+                strSQL = "UPDATE " + strTable + " ";
+                strSQL += " SET " + oDepLenguajeBean.toPairs();
+                strSQL += " WHERE id=" + oDepLenguajeBean.getId();
+                iResult = oMysql.executeUpdateSQL(strSQL);
+            }
 
-	@Override
-	public Integer set(DependenciaLenguajeBean oDepLenguajeBean) throws Exception {
-		Integer iResult = null;
-		try {
-			if (oDepLenguajeBean.getId() == 0) {
-				strSQL = "INSERT INTO " + strTable + " ";
-				strSQL += "(" + oDepLenguajeBean.getColumns() + ")";
-				strSQL += "VALUES(" + oDepLenguajeBean.getValues() + ")";
-				iResult = oMysql.executeInsertSQL(strSQL);
-			} else {
-				strSQL = "UPDATE " + strTable + " ";
-				strSQL += " SET " + oDepLenguajeBean.toPairs();
-				strSQL += " WHERE id=" + oDepLenguajeBean.getId();
-				iResult = oMysql.executeUpdateSQL(strSQL);
-			}
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+        }
+        return iResult;
+    }
 
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
-		}
-		return iResult;
-	}
+    /**
+     * Método REMOVE DepLenguaje
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
+    @Override
+    public Integer remove(Integer id) throws Exception {
+        int result = 0;
+        try {
+            result = oMysql.removeOne(id, strTable);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+        }
+        return result;
+    }
 
-	@Override
-	public Integer remove(Integer id) throws Exception {
-		int result = 0;
-		try {
-			result = oMysql.removeOne(id, strTable);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
-		}
-		return result;
-	}
+    // MÉTODOS NO IMPLEMENTADOS 
+    /**
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<DependenciaLenguajeBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

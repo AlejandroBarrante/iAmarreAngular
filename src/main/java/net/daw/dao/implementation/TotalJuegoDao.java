@@ -37,146 +37,209 @@ import net.daw.dao.publicinterface.ViewDaoInterface;
 import net.daw.data.implementation.MysqlDataSpImpl;
 import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
-import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class TotalJuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInterface<JuegoBean> {
 
-	private String strSQL = "select * from juego WHERE 1=1  ";
-	private MysqlDataSpImpl oMysql = null;
-	private Connection oConnection = null;
+    private String strSQL = "select * from juego WHERE 1=1  ";
+    private MysqlDataSpImpl oMysql = null;
+    private Connection oConnection = null;
 
-	public TotalJuegoDao(Connection oPooledConnection) throws Exception {
-		try {
-			oConnection = oPooledConnection;
-			oMysql = new MysqlDataSpImpl(oConnection);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
-		}
-	}
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
+    public TotalJuegoDao(Connection oPooledConnection) throws Exception {
+        try {
+            oConnection = oPooledConnection;
+            oMysql = new MysqlDataSpImpl(oConnection);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":constructor ERROR: " + ex.getMessage()));
+        }
+    }
 
-	@Override
-	public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getPages(strSQL, intRegsPerPag);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+    /** Método GET TotalJuego
+     *
+     * @param oTJuegoBean
+     * @param oJuegoBean
+     * @param expand
+     * @return oTJuegoBean
+     * @throws Exception
+     */
+    public TotalJuegoBean get(TotalJuegoBean oTJuegoBean, JuegoBean oJuegoBean, Integer expand) throws Exception {
+        if (oJuegoBean.getId() > 0) {
+            try {
 
-	@Override
-	public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		int pages = 0;
-		try {
-			pages = oMysql.getCount(strSQL);
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-		}
-		return pages;
-	}
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oJuegoBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oTJuegoBean = oTJuegoBean.fillTotal(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oTJuegoBean.setId(0);
+        }
+        return oTJuegoBean;
+    }
 
-	@Override
-	public ArrayList<JuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
-			HashMap<String, String> hmOrder, Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-		ArrayList<JuegoBean> arrJuego = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					JuegoBean oJuegoBean = new JuegoBean();
-					arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrJuego;
-	}
+//    @Override
+//    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        int pages = 0;
+//        try {
+//            pages = oMysql.getPages(strSQL, intRegsPerPag);
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+//        }
+//        return pages;
+//    }
+//
+//    @Override
+//    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        int pages = 0;
+//        try {
+//            pages = oMysql.getCount(strSQL);
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+//        }
+//        return pages;
+//    }
+//
+//    @Override
+//    public ArrayList<JuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
+//            HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
+//        ArrayList<JuegoBean> arrJuego = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    JuegoBean oJuegoBean = new JuegoBean();
+//                    arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrJuego;
+//    }
+//
+//    @Override
+//    public ArrayList<JuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
+//            Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        ArrayList<JuegoBean> arrJuego = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    JuegoBean oJuegoBean = new JuegoBean();
+//                    arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrJuego;
+//    }
+    // MÉTODOS NO IMPLEMENTADOS
 
-	@Override
-	public ArrayList<JuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-			Integer expand) throws Exception {
-		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-		ArrayList<JuegoBean> arrJuego = new ArrayList<>();
-		try {
-			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-			if (oResultSet != null) {
-				while (oResultSet.next()) {
-					JuegoBean oJuegoBean = new JuegoBean();
-					arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
-				}
-			}
-		} catch (Exception ex) {
-			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-		}
-		return arrJuego;
-	}
+    /**
+     *
+     * @param oBean
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public JuegoBean get(JuegoBean oBean, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // To
 
-	public TotalJuegoBean get(TotalJuegoBean oTJuegoBean, JuegoBean oJuegoBean, Integer expand) throws Exception {
-		if (oJuegoBean.getId() > 0) {
-			try {
+    }
 
-				ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oJuegoBean.getId() + " ");
-				if (oResultSet != null) {
-					while (oResultSet.next()) {
-						oTJuegoBean = oTJuegoBean.fillTotal(oResultSet, oConnection, expand);
-					}
-				}
-			} catch (Exception ex) {
-				ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-			}
-		} else {
-			oTJuegoBean.setId(0);
-		}
-		return oTJuegoBean;
-	}
+    /**
+     *
+     * @param oBean
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Integer set(JuegoBean oBean) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // To
 
-	@Override
-	public JuegoBean get(JuegoBean oBean, Integer expand) throws Exception {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
-	}
+    }
 
-	@Override
-	public Integer set(JuegoBean oBean) throws Exception {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
-	}
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Integer remove(Integer id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // To
 
-	@Override
-	public Integer remove(Integer id) throws Exception {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
-	}
+    }
+
+    /**
+     *
+     * @param intRegsPerPag
+     * @param alFilter
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param alFilter
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<JuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<JuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

@@ -41,14 +41,27 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterface<UsuarioBean> {
 
     private String strTable = "usuario";
     private String strSQL = "select * from usuario where 1=1 ";
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
+
+    /**
+     *
+     */
     public static String MD5 = "MD5";
 
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
     public UsuarioDao(Connection oPooledConnection) throws Exception {
         try {
             oConnection = oPooledConnection;
@@ -58,30 +71,71 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         }
     }
 
+    /**
+     * Método GET Usuario
+     *
+     * @param oUsuarioBean
+     * @param expand
+     * @return oUsuarioBean
+     * @throws Exception
+     */
     @Override
-    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+    public UsuarioBean get(UsuarioBean oUsuarioBean, Integer expand) throws Exception {
+        if (oUsuarioBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oUsuarioBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oUsuarioBean = oUsuarioBean.fill(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oUsuarioBean.setId(0);
         }
-        return pages;
+        return oUsuarioBean;
     }
 
+    /**
+     * Método GETALL Usuario
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrUsuario
+     * @throws Exception
+     */
     @Override
-    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
+    public ArrayList<UsuarioBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+        ArrayList<UsuarioBean> arrUsuario = new ArrayList<>();
         try {
-            pages = oMysql.getCount(strSQL);
+            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+            if (oResultSet != null) {
+                while (oResultSet.next()) {
+                    UsuarioBean oUsuarioBean = new UsuarioBean();
+                    arrUsuario.add(oUsuarioBean.fill(oResultSet, oConnection, expand));
+                }
+            }
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
-        return pages;
+        return arrUsuario;
     }
 
+    /**
+     * Métodos para obtener listados de Usuarios
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrUsuario
+     * @throws Exception
+     */
     @Override
     public ArrayList<UsuarioBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
@@ -102,49 +156,58 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return arrUsuario;
     }
 
+    /**
+     * Métodos para obtener listados de Usuarios
+     *
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public ArrayList<UsuarioBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<UsuarioBean> arrUsuario = new ArrayList<>();
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
         try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    UsuarioBean oUsuarioBean = new UsuarioBean();
-                    arrUsuario.add(oUsuarioBean.fill(oResultSet, oConnection, expand));
-                }
-            }
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
         }
-        return arrUsuario;
+        return pages;
     }
 
+    /**
+     * Métodos para obtener listados de Usuarios
+     *
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public UsuarioBean get(UsuarioBean oUsuarioBean, Integer expand) throws Exception {
-        if (oUsuarioBean.getId() > 0) {
-            try {
-                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oUsuarioBean.getId() + " ");
-                if (oResultSet != null) {
-                    while (oResultSet.next()) {
-                        oUsuarioBean = oUsuarioBean.fill(oResultSet, oConnection, expand);
-                    }
-                }
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-            }
-        } else {
-            oUsuarioBean.setId(0);
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
         }
-        return oUsuarioBean;
+        return pages;
     }
 
+    /**
+     * Método SET Usuario
+     *
+     * @param oUsuarioBean
+     * @return iResult
+     * @throws Exception
+     */
     @Override
     public Integer set(UsuarioBean oUsuarioBean) throws Exception {
         Integer iResult = null;
         try {
             oUsuarioBean.setPassword(getStringMessageDigest(oUsuarioBean.getPassword(), MD5));
-            
+
             if (oUsuarioBean.getId() == 0) {
 
                 strSQL = "INSERT INTO " + strTable + " ";
@@ -165,8 +228,12 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
     }
 
     // -- MÉTODOS PARA AUTENTICACIÓN --
-    
-    // Convierte un arreglo de bytes a String usando valores hexadecimales
+    /**
+     * Convierte un arreglo de bytes a String usando valores hexadecimales
+     *
+     * @param byte[] digest
+     * @return hash
+     */
     private static String toHexadecimal(byte[] digest) {
         String hash = "";
         for (byte aux : digest) {
@@ -179,7 +246,14 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return hash;
     }
 
-    // Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
+    // 
+    /**
+     * Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
+     *
+     * @param message
+     * @param algorithm
+     * @return toHexadecimal
+     */
     public static String getStringMessageDigest(String message, String algorithm) {
         byte[] digest = null;
         byte[] buffer = message.getBytes();
@@ -193,9 +267,15 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         }
         return toHexadecimal(digest);
     }
-    
-    // ----------------------
 
+    // ----------------------
+    /**
+     * Método REMOVE Usuario
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
     @Override
     public Integer remove(Integer id) throws Exception {
         int result = 0;
@@ -207,6 +287,13 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return result;
     }
 
+    /**
+     * Método para el login
+     *
+     * @param oUsuario
+     * @return oUsuario
+     * @throws Exception
+     */
     public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
         try {
             String strId = oMysql.getId("usuario", "login", oUsuario.getLogin());
@@ -229,24 +316,4 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         }
     }
 
-    /*
-     public void encrypeUsername(String password) {
-     byte[] defaultBytes = password.getBytes();
-     try {
-     MessageDigest algorithm = MessageDigest.getInstance("MD5");
-     algorithm.reset();
-     algorithm.update(defaultBytes);
-     byte messageDigest[] = algorithm.digest();
-
-     StringBuffer hexString = new StringBuffer();
-     for (int i = 0; i < messageDigest.length; i++) {
-     hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-     }                                 
-            
-     //   System.out.println("sessionid " + sessionid + " md5 version is " + hexString.toString());
-     } catch (Exception e) {
-     e.printStackTrace();
-     }
-
-     }*/
 }

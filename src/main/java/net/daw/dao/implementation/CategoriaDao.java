@@ -38,6 +38,10 @@ import net.daw.helper.statics.ExceptionBooster;
 import net.daw.helper.statics.FilterBeanHelper;
 import net.daw.helper.statics.SqlBuilder;
 
+/**
+ *
+ * @author Alejandro Barrante Cano
+ */
 public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoInterface<CategoriaBean> {
 
     private String strTable = "categoria";
@@ -45,6 +49,11 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
     private MysqlDataSpImpl oMysql = null;
     private Connection oConnection = null;
 
+    /**
+     *
+     * @param oPooledConnection
+     * @throws Exception
+     */
     public CategoriaDao(Connection oPooledConnection) throws Exception {
         try {
             oConnection = oPooledConnection;
@@ -54,30 +63,44 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
         }
     }
 
+    /**
+     * Método GET Categoría
+     *
+     * @param oCategoriaBean
+     * @param expand
+     * @return oCategoriaBean
+     * @throws Exception
+     */
     @Override
-    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+    public CategoriaBean get(CategoriaBean oCategoriaBean, Integer expand) throws Exception {
+        if (oCategoriaBean.getId() > 0) {
+            try {
+                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oCategoriaBean.getId() + " ");
+                if (oResultSet != null) {
+                    while (oResultSet.next()) {
+                        oCategoriaBean = oCategoriaBean.fill(oResultSet, oConnection, expand);
+                    }
+                }
+            } catch (Exception ex) {
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
+            }
+        } else {
+            oCategoriaBean.setId(0);
         }
-        return pages;
+        return oCategoriaBean;
     }
 
-    @Override
-    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
+    /**
+     * Métodos para listados de Categorías
+     *
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrCategoria
+     * @throws Exception
+     */
     @Override
     public ArrayList<CategoriaBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
@@ -98,43 +121,69 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
         return arrCategoria;
     }
 
+    /**
+     * Métodos para listados de Categorías
+     *
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public ArrayList<CategoriaBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        ArrayList<CategoriaBean> arrCategoria = new ArrayList<>();
+    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
         try {
-            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-            if (oResultSet != null) {
-                while (oResultSet.next()) {
-                    CategoriaBean oCategoriaBean = new CategoriaBean();
-                    arrCategoria.add(oCategoriaBean.fill(oResultSet, oConnection, expand));
-                }
-            }
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
         } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
         }
-        return arrCategoria;
+        return pages;
     }
 
+    /**
+     * Métodos para listados de Categorías
+     *
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
     @Override
-    public CategoriaBean get(CategoriaBean oCategoriaBean, Integer expand) throws Exception {
-        if (oCategoriaBean.getId() > 0) {
-            try {
-                ResultSet oResultSet = oMysql.getAllSql(strSQL + " And id= " + oCategoriaBean.getId() + " ");
-                if (oResultSet != null) {
-                    while (oResultSet.next()) {
-                        oCategoriaBean = oCategoriaBean.fill(oResultSet, oConnection, expand);
-                    }
-                }
-            } catch (Exception ex) {
-                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-            }
-        } else {
-            oCategoriaBean.setId(0);
+    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
         }
-        return oCategoriaBean;
+        return pages;
     }
 
+//    @Override
+//    public ArrayList<CategoriaBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
+//        ArrayList<CategoriaBean> arrCategoria = new ArrayList<>();
+//        try {
+//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
+//            if (oResultSet != null) {
+//                while (oResultSet.next()) {
+//                    CategoriaBean oCategoriaBean = new CategoriaBean();
+//                    arrCategoria.add(oCategoriaBean.fill(oResultSet, oConnection, expand));
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
+//        }
+//        return arrCategoria;
+//    }
+    /**
+     * Método SET Categoría
+     *
+     * @param oCategoriaBean
+     * @return iResult
+     * @throws Exception
+     */
     @Override
     public Integer set(CategoriaBean oCategoriaBean) throws Exception {
         Integer iResult = null;
@@ -157,6 +206,13 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
         return iResult;
     }
 
+    /**
+     * Método REMOVE Categoría
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
     @Override
     public Integer remove(Integer id) throws Exception {
         int result = 0;
@@ -167,33 +223,19 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
         }
         return result;
     }
-    
-        // MÉTODOS PARA ASIGNACIÓN DE CATEGORÍAS
-    
-     public int getPagesCategoria(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-        strSQL += "and categoria.id not in (select cj.id_categoria from  categoriajuego cj where cj.id_juego=" + id_juego + ")";
-        int pages = 0;
-        try {
-            pages = oMysql.getPages(strSQL, intRegsPerPag);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
 
-    public int getCountCategoria(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-      strSQL += "and categoria.id not in (select cj.id_categoria from  categoriajuego cj where cj.id_juego=" + id_juego + ")";
-        int pages = 0;
-        try {
-            pages = oMysql.getCount(strSQL);
-        } catch (Exception ex) {
-            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-        }
-        return pages;
-    }
-
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE CATEGORÍAS
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param intPage
+     * @param hmFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrCategoriaBean
+     * @throws Exception
+     */
     public ArrayList<CategoriaBean> getPageCategoria(int id_juego, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
@@ -213,8 +255,59 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
         }
         return arrCategoriaBean;
     }
-    
-     public ArrayList<CategoriaBean> getAllJuegoCategoria(Integer id_juego, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE CATEGORÍAS
+     *
+     * @param id_juego
+     * @param intRegsPerPag
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getPagesCategoria(int id_juego, int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and categoria.id not in (select cj.id_categoria from  categoriajuego cj where cj.id_juego=" + id_juego + ")";
+        int pages = 0;
+        try {
+            pages = oMysql.getPages(strSQL, intRegsPerPag);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * MÉTODOS PARA ASIGNACIÓN DE CATEGORÍAS
+     *
+     * @param id_juego
+     * @param hmFilter
+     * @return pages
+     * @throws Exception
+     */
+    public int getCountCategoria(int id_juego, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
+        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += "and categoria.id not in (select cj.id_categoria from  categoriajuego cj where cj.id_juego=" + id_juego + ")";
+        int pages = 0;
+        try {
+            pages = oMysql.getCount(strSQL);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
+        }
+        return pages;
+    }
+
+    /**
+     * Método para crear el array de Categoría en TotalJuegoBean
+     *
+     * @param id_juego
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return arrCategoria
+     * @throws Exception
+     */
+    public ArrayList<CategoriaBean> getAllJuegoCategoria(Integer id_juego, ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL = "select * from categoria c, categoriajuego cj where c.id=cj.id_categoria and cj.id_juego=" + id_juego;
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
         ArrayList<CategoriaBean> arrCategoria = new ArrayList<>();
@@ -230,6 +323,20 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
         }
         return arrCategoria;
+    }
+
+    // MÉTODOS NO IMPLEMENTADOS
+    /**
+     *
+     * @param alFilter
+     * @param hmOrder
+     * @param expand
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ArrayList<CategoriaBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
