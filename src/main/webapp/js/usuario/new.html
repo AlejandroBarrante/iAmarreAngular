@@ -26,109 +26,109 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-	ng-include="'js/system/header.html'"></div>
+     ng-include="'js/system/header.html'"></div>
 
 <div class="panel-body">
-	<form name="usuarioForm" class="form-horizontal"
-		ng-show="result == null" novalidate>
+    <form name="usuarioForm" class="form-horizontal"
+          ng-show="result == null" novalidate>
 
-		<!--     <div id="id-group" class="form-group">
-            <label class="col-sm-2 control-label" for="id">Identificador:</label>
+        <!--     <div id="id-group" class="form-group">
+    <label class="col-sm-2 control-label" for="id">Identificador:</label>
+    <div class="control col-sm-3">
+        <input ng-model="obj.id" type="text" id="id" class="form-control" name="id" size="15" placeholder="id" disabled="disabled">
+    </div>
+</div> -->
+
+
+        <div id="login-group" class="form-group">
+            <label class="col-sm-2 control-label" for="login">Nombre de
+                Usuario / Login:</label>
             <div class="control col-sm-3">
-                <input ng-model="obj.id" type="text" id="id" class="form-control" name="id" size="15" placeholder="id" disabled="disabled">
+                <input ng-model="obj.login" type="text" id="login"
+                       class="form-control" name="login"
+                       ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
+                <span
+                    ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.required">Campo
+                    requerido.</span> <span
+                    ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.pattern">El
+                    texto introducido no es correcto. No introducir números ni
+                    caracteres especiales.</span>
             </div>
-        </div> -->
+        </div>
+
+        <div id="password-group" class="form-group">
+            <label class="col-sm-2 control-label" for="contenido">Contraseña:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.password" type="password" id="password"
+                       class="form-control" name="password" required> <span
+                       ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo
+                    requerido.</span>
+            </div>
+        </div>
 
 
-		<div id="login-group" class="form-group">
-			<label class="col-sm-2 control-label" for="login">Nombre de
-				Usuario / Login:</label>
-			<div class="control col-sm-3">
-				<input ng-model="obj.login" type="text" id="login"
-					class="form-control" name="login"
-					ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
-				<span
-					ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.required">Campo
-					requerido.</span> <span
-					ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.pattern">El
-					texto introducido no es correcto. No introducir números ni
-					caracteres especiales.</span>
-			</div>
-		</div>
+        <!--	<div class="form-group">
+                        <label class="col-sm-2 control-label" for="obj_tipousuario">Tipo
+                                de usuario:</label>
+                        <div class="control col-sm-3">
+                                <div class="input-group foreign" id="obj_tipousuario_group">
+                                        <span class="input-group-addon" id="obj_tipousuario_button">
+                                                <span class="glyphicon glyphicon-search"
+                                                ng-click="chooseOne('tipousuario')"> </span>
+                                        </span> <input ng-model="obj.obj_tipousuario.id" readonly="true"
+                                                aria-describedby="basic-addon2" class="form-control"
+                                                id="obj_tipousuario" name="obj_tipousuario" type="text" size="5"
+                                                maxlength="5"> <span class="input-group-addon">
+                                                <a href="#/tipousuario/view/{{obj.obj_tipousuario.id}}"> <span>{{obj.obj_tipousuario.descripcion}}</span>
+                                        </a>
+                                        </span>
 
-		<div id="password-group" class="form-group">
-			<label class="col-sm-2 control-label" for="contenido">Contraseña:</label>
-			<div class="control col-sm-3">
-				<input ng-model="obj.password" type="password" id="password"
-					class="form-control" name="password" required> <span
-					ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo
-					requerido.</span>
-			</div>
-		</div>
+                                </div>
+                        </div>
+                </div> -->
 
 
-	<!--	<div class="form-group">
-			<label class="col-sm-2 control-label" for="obj_tipousuario">Tipo
-				de usuario:</label>
-			<div class="control col-sm-3">
-				<div class="input-group foreign" id="obj_tipousuario_group">
-					<span class="input-group-addon" id="obj_tipousuario_button">
-						<span class="glyphicon glyphicon-search"
-						ng-click="chooseOne('tipousuario')"> </span>
-					</span> <input ng-model="obj.obj_tipousuario.id" readonly="true"
-						aria-describedby="basic-addon2" class="form-control"
-						id="obj_tipousuario" name="obj_tipousuario" type="text" size="5"
-						maxlength="5"> <span class="input-group-addon">
-						<a href="#/tipousuario/view/{{obj.obj_tipousuario.id}}"> <span>{{obj.obj_tipousuario.descripcion}}</span>
-					</a>
-					</span>
+        <div id="ciudad-group" class="form-group">
+            <label class="col-sm-2 control-label" for="ciudad">Ciudad:</label>
+            <div class="control col-sm-3">
+                <input ng-model="obj.ciudad" type="text" id="ciudad"
+                       class="form-control" name="ciudad"
+                       ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/"> <span
+                       ng-show="!usuarioForm.$pristine && usuarioForm.ciudad.$error.pattern">El
+                    texto introducido no es correcto. No introducir números ni
+                    caracteres especiales.</span>
+            </div>
+        </div>
 
-				</div>
-			</div>
-		</div> -->
-
-
-		<div id="ciudad-group" class="form-group">
-			<label class="col-sm-2 control-label" for="ciudad">Ciudad:</label>
-			<div class="control col-sm-3">
-				<input ng-model="obj.ciudad" type="text" id="ciudad"
-					class="form-control" name="ciudad"
-					ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/"> <span
-					ng-show="!usuarioForm.$pristine && usuarioForm.ciudad.$error.pattern">El
-					texto introducido no es correcto. No introducir números ni
-					caracteres especiales.</span>
-			</div>
-		</div>
-
-		<div id="firma-group" class="form-group">
-			<label class="col-sm-2 control-label" for="firma">Firma:</label>
-			<div class="control col-sm-9">
-				<input ng-model="obj.firma" type="text" id="firma"
-					class="form-control" name="firma">
-			</div>
-		</div>
+        <div id="firma-group" class="form-group">
+            <label class="col-sm-2 control-label" for="firma">Firma:</label>
+            <div class="control col-sm-9">
+                <input ng-model="obj.firma" type="text" id="firma"
+                       class="form-control" name="firma">
+            </div>
+        </div>
 
 
-		<div class="control-group text-center">
-			<br />
-			<div class="controls">
-				<a class="btn btn-primary" ng-click="save()"
-					ng-disabled="!usuarioForm.$valid">Guardar</a><a class="btn btn-default" ng-click="close()">Volver al inicio</a>
-			</div>
-		</div>
-	</form>
-	<div ng-show="result != null">
-		<div class="alert alert-success" ng-show="result.status == 200">
-			<h2>Se ha modificado el usuario</h2>
-			<a ng-href="#/">Volver a la página principal</a><br />
-		</div>
-		<div class="alert alert-danger" ng-show="result.status != 200">
-			<h2>Error al modificar el usuario: no se ha modificado el
-				usuario</h2>
-			<h3>Código: {{result.status}}</h3>
-			<h3>Mensaje: {{result.message}}</h3>
-		</div>
-	</div>
+        <div class="control-group text-center">
+            <br />
+            <div class="controls">
+                <a class="btn btn-primary" ng-click="save()"
+                   ng-disabled="!usuarioForm.$valid">Guardar</a><a class="btn btn-default" ng-click="close()">Volver al inicio</a>
+            </div>
+        </div>
+    </form>
+    <div ng-show="result != null">
+        <div class="alert alert-success" ng-show="result.status == 200">
+            <h2>Se ha modificado el usuario</h2>
+            <a ng-href="#/">Volver a la página principal</a><br />
+        </div>
+        <div class="alert alert-danger" ng-show="result.status != 200">
+            <h2>Error al modificar el usuario: no se ha modificado el
+                usuario</h2>
+            <h3>Código: {{result.status}}</h3>
+            <h3>Mensaje: {{result.message}}</h3>
+        </div>
+    </div>
 </div>
 <div class="panel-footer" style="font-family: Questrial, serif;"
-	ng-include="'js/system/footer.html'"></div>
+     ng-include="'js/system/footer.html'"></div>

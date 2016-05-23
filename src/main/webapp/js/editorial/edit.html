@@ -26,73 +26,73 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-	ng-include="'js/system/header.html'"></div>
+     ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
-	<form name="editorialForm" class="form-horizontal"
-		ng-show="result == null" novalidate>
+    <form name="editorialForm" class="form-horizontal"
+          ng-show="result == null" novalidate>
 
-		<div id="id-group" class="form-group">
-			<label class="col-sm-2 control-label" for="id">Identificador:</label>
-			<div class="control col-sm-1">
-				<input ng-model="obj.id" type="text" id="id" class="form-control"
-					name="id" size="15" placeholder="id" disabled="disabled">
-			</div>
-		</div>
+        <div id="id-group" class="form-group">
+            <label class="col-sm-2 control-label" for="id">Identificador:</label>
+            <div class="control col-sm-1">
+                <input ng-model="obj.id" type="text" id="id" class="form-control"
+                       name="id" size="15" placeholder="id" disabled="disabled">
+            </div>
+        </div>
 
-		<div id="titulo-group" class="form-group">
-			<label class="col-sm-2 control-label" for="nombre">Nombre:</label>
-			<div class="control col-sm-4">
-				<input ng-model="obj.nombre" type="text" id="nombre"
-					class="form-control" name="nombre"
-					ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ0-9 ]*$/" required>
-				<span
-					ng-show="!editorialForm.$pristine && editorialForm.nombre.$error.required">Campo
-					requerido.</span> <span
-					ng-show="!editorialForm.$pristine && editorialForm.nombre.$error.pattern">El
-					texto introducido no es correcto. No introducir caracteres
-					especiales.</span>
-			</div>
-		</div>
+        <div id="titulo-group" class="form-group">
+            <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
+            <div class="control col-sm-4">
+                <input ng-model="obj.nombre" type="text" id="nombre"
+                       class="form-control" name="nombre"
+                       ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ0-9 ]*$/" required>
+                <span
+                    ng-show="!editorialForm.$pristine && editorialForm.nombre.$error.required">Campo
+                    requerido.</span> <span
+                    ng-show="!editorialForm.$pristine && editorialForm.nombre.$error.pattern">El
+                    texto introducido no es correcto. No introducir caracteres
+                    especiales.</span>
+            </div>
+        </div>
 
-		<div id="contenido-group" class="form-group">
-			<label class="col-sm-2 control-label" for="bio">Biografía</label>
-			<div class="control col-sm-9">
-				<textarea class="form-control" ng-model="obj.bio" id="bio"
-					name="bio" rows="6"></textarea>
-			</div>
-		</div>
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="bio">Biografía</label>
+            <div class="control col-sm-9">
+                <textarea class="form-control" ng-model="obj.bio" id="bio"
+                          name="bio" rows="6"></textarea>
+            </div>
+        </div>
 
-		<div id="contenido-group" class="form-group">
-			<label class="col-sm-2 control-label" for="website">Website:</label>
-			<div class="control col-sm-4">
-				<input ng-model="obj.website" type="text" id="website"
-					class="form-control" name="website" size="15" placeholder="website">
-			</div>
-		</div>
+        <div id="contenido-group" class="form-group">
+            <label class="col-sm-2 control-label" for="website">Website:</label>
+            <div class="control col-sm-4">
+                <input ng-model="obj.website" type="text" id="website"
+                       class="form-control" name="website" size="15" placeholder="website">
+            </div>
+        </div>
 
-		<div class="control-group text-center">
-			<div class="controls">
-				<a class="btn btn-primary" ng-click="save()"
-					ng-disabled="!editorialForm.$valid">Guardar</a> <a
-					class="btn btn-default" ng-click="plist()">Ir al listado de
-					Editoriales</a> <a class="btn btn-default" ng-click="close()">Ir al
-					Inicio</a>
-			</div>
-		</div>
-	</form>
-	<div ng-show="result != null">
-		<div class="alert alert-success" ng-show="result.status == 200">
-			<h2>Se ha modificado el registro</h2>
-			<a ng-href="#/editorial/view/{{id}}">Ver el registro modificado</a> <br />
-			<a ng-href="#/editorial/plist">Volver al listado de Editoriales</a>
-		</div>
-		<div class="alert alert-danger" ng-show="result.status != 200">
-			<h2>Error al modificar el documento: no se ha modificado el
-				documento</h2>
-			<h3>Código: {{result.status}}</h3>
-			<h3>Mensaje: {{result.message}}</h3>
-		</div>
-	</div>
+        <div class="control-group text-center">
+            <div class="controls">
+                <a class="btn btn-primary" ng-click="save()"
+                   ng-disabled="!editorialForm.$valid">Guardar</a> <a
+                   class="btn btn-default" ng-click="plist()">Ir al listado de
+                    Editoriales</a> <a class="btn btn-default" ng-click="close()">Ir al
+                    Inicio</a>
+            </div>
+        </div>
+    </form>
+    <div ng-show="result != null">
+        <div class="alert alert-success" ng-show="result.status == 200">
+            <h2>Se ha modificado el registro</h2>
+            <a ng-href="#/editorial/view/{{id}}">Ver el registro modificado</a> <br />
+            <a ng-href="#/editorial/plist">Volver al listado de Editoriales</a>
+        </div>
+        <div class="alert alert-danger" ng-show="result.status != 200">
+            <h2>Error al modificar el documento: no se ha modificado el
+                documento</h2>
+            <h3>Código: {{result.status}}</h3>
+            <h3>Mensaje: {{result.message}}</h3>
+        </div>
+    </div>
 </div>
 <div class="panel-footer" style="font-family: Questrial, serif;"
-	ng-include="'js/system/footer.html'"></div>
+     ng-include="'js/system/footer.html'"></div>

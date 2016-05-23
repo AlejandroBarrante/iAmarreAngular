@@ -31,8 +31,8 @@
 
 
 
-moduloEditorial.controller('EditorialViewController', ['$scope', '$routeParams', 'serverService','$location',
-    function ($scope, $routeParams, serverService,$location) {
+moduloEditorial.controller('EditorialViewController', ['$scope', '$routeParams', 'serverService', '$location',
+    function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Editorial";
         $scope.icon = "fa-users";
         $scope.ob = 'editorial';

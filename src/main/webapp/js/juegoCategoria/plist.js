@@ -148,10 +148,10 @@ moduloCategoriaJuego.controller('JuegoCategoriaPListController', ['$scope', '$ro
             return false;
         };
 
-       
+
         $scope.chooseOne = function (foreignObjectName) {
-            
-            
+
+
             //id del juego $scope.id
             //sharedSpaceJuego.setFase(1);
             sharedSpaceJuego.setReturnLink('juegoCategoria/plist/1/10/' + $scope.id);

@@ -31,8 +31,8 @@
 
 moduloAutorJuego.controller('AutorJuegoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
+
+        $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.nombre = true;
         $scope.visibles.fechaPublicacion = true;
@@ -115,7 +115,7 @@ moduloAutorJuego.controller('AutorJuegoPListController', ['$scope', '$routeParam
 
                 $scope.page = data.message.page.message;
                 //$scope.registers = data.message.registers.message;
-               // $scope.status = "";
+                // $scope.status = "";
             }
         });
 

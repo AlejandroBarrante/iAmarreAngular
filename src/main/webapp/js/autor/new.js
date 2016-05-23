@@ -65,7 +65,7 @@ moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$locati
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-        
+
         $scope.view = function () {
             $location.path('/' + $scope.ob + '/view/');
         }

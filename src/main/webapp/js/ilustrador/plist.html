@@ -235,7 +235,7 @@ THE SOFTWARE.
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="obj in page | filter: searchText">
+                <tr ng-repeat="obj in page| filter: searchText">
                     <!-- <td ng-show="visibles.id" class="text-right">{{obj.id}}</td> -->
                     <td ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}">{{obj.nombre}}</a></td>
                     <td ng-show="visibles.fechaNac">{{obj.fechaNac}}</td>

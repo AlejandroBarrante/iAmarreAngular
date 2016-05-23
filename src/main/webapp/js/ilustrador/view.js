@@ -31,8 +31,8 @@
 
 
 
-moduloIlustrador.controller('IlustradorViewController', ['$scope', '$routeParams', 'serverService','$location',
-    function ($scope, $routeParams, serverService,$location) {
+moduloIlustrador.controller('IlustradorViewController', ['$scope', '$routeParams', 'serverService', '$location',
+    function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Ilustrador";
         $scope.icon = "fa-paint-brush";
         $scope.ob = 'ilustrador';

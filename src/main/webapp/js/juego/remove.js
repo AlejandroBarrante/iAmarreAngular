@@ -46,4 +46,4 @@ moduloJuego.controller('JuegoRemoveController', ['$scope', '$routeParams', 'serv
             });
         };
 
-   }]);
+    }]);

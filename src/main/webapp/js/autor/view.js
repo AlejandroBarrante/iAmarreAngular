@@ -31,8 +31,8 @@
 
 
 
-moduloAutor.controller('AutorViewController', ['$scope', '$routeParams', 'serverService','$location',
-    function ($scope, $routeParams, serverService,$location) {
+moduloAutor.controller('AutorViewController', ['$scope', '$routeParams', 'serverService', '$location',
+    function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Autor";
         $scope.icon = "fa fa-male";
         $scope.ob = 'autor';

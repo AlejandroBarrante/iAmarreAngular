@@ -4,22 +4,11 @@
         <servlet-name>ControlJson</servlet-name>
         <servlet-class>net.daw.control.JsonControl</servlet-class>
     </servlet>
-    <!-- <servlet>
-        <servlet-name>ControlJsp</servlet-name>
-        <servlet-class>net.daw.control.JspControl</servlet-class>
-    </servlet> -->
+
     <servlet>
         <servlet-name>json</servlet-name>
         <servlet-class>net.daw.control.json</servlet-class>
     </servlet>
-    <!--<servlet-mapping>
-        <servlet-name>ControlJson</servlet-name>
-        <url-pattern>/json_old</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControlJsp</servlet-name>
-        <url-pattern>/jsp</url-pattern>
-    </servlet-mapping> -->
     <servlet>
         <servlet-name>upload</servlet-name>
         <servlet-class>net.daw.control.upload</servlet-class>

@@ -65,7 +65,7 @@ moduloCategoria.controller('CategoriaNewController', ['$scope', '$routeParams', 
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-        
+
         $scope.view = function () {
             $location.path('/' + $scope.ob + '/view/');
         }

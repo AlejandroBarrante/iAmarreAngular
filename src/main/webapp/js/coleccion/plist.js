@@ -31,8 +31,8 @@
 
 moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
+
+        $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.titulo = true;
         $scope.visibles.fechaPublicacion = true;
@@ -115,7 +115,7 @@ moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams'
 
                 $scope.page = data.message.page.message;
                 //$scope.registers = data.message.registers.message;
-               // $scope.status = "";
+                // $scope.status = "";
             }
         });
 

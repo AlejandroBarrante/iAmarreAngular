@@ -50,7 +50,7 @@ angular.module('Filters').filter('clipString', function ($filter)
 
     };
 });
-    
+
 angular.module('Filters').filter('booleanizate', function ($filter)
 {
     return function (input)
@@ -59,9 +59,9 @@ angular.module('Filters').filter('booleanizate', function ($filter)
             return "";
         }
 
-        if (input==true) {
+        if (input == true) {
             return '<i class="fa fa-check"></i>';
-        }else{
+        } else {
             return '<i class="fa fa-times"></i>';
         }
 

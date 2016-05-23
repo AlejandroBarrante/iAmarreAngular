@@ -148,9 +148,9 @@ moduloIlustradorJuego.controller('JuegoIlustradorPListController', ['$scope', '$
             return false;
         };
 
-       
+
         $scope.chooseOne = function (foreignObjectName) {
-            
+
             sharedSpaceJuego.setReturnLink('juegoIlustrador/plist/1/10/' + $scope.id);
             sharedSpaceJuego.set_idJuego($scope.id);
             $location.path('/' + foreignObjectName + '/selection/1/100/' + $scope.id);

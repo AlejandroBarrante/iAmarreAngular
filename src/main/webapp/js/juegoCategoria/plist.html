@@ -50,7 +50,7 @@ THE SOFTWARE.
 
                             <div class="col-lg-6  col-md-6 col-sm-8 text-center">
                                 Paginación: <br>
-                                 <ul class="pagination">
+                                <ul class="pagination">
                                     <li><a class="pagination_link" ng-show="numpage > 1" ng-attr-id="{{numpage - 1}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + (numpage - 1) + '/' + rpp + params}}">prev</a></li>
                                     <li><a class="pagination_link" id="1" ng-attr-href="{{'#/juegoCategoria/' + op + '/1/' + rpp + '/' + id + params}}" ng-show="numpage > neighbourhood + 1">1</a></li>
 
@@ -77,7 +77,7 @@ THE SOFTWARE.
                             </div>
                             <div class="col-lg-3  col-md-3 col-sm-4 text-center">
                                 Registros por página: <br>
-                                 <ul class="pagination">
+                                <ul class="pagination">
                                     <li class="active" ng-show="rpp == 10"><a class="rpp_link" id="10" href="#/juegoCategoria/{{op}}/{{numpage}}/10/{{id + params}}">10</a></li>
                                     <li ng-show="rpp != 10"><a class="rpp_link" id="10" href="#/juegoCategoria/{{op}}/{{numpage}}/10/{{id + params}}">10</a></li>            
                                     <li class="active" ng-show="rpp == 50"><a class="rpp_link" id="10" href="#/juegoCategoria/{{op}}/{{numpage}}/50/{{id + params}}">50</a></li>
@@ -143,8 +143,8 @@ THE SOFTWARE.
 
 
     <div id="datos">
-        
-        <h1 ng-repeat="obj in page | limitTo:1">{{obj.obj_juego.titulo}}</h1>
+
+        <h1 ng-repeat="obj in page| limitTo:1">{{obj.obj_juego.titulo}}</h1>
 
         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
             <thead>             

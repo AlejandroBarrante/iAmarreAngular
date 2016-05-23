@@ -36,7 +36,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
         $scope.result = null;
         $scope.title = "Crear un nuevo Juego";
         $scope.icon = "fa-gamepad";
-    
+
 
 
 
@@ -108,15 +108,15 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
                     }
                 });
             }, 200);
-            
-            $scope.filename =  document.getElementById('file').value.toString();
-            
-                        
+
+            $scope.filename = document.getElementById('file').value.toString();
+
+
             serverService.getDataFromPromise(serverService.promise_setImage($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             })
 
-       };
+        };
 
         $scope.$watch('obj.obj_editorial.id', function () {
             if ($scope.obj) {
@@ -148,5 +148,5 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
             $location.path('/juego/view/');
         };
 
-       
+
     }]);

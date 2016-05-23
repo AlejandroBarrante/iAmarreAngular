@@ -31,8 +31,8 @@
 
 moduloJuego.controller('JuegoPListController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        
-        $scope.visibles={};
+
+        $scope.visibles = {};
         $scope.visibles.id = true;
         $scope.visibles.nombre = true;
         $scope.visibles.fechaPublicacion = true;
