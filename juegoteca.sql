@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-05-2016 a las 02:30:25
+-- Tiempo de generación: 24-05-2016 a las 09:43:53
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.30
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 --
 
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'Medieval', 'Los juegos Medievales suelen tener temáticas o argumentos localizados en Europa o Asia, entre el siglo V y el siglo XVI.\r\n\r\n\r\n'),
+(1, 'Medieval', 'Los juegos Medievales suelen tener temáticas o argumentos localizados en Europa o Asia, entre el siglo V y el siglo XVI.'),
 (2, 'Construcción de Territorios', 'Los juegos de Construcción de Territorios consisten en que los jugadores establecen u obtienen el control sobre un área específica. A veces, estos juegos utilizan mecánicas de Control de Área, en las que dichas áreas no están necesariamente delimitadas al inicio del juego, sino que se van ampliando a medida que el juego progresa. \r\n'),
 (3, 'Agricultura', 'Los juegos de Agricultura animan a los jugadores a construir y gestionar una granja con el propósito de hacer crecer cultivos, a menudo con el objetivo de ser vendidos o comerciados posteriormente durante la partida. \r\n'),
 (4, 'Animales', 'Los juegos de Animales incluyen animales como un componente principal del juego o de la temática del mismo. Estos juegos suelen requerir de los jugadores que gestionen o controlen animales. A veces, los jugadores toman el papel de dichos animales durante el juego. \r\n'),
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `coleccion` (
   `id` int(11) NOT NULL,
   `id_juego` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `coleccion`
@@ -230,9 +230,7 @@ INSERT INTO `coleccion` (`id`, `id_juego`, `id_usuario`) VALUES
 (1, 1, 31),
 (2, 2, 31),
 (3, 11, 32),
-(4, 14, 31),
-(5, 8, 31),
-(6, 10, 31);
+(5, 8, 31);
 
 -- --------------------------------------------------------
 
@@ -547,8 +545,7 @@ CREATE TABLE IF NOT EXISTS `tipousuario` (
 
 INSERT INTO `tipousuario` (`id`, `descripcion`) VALUES
 (1, 'Administrador'),
-(2, 'Usuario'),
-(3, 'Visitante');
+(2, 'Usuario');
 
 -- --------------------------------------------------------
 
@@ -572,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 INSERT INTO `usuario` (`id`, `login`, `password`, `id_tipousuario`, `ciudad`, `firma`) VALUES
 (31, 'Alex', '338aede87c8cf2bd9e6e5e4440c21d34', 1, 'Valencia', 'No es oro todo lo que reluce, ni toda la gente errante anda perdida.'),
 (32, 'Yolanda', '338aede87c8cf2bd9e6e5e4440c21d34', 1, 'Valencia', 'Dios no quiere que seas feliz, quiere que seas fuerte.'),
-(35, 'Rafael', '9135d8523ad3da99d8a4eb83afac13d1', 1, 'Valencia', 'The Best');
+(35, 'Rafael', '9135d8523ad3da99d8a4eb83afac13d1', 2, 'Valencia', 'The Best');
 
 --
 -- Índices para tablas volcadas
@@ -690,7 +687,7 @@ ALTER TABLE `categoriajuego`
 -- AUTO_INCREMENT de la tabla `coleccion`
 --
 ALTER TABLE `coleccion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `dependencialenguaje`
 --
