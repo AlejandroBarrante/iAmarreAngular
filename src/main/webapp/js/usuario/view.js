@@ -29,16 +29,12 @@
 
 'use strict';
 
-
-
-
-
-moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService','$location',
+moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de usuario";
         $scope.icon = "fa-user";
         $scope.ob = 'usuario';
-        $scope.id = $routeParams.id;                        
+        $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });
@@ -51,4 +47,9 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
         $scope.back = function () {
             window.history.back();
         };
+
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
+
     }]);

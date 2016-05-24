@@ -48,4 +48,8 @@ moduloCategoria.controller('CategoriaRemoveController', ['$scope', '$routeParams
             });
         };
 
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
+
     }]);

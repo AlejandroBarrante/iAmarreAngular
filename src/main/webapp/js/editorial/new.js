@@ -114,5 +114,9 @@ moduloEditorial.controller('EditorialNewController', ['$scope', '$routeParams', 
             $location.path('/' + $scope.ob + '/view/');
         }
 
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
+
 
     }]);

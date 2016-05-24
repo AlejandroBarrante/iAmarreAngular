@@ -80,12 +80,16 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
         };
 
         $scope.mostrarCont = function () {
-                if ($('#mostrar').is(':checked')) {
-                    $('#password').attr('type', 'text');
-                } else {
-                    $('#password').attr('type', 'password');
-                }
+            if ($('#mostrar').is(':checked')) {
+                $('#password').attr('type', 'text');
+            } else {
+                $('#password').attr('type', 'password');
+            }
         };
+
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
 
 
 

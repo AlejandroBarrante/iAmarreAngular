@@ -111,7 +111,7 @@ THE SOFTWARE.
 
                 <SELECT
                     onchange="window.location.href = this.options
-                                    [this.selectedIndex].value">
+                                            [this.selectedIndex].value">
                     <option>Ordenar...</option>
                     <option
                         value="#/juego/plist/{{numpage}}/{{rpp}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
@@ -155,9 +155,10 @@ THE SOFTWARE.
 
         <div class="text-center">
 
-            <div ng-if="bean2.obj_tipousuario.id == 1"><a class="btn btn-primary" href="#/juego/new/">Agregar Nuevo Juego</a></div>
-            <a class="btn btn-primary" href="#/">Volver al Inicio</a>
-
+            <div >
+                <a class="btn btn-primary" ng-if="bean2.obj_tipousuario.id == 1" href="#/juego/new/">Agregar Nuevo Juego</a>
+                <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+            </div>
         </div>
     </div>
 </div>

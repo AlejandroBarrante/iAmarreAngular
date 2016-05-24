@@ -73,6 +73,10 @@ moduloEditorial.controller('EditorialEditController', ['$scope', '$routeParams',
             $location.path('/' + $scope.ob + '/plist');
         };
 
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
+
 
 
     }]);

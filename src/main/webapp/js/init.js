@@ -116,6 +116,7 @@ init = {
     },
     unloadLoginForm: function () {
         $('#broth_modal_login').modal('hide');
+
     },
     login: function (username, password) {
         var that = this;
@@ -128,6 +129,7 @@ init = {
         init.getLogoutPromise().done(function (response) {
             $("#infoPanel").html(response.message);
             init.updateDisconnectedState();
+            location.reload();
         });
     },
     getUrlObjectFromUrlString: function (url) {
