@@ -146,5 +146,8 @@ moduloEditorial.controller('EditorialPListController', ['$scope', '$routeParams'
             return false;
         };
 
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
 
     }]);

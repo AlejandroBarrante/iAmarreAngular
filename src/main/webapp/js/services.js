@@ -135,13 +135,6 @@ angular.module('Services', [])
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                     return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=setcoleccion&id_juego=' + id_juego);
                 },
-                //promise_getautorfiltradoporjuego: function (strClass, id_juego) {
-                //return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getautorfiltradoporjuego&id_juego=' + id_juego, 'GET', '');
-                //},
-                //promise_getilustradorfiltradoporjuego: function (strClass, id_juego) {
-                //return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=getilustradorfiltradoporjuego&id_juego=' + id_juego, 'GET', '');
-                //},
-                //
                 get: function (objeto, numero) {
                     return $http.get('/' + this.appName + '/json' + objeto + '/' + numero + '/get.json').then(function (result) {
                         return result.data;

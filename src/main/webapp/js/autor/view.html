@@ -83,26 +83,12 @@ THE SOFTWARE.
 
     <div class="row-fluid">
 
-        <div class="col-md-12">
-
-            <br /> <br />
-
-            <div class="text-center">
-
-                <h3>Panel de Administración</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="row-fluid">
-
-
-        <div class="text-center">
-
+        <div class="text-center" ng-if="bean2.obj_tipousuario.id == 1">
+            <h3>Panel de Administración</h3>
             <a class="btn btn-primary" href="#/autor/edit/{{bean.id}}">Editar</a>
             <a class="btn btn-danger" href="#/autor/remove/{{bean.id}}">Borrar</a>
-
         </div>
+
     </div>
 
 

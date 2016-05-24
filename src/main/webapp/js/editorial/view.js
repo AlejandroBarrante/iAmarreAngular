@@ -40,6 +40,11 @@ moduloEditorial.controller('EditorialViewController', ['$scope', '$routeParams',
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });
+
+        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
+            $scope.bean2 = data.message;
+        });
+
         $scope.close = function () {
             $location.path('/index.html');
         };

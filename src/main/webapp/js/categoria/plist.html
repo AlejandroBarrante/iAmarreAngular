@@ -131,8 +131,8 @@ THE SOFTWARE.
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="btn btn-default action02" href="#/{{ob}}/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
-                                <li><a class="btn btn-default action03" href="#/{{ob}}/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
-                                <li><a class="btn btn-default action04" href="#/{{ob}}/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
+                                <li ng-if="bean2.obj_tipousuario.id == 1"><a class="btn btn-default action03" href="#/{{ob}}/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
+                                <li ng-if="bean2.obj_tipousuario.id == 1"><a class="btn btn-default action04" href="#/{{ob}}/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
                                 <li><a class="btn btn-default action05" href="#/categoriaJuego/plist/1/10/{{obj.id}}"><i class="fa fa-gamepad fa-2g"></i> Ver juegos</a></li>
                             </ul>
                         </div>
@@ -140,7 +140,7 @@ THE SOFTWARE.
                 </tr>
             </tbody>
         </table>  
-        <a class="btn btn-primary" href="#/categoria/new/">Agregar Nueva Categoría</a>
+        <div ng-if="bean2.obj_tipousuario.id == 1"><a class="btn btn-primary" href="#/categoria/new/">Agregar Nueva Categoría</a></div>
         <a class="btn btn-primary" href="#/">Volver al Inicio</a>
     </div>
 </div>
