@@ -119,11 +119,13 @@ THE SOFTWARE.
             <br /> <br />
 
             <div class="coleccion text-center">
-                <div class="btn-group" role="group" aria-label="añadir">
-                    <a class="btn btn-default action02" ng-click="go(bean.id)" data-toggle="modal" data-target="#myModal"><i
-                            class="fa fa-check fa-2g"></i> Añadir a mi colección</a> 
-                    <a class="btn btn-default action02" ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal"><i
-                            class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
+                <div class="btn-group" role="group">
+                    <a ng-if="bean2.obj_tipousuario.id == 1 || bean2.obj_tipousuario.id == 2" 
+                       class="btn btn-default action02" ng-click="go(bean.id)" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-check fa-2g"></i> Añadir a mi colección</a> 
+                    <a ng-if="bean2.obj_tipousuario.id == 1 || bean2.obj_tipousuario.id == 2" 
+                       class="btn btn-default action02" ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
                     <a class="btn btn-default" href="#/juego/plist/">Ir al listado de Juegos</a> <a class="btn btn-default" href="/juegoteca/#/">Ir al
                         Inicio</a>
                     <br/><br/><br/>
@@ -162,12 +164,32 @@ THE SOFTWARE.
                 <p class="modal-p">{{mensaje}}</p>
             </div>
             <div class="modal-footer">
-                <a id="vercol" class="btn btn-default" href="#/coleccion/plist/1/50/{{bean2.id}}">Ver colección</a>
+                <!--       <a id="vercol" class="btn btn-default" href="#/coleccion/plist/1/50/{{bean2.id}}" data-dismiss="modal">Ver colección</a> -->
+                <a ng-click="coleccion()" id="botcol" class="btn btn-success">Ver colección</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 
             </div>
         </div>
     </div>
 </div>
-<!-- Modal -->
+
+<!-- Modal  data-backdrop=""--> 
+
+<script src="../../vendor/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+                            $(document).ready(function () {
+
+                                $('#botcol').click(function () {
+                                    
+
+
+                                });
+
+                            });
+
+
+</script>
 

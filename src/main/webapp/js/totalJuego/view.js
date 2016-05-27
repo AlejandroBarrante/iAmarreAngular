@@ -45,6 +45,15 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
             $scope.bean2 = data.message;
         });
 
+        $scope.coleccion = function () {
+
+            $('#botcol').attr("href", "#/coleccion/plist/1/50/" + $scope.bean2.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
         $scope.back = function () {
             window.history.back();
         };
