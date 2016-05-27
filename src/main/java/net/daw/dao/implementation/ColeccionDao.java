@@ -317,6 +317,7 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
 
                 } else {
                     System.out.println("Ya tienes este juego.");
+                    iResult=-1;
                 }
 
             } catch (Exception ex) {

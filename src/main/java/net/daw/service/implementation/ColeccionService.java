@@ -480,7 +480,6 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
             Integer id_usuario = oUserBean.getId();
             Integer id_juego = ParameterCook.prepareInt("id_juego", oRequest);
 
-            //String jason = ParameterCook.prepareJson(oRequest);
             String resultado = null;
             Connection oConnection = null;
             ConnectionInterface oDataConnectionSource = null;
@@ -492,14 +491,12 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
                 ColeccionBean oColeccionBean = new ColeccionBean();
                 oColeccionBean.setId_usuario(id_usuario);
                 oColeccionBean.setId_juego(id_juego);
-                //   oColeccionBean = AppConfigurationHelper.getGson().fromJson(jason, oColeccionBean.getClass());
+
                 if (oColeccionBean != null) {
                     Integer iResult = oColeccionDao.setColeccion(oColeccionBean, id_usuario, id_juego);
-                    if (iResult >= 1) {
+
                         resultado = JsonMessage.getJson("200", iResult.toString());
-                    } else {
-                        resultado = JsonMessage.getJson("500", "Error during registry set");
-                    }
+
                 } else {
                     resultado = JsonMessage.getJson("500", "Error during registry set");
                 }
@@ -522,55 +519,6 @@ public class ColeccionService implements TableServiceInterface, ViewServiceInter
 
     }
 
-//    @Override
-//    public String set() throws Exception {
-//
-//        if (this.checkpermission("set")) {
-//            UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
-//            Integer id_usuario = oUserBean.getId();
-//            Integer id_juego = ParameterCook.prepareInt("id_juego", oRequest);
-//
-//            //String jason = ParameterCook.prepareJson(oRequest);
-//            String resultado = null;
-//            Connection oConnection = null;
-//            ConnectionInterface oDataConnectionSource = null;
-//            try {
-//                oDataConnectionSource = getSourceConnection();
-//                oConnection = oDataConnectionSource.newConnection();
-//                oConnection.setAutoCommit(false);
-//                ColeccionDao oColeccionDao = new ColeccionDao(oConnection);
-//                ColeccionBean oColeccionBean = new ColeccionBean();
-//                oColeccionBean.setId_usuario(id_usuario);
-//                oColeccionBean.setId_juego(id_juego);
-//                //   oColeccionBean = AppConfigurationHelper.getGson().fromJson(jason, oColeccionBean.getClass());
-//                if (oColeccionBean != null) {
-//                    Integer iResult = oColeccionDao.set(oColeccionBean);
-//                    if (iResult >= 1) {
-//                        resultado = JsonMessage.getJson("200", iResult.toString());
-//                    } else {
-//                        resultado = JsonMessage.getJson("500", "Error during registry set");
-//                    }
-//                } else {
-//                    resultado = JsonMessage.getJson("500", "Error during registry set");
-//                }
-//                oConnection.commit();
-//            } catch (Exception ex) {
-//                oConnection.rollback();
-//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
-//            } finally {
-//                if (oConnection != null) {
-//                    oConnection.close();
-//                }
-//                if (oDataConnectionSource != null) {
-//                    oDataConnectionSource.disposeConnection();
-//                }
-//            }
-//            return resultado;
-//        } else {
-//            return JsonMessage.getJsonMsg("401", "Unauthorized");
-//        }
-//
-//    }
     /**
      * Método para REMOVE de la colección
      *

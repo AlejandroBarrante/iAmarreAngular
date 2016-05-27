@@ -56,6 +56,11 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
             coleccion.id_juego = num;
             serverService.getDataFromPromise(serverService.promise_setOneColeccion(num).then(function (data) {
                 $scope.result = data;
+                if (data.data.message >= 0) {
+                    $scope.mensaje = 'El juego ha sido añadido a tu colección.';
+                } else {
+                    $scope.mensaje = 'El juego ya estaba en tu colección.';
+                }
                 $location.path(sharedSpaceJuego.getReturnLink());
             }));
         };
@@ -68,10 +73,13 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
             coleccion.id_juego = num;
             serverService.getDataFromPromise(serverService.promise_removeOneColeccion(num).then(function (data) {
                 $scope.result = data;
+                if (data.data.message >= 1) {
+                    $scope.mensaje = 'El juego ha sido eliminado de tu colección.';
+                } else {
+                    $scope.mensaje = 'El juego no estaba en tu colección.';
+                }
                 $location.path(sharedSpaceJuego.getReturnLink());
-                //if ($scope.result.status == "200"){
-                //    $(".coleccion").appendTo().text("Se ha añadido el juego a tu colección");
-                //}
+
 
             }));
         };
