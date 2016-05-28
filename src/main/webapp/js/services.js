@@ -111,9 +111,9 @@ angular.module('Services', [])
                 promise_removeOneColeccion: function (id_juego) {
                     return $http.get(configuration.getAppUrl() + '?ob=coleccion' + '&op=removecoleccion&id=' + id_juego, 'GET', '');
                 },
-                promise_setImage: function (strClass, filename, jsonfile) {
+                promise_setImage: function (strClass, filename, filename2, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=setconimagen' + '&filename=' + filename, {params: jsonfile});
+                    return $http.get(configuration.getAppUrl() + '?ob=' + strClass + '&op=setconimagen' + '&filename=' + filename + '&filename2=' + filename2, {params: jsonfile});
                 },
                 promise_setOne: function (strClass, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';

@@ -61,6 +61,8 @@ public class JuegoBean implements GenericBean {
     private String website = "";
     @Expose
     private String imagen = "";
+    @Expose
+    private String imagen2 = "";
     @Expose(serialize = false)
     private Integer id_editorial = 0;
     @Expose(deserialize = false)
@@ -245,6 +247,14 @@ public class JuegoBean implements GenericBean {
         this.imagen = imagen;
     }
 
+    public String getImagen2() {
+        return imagen2;
+    }
+
+    public void setImagen2(String imagen2) {
+        this.imagen2 = imagen2;
+    }
+
     /**
      *
      * @return
@@ -328,6 +338,7 @@ public class JuegoBean implements GenericBean {
         strJson += "edad:" + edad + ",";
         strJson += "website:" + website + ",";
         strJson += "imagen" + imagen + ",";
+        strJson += "imagen2" + imagen2 + ",";
         if (expand) {
             strJson += "obj_editorial:" + obj_editorial.toJson(false) + ",";
             strJson += "obj_dependencialenguaje:" + obj_dependencialenguaje.toJson(false) + ",";
@@ -358,6 +369,7 @@ public class JuegoBean implements GenericBean {
         strColumns += "edad,";
         strColumns += "website,";
         strColumns += "imagen,";
+        strColumns += "imagen2,";
         strColumns += "id_editorial,";
         strColumns += "id_dependencialenguaje";
 
@@ -382,6 +394,7 @@ public class JuegoBean implements GenericBean {
         strColumns += edad.toString() + ",";
         strColumns += EncodingUtilHelper.quotate(website) + ",";
         strColumns += EncodingUtilHelper.quotate(imagen) + ",";
+        strColumns += EncodingUtilHelper.quotate(imagen2) + ",";
         strColumns += id_editorial + ",";
         strColumns += id_dependencialenguaje;
 
@@ -406,6 +419,7 @@ public class JuegoBean implements GenericBean {
         strPairs += "edad=" + edad + ",";
         strPairs += "website=" + EncodingUtilHelper.quotate(website) + ",";
         strPairs += "imagen=" + EncodingUtilHelper.quotate(imagen) + ",";
+        strPairs += "imagen2=" + EncodingUtilHelper.quotate(imagen2) + ",";
         strPairs += "id_editorial=" + id_editorial + ",";
         strPairs += "id_dependencialenguaje=" + id_dependencialenguaje;
 
@@ -434,6 +448,7 @@ public class JuegoBean implements GenericBean {
         this.setEdad(oResultSet.getInt("edad"));
         this.setWebsite(oResultSet.getString("website"));
         this.setImagen(oResultSet.getString("imagen"));
+        this.setImagen2(oResultSet.getString("imagen2"));
         if (expand > 0) {
             EditorialBean oEditorialBean = new EditorialBean();
             EditorialDao oEditorialDao = new EditorialDao(pooledConnection);

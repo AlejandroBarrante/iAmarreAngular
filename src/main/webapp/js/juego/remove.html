@@ -37,16 +37,22 @@ THE SOFTWARE.
         <br /> <br /> <br /> <br />
 
         <div class="row-fluid">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
-                <br />
+                <br/>
 
-                <p>Aquí va una imagen del juego</p>
+                <div class="col-md-4 text-center">
+
+                    <img alt="imagen2" src="{{bean.imagen2}}" class="img-rounded">
+
+                </div>
+
+
 
             </div>
 
 
-            <div class="col-md-6">
+            <div class="col-md-8">
 
                 <br />
 
@@ -98,7 +104,7 @@ THE SOFTWARE.
             <div class="text-center">
                 <div>¿Está seguro de que desea borrar el registro?</div>
                 <a class="btn btn-danger" ng-click="remove()">Si</a> <a
-                    class="btn btn-default" ng-href="#/juego/plist">No</a>
+                    class="btn btn-default" ng-href="#/juego/plist/1/50">No</a>
             </div>
         </div>
         <div ng-show="result.status == 200">
@@ -107,7 +113,7 @@ THE SOFTWARE.
                 se ha podido eliminar el registro</h2>
             <h2 ng-show="result.message == 1" class="alert alert-success">Se
                 ha eliminado el registro</h2>
-            <a class="btn btn-default" ng-href="#/juego/plist">Volver</a>
+            <a class="btn btn-default" ng-href="#/juego/plist/1/50">Volver</a>
         </div>
 
         <div ng-show="result.status && !result.status == 200">

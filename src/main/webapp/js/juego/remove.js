@@ -44,6 +44,7 @@ moduloJuego.controller('JuegoRemoveController', ['$scope', '$routeParams', 'serv
             serverService.getDataFromPromise(serverService.promise_removeOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.result = data;
             });
+            $location.path('/juego/plist/1/50');
         };
 
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {

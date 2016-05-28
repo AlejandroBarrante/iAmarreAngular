@@ -69,10 +69,8 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
 
             console.log("save");
             console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});
-            //strValues = serverService.array_identificarArray(thisObject.form_getFormValues(strClass));
-            //  sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
 
-            //INICIO UPLOAD
+            //INICIO UPLOAD 1
 
             var form = document.getElementById('uploadForm');
             $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
@@ -111,11 +109,53 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
                 });
             }, 200);
 
+            //FIN UPLOAD 1
+
+            //INICIO UPLOAD 2
+
+            var form2 = document.getElementById('uploadForm2');
+            $("#spinner").append('<img src="img/spinner.gif" style="width:50px"></div>').fadeIn(1000);
+            var oformData2 = new FormData(form2);
+            oformData2.append("id", 4);
+            oformData2.append("value", "ajax...");
+            this.timer = setTimeout(function () {
+                $.ajax({
+                    url: 'upload',
+                    processData: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    mimeType: "multipart/form-data",
+                    data: oformData2,
+                    type: 'post',
+                    success: function (msg) {
+                        msg = JSON.parse(msg);
+                        if (msg.status == 200) {
+                            $("#spinner").empty();
+                            //http://stackoverflow.com/questions/4285042/asychronously-load-images-with-jquery
+                            var img = $("<img />").attr('src', msg.message.imglink).attr("width", 100)
+                                    .on('load', function () {
+                                        if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                                            alert('broken image!');
+                                        } else {
+                                            $("#info").empty().append("<p>Image was sucessfully uploaded:</p>");
+                                            $("#info").append(img);
+                                        }
+                                    });
+                        } else {
+                            $("#spinner").empty();
+                            $("#info").empty().append("<h2>ERROR: " + msg.message + "</h2>");
+                        }
+                    }
+                });
+            }, 200);
+
             $scope.filename = document.getElementById('file').value.toString();
 
-            //FIN UPLOAD
+            $scope.filename2 = document.getElementById('file2').value.toString();
 
-            serverService.getDataFromPromise(serverService.promise_setImage($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
+            //FIN UPLOAD 2
+
+            serverService.getDataFromPromise(serverService.promise_setImage($scope.ob, $scope.filename, $scope.filename2, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             })
 
@@ -144,7 +184,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/juego/plist');
+            $location.path('/juego/plist/1/50');
         };
 
         $scope.view = function () {

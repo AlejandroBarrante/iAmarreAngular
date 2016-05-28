@@ -116,35 +116,6 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
 
     }
 
-//    @Override
-//    public String getall() throws Exception {
-//
-//        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-//        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-//        String data = null;
-//        Connection oConnection = null;
-//        ConnectionInterface oDataConnectionSource = null;
-//
-//        try {
-//            oDataConnectionSource = getSourceConnection();
-//            oConnection = oDataConnectionSource.newConnection();
-//            JuegoDao oJuegoDao = new JuegoDao(oConnection);
-//            ArrayList<JuegoBean> arrBeans = oJuegoDao.getAll(alFilter, hmOrder, 1);
-//            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
-//        } finally {
-//            if (oConnection != null) {
-//                oConnection.close();
-//            }
-//            if (oDataConnectionSource != null) {
-//                oDataConnectionSource.disposeConnection();
-//            }
-//        }
-//
-//        return data;
-//
-//    }
     /**
      * Métodos para listar juegos
      *
@@ -446,8 +417,10 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
         if (this.checkpermission("set")) {
             String jason = ParameterCook.prepareJson(oRequest);
             String filename = ParameterCook.prepareString("filename", oRequest);
+            String filename2 = ParameterCook.prepareString("filename2", oRequest);
 
             String nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
+            String nombreCambiado2 = filename2.replace("C:\\fakepath\\", "/images/");
 
             String resultado = null;
             Connection oConnection = null;
@@ -456,11 +429,12 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
                 oDataConnectionSource = getSourceConnection();
                 oConnection = oDataConnectionSource.newConnection();
                 oConnection.setAutoCommit(false);
-                
+
                 JuegoDao oJuegoDao = new JuegoDao(oConnection);
                 JuegoBean oJuegoBean = new JuegoBean();
                 oJuegoBean = AppConfigurationHelper.getGson().fromJson(jason, oJuegoBean.getClass());
                 oJuegoBean.setImagen(nombreCambiado);
+                oJuegoBean.setImagen2(nombreCambiado2);
 
                 if (oJuegoBean != null) {
                     Integer iResult = oJuegoDao.set(oJuegoBean);
