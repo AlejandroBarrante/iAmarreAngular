@@ -35,7 +35,7 @@ moduloAutor.controller('AutorRemoveController', ['$scope', '$routeParams', 'serv
         $scope.ob = 'autor';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un autor";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "/images/A.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });

@@ -35,7 +35,7 @@ moduloIlustrador.controller('IlustradorRemoveController', ['$scope', '$routePara
         $scope.ob = 'ilustrador';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un ilustrador";
-        $scope.icon = "fa-paint-brush";
+        $scope.icon = "/images/I.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });

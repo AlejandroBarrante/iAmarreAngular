@@ -35,7 +35,7 @@ moduloEditorial.controller('EditorialSelectionController', ['$scope', '$routePar
         $scope.ob = "editorial";
         $scope.op = "selection";
         $scope.title = "Selección de Editorial";
-        $scope.icon = "fa-users";
+        $scope.icon = "/images/E.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

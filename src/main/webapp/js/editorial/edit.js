@@ -34,7 +34,7 @@ moduloEditorial.controller('EditorialEditController', ['$scope', '$routeParams',
         $scope.ob = 'editorial';
         $scope.result = null;
         $scope.title = "Edición de Editorial";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/E.png";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

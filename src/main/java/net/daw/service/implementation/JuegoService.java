@@ -463,16 +463,56 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
-
-    // MÉTODOS NO IMPLEMENTADOS
+    
     /**
+     * Método SET de Editorial
      *
-     * @return @throws Exception
+     * @return resultado
+     * @throws Exception
      */
     @Override
     public String set() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.checkpermission("set")) {
+            String jason = ParameterCook.prepareJson(oRequest);
+            String resultado = null;
+            Connection oConnection = null;
+            ConnectionInterface oDataConnectionSource = null;
+            try {
+                oDataConnectionSource = getSourceConnection();
+                oConnection = oDataConnectionSource.newConnection();
+                oConnection.setAutoCommit(false);
+                JuegoDao oJuegoDao = new JuegoDao(oConnection);
+                JuegoBean oJuegoBean = new JuegoBean();
+                oJuegoBean = AppConfigurationHelper.getGson().fromJson(jason, oJuegoBean.getClass());
+                if (oJuegoBean != null) {
+                    Integer iResult = oJuegoDao.set(oJuegoBean);
+                    if (iResult >= 1) {
+                        resultado = JsonMessage.getJson("200", iResult.toString());
+                    } else {
+                        resultado = JsonMessage.getJson("500", "Error during registry set");
+                    }
+                } else {
+                    resultado = JsonMessage.getJson("500", "Error during registry set");
+                }
+                oConnection.commit();
+            } catch (Exception ex) {
+                oConnection.rollback();
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oDataConnectionSource != null) {
+                    oDataConnectionSource.disposeConnection();
+                }
+            }
+            return resultado;
+        } else {
+            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        }
     }
+
+    // MÉTODOS NO IMPLEMENTADOS
 
     /**
      *

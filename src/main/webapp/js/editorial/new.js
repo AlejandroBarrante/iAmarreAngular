@@ -34,7 +34,7 @@ moduloEditorial.controller('EditorialNewController', ['$scope', '$routeParams', 
         $scope.ob = 'editorial';
         $scope.result = null;
         $scope.title = "Crear una nueva Editorial";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "/images/E.png";
         if (sharedSpaceService.getFase() == 0) {
             $scope.obj = {};
         } else {

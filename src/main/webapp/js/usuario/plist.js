@@ -47,7 +47,7 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 's
         $scope.ob = "usuario";
         $scope.op = "plist";
         $scope.title = "Listado de usuarios";
-        $scope.icon = "fa-user";
+        $scope.icon = "/images/U.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

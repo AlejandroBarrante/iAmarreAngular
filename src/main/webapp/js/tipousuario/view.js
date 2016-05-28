@@ -34,7 +34,7 @@
 moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de tipo de usuario";
-        $scope.icon = "fa-male";
+        $scope.icon = "/images/U.png";
         $scope.ob = 'tipousuario';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

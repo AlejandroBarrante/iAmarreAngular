@@ -34,7 +34,7 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
         $scope.ob = 'usuario';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un usuario";
-        $scope.icon = "fa-user";
+        $scope.icon = "/images/U.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });

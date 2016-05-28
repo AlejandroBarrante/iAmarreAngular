@@ -35,7 +35,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
         $scope.op = 'new';
         $scope.result = null;
         $scope.title = "Crear un nuevo Juego";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/J.png";
 
 
 

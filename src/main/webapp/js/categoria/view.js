@@ -34,7 +34,7 @@
 moduloCategoria.controller('CategoriaViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Categoría";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         $scope.ob = 'categoria';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

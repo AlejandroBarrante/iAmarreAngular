@@ -34,7 +34,7 @@
 moduloIlustrador.controller('IlustradorViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Ilustrador";
-        $scope.icon = "fa-paint-brush";
+        $scope.icon = "/images/I.png";
         $scope.ob = 'ilustrador';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

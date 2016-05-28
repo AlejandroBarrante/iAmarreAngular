@@ -45,7 +45,7 @@ moduloColeccion.controller('ColeccionPListController', ['$scope', '$routeParams'
         $scope.ob = "coleccion";
         $scope.op = "plist";
         $scope.title = "Listado de Juegos por Usuario";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/U.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_usuario;
 

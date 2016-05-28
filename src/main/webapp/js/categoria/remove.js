@@ -35,7 +35,7 @@ moduloCategoria.controller('CategoriaRemoveController', ['$scope', '$routeParams
         $scope.ob = 'categoria';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de una categoría";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });

@@ -45,7 +45,7 @@ moduloJuego.controller('JuegoPListController', ['$scope', '$routeParams', 'serve
         $scope.ob = "juego";
         $scope.op = "plist";
         $scope.title = "Listado de Juegos";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/J.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

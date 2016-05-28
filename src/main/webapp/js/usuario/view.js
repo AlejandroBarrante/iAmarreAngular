@@ -32,7 +32,7 @@
 moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de usuario";
-        $scope.icon = "fa-user";
+        $scope.icon = "/images/U.png";
         $scope.ob = 'usuario';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

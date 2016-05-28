@@ -74,7 +74,7 @@ THE SOFTWARE.
                             <div class="col-lg-3  col-md-3 col-sm-4 text-center">
                                 Registros por página: <br>
                                 <ul class="pagination">
-                                    <li class="active" ng-show="rpp == 10"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/10' + params}}">10</a></li>
+                                    <li class="active registro" ng-show="rpp == 10"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/10' + params}}">10</a></li>
                                     <li ng-show="rpp != 10"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/10' + params}}">10</a></li>            
                                     <li class="active" ng-show="rpp == 50"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/50' + params}}">50</a></li>
                                     <li ng-show="rpp != 50"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/50' + params}}">50</a></li>
@@ -148,8 +148,8 @@ THE SOFTWARE.
             </tbody>
         </table>  
         <div class="text-center">
-            <a class="btn btn-primary" ng-if="bean2.obj_tipousuario.id == 1" href="#/autor/new/">Agregar Nuevo Autor</a>
-            <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+            <a class="btn agregar" ng-if="bean2.obj_tipousuario.id == 1" href="#/autor/new/">Agregar Nuevo Autor</a>
+            <a class="btn volver stroke" href="#/">Volver al Inicio</a>
         </div>
     </div>
 </div>

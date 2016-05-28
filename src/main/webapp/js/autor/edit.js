@@ -34,7 +34,7 @@ moduloAutor.controller('AutorEditController', ['$scope', '$routeParams', '$locat
         $scope.ob = 'autor';
         $scope.result = null;
         $scope.title = "Edición de Autor";
-        $scope.icon = "fa-male";
+        $scope.icon = "/images/A.png";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

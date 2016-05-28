@@ -34,7 +34,7 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
         $scope.ob = 'juego';
         $scope.result = null;
         $scope.title = "Edición de Juego";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/J.png";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

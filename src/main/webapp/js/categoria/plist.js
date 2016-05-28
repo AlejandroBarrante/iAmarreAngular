@@ -41,7 +41,7 @@ moduloCategoria.controller('CategoriaPListController', ['$scope', '$routeParams'
         $scope.ob = "categoria";
         $scope.op = "plist";
         $scope.title = "Listado de Categorías";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

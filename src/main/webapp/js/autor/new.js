@@ -34,7 +34,7 @@ moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$locati
         $scope.ob = 'autor';
         $scope.result = null;
         $scope.title = "Crear un nuevo Autor";
-        $scope.icon = "fa fa-male";
+        $scope.icon = "/images/A.png";
         if (sharedSpaceService.getFase() == 0) {
             $scope.obj = {};
         } else {

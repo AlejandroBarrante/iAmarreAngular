@@ -34,7 +34,7 @@ moduloIlustrador.controller('IlustradorNewController', ['$scope', '$routeParams'
         $scope.ob = 'ilustrador';
         $scope.result = null;
         $scope.title = "Crear un nuevo Autor";
-        $scope.icon = "fa-paint-brush";
+        $scope.icon = "/images/I.png";
         if (sharedSpaceService.getFase() == 0) {
             $scope.obj = {};
         } else {

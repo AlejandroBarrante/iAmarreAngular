@@ -35,7 +35,7 @@ moduloEditorial.controller('EditorialRemoveController', ['$scope', '$routeParams
         $scope.ob = 'editorial';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de una editorial";
-        $scope.icon = "fa-file-text-o";
+        $scope.icon = "/images/E.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });

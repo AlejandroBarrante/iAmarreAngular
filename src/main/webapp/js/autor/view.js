@@ -34,7 +34,7 @@
 moduloAutor.controller('AutorViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Autor";
-        $scope.icon = "fa fa-male";
+        $scope.icon = "/images/A.png";
         $scope.ob = 'autor';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

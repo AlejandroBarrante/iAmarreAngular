@@ -43,7 +43,7 @@ moduloIlustrador.controller('IlustradorPListController', ['$scope', '$routeParam
         $scope.ob = "ilustrador";
         $scope.op = "plist";
         $scope.title = "Listado de Ilustradores";
-        $scope.icon = "fa-paint-brush";
+        $scope.icon = "/images/I.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

@@ -27,25 +27,7 @@ THE SOFTWARE.
 
 -->
 <ul class="nav navbar-nav" id="appMenu">
-    <li><a href="#/license">Licencia</a></li>
-    <li class="dropdown" ng-if="bean.obj_tipousuario.id == 1">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administración<span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header">Relacionado con Juegos</li>
-            <li><a href="#/juego/new"><i class="fa fa-gamepad fa-tag"></i> Añadir nuevo juego</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Relacionado con autores</li>
-            <li><a href="#/autor/new"><i class="fa fa-fw fa-male"></i> Añadir nuevo autor</a></li>
-            <li><a href="#/ilustrador/new"><i class="fa fa-fw fa-paint-brush"></i> Añadir nuevo ilustrador</a></li>
-            <li class="dropdown-header">Relacionado con editoriales</li>
-            <li><a href="#/editorial/new"><i class="fa fa-fw fa-users"></i> Añadir nueva editorial</a></li>
-            <li class="dropdown-header">Relacionado con categorías</li>
-            <li><a href="#/categoria/new"><i class="fa fa-fw fa-map-o"></i> Añadir nueva categoría</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Relacionado con usuarios</li>
-            <li><a href="#/usuario/plist/1/100"><i class="fa fa-fw fa-user"></i> Listado de Usuarios</a></li>
-        </ul>
-    </li>
+
     <li class="dropdown">
         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Base de Datos<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
@@ -58,7 +40,19 @@ THE SOFTWARE.
 
         </ul>
 
+    </li>
 
+    <li class="dropdown" ng-if="bean.obj_tipousuario.id == 1">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administración<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+
+            <li><a href="#/juego/new"><i class="fa fa-gamepad fa-tag"></i> Añadir nuevo juego</a></li>
+            <li><a href="#/autor/new"><i class="fa fa-fw fa-male"></i> Añadir nuevo autor</a></li>
+            <li><a href="#/ilustrador/new"><i class="fa fa-fw fa-paint-brush"></i> Añadir nuevo ilustrador</a></li>
+            <li><a href="#/editorial/new"><i class="fa fa-fw fa-users"></i> Añadir nueva editorial</a></li>
+            <li><a href="#/categoria/new"><i class="fa fa-fw fa-map-o"></i> Añadir nueva categoría</a></li>
+            <li><a href="#/usuario/plist/1/100"><i class="fa fa-fw fa-user"></i> Listado de Usuarios</a></li>
+        </ul>
     </li>
 
 </ul>

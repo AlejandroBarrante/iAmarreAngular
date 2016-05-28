@@ -36,7 +36,7 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         $scope.result = null;
 
         $scope.title = "Alta de nuevo usuario";
-        $scope.icon = "fa fa-user";
+        $scope.icon = "/images/U.png";
 
         $scope.obj = {};
         $scope.obj.obj_tipousuario = {"id": 0};

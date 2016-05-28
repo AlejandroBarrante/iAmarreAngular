@@ -34,7 +34,7 @@ moduloJuego.controller('JuegoRemoveController', ['$scope', '$routeParams', 'serv
         $scope.ob = 'juego';
         $scope.id = $routeParams.id;
         $scope.title = "Borrado de un juego";
-        $scope.icon = "fa fa-gamepad";
+        $scope.icon = "/images/J.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });

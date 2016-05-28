@@ -116,35 +116,6 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
 
     }
 
-//    @Override
-//    public String getall() throws Exception {
-//
-//        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-//        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-//        String data = null;
-//        Connection oConnection = null;
-//        ConnectionInterface oDataConnectionSource = null;
-//
-//        try {
-//            oDataConnectionSource = getSourceConnection();
-//            oConnection = oDataConnectionSource.newConnection();
-//            EditorialDao oEditorialDao = new EditorialDao(oConnection);
-//            ArrayList<EditorialBean> arrBeans = oEditorialDao.getAll(alFilter, hmOrder, 1);
-//            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
-//        } finally {
-//            if (oConnection != null) {
-//                oConnection.close();
-//            }
-//            if (oDataConnectionSource != null) {
-//                oDataConnectionSource.disposeConnection();
-//            }
-//        }
-//
-//        return data;
-//
-//    }
     /**
      * MÉTODOS PARA MOSTRAR LISTADOS DE EDITORIALES
      *
@@ -360,53 +331,53 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-//    /**
-//     * Método SET de Editorial
-//     *
-//     * @return resultado
-//     * @throws Exception
-//     */
-//    @Override
-//    public String set() throws Exception {
-//        if (this.checkpermission("set")) {
-//            String jason = ParameterCook.prepareJson(oRequest);
-//            String resultado = null;
-//            Connection oConnection = null;
-//            ConnectionInterface oDataConnectionSource = null;
-//            try {
-//                oDataConnectionSource = getSourceConnection();
-//                oConnection = oDataConnectionSource.newConnection();
-//                oConnection.setAutoCommit(false);
-//                EditorialDao oEditorialDao = new EditorialDao(oConnection);
-//                EditorialBean oEditorialBean = new EditorialBean();
-//                oEditorialBean = AppConfigurationHelper.getGson().fromJson(jason, oEditorialBean.getClass());
-//                if (oEditorialBean != null) {
-//                    Integer iResult = oEditorialDao.set(oEditorialBean);
-//                    if (iResult >= 1) {
-//                        resultado = JsonMessage.getJson("200", iResult.toString());
-//                    } else {
-//                        resultado = JsonMessage.getJson("500", "Error during registry set");
-//                    }
-//                } else {
-//                    resultado = JsonMessage.getJson("500", "Error during registry set");
-//                }
-//                oConnection.commit();
-//            } catch (Exception ex) {
-//                oConnection.rollback();
-//                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
-//            } finally {
-//                if (oConnection != null) {
-//                    oConnection.close();
-//                }
-//                if (oDataConnectionSource != null) {
-//                    oDataConnectionSource.disposeConnection();
-//                }
-//            }
-//            return resultado;
-//        } else {
-//            return JsonMessage.getJsonMsg("401", "Unauthorized");
-//        }
-//    }
+    /**
+     * Método SET de Editorial
+     *
+     * @return resultado
+     * @throws Exception
+     */
+    @Override
+    public String set() throws Exception {
+        if (this.checkpermission("set")) {
+            String jason = ParameterCook.prepareJson(oRequest);
+            String resultado = null;
+            Connection oConnection = null;
+            ConnectionInterface oDataConnectionSource = null;
+            try {
+                oDataConnectionSource = getSourceConnection();
+                oConnection = oDataConnectionSource.newConnection();
+                oConnection.setAutoCommit(false);
+                EditorialDao oEditorialDao = new EditorialDao(oConnection);
+                EditorialBean oEditorialBean = new EditorialBean();
+                oEditorialBean = AppConfigurationHelper.getGson().fromJson(jason, oEditorialBean.getClass());
+                if (oEditorialBean != null) {
+                    Integer iResult = oEditorialDao.set(oEditorialBean);
+                    if (iResult >= 1) {
+                        resultado = JsonMessage.getJson("200", iResult.toString());
+                    } else {
+                        resultado = JsonMessage.getJson("500", "Error during registry set");
+                    }
+                } else {
+                    resultado = JsonMessage.getJson("500", "Error during registry set");
+                }
+                oConnection.commit();
+            } catch (Exception ex) {
+                oConnection.rollback();
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oDataConnectionSource != null) {
+                    oDataConnectionSource.disposeConnection();
+                }
+            }
+            return resultado;
+        } else {
+            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        }
+    }
     // MÉTODOS NO IMPLEMENTADOS
     /**
      *
@@ -414,15 +385,6 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
      */
     @Override
     public String getall() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     *
-     * @return @throws Exception
-     */
-    @Override
-    public String set() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

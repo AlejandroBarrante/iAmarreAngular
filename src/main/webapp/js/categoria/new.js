@@ -34,7 +34,7 @@ moduloCategoria.controller('CategoriaNewController', ['$scope', '$routeParams', 
         $scope.ob = 'categoria';
         $scope.result = null;
         $scope.title = "Crear una nueva Categoría";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         if (sharedSpaceService.getFase() == 0) {
             $scope.obj = {};
         } else {

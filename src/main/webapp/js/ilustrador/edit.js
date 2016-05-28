@@ -34,7 +34,7 @@ moduloIlustrador.controller('IlustradorEditController', ['$scope', '$routeParams
         $scope.ob = 'ilustrador';
         $scope.result = null;
         $scope.title = "Edición de Ilustrador";
-        $scope.icon = "fa-paint-brush";
+        $scope.icon = "/images/I.png";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

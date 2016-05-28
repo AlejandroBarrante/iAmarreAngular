@@ -44,7 +44,7 @@ moduloEditorial.controller('EditorialPListController', ['$scope', '$routeParams'
         $scope.ob = "editorial";
         $scope.op = "plist";
         $scope.title = "Listado de Editoriales";
-        $scope.icon = "fa-users";
+        $scope.icon = "/images/E.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

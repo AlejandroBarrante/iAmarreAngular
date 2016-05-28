@@ -34,7 +34,7 @@
 moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceJuego',
     function ($scope, $routeParams, $location, serverService, sharedSpaceJuego) {
         $scope.title = "Vista de Juego";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/J.png";
         $scope.ob = 'totalJuego';
         $scope.ob2 = "usuario";
         $scope.id = $routeParams.id;

@@ -35,7 +35,7 @@ moduloUsuario.controller('UsuarioSelectionController', ['$scope', '$routeParams'
         $scope.ob = "usuario";
         $scope.op = "selection";
         $scope.title = "Selección de usuario";
-        $scope.icon = "fa-user";
+        $scope.icon = "/images/U.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {

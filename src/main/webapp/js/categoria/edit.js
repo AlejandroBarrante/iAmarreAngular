@@ -34,7 +34,7 @@ moduloCategoria.controller('CategoriaEditController', ['$scope', '$routeParams',
         $scope.ob = 'categoria';
         $scope.result = null;
         $scope.title = "Edición de Categorías";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;

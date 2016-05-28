@@ -34,7 +34,7 @@
 moduloEditorial.controller('EditorialViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
         $scope.title = "Vista de Editorial";
-        $scope.icon = "fa-users";
+        $scope.icon = "/images/E.png";
         $scope.ob = 'editorial';
         $scope.id = $routeParams.id;
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

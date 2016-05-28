@@ -30,9 +30,11 @@ THE SOFTWARE.
 
     <div class="panel-heading" style="font-family: Oswald, serif;"
          ng-include="'js/system/header.html'"></div>
+
     <div class="panel-body">
-        <form name="juegoForm" class="form-horizontal" ng-show="result == null"
-              novalidate>
+
+        <form name="juegoForm" class="form-horizontal" 
+              ng-show="result == null" novalidate>
 
             <div id="titulo-group" class="form-group">
                 <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
@@ -48,7 +50,6 @@ THE SOFTWARE.
                         especiales.</span>
                 </div>
             </div>
-
 
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="obj_editorial">Editorial:</label>
@@ -121,6 +122,7 @@ THE SOFTWARE.
                 </div>
             </div>
 
+
             <div id="contenido-group" class="form-group">
                 <label class="col-sm-2 control-label" for="descripcion">Descripción:</label>
                 <div class="control col-sm-9">
@@ -173,6 +175,8 @@ THE SOFTWARE.
                 </div>
             </div>
 
+
+
             <br /> <br />
 
             <div class="control-group text-center">
@@ -180,47 +184,45 @@ THE SOFTWARE.
                     <a class="btn btn-info" ng-click="chooseOne('juegoAutor')">Asignar Autores</a>
                     <a class="btn btn-info" ng-click="chooseOne('juegoIlustrador')">Asignar Ilustradores</a> 
                     <a class="btn btn-info" ng-click="chooseOne('juegoCategoria')">Asignar Categorías</a> 
-
-
-                    <br /> <br />
-
-                    <div class="control-group text-center">
-                        <div class="controls">
-                            <a class="btn btn-primary" ng-click="save()"
-                               ng-disabled="!juegoForm.$valid">Guardar</a> <a
-                               class="btn btn-default" ng-click="plist()">Ir al listado de
-                                Juegos</a> <a class="btn btn-default" ng-click="close()">Ir al
-                                Inicio</a>
-                        </div>
-                    </div>
-
-                    <br/><br/>
-
-                    </form>
-                    <div ng-show="result != null">
-                        <div class="alert alert-success" ng-show="result.status == 200">
-                            <h2>Se ha modificado el registro</h2>
-                            <a ng-href="#/totalJuego/view/{{id}}">Ver el registro modificado</a>
-                            <br /> <a ng-href="#/juego/plist">Volver al listado de juegos</a>
-
-                        </div>
-                        <div class="alert alert-danger" ng-show="result.status != 200">
-                            <h2>Error al modificar el documento: no se ha modificado el
-                                documento</h2>
-                            <h3>Código: {{result.status}}</h3>
-                            <h3>Mensaje: {{result.message}}</h3>
-                        </div>
-                    </div>
                 </div>
-                <div class="panel-footer" style="font-family: Questrial, serif;"
-                     ng-include="'js/system/footer.html'"></div>
-
-                <div class="panel-footer" style="font-family: Questrial, serif;"
-                     ng-include="'js/system/footer.html'"></div>
-
             </div>
 
+            <br/><br/>
+
+            <div class="control-group text-center">
+                <div class="controls">
+                    <a class="btn btn-primary" ng-click="save()"
+                       ng-disabled="!juegoForm.$valid">Guardar</a> <a
+                       class="btn btn-default" ng-click="plist()">Ir al listado de
+                        Juegos</a> <a class="btn btn-default" ng-click="close()">Ir al
+                        Inicio</a>
+                </div>
+            </div>
+
+        </form>
+
+        <br/><br/>
+
+
+        <div ng-show="result != null">
+            <div class="alert alert-success" ng-show="result.status == 200">
+                <h2>Se ha modificado el registro</h2>
+                <a ng-href="#/totalJuego/view/{{id}}">Ver el registro modificado</a>
+                <br /> <a ng-href="#/juego/plist">Volver al listado de juegos</a>
+
+            </div>
+            <div class="alert alert-danger" ng-show="result.status != 200">
+                <h2>Error al modificar el documento: no se ha modificado el
+                    documento</h2>
+                <h3>Código: {{result.status}}</h3>
+                <h3>Mensaje: {{result.message}}</h3>
+            </div>
+        </div>
     </div>
+
+    <div class="panel-footer" style="font-family: Questrial, serif;"
+         ng-include="'js/system/footer.html'"></div>
+
 </div>
 
 <div ng-if="bean2.obj_tipousuario.id != 1">

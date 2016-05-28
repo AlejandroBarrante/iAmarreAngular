@@ -34,14 +34,6 @@ THE SOFTWARE.
         <form name="autorForm" class="form-horizontal" ng-show="result == null"
               novalidate>
 
-            <div id="id-group" class="form-group">
-                <label class="col-sm-2 control-label" for="id">Identificador:</label>
-                <div class="control col-sm-1">
-                    <input ng-model="obj.id" type="text" id="id" class="form-control"
-                           name="id" size="15" placeholder="id" disabled="disabled">
-                </div>
-            </div>
-
 
             <div id="titulo-group" class="form-group">
                 <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
@@ -104,6 +96,7 @@ THE SOFTWARE.
                         Inicio</a>
                 </div>
             </div>
+            
         </form>
         <div ng-show="result != null">
             <div class="alert alert-success" ng-show="result.status == 200">
@@ -119,11 +112,14 @@ THE SOFTWARE.
                 <h3>Mensaje: {{result.message}}</h3>
             </div>
         </div>
+
+
     </div>
     <div class="panel-footer" style="font-family: Questrial, serif;"
          ng-include="'js/system/footer.html'"></div>
 
 </div>
+
 
 <div ng-if="bean2.obj_tipousuario.id != 1">
     <h3 class="text-center">No tienes permiso para ver esta página</h3>

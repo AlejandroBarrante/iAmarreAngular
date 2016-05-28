@@ -43,7 +43,7 @@ moduloAutor.controller('AutorPListController', ['$scope', '$routeParams', 'serve
         $scope.ob = "autor";
         $scope.op = "plist";
         $scope.title = "Listado de Autores";
-        $scope.icon = "fa-male";
+        $scope.icon = "/images/A.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {
