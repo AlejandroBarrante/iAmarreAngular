@@ -111,3 +111,12 @@ body {
     background-color: white;
 }
 
+.listamenu {
+    padding: 5px;
+}
+
+.listamenu img {
+    position: relative;
+    right: 10px;
+}
+

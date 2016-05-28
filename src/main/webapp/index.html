@@ -62,21 +62,20 @@
                         ng-include="'js/system/menu.html'"></ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="rafa" class="broth_show_when_logged_in"><a href="#/coleccion/plist/1/50/{{bean.id}}"><i class="fa fa-fw fa-gamepad"></i> Mi colección</a></li>
+                        <li id="rafa" class="broth_show_when_logged_in"><a href="#/coleccion/plist/1/50/{{bean.id}}">Mi colección</a></li>
                         <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
                         <li class="dropdown broth_show_when_logged_in"><a href=""
-                                                                          class="dropdown-toggle" data-toggle="dropdown"> <i
-                                    class="fa fa-user"></i> <span id="broth_username_id">Login</span>
+                                                                          class="dropdown-toggle" data-toggle="dropdown">
+                                <span id="broth_username_id">Login</span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu dropdown">
-                                <li><a href="#/usuario/view/{{bean.id}}"><i class="fa fa-fw fa-gear"></i>
+                                <li class="listamenu"><a href="#/usuario/view/{{bean.id}}">
                                         Ver mi perfil</a></li>
-                                <li><a href="#/usuario/edit/{{bean.id}}"><i class="fa fa-fw fa-gear"></i>
+                                <li class="listamenu"><a href="#/usuario/edit/{{bean.id}}">
                                         Editar mi perfil</a></li>
                                 <li class="divider"></li>
-                                <li id="broth_logout"><a href="#"><i
-                                            class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                                <li class="listamenu" id="broth_logout"><a href="#">Cerrar Sesión</a></li>
                             </ul></li>
                         <li class="broth_show_when_logged_out" id="broth_login"><a href="#/">
                                 <i class="fa fa-user"></i> Iniciar Sesión</a></li>
