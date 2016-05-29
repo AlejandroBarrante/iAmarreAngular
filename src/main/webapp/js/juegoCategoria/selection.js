@@ -35,7 +35,7 @@ moduloCategoriaJuego.controller('JuegoCategoriaSelectionController', ['$scope', 
         $scope.ob = "categoria";
         $scope.op = "selection";
         $scope.title = "Selección de Categoría para un Juego";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_juego;
 

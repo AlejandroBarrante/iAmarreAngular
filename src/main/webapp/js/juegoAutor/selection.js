@@ -35,7 +35,7 @@ moduloAutorJuego.controller('JuegoAutorSelectionController', ['$scope', '$routeP
         $scope.ob = "autor";
         $scope.op = "selection";
         $scope.title = "Selección de Autor para un Juego";
-        $scope.icon = "fa-male";
+        $scope.icon = "/images/A.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_juego;
 

@@ -138,35 +138,14 @@ THE SOFTWARE.
 
             <br /> <br />
 
-            <div class="coleccion text-center">
-                <div class="btn-group" role="group">
-
-                    <a ng-if="bean2.obj_tipousuario.id == 1 || bean2.obj_tipousuario.id == 2" 
-                       class="btn btn-default action02 añadir" ng-click="go(bean.id)" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-check fa-2g"></i> Añadir a mi colección</a>                   
-
-
-                    <a ng-if="bean2.obj_tipousuario.id == 1 || bean2.obj_tipousuario.id == 2" 
-                       class="btn btn-default action02 eliminar" ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
-
-                    <a class="btn btn-default listado" href="#/juego/plist/1/100">Ir al listado de Juegos</a> 
-
-                    <a class="btn btn-default inicio" href="/juegoteca/#/">Ir al
-                        Inicio</a>
-                    <br/><br/><br/>
-                </div>
-            </div>
+                    <div class="text-center" > 
+                        <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
+                        <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
+                        <a class="btn btn-default inicio" ng-href="#/juego/plist/1/100">No</a>
+                    </div>  
 
             <br />
 
-            <div class="text-center" ng-if="bean2.obj_tipousuario.id == 1">
-
-                <h3>Panel de Administración</h3>
-                <a class="btn btn-primary agregar" href="#/juego/edit/{{bean.id}}">Editar</a>
-                <a class="btn btn-danger eliminar" href="#/totalJuego/remove/{{bean.id}}">Borrar</a>
-
-            </div>
         </div>
 
     </div>

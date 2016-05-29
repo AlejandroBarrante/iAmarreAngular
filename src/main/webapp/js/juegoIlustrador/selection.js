@@ -35,7 +35,7 @@ moduloIlustradorJuego.controller('JuegoIlustradorSelectionController', ['$scope'
         $scope.ob = "ilustrador";
         $scope.op = "selection";
         $scope.title = "Selección de Ilustrador para un Juego";
-        $scope.icon = "fa-paint-brush";
+        $scope.icon = "/images/I.png";
         $scope.neighbourhood = 2;
         $scope.id_juego = $routeParams.id_juego;
 

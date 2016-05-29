@@ -95,7 +95,7 @@ moduloEditorial.controller('EditorialNewController', ['$scope', '$routeParams', 
             //FIN UPLOAD
 
 
-            serverService.getDataFromPromise(serverService.promise_setImage($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
+            serverService.getDataFromPromise(serverService.promise_setImageEditorial($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             })
         };

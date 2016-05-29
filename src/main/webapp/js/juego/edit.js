@@ -32,6 +32,7 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
         $scope.obj = null;
         $scope.id = $routeParams.id;
         $scope.ob = 'juego';
+        $scope.op = "edit";
         $scope.result = null;
         $scope.title = "Edición de Juego";
         $scope.icon = "/images/J.png";
@@ -90,8 +91,15 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
             sharedSpaceJuego.setReturnLink('juego/edit/' + $scope.id);
             sharedSpaceJuego.set_idJuego($scope.id);
             sharedSpaceJuego.setFase(1);
-            $location.path('/' + foreignObjectName + '/selection/1/100/');
+            $location.path('/' + foreignObjectName + '/selection/1/100/' + $scope.id);
         };
+
+        $scope.chooseOne2 = function (foreignObjectName) {
+            sharedSpaceService.setObject($scope.obj);
+            sharedSpaceService.setFase(1);
+            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
+            $location.path('/' + foreignObjectName + '/selection/1/100');
+        }
 
 
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {

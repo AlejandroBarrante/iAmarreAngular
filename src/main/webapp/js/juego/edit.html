@@ -57,7 +57,7 @@ THE SOFTWARE.
                     <div class="input-group foreign" id="obj_editorial_group">
                         <span class="input-group-addon" id="obj_editorial_button"> <span
                                 class="glyphicon glyphicon-search"
-                                ng-click="chooseOne('editorial')"> </span>
+                                ng-click="chooseOne2('editorial')"> </span>
                         </span> 
                         <span class="input-group-addon"> <a
                                 href="#/editorial/view/{{obj.obj_editorial.id}}"> <span>{{obj.obj_editorial.nombre}}</span>
@@ -151,7 +151,7 @@ THE SOFTWARE.
                 <div class="control col-sm-1">
                     <div class="input-group foreign" id="obj_dependencialenguaje_group">
                         <span class="input-group-addon" id="obj_dependencialenguaje_button">
-                            <span class="glyphicon glyphicon-search" ng-click="chooseOne('deplenguaje')"> </span>
+                            <span class="glyphicon glyphicon-search" ng-click="chooseOne2('deplenguaje')"> </span>
                         </span> 
                         <span
                             class="input-group-addon"><span>{{obj.obj_dependencialenguaje.descripcion}}</span>
@@ -175,9 +175,9 @@ THE SOFTWARE.
 
             <div class="control-group text-center">
                 <div class="controls">
-                    <a class="btn btn-info" ng-click="chooseOne('juegoAutor')">Asignar Autores</a>
-                    <a class="btn btn-info" ng-click="chooseOne('juegoIlustrador')">Asignar Ilustradores</a> 
-                    <a class="btn btn-info" ng-click="chooseOne('juegoCategoria')">Asignar Categorías</a> 
+                    <a class="btn btn-info listado" ng-click="chooseOne('juegoAutor')">Asignar Autores</a>
+                    <a class="btn btn-info listado" ng-click="chooseOne('juegoIlustrador')">Asignar Ilustradores</a> 
+                    <a class="btn btn-info listado" ng-click="chooseOne('juegoCategoria')">Asignar Categorías</a> 
                 </div>
             </div>
 
@@ -185,10 +185,10 @@ THE SOFTWARE.
 
             <div class="control-group text-center">
                 <div class="controls">
-                    <a class="btn btn-primary" ng-click="save()"
+                    <a class="btn btn-primary añadir" ng-click="save()"
                        ng-disabled="!juegoForm.$valid">Guardar</a> <a
-                       class="btn btn-default" ng-click="plist()">Ir al listado de
-                        Juegos</a> <a class="btn btn-default" ng-click="close()">Ir al
+                       class="btn btn-default eliminar" ng-click="plist()">Ir al listado de
+                        Juegos</a> <a class="btn btn-default inicio" ng-click="close()">Volver al
                         Inicio</a>
                 </div>
             </div>

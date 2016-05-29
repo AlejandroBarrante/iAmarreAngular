@@ -124,6 +124,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/juegoAutor/selection/:page/:rpp/:id_juego?', {templateUrl: 'js/juegoAutor/selection.html', controller: 'JuegoAutorSelectionController'});
         //------------
         $routeProvider.when('/totalJuego/view/:id', {templateUrl: 'js/totalJuego/view.html', controller: 'TotalJuegoViewController'});
+        $routeProvider.when('/totalJuego/remove/:id', {templateUrl: 'js/totalJuego/remove.html', controller: 'TotalJuegoRemoveController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
 
