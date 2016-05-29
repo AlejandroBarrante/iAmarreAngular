@@ -95,43 +95,55 @@ ul li a:hover {
 .galeriaeditorial {
 
     position: relative;
-    left: 165px;
+    left: 55px;
 }
 
 .galeriajuego {
 
     position: relative;
-    left: 40px;
+    left: 50px;
 }
 
 .agregar {
     background: #337ab7;
     color: white;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .agregar:hover {
-    background: #D30707;
+    background: black;
     color: white;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .volver {
     background: #5ea82f;
     color: white;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .volver:hover {
     background: #D30707;
     color: white;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .filtrado {
     font-weight: bold;
     position: relative;
     left: 50px;
+}
+
+.catlist {
+    position: relative;
+    bottom: 10px;
+}
+
+
+.catlist2 {
+    text-align: justify;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* Barra de Navegación */
@@ -218,5 +230,106 @@ ul li a:hover {
     background: #e7e299;
 
 }
+
+/* TotalJuego View */
+
+
+.tablajuego a {
+    color: black;
+}
+
+.tablajuego a:hover {
+    color: #D30707; 
+    text-decoration: none;
+}
+
+.tablajuego td {
+    font-size: 16px;
+    padding-left: 50px;
+}
+
+.titulo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.descripcion {
+    font-size: 16px;
+    text-align: justify;
+}
+
+.etiqueta {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+table tr td li {
+    list-style: none;
+}
+
+.compra {
+    font-size: 16px;
+}
+
+.añadir {
+    margin-right: 5px;
+    background: #5ea82f;
+    color: white;
+    border: 1px solid black;
+
+}
+
+.eliminar {
+    margin-right: 5px;
+    background: #D30707;
+    color: white;
+    border: 1px solid black;
+}
+
+.listado {
+    margin-right: 5px;
+    background: #337ab7;
+    color: white;
+    border: 1px solid black;
+}
+
+.inicio {
+    margin-right: 5px;
+    background: #f5d500;
+    color: black;
+    border: 1px solid black;
+}
+
+.añadir:hover {
+    color: white;
+    background: black;
+}
+
+.eliminar:hover {
+    color: white;
+    background: black;
+}
+
+.listado:hover {
+    color: white;
+    background: black;
+}
+
+.inicio:hover {
+    color: white;
+    background: black;
+}
+
+/* Resto de pantallas View */
+
+.tablaview td p {
+    padding: 5px;
+}
+
+.categoria {
+    font-size: 16px;
+    text-align: justify;
+}
+
 
 

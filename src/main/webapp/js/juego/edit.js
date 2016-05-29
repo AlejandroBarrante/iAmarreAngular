@@ -44,16 +44,6 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
             sharedSpaceService.setFase(0);
         }
 
-
-        $scope.chooseOne = function (foreignObjectName) {
-            sharedSpaceService.setObject($scope.obj);
-            sharedSpaceService.setReturnLink('/' + $scope.ob + '/edit/' + $scope.id);
-            sharedSpaceService.setFase(1);
-            $location.path('/' + foreignObjectName + '/selection/1/10');
-        }
-
-
-
         $scope.save = function () {
             console.log("save");
             console.log({json: JSON.stringify(serverService.array_identificarArray($scope.obj))});
@@ -84,8 +74,6 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
         });
 
 
-
-
         $scope.back = function () {
             window.history.back();
         };
@@ -98,10 +86,13 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
 
         $scope.chooseOne = function (foreignObjectName) {
 
+
             sharedSpaceJuego.setReturnLink('juego/edit/' + $scope.id);
             sharedSpaceJuego.set_idJuego($scope.id);
-            $location.path('/' + foreignObjectName + '/selection/1/100/' + $scope.id);
-        }
+            sharedSpaceJuego.setFase(1);
+            $location.path('/' + foreignObjectName + '/selection/1/100/');
+        };
+
 
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
             $scope.bean2 = data.message;

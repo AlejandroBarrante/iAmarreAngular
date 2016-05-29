@@ -135,13 +135,13 @@ THE SOFTWARE.
                     <td class="hovered" ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}"><div>{{obj.nombre}}</div></a></td>
                     <td class="text-center hovered" ng-show="visibles.fechaNac"><p class="fecha">{{obj.fechaNac}}</p></td>
                     <td class="hovered"   ng-show="visibles.website"><a href="{{obj.website}}"><div>{{obj.website}}</div></a></td>   
-                    <td class="text-center hovered"><a class="verjuegos" href="#/autorJuego/plist/1/10/{{obj.id}}"><div class="verjuegos">Ver sus juegos</div></a></td>
+                    <td class="text-center hovered"><a class="verjuegos" href="#/ilustradorJuego/plist/1/10/{{obj.id}}"><div class="verjuegos">Ver sus juegos</div></a></td>
                 </tr>
             </tbody>
         </table>  
         <div class="text-center">
-            <a class="btn agregar" ng-if="bean2.obj_tipousuario.id == 1" href="#/ilustrador/new/">Agregar Nuevo Ilustrador</a>
-            <a class="btn volver" href="#/">Volver al Inicio</a>
+            <a class="btn añadir" ng-if="bean2.obj_tipousuario.id == 1" href="#/ilustrador/new/">Agregar Nuevo Ilustrador</a>
+            <a class="btn agregar" href="#/">Volver al Inicio</a>
         </div>
     </div>
 </div>

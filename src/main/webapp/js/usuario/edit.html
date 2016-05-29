@@ -35,14 +35,6 @@ THE SOFTWARE.
         <form name="usuarioForm" class="form-horizontal"
               ng-show="result == null" novalidate>
 
-            <div id="id-group" class="form-group">
-                <label class="col-sm-2 control-label" for="id">Identificador:</label>
-                <div class="control col-sm-1">
-                    <input ng-model="obj.id" type="text" id="id" class="form-control"
-                           name="id" size="15" placeholder="id" disabled="disabled">
-                </div>
-            </div>
-
             <div id="login-group" class="form-group">
                 <label class="col-sm-2 control-label" for="login">Nombre de
                     Usuario / Login:</label>
@@ -64,12 +56,10 @@ THE SOFTWARE.
                 <div class="control col-sm-3">
                     <input ng-model="obj.password" type="password" id="password"
                            class="form-control" name="password" required > 
-                    <!-- checkbox que nos permite activar o desactivar la opcion -->
-                    <input type="checkbox" id="mostrar" ng-click="mostrarCont()"><p>Mostrar Contraseña</p>
+                    <input type="checkbox" id="mostrar" ng-click="mostrarCont()"> Mostrar Contraseña
                 </div>
                 <span
-                    ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo
-                    requerido.</span>
+                    ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo requerido.</span>
             </div>
 
             <div id="ciudad-group" class="form-group">
@@ -95,10 +85,8 @@ THE SOFTWARE.
             <div class="control-group text-center">
                 <br />
                 <div class="controls">
-                    <a class="btn btn-primary" ng-click="save()"
-                       ng-disabled="!usuarioForm.$valid">Guardar</a> <a
-                       class="btn btn-default" ng-click="plist()">Ir al listado de
-                        usuarios</a> <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                    <a class="btn btn-primary añadir" ng-click="save()" ng-disabled="!usuarioForm.$valid">Guardar</a> 
+                    <a class="btn btn-default agregar" ng-click="close()">Cerrar</a>
                 </div>
             </div>
         </form>

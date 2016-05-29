@@ -53,18 +53,15 @@ THE SOFTWARE.
                 </div>
             </div>
 
-
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="obj_editorial">Editorial:</label>
-                <div class="control col-sm-3">
+                <div class="control col-sm-1">
                     <div class="input-group foreign" id="obj_editorial_group">
                         <span class="input-group-addon" id="obj_editorial_button"> <span
                                 class="glyphicon glyphicon-search"
                                 ng-click="chooseOne('editorial')"> </span>
-                        </span> <input ng-model="obj.obj_editorial.id" readonly="true"
-                                       aria-describedby="basic-addon2" class="form-control"
-                                       id="obj_editorial" name="obj_editorial" type="text" size="5"
-                                       maxlength="5"> <span class="input-group-addon"> <a
+                        </span>
+                        <span class="input-group-addon"> <a
                                 href="#/editorial/view/{{obj.obj_editorial.id}}"> <span>{{obj.obj_editorial.nombre}}</span>
                             </a>
                         </span>
@@ -151,16 +148,14 @@ THE SOFTWARE.
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="obj_dependencialenguaje">Dependencia
                     del Lenguaje:</label>
-                <div class="control col-sm-3">
+                <div class="control col-sm-1">
                     <div class="input-group foreign" id="obj_dependencialenguaje_group">
                         <span class="input-group-addon" id="obj_dependencialenguaje_button">
                             <span class="glyphicon glyphicon-search"
                                   ng-click="chooseOne('deplenguaje')"> </span>
-                        </span> <input ng-model="obj.obj_dependencialenguaje.id" readonly="true"
-                                       aria-describedby="basic-addon2" class="form-control"
-                                       id="obj_dependencialenguaje" name="obj_dependencialenguaje"
-                                       type="text" size="5" maxlength="5"> <span
-                                       class="input-group-addon"> <a
+                        </span> 
+                        <span
+                            class="input-group-addon"> <a
                                 href="#/editorial/view/{{obj.obj_dependencialenguaje.id}}"> <span>{{obj.obj_dependencialenguaje.descripcion}}</span>
                             </a>
                         </span>

@@ -126,8 +126,8 @@ THE SOFTWARE.
             <tbody>
                 <tr ng-repeat="obj in page| filter: searchText">
 
-                    <td class="hovered" ng-show="visibles.nombre" width="400"><a href="#/{{ob}}/view/{{obj.id}}"><div>{{obj.nombre}}</div></a></td>
-                    <td class="text-center hovered" ng-show="visibles.descripcion"><p class="fecha">{{obj.descripcion}}</p></td>
+                    <td class="hovered" ng-show="visibles.nombre" width="400"><a href="#/{{ob}}/view/{{obj.id}}"><div class="catlist">{{obj.nombre}}</div></a></td>
+                    <td class="text-center hovered" ng-show="visibles.descripcion"><p class="catlist2">{{obj.descripcion}}</p></td>
                     <td class="text-center hovered" width="200"><a class="verjuegos" href="#/categoriaJuego/plist/1/10/{{obj.id}}"><div class="verjuegos">Ver sus juegos</div></a></td>
                 </tr>
 
@@ -137,8 +137,8 @@ THE SOFTWARE.
             </tbody>
         </table>  
         <div class="text-center">
-            <a class="btn agregar" ng-if="bean2.obj_tipousuario.id == 1" href="#/categoria/new/">Agregar Nueva Categoría</a>
-            <a class="btn volver" href="#/">Volver al Inicio</a>
+            <a class="btn añadir" ng-if="bean2.obj_tipousuario.id == 1" href="#/categoria/new/">Agregar Nueva Categoría</a>
+            <a class="btn agregar" href="#/">Volver al Inicio</a>
         </div>
     </div>
 </div>

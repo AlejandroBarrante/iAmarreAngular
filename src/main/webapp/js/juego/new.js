@@ -37,15 +37,13 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
         $scope.title = "Crear un nuevo Juego";
         $scope.icon = "/images/J.png";
 
-
-
-
         $scope.obj = {};
         $scope.obj.obj_editorial = {"id": 0};
         $scope.obj.obj_dependencialenguaje = {"id": 0};
 
 
         if (sharedSpaceService.getFase() == 0) {
+            
             if ($routeParams.editorial && $routeParams.editorial > 0) {
                 $scope.obj.obj_editorial.id = $routeParams.editorial;
             }
