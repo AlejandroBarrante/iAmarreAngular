@@ -24,27 +24,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 * {
     margin: 0 auto;
 }
+
+/* Cuerpo exterior de página */
 html,
 body {
     width: 100%;
-    background: #389CF1;
+    background: #56b9ff;
 }
 
 .panel-default {
-    background-color: #FAF9F8;
+    background-color: #f9faf1;
 }
 
+/* Cuerpo de página */
 .panel-body {
     background-color: #e7e299;
 }
 
+/* Titular de página */
 .panel-heading {
     margin-top: 70px;
 }
 
+/* Pie de página */
 .panel-footer {
-    background-color: #82c956;
-    margin-top: 40px;
+    background-color: #f9faf1;
 }
 
 .textofooter a{
@@ -52,9 +56,15 @@ body {
     text-decoration: none;
 }
 
+/* ESTO NO SÉ QUE ES
+
 .registro {
-    background-color: green !important;
+    background-color: green;
 }
+
+*/
+
+/*Centrado de textos */
 
 .text-center {
 
@@ -62,27 +72,53 @@ body {
 
 }
 
-.agregar {
-    background: green;
-    color: white;
-    border: 1px solid black;
+/* Páginas listados */
+
+.textosuperior {
+    font-size: 16px;
 }
 
-.volver {
-    background: yellow;
+.selector {
+    padding: 10px;
+}
+
+.galeriaeditorial {
+
+    position: relative;
+    left: 165px;
+}
+
+.galeriajuego {
+
+    position: relative;
+
+}
+
+.agregar {
+    background: #337ab7;
     color: white;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .agregar:hover {
-    background: green;
+    background: #D30707;
     color: white;
+    border: 2px solid black;
 }
 
-.stroke {
--webkit-text-fill-color: yellowgreen;
--webkit-text-stroke: 1px black;
+.volver {
+    background: #5ea82f;
+    color: white;
+    border: 2px solid black;
 }
+
+.volver:hover {
+    background: #D30707;
+    color: white;
+    border: 2px solid black;
+}
+
+/* Barra de Navegación */
 
 .navbar-default .navbar-collapse > ul li a{
     color: white;
@@ -93,22 +129,16 @@ body {
     background-color: black;
 }
 
-
-
 .navbar-default {
-           background-color: #D30707;
-}
-
-.navbar-default .navbar-collapse > ul li {
-           background-color: #D30707;
+    background-color: #D30707;
 }
 
 .dropdown-header {
     color: white;
 }
 
-.divider {
-    background-color: white;
+.dropdown-menu {
+    background-color: #D30707;    
 }
 
 .listamenu {
@@ -119,4 +149,45 @@ body {
     position: relative;
     right: 10px;
 }
+
+/* Tablas */
+
+.table {
+    background: #f2f0d6;
+}
+
+.verjuegos {
+
+    font-size: 20px;
+
+}
+
+.table tr td a {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 16px;
+
+}
+
+.cabecera a {
+    padding: 5px;
+    color: 337ab7;
+}
+
+.cabecera p {
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+}
+
+.fecha {
+    margin-top: 25px;
+}
+
+.hovered:hover {
+    background: #e7e299;
+
+}
+
 
