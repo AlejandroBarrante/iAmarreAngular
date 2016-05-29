@@ -86,7 +86,7 @@ THE SOFTWARE.
                                 Buscar:
                                 <br>
                                 <form class="navbar-form navbar-center" role="form" action="Controller" method="post" id="empresaForm">
-                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" ng-model="searchText">
+                                    <input id="inputFiltervalueClient" class="form-control cajabusqueda" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" ng-model="searchText">
 
                                 </form>
                             </div>
@@ -108,17 +108,17 @@ THE SOFTWARE.
                 <tr> 
                     <th ng-show="visibles.nombre" class="text-center">
             <div class="cabecera">
-                <p> Nombre </p>
-                <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-            </div>
+                <p> Nombre 
+                    <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                    <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                </p></div>
             </th>
             <th ng-show="visibles.fechaNac" class="text-center">
             <div class="cabecera">
-                <p>Fecha de Nacimiento</p>
-                <a ng-show="visibles.fechaNac" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaNac&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                <a ng-show="visibles.fechaNac" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaNac&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-            </div>   
+                <p>Fecha de Nacimiento
+                    <a ng-show="visibles.fechaNac" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaNac&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                    <a ng-show="visibles.fechaNac" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaNac&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                </p></div>   
             </th>
             <th  ng-show="visibles.website" class="text-center">
             <div class="cabecera">
@@ -137,10 +137,10 @@ THE SOFTWARE.
             <tbody>
                 <tr ng-repeat="obj in page| filter: searchText">
 
-                    <td class="hovered" width="350" ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}"><div>{{obj.nombre}}</div></a></td>
-                    <td class="text-center hovered" width="180" ng-show="visibles.fechaNac"><p class="fecha">{{obj.fechaNac}}</p></td>
-                    <td class="hovered"  width="600" ng-show="visibles.website"><a href="{{obj.website}}"><div class="web">{{obj.website}}</div></a></td>   
-                    <td class="text-center hovered" width="300"><a class="verjuegos" href="#/autorJuego/plist/1/10/{{obj.id}}"><div>Ver sus juegos</div></a></td>
+                    <td class="hovered" ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}"><div>{{obj.nombre}}</div></a></td>
+                    <td class="text-center hovered" ng-show="visibles.fechaNac"><p class="fecha">{{obj.fechaNac}}</p></td>
+                    <td class="hovered"   ng-show="visibles.website"><a href="{{obj.website}}"><div>{{obj.website}}</div></a></td>   
+                    <td class="text-center hovered"><a class="verjuegos" href="#/autorJuego/plist/1/10/{{obj.id}}"><div class="verjuegos">Ver sus juegos</div></a></td>
                 </tr>
             </tbody>
         </table>  

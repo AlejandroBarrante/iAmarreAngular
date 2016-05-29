@@ -38,11 +38,28 @@ THE SOFTWARE.
                         <p></p>
                         <div class="row">
                             <div class="col-lg-2 col-md-2 col-sm-12 textosuperior">
-                                <p>Mostrando una consulta de {{registers}} registros.</p>
-                                <p ng-show="orderParams == ''">Contenido no ordenado</p>
-                                <p ng-show="orderParams != ''"><small>Contenido ordenado por {{order}} ({{ordervalue}}) <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}{{paramsWithoutOrder.replace('&', '?')}}" id="linkQuitarOrden">(Quitar orden)</a></small></p>
-                                <p ng-show="filterParams == ''">Contenido no filtrado</p>
-                                <p ng-show="filterParams != ''"><small>Contenido filtrado ({{filter}} {{filteroperator}} {{filtervalue}}) <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}{{paramsWithoutFilter.replace('&', '?')}}" id="linkQuitarFiltro">(Quitar filtro)</a></small></p>
+
+                                <select class="selector"
+                                        onchange="window.location.href = this.options
+                                                [this.selectedIndex].value">
+
+                                    <option>Ordenar...</option>
+                                    <option
+                                        value="#/juego/plist/{{numpage}}/{{rpp}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
+                                        por título</option>
+                                    <option ng-show="visibles.edad"
+                                            value="#/juego/plist/{{numpage}}/{{rpp}}?order=edad&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
+                                        por edad recomendada</option>
+                                    <option
+                                        value="#/juego/plist/{{numpage}}/{{rpp}}?order=fechaPublicacion&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
+                                        por fecha de publicación</option>
+                                    <option
+                                        value="#/juego/plist/{{numpage}}/{{rpp}}?order=duracion&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
+                                        por duración</option>
+
+                                </select>
+
+
                             </div>
 
                             <div class="col-lg-5  col-md-5 col-sm-8 text-center textosuperior">
@@ -85,10 +102,10 @@ THE SOFTWARE.
                             </div>
 
 
-                            <div class="col-lg-2  col-md-2 col-sm-4 text-right textosuperior">
+                            <div class="col-lg-2  col-md-2 col-sm-4 text-center textosuperior">
                                 Buscar: <br>
-                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
-                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                <form class="navbar-form navbar-center" role="form" action="Controller" method="post" id="empresaForm">
+                                    <input id="inputFiltervalueClient" class="form-control cajabusqueda" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" ng-model="searchText">
                                 </form>
                             </div>
                         </div>
@@ -107,37 +124,11 @@ THE SOFTWARE.
 
         <div class="row fluid">
 
-            <div class="col-md-12 text-left textosuperior">
-
-                <select class="selector"
-                        onchange="window.location.href = this.options
-                                            [this.selectedIndex].value">
-                    <option>Ordenar...</option>
-                    <option
-                        value="#/juego/plist/{{numpage}}/{{rpp}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
-                        por título</option>
-                    <option ng-show="visibles.edad"
-                            value="#/juego/plist/{{numpage}}/{{rpp}}?order=edad&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
-                        por edad recomendada</option>
-                    <option
-                        value="#/juego/plist/{{numpage}}/{{rpp}}?order=fechaPublicacion&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
-                        por fecha de publicación</option>
-                    <option
-                        value="#/juego/plist/{{numpage}}/{{rpp}}?order=duracion&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
-                        por duración</option>
-                </select>
-
-            </div>
-
-        </div>
-
-        <div class="row fluid">
-
             <div class="col-md-12">
 
                 <br /> <br />
                 <div class="galeriajuego">
-                    <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center">
+                    <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center gallery">
                         <li ng_show="visibles.imagen" style="list-style: none;"> 
                             <a  href="#/totalJuego/view/{{obj.id}}"><img src="{{obj.imagen}}" alt="mini" class="img-rounded img-responsive"></a>
                         </li>
@@ -156,8 +147,8 @@ THE SOFTWARE.
         <div class="text-center">
 
             <div >
-                <a class="btn btn-primary" ng-if="bean2.obj_tipousuario.id == 1" href="#/juego/new/">Agregar Nuevo Juego</a>
-                <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+                <a class="btn btn-primary agregar" ng-if="bean2.obj_tipousuario.id == 1" href="#/juego/new/">Agregar Nuevo Juego</a>
+                <a class="btn btn-primary volver" href="#/">Volver al Inicio</a>
             </div>
         </div>
     </div>

@@ -111,7 +111,7 @@ THE SOFTWARE.
 
             <div class="col-md-12 text-right">
 
-                <SELECT
+                <select
                     onchange="window.location.href = this.options
                                     [this.selectedIndex].value">
                     <option>Ordenar...</option>
@@ -139,7 +139,7 @@ THE SOFTWARE.
 
                 <br /> <br />
 
-                <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center">
+                <ul ng-repeat="obj in page | filter: searchText" style="display: inline-table;" class="text-center">
                     <li ng_show="visibles.imagen" style="list-style: none;"> 
                         <a  href="#/totalJuego/view/{{obj.obj_juego.id}}"><img src="{{obj.obj_juego.imagen}}" alt="mini" class="img-rounded"></a>
                     </li>

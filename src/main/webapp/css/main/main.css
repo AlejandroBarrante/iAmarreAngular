@@ -56,14 +56,6 @@ body {
     text-decoration: none;
 }
 
-/* ESTO NO SÉ QUE ES
-
-.registro {
-    background-color: green;
-}
-
-*/
-
 /*Centrado de textos */
 
 .text-center {
@@ -80,6 +72,24 @@ body {
 
 .selector {
     padding: 10px;
+    position: relative;
+    top: 40px;
+    left: 50px;
+}
+
+.cajabusqueda {
+    position: relative;
+    top: 14px;
+}
+
+ul li a {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    color: #D30707;
 }
 
 .galeriaeditorial {
@@ -91,7 +101,7 @@ body {
 .galeriajuego {
 
     position: relative;
-
+    left: 40px;
 }
 
 .agregar {
@@ -116,6 +126,12 @@ body {
     background: #D30707;
     color: white;
     border: 2px solid black;
+}
+
+.filtrado {
+    font-weight: bold;
+    position: relative;
+    left: 50px;
 }
 
 /* Barra de Navegación */
@@ -165,24 +181,37 @@ body {
 .table tr td a {
     color: black;
     text-decoration: none;
-    padding: 5px;
     font-size: 16px;
+    position: relative;
+    top: 14px;
+    left: 20px;
 
+}
+
+.verjuegos {
+    position: relative;
+    left: -20px;
+    font-size: 16px;
 }
 
 .cabecera a {
-    padding: 5px;
-    color: 337ab7;
+    padding-left: 10px;
+    color: #337ab7;
 }
 
+
+
 .cabecera p {
-    padding: 5px;
+    padding: 10px;
     color: black;
     font-size: 16px;
+    position: relative;
+    top: 8px;
+
 }
 
 .fecha {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .hovered:hover {

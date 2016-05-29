@@ -45,7 +45,7 @@ moduloEditorialJuego.controller('EditorialJuegoPListController', ['$scope', '$ro
         $scope.ob = "juego";
         $scope.op = "plist";
         $scope.title = "Listado de Juegos por Editorial";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/E.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_editorial;
 

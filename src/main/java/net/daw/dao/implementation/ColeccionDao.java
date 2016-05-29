@@ -158,8 +158,8 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
      */
     public ArrayList<ColeccionBean> getPageUsuario(int id_usuario, int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
         strSQL += SqlBuilder.buildSqlWhere(hmFilter);
+        strSQL += " AND c.id_usuario=" + id_usuario;
         strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-        strSQL += "AND c.id_usuario=" + id_usuario;
         strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
         ArrayList<ColeccionBean> arrColeccionBean = new ArrayList<>();
         try {
@@ -317,7 +317,7 @@ public class ColeccionDao implements ViewDaoInterface<ColeccionBean>, TableDaoIn
 
                 } else {
                     System.out.println("Ya tienes este juego.");
-                    iResult=-1;
+                    iResult = -1;
                 }
 
             } catch (Exception ex) {
