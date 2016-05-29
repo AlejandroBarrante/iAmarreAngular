@@ -134,26 +134,6 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         return arrIlustradorJuego;
     }
 
-//    // -----------------
-//    // MÉTODO PARA SACAR AL ILUSTRADOR EN LA PANTALLA DE JUEGO VIEW
-//    public IlustradorJuegoBean getIlustradorFiltradoPorJuego(IlustradorJuegoBean oIlustradorJuegoBean, Integer expand) throws Exception {
-//        ResultSet oResultSet = null;
-//        try {
-//
-//            oResultSet = oMysql.getAllSql(strSQL + " AND ij.id_juego= " + oIlustradorJuegoBean.getId_juego());
-//
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    oIlustradorJuegoBean = oIlustradorJuegoBean.fill(oResultSet, oConnection, expand);
-//                }
-//            }
-//
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-//        }
-//
-//        return oIlustradorJuegoBean;
-//    }
     /**
      * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE ILUSTRADOR Y JUEGO
      *

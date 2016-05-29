@@ -45,7 +45,7 @@ moduloCategoriaJuego.controller('CategoriaJuegoPListController', ['$scope', '$ro
         $scope.ob = "categoriaJuego";
         $scope.op = "plist";
         $scope.title = "Listado de Juegos por Categoría";
-        $scope.icon = "fa-map-o";
+        $scope.icon = "/images/C.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_categoria;
 

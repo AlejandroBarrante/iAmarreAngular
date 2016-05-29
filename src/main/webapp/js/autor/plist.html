@@ -36,11 +36,6 @@ THE SOFTWARE.
                     <div role="tabpanel" id="pane0" class="tab-pane fade active in">
                         <p></p>
                         <div class="row">
-                            <div class="col-lg-2 col-md-2 col-sm-2 textosuperior">
-                                <p>Mostrando una consulta de {{registers}} registros.</p>
-                                <p ng-show="orderParams == ''">Contenido no ordenado</p>
-                                <p ng-show="orderParams != ''"><small>Contenido ordenado por {{order}} ({{ordervalue}}) <a href="#/{{ob}}/plist/{{numpage}}/{{rpp}}{{paramsWithoutOrder.replace('&', '?')}}" id="linkQuitarOrden">(Quitar orden)</a></small></p>
-                            </div>
 
                             <div class="col-lg-5  col-md-5 col-sm-5 text-center textosuperior">
                                 Paginación: <br>
@@ -82,7 +77,7 @@ THE SOFTWARE.
                             </div>
 
 
-                            <div class="col-lg-2  col-md-2 col-sm-3 text-center textosuperior">
+                            <div class="col-lg-4  col-md-4 col-sm-4 text-center textosuperior">
                                 Buscar:
                                 <br>
                                 <form class="navbar-form navbar-center" role="form" action="Controller" method="post" id="empresaForm">

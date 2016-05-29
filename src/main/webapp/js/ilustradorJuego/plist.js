@@ -45,7 +45,7 @@ moduloIlustradorJuego.controller('IlustradorJuegoPListController', ['$scope', '$
         $scope.ob = "ilustradorJuego";
         $scope.op = "plist";
         $scope.title = "Listado de Juegos por Ilustrador";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/I.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_ilustrador;
 

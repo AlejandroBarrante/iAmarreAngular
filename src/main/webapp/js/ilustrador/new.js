@@ -33,7 +33,7 @@ moduloIlustrador.controller('IlustradorNewController', ['$scope', '$routeParams'
         $scope.id = $routeParams.id;
         $scope.ob = 'ilustrador';
         $scope.result = null;
-        $scope.title = "Crear un nuevo Autor";
+        $scope.title = "Crear un nuevo Ilustrador";
         $scope.icon = "/images/I.png";
         if (sharedSpaceService.getFase() == 0) {
             $scope.obj = {};

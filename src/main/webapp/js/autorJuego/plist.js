@@ -45,7 +45,7 @@ moduloAutorJuego.controller('AutorJuegoPListController', ['$scope', '$routeParam
         $scope.ob = "autorJuego";
         $scope.op = "plist";
         $scope.title = "Listado de Juegos por Autor";
-        $scope.icon = "fa-gamepad";
+        $scope.icon = "/images/A.png";
         $scope.neighbourhood = 2;
         $scope.id = $routeParams.id_autor;
 
