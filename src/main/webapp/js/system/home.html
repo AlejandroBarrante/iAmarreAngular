@@ -26,6 +26,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
+<script src="../../vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
 <div class="panel-heading" style="font-family: Oswald, serif;">
     <div class="row">
@@ -41,34 +42,109 @@ THE SOFTWARE.
     </div>
 </div>
 
-<div class="panel-body text-left">
-    <h2 class="text-center">¿Qué es la Juegoteca?</h2><br/>
-    <p>La Juegoteca nace como el primer portal web completamente en
-        castellano dedicado a los juegos de mesa. En esta página encontrarás
-        una extensa base de datos de juegos de tablero, de cartas y wargames.</p>
-    <p>Además, este portal pretende incluir todas estas
-        implementaciones en el futuro:</p>
-    <ul>
-        <li>Sistema de votos: Puntúa y haz reseñas de tus juegos
-            favoritos</li>
-        <li>Amistad con usuarios: Contacta con los jugadores más
-            cercanos o afines a tus gustos</li>
-        <li>Foros: Habla de tus juegos favoritos en un espacio amigable</li>
-        <li>Compra on-line: Desde esta página podrás enlazar con las
-            mejores tiendas on-line para adquirir los juegos que necesites</li>
-    </ul>
-    <p>Por el momento, puedes acceder a nuestra base de datos a través
-        de estos enlaces o desde la barra superior. ¡Esperamos que disfrutes
-        de tu visita!</p>
+<div class="panel-body">
 
-    <div class="text-center">
-        <br /> <a class="btn btn-primary" href="#/juego/plist/1/50">Listado
-            de juegos</a> <a class="btn btn-primary" href="#/autor/plist/1/50">Listado
-            de Autores</a> <a class="btn btn-primary" href="#/editorial/plist/1/50">Listado
-            de Editoriales</a> <a class="btn btn-primary"
-                              href="#/ilustrador/plist/1/50">Listado de Ilustradores</a> <a
-                              class="btn btn-primary" href="#/categoria/plist/1/50">Listado de
-            Categorías</a> <br />
+
+    <div class="row">
+
+        <div class="col-lg-8 col-md-8 secbienve">
+
+            <h2 class="text-center titulo">¿Qué es La Juegoteca?</h2><br/>
+
+            <p class="textosuperior">La Juegoteca nace como el primer portal web completamente en
+                castellano dedicado a recopilar información sobre juegos de mesa. En esta página encontrarás
+                una extensa base de datos de juegos de tablero, de cartas y wargames, ya sean juegos clásicos, modernos, 
+                familiares o infantiles.</p>
+            <p class="textosuperior">En el futuro, este portal pretende incluir todas estas
+                implementaciones:</p>
+            <ul class="textosuperior">
+                <li><strong>Sistema de votos:</strong> Puntúa y haz reseñas de tus juegos
+                    favoritos</li>
+                <li><strong>Amistad con otros usuarios:</strong> Contacta con los jugadores más
+                    cercanos o afines a tus gustos</li>
+                <li><strong>Foros:</strong> Habla de tus juegos favoritos en un espacio amigable</li>
+            </ul>
+            <p class="textosuperior">Por el momento, puedes acceder a nuestra base de datos a través
+                de estos enlaces o desde el menú superior. Además, puedes crearte una cuenta de usuario gratuita y 
+                comenzar a añadir juegos a tu colección inmediatamente. Si lo que deseas es adquirir alguno de los 
+                juegos, no te olvides de visitar la web de nuestro patrocinador.
+
+            <p class="textosuperior">Te damos la bienvenida, ¡esperamos que disfrutes de tu visita!</p>
+
+        </div>
+
+        <div class="col-lg-4 col-md-4 secpatron">
+
+
+            <div class="text-center"> 
+                <h2 class="titulo">Nuestro Patrocinador</h2><br/>
+                <img alt='patroc' src='/images/bannerpatrogrande.jpg'>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <p class="linea"></p>
+    </div>
+
+    <div class="row">
+
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <a class="carru" href="#/juego/plist/1/50">
+                            <img src="/images/listjuegos.jpg" alt="1" width="300" height="450">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="carru" href="#/autor/plist/1/50">
+                            <img src="/images/listautores.jpg" alt="1" width="300" height="450">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="carru" href="#/editorial/plist/1/50">
+                            <img src="/images/listeditoriales.jpg" alt="1" width="300" height="450">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="carru" href="#/ilustrador/plist/1/50">
+                            <img src="/images/listilustradores.jpg" alt="1" width="300" height="450">
+
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="carru" href="#/categoria/plist/1/50">
+                            <img src="/images/listcategorias.jpg" alt="1" width="300" height="450">
+                        </a>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+
+
+  <!--          <div class="text-center">
+                <br /> <a class="btn btn-primary" href="#/juego/plist/1/50">Listado
+                    de juegos</a> <a class="btn btn-primary" href="#/autor/plist/1/50">Listado
+                    de Autores</a> <a class="btn btn-primary" href="#/editorial/plist/1/50">Listado
+                    de Editoriales</a> <a class="btn btn-primary"
+                                      href="#/ilustrador/plist/1/50">Listado de Ilustradores</a> <a
+                                      class="btn btn-primary" href="#/categoria/plist/1/50">Listado de
+                    Categorías</a> <br />
+            </div> -->
+
     </div>
 
 

@@ -70,6 +70,11 @@ body {
     font-size: 16px;
 }
 
+.textoinferior {
+    font-size: 12px;
+    font-style: italic;
+}
+
 .selector {
     padding: 10px;
     position: relative;
@@ -331,5 +336,74 @@ table tr td li {
     text-align: justify;
 }
 
+/* Página Principal */
+
+.secbienve {
+    border-right: 1px solid black;
+
+}
+
+.secbienve p {
+    font-size: 20px;
+    text-style: justify;
+}
+
+.secbienve ul {
+    font-size: 20px;
+    text-style: justify;
+    color: #535353;
+}
+
+.linea {
+    border-top: 1px solid black;
+}
 
 
+/* CARRUSEL */
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    margin: auto;
+}
+.carousel-caption > h4 {
+    background-color: #FFBE67;
+    display: inline-block;
+    width: 40%;
+    border-radius: 5px;
+    opacity: 1;
+    padding: 2px;
+    color: black;
+    text-shadow: 1px 1px 1px white;
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.65);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.65);
+}
+.carousel-control .glyphicon-chevron-left {
+    opacity: 1;
+}
+.carousel-control .glyphicon-chevron-right {
+    opacity: 1;
+}
+.carousel-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 5%;
+}
+.left {
+    border-left: 1px solid #FFBE67;
+}
+
+.right {
+    border-right: 1px solid #FFBE67;
+}
+.glyp
+hicon-chevron-left {
+    color: white;
+    opacity: 1;
+}
+.carousel-control:hover {
+    background: #FFBE67;
+    width: 5%;
+    opacity: 0.9;
+}
+.carousel-inner {
+    border: 1px solid #FFBE67;
+}
