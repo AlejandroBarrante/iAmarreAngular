@@ -117,7 +117,7 @@ THE SOFTWARE.
                 <div class="galeriaeditorial text-center">
                     <ul ng-repeat="obj in page|filter: searchText" style="display: inline-table;" class="text-center">
 
-                        <li ng_show="visibles.imagen visibles.nombre" style="list-style: none;"> 
+                        <li ng_show="visibles.imagen" style="list-style: none;"> 
                             <a  href="#/editorial/view/{{obj.id}}"><img src="{{obj.imagen}}" alt="mini" class="img-rounded"></a><br/>
                             <a  style="text-decoration: none;" href="#/editorial/view/{{obj.id}}">{{obj.nombre}}</a>
                         </li>

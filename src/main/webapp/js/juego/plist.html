@@ -129,7 +129,7 @@ THE SOFTWARE.
                 <br /> <br />
                 <div class="galeriajuego text-center">
                     <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center gallery">
-                        <li ng_show="visibles.imagen visibles.nombre"> 
+                        <li ng_show="visibles.imagen"> 
                             <a href="#/totalJuego/view/{{obj.id}}"><img src="{{obj.imagen}}" alt="mini" class="img-rounded img-responsive"></a>
                             <a href="#/totalJuego/view/{{obj.id}}">{{obj.titulo}}</a>
                         </li>

@@ -117,7 +117,7 @@ THE SOFTWARE.
     <!-- --------------------------------- -->
 
 
-    <h1 class="text-left filtrado" ng-repeat="obj in page| limitTo:1">{{obj.obj_categoria.nombre}}</h1>
+    <h1 class="text-center titulo" ng-repeat="obj in page| limitTo:1">{{obj.obj_categoria.nombre}}</h1>
 
 
     <div id="datos">
@@ -138,19 +138,26 @@ THE SOFTWARE.
 
                 <br /> <br />
 
-                <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center">
-                    <li ng_show="visibles.imagen" style="list-style: none;"> 
-                        <a  href="#/totalJuego/view/{{obj.obj_juego.id}}"><img src="{{obj.obj_juego.imagen}}" alt="mini" class="img-rounded"></a>
-                    </li>
 
-                    <li ng-show="visibles.nombre" style="list-style: none;"><a
-                            style="text-decoration: none;" href="#/totalJuego/view/{{obj.obj_juego.id}}">{{obj.obj_juego.titulo}}</a></li>
+                <div class="galeriajuego text-center">
 
-                </ul>
 
-                <br /> <br />
+                    <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center">
+                        <li ng_show="visibles.imagen" style="list-style: none;"> 
+                            <a  href="#/totalJuego/view/{{obj.obj_juego.id}}"><img src="{{obj.obj_juego.imagen}}" alt="mini" class="img-rounded"></a><br/>
+                            <a style="text-decoration: none;" href="#/totalJuego/view/{{obj.obj_juego.id}}">{{obj.obj_juego.titulo}}</a>
+                        </li>
+
+
+
+                    </ul>
+
+                    <br /> <br />
+
+                </div>
 
             </div>
+
         </div>
 
 

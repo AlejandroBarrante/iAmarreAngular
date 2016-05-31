@@ -72,6 +72,7 @@ body {
 
 .textomedio {
     font-size: 18px;
+    text-align: justify;
 }
 
 .textoinferior {
@@ -369,7 +370,7 @@ table tr td li {
 /* Página Principal */
 
 .secbienve {
-    border-right: 1px solid black;
+    border-right: 1px solid white;
 
 }
 
@@ -383,13 +384,15 @@ table tr td li {
 }
 
 .linea {
-    border-top: 1px solid black;
+    border-top: 1px solid white;
 }
 
 
 /* GALERÍA INDEX */
 
-
+.indexgallery {
+    margin-top: 20px;
+}
 
 
 .indexgallery ul {
