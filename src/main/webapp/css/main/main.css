@@ -180,6 +180,7 @@ ul li a:hover {
     text-align: justify;
     margin-left: 10px;
     margin-right: 10px;
+font-size: 16px;
 }
 
 /* Barra de Navegación */
@@ -252,7 +253,7 @@ ul li a:hover {
 .cabecera p {
     padding: 10px;
     color: black;
-    font-size: 16px;
+    font-size: 18px;
     position: relative;
     top: 8px;
 
