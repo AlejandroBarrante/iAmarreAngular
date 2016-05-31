@@ -48,8 +48,6 @@ configuration = {
         $('<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>').appendTo("head");
         $('<link href="css/main/fonts/fonts.css" rel="stylesheet" type="text/css"/>').appendTo("head");
         $('<link href="css/main/main.css" rel="stylesheet" type="text/css"/>').appendTo("head");
-
-
     }
 }
 

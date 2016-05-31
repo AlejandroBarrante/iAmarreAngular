@@ -158,7 +158,7 @@ init = {
                 dom.div('id="broth_modal_login" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"',
                         dom.div('class="modal-dialog modal-sm"',
                                 dom.div('class="modal-content"',
-                                        dom.div('class="modal-header"',
+                                        dom.div('class="modal-header cablogin"',
                                                 dom.div('class="panel-title text-center"', 'Introduce login y password')
                                                 ) +
                                         dom.div('class="modal-body"',
@@ -167,12 +167,12 @@ init = {
                                                                 dom.form('role="form"',
                                                                         dom.fieldset('',
                                                                                 dom.div('class="form-group"',
-                                                                                        dom.input('class="form-control" id="broth_input_login" placeholder="Login" name="email" type="email" value="alex" autofocus', '')
+                                                                                        dom.input('class="form-control celdalogin" id="broth_input_login" placeholder="Login" name="email" type="email" value="alex" autofocus', '')
                                                                                         ) +
                                                                                 dom.div('class="form-group"',
-                                                                                        dom.input('class="form-control" id="broth_input_password" placeholder="Password" name="password" type="password" value="daw1516"', '')
+                                                                                        dom.input('class="form-control celdalogin" id="broth_input_password" placeholder="Password" name="password" type="password" value="daw1516"', '')
                                                                                         ) +
-                                                                                dom.a('href="index.html" id="broth_button_login" class="btn btn-lg btn-success btn-block"', 'Iniciar Sesión')
+                                                                                dom.a('href="index.html" id="broth_button_login" class="btn btn-lg btn-primary añadir btn-block"', 'Iniciar Sesión')
                                                                                 )
 
                                                                         )
