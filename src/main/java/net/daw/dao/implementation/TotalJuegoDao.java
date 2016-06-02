@@ -102,14 +102,14 @@ public class TotalJuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInter
         int result = 0;
         try {
             
-            String strTable1 = "juego";
-            String strTable2 = "autorJuego";
-            String strTable3 = "ilustradorJuego";
-            String strTable4 = "categoriaJuego";
-            result = oMysql.removeOne(id, strTable1);
-            result = oMysql.removeOne(id, strTable2);
-            result = oMysql.removeOne(id, strTable3);
-            result = oMysql.removeOne(id, strTable4);
+            String strTable = "juego";
+            String strTableAJ = "autorJuego";
+            String strTableIJ = "ilustradorJuego";
+            String strTableCJ = "categoriaJuego";
+            result = oMysql.removeOne(id, strTable);
+            result = oMysql.removeOneTotalJuego(id, strTableAJ);
+            result = oMysql.removeOneTotalJuego(id, strTableIJ);
+            result = oMysql.removeOneTotalJuego(id, strTableCJ);
         } catch (Exception ex) {
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
         }

@@ -125,7 +125,7 @@ public class TotalJuegoService implements TableServiceInterface, ViewServiceInte
     @Override
     public String remove() throws Exception {
         if (this.checkpermission("remove")) {
-            int id = ParameterCook.prepareInt("id", oRequest);
+            int id = ParameterCook.prepareId(oRequest);
             String resultado = null;
             Connection oConnection = null;
             ConnectionInterface oDataConnectionSource = null;
