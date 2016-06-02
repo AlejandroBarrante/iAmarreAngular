@@ -63,7 +63,7 @@ moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$locati
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
+            $location.path('/' + $scope.ob + '/plist/1/50');
         };
 
         $scope.view = function () {

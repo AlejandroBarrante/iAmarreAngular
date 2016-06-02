@@ -49,10 +49,10 @@ moduloAutor.controller('AutorViewController', ['$scope', '$routeParams', 'server
             $location.path('/index.html');
         };
         $scope.plist = function () {
-            $location.path('/autor/plist');
+            $location.path('/autor/plist/1/50');
         };
         $scope.pjuegos = function () {
-            $location.path('/juego/plist');
+            $location.path('/juego/plist/1/50');
         };
         $scope.back = function () {
             window.history.back();

@@ -138,16 +138,29 @@ THE SOFTWARE.
 
             <br /> <br />
 
-                    <div class="text-center" > 
-                        <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                        <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
-                        <a class="btn btn-default inicio" ng-href="#/juego/plist/1/100">No</a>
-                    </div>  
+            <div class="text-center" > 
+                <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
+                <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
+                <a class="btn btn-default inicio" ng-href="#/juego/plist/1/50">No</a>
+            </div>  
 
             <br />
 
         </div>
 
+    </div>
+
+    <div ng-show="result.status == 200">
+        <br>
+        <h2 ng-show="result.message > 0" class="alert alert-success">No
+            se ha podido eliminar el registro</h2>
+        <h2 ng-show="result.message <= 0" class="alert alert-success">Se
+            ha eliminado el registro</h2>
+        <a class="btn btn-default" ng-href="#/juego/plist/1/50">Volver</a>
+    </div>
+    <div ng-show="result.status && !result.status == 200">
+        <br>
+        <h2>Error al eliminar el registro</h2>
     </div>
 
 
@@ -157,26 +170,4 @@ THE SOFTWARE.
 <div class="panel-footer" style="font-family: Questrial, serif;"
      ng-include="'js/system/footer.html'"></div>
 
-
-
-<!-- Modal de Colección -->
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <p class="modal-p">{{mensaje}}</p>
-            </div>
-            <div class="modal-footer">
-                <!--       <a id="vercol" class="btn btn-default" href="#/coleccion/plist/1/50/{{bean2.id}}" data-dismiss="modal">Ver colección</a> -->
-                <a ng-click="coleccion()" id="botcol" class="btn btn-success">Ver colección</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal  data-backdrop=""--> 
 

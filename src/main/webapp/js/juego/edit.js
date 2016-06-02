@@ -82,7 +82,7 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
             $location.path('/index.html');
         };
         $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
+            $location.path('/' + $scope.ob + '/plist/1/50');
         };
 
         $scope.chooseOne = function (foreignObjectName) {

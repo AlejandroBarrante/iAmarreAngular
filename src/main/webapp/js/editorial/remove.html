@@ -25,62 +25,85 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div class="panel-heading" style="font-family: Oswald, serif;"
-     ng-include="'js/system/header.html'"></div>
-<div class="panel-body">
+<div ng-if="bean2.obj_tipousuario.id == 1">
 
-    <div class="row-fluid">
-        <div class="col-md-12">
+    <div class="panel-heading" style="font-family: Oswald, serif;"
+         ng-include="'js/system/header.html'"></div>
 
-            <h3 class="text-center titulo">{{bean.nombre}}</h3>
+    <div class="panel-body">
+
+        <div class="row-fluid">
+            <div class="col-md-12">
+
+                <h3 class="text-center titulo">{{bean.nombre}}</h3>
+
+            </div>
+        </div>
+        <br /> <br /> <br /> <br />
+
+        <div class="row-fluid">
+            <div class="col-lg-4 col-md-4">
+
+                <img src="{{bean.imagen}}" alt="mini" WIDTH=600 HEIGHT=200 class="img-rounded img-responsive">
+
+            </div>
+
+
+            <div class="col-lg-8 col-md-8">
+
+                <table>
+
+                    <tr>
+                        <td class="text-left descripcion">{{bean.bio}}</td>
+                    </tr>
+
+
+                </table>
+
+            </div>
 
         </div>
+
+        <div class="row-fluid">
+
+            <div class="col-md-12">
+
+                <br /> <br />
+
+                <div class="text-center" > 
+                    <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
+                    <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
+                    <a class="btn btn-default inicio" ng-href="#/editorial/plist/1/100">No</a>
+                </div>  
+
+                <br />
+
+
+            </div>
+
+        </div>
+
+
+        <div ng-show="result.status == 200">
+            <br>
+            <h2 ng-show="result.message == 0" class="alert alert-success">No
+                se ha podido eliminar el registro</h2>
+            <h2 ng-show="result.message <= 1" class="alert alert-success">Se
+                ha eliminado el registro</h2>
+            <a class="btn btn-default" ng-href="#/editorial/plist/1/50">Volver</a>
+        </div>
+        <div ng-show="result.status && !result.status == 200">
+            <br>
+            <h2>Error al eliminar el registro</h2>
+        </div>
+
     </div>
-    <br /> <br /> <br /> <br />
 
-    <div class="row-fluid">
-        <div class="col-lg-4 col-md-4">
-
-            <img src="{{bean.imagen}}" alt="mini" WIDTH=600 HEIGHT=200 class="img-rounded img-responsive">
-
-        </div>
-
-
-        <div class="col-lg-8 col-md-8">
-
-            <table>
-
-                <tr>
-                    <td class="text-left descripcion">{{bean.bio}}</td>
-                </tr>
-
-
-            </table>
-
-        </div>
-
-    </div>
-
-    <div class="row-fluid">
-
-        <div class="col-md-12">
-
-            <br /> <br />
-
-            <div class="text-center" > 
-                <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
-                <a class="btn btn-default inicio" ng-href="#/editorial/plist/1/100">No</a>
-            </div>  
-
-            <br />
-
-
-        </div>
-
-    </div>
+    <div class="panel-footer" style="font-family: Questrial, serif;"
+         ng-include="'js/system/footer.html'"></div>
 
 </div>
 
-<div class="panel-footer" style="font-family: Questrial, serif;"
-     ng-include="'js/system/footer.html'"></div>
+<div ng-if="bean2.obj_tipousuario.id != 1">
+    <h3 class="text-center">No tienes permiso para ver esta página</h3>
+</div>

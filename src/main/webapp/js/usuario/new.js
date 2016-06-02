@@ -78,7 +78,7 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/usuario/plist');
+            $location.path('/usuario/plist/1/50');
         };
 
 

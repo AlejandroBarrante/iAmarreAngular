@@ -49,7 +49,7 @@ moduloEditorial.controller('EditorialViewController', ['$scope', '$routeParams',
             $location.path('/index.html');
         };
         $scope.plist = function () {
-            $location.path('/editorial/plist');
+            $location.path('/editorial/plist/1/50');
         };
         $scope.back = function () {
             window.history.back();

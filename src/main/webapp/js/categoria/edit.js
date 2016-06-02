@@ -71,7 +71,7 @@ moduloCategoria.controller('CategoriaEditController', ['$scope', '$routeParams',
             $location.path('/index.html');
         };
         $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
+            $location.path('/' + $scope.ob + '/plist/1/50');
         };
 
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {

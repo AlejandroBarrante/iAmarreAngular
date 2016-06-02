@@ -44,7 +44,7 @@ moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routePara
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/tipousuario/plist');
+            $location.path('/tipousuario/plist/1/50');
         };
         $scope.back = function () {
             window.history.back();

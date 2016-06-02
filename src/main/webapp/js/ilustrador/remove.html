@@ -67,7 +67,7 @@ THE SOFTWARE.
                     <div class="text-center" > 
                         <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
                         <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
-                        <a class="btn btn-default inicio" ng-href="#/ilustrador/plist">No</a>
+                        <a class="btn btn-default inicio" ng-href="#/ilustrador/plist/1/50">No</a>
                     </div>     
                 </div>
 
@@ -75,7 +75,7 @@ THE SOFTWARE.
                     <br>
                     <h2  ng-show="result.message == 0" class="alert alert-success">No se ha podido eliminar el registro</h2>
                     <h2  ng-show="result.message == 1" class="alert alert-success">Se ha eliminado el registro</h2>
-                    <a class="btn btn-default" ng-href="#/ilustrador/plist">Volver</a>
+                    <a class="btn btn-default" ng-href="#/ilustrador/plist/1/50">Volver</a>
                 </div>
                 <div ng-show="result.status && !result.status == 200">
                     <br>

@@ -76,7 +76,7 @@ THE SOFTWARE.
 
 
         <form id="uploadForm" class="form-horizontal" action="upload" method="post" enctype="multipart/form-data">
-            <div class="form-group">
+            <div class="control">
                 <label for="file" class="col-sm-2 control-label">Imagen: </label>  
                 <input type="file" name="file" id="file"/><p class="textoinferior"> La imagen debe tener un tamaño de 300x100 píxeles.</p>
 
@@ -100,7 +100,7 @@ THE SOFTWARE.
         <div ng-show="result != null">
             <div class="alert alert-success" ng-show="result.status == 200">
                 <h2>Se ha modificado el registro</h2>
-                <a ng-href="#/editorial/plist">Volver al listado de editoriales</a>
+                <a ng-href="#/editorial/plist/1/50">Volver al listado de editoriales</a>
             </div>
             <div class="alert alert-danger" ng-show="result.status != 200">
                 <h2>Error al crear el documento: no se ha creado el documento</h2>

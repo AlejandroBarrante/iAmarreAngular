@@ -107,7 +107,7 @@ moduloEditorial.controller('EditorialNewController', ['$scope', '$routeParams', 
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/' + $scope.ob + '/plist');
+            $location.path('/' + $scope.ob + '/plist/1/50');
         };
 
         $scope.view = function () {
