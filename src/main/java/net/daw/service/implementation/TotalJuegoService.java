@@ -116,17 +116,45 @@ public class TotalJuegoService implements TableServiceInterface, ViewServiceInte
 
     }
 
-    // -------------
-    // MÉTODOS NO IMPLEMENTADOS
     /**
+     * Método REMOVE TotalJuego
      *
-     * @return @throws Exception
+     * @return resultado
+     * @throws Exception
      */
     @Override
     public String remove() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (this.checkpermission("remove")) {
+            int id = ParameterCook.prepareInt("id", oRequest);
+            String resultado = null;
+            Connection oConnection = null;
+            ConnectionInterface oDataConnectionSource = null;
+            try {
+                oDataConnectionSource = getSourceConnection();
+                oConnection = oDataConnectionSource.newConnection();
+                oConnection.setAutoCommit(false);
+                TotalJuegoDao oTotalJuegoDao = new TotalJuegoDao(oConnection);
+                resultado = JsonMessage.getJson("200", oTotalJuegoDao.remove(id).toString());
+                oConnection.commit();
+            } catch (Exception ex) {
+                oConnection.rollback();
+                ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oDataConnectionSource != null) {
+                    oDataConnectionSource.disposeConnection();
+                }
+            }
+            return resultado;
+        } else {
+            return JsonMessage.getJsonMsg("401", "Unauthorized");
+        }
     }
 
+    // -------------
+    // MÉTODOS NO IMPLEMENTADOS
     /**
      *
      * @return @throws Exception

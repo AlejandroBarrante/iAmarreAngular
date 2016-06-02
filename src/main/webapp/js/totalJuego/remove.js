@@ -33,7 +33,7 @@ moduloTotalJuego.controller('TotalJuegoRemoveController', ['$scope', '$routePara
         $scope.result = "";
 
         $scope.ob = 'totalJuego';
-        $scope.id = $routeParams.id;
+        $scope.id = $routeParams.id_juego;
         $scope.title = "Borrado de un Juego";
         $scope.icon = "/images/J.png";
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {

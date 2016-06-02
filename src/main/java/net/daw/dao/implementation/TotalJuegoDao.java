@@ -62,7 +62,8 @@ public class TotalJuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInter
         }
     }
 
-    /** Método GET TotalJuego
+    /**
+     * Método GET TotalJuego
      *
      * @param oTJuegoBean
      * @param oJuegoBean
@@ -89,71 +90,33 @@ public class TotalJuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInter
         return oTJuegoBean;
     }
 
-//    @Override
-//    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        int pages = 0;
-//        try {
-//            pages = oMysql.getPages(strSQL, intRegsPerPag);
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-//        }
-//        return pages;
-//    }
-//
-//    @Override
-//    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        int pages = 0;
-//        try {
-//            pages = oMysql.getCount(strSQL);
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-//        }
-//        return pages;
-//    }
-//
-//    @Override
-//    public ArrayList<JuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter,
-//            HashMap<String, String> hmOrder, Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-//        ArrayList<JuegoBean> arrJuego = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    JuegoBean oJuegoBean = new JuegoBean();
-//                    arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrJuego;
-//    }
-//
-//    @Override
-//    public ArrayList<JuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-//            Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        ArrayList<JuegoBean> arrJuego = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    JuegoBean oJuegoBean = new JuegoBean();
-//                    arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrJuego;
-//    }
-    // MÉTODOS NO IMPLEMENTADOS
+    /**
+     * Método REMOVE Juego
+     *
+     * @param id
+     * @return result
+     * @throws Exception
+     */
+    @Override
+    public Integer remove(Integer id) throws Exception {
+        int result = 0;
+        try {
+            
+            String strTable1 = "juego";
+            String strTable2 = "autorJuego";
+            String strTable3 = "ilustradorJuego";
+            String strTable4 = "categoriaJuego";
+            result = oMysql.removeOne(id, strTable1);
+            result = oMysql.removeOne(id, strTable2);
+            result = oMysql.removeOne(id, strTable3);
+            result = oMysql.removeOne(id, strTable4);
+        } catch (Exception ex) {
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
+        }
+        return result;
+    }
 
+    // MÉTODOS NO IMPLEMENTADOS
     /**
      *
      * @param oBean
@@ -175,18 +138,6 @@ public class TotalJuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInter
      */
     @Override
     public Integer set(JuegoBean oBean) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // To
-
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public Integer remove(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // To
 
     }
