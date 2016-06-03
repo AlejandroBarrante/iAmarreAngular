@@ -164,25 +164,6 @@ public class DependenciaLenguajeDao
         return pages;
     }
 
-//    @Override
-//    public ArrayList<DependenciaLenguajeBean> getAll(ArrayList<FilterBeanHelper> alFilter,
-//            HashMap<String, String> hmOrder, Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        ArrayList<DependenciaLenguajeBean> arrDepLenguaje = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    DependenciaLenguajeBean oDepLenguajeBean = new DependenciaLenguajeBean();
-//                    arrDepLenguaje
-//                            .add(oDepLenguajeBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrDepLenguaje;
-//    }
     /**
      * Método SET DepLenguaje
      *

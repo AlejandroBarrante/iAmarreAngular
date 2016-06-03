@@ -247,10 +247,18 @@ public class JuegoBean implements GenericBean {
         this.imagen = imagen;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getImagen2() {
         return imagen2;
     }
 
+    /**
+     *
+     * @param imagen2
+     */
     public void setImagen2(String imagen2) {
         this.imagen2 = imagen2;
     }

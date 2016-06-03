@@ -463,7 +463,7 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
-    
+
     /**
      * Método SET de Editorial
      *
@@ -513,7 +513,6 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
     }
 
     // MÉTODOS NO IMPLEMENTADOS
-
     /**
      *
      * @return @throws Exception

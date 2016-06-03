@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-     ng-include="'js/system/header.html'"></div>
+     data-ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
 
     <div class="row-fluid">
@@ -70,15 +70,15 @@ THE SOFTWARE.
             <div class="coleccion text-center">
                 <a class="btn btn-default añadir" href="{{bean.website}}">Web Oficial</a>
                 <a class="btn btn-default eliminar" href="#/editorialJuego/plist/1/50/{{bean.id}}">Ver sus juegos</a>
-                <a class="btn btn-default listado" ng-click="plist()">Ir al listado de
-                    Editoriales</a> <a class="btn btn-default inicio" ng-click="close()">Ir al
+                <a class="btn btn-default listado" data-ng-click="plist()">Ir al listado de
+                    Editoriales</a> <a class="btn btn-default inicio" data-ng-click="close()">Ir al
                     Inicio</a>
                 <br/><br/>
             </div>
 
             <br />
 
-            <div class="text-center" ng-if="bean2.obj_tipousuario.id == 1">
+            <div class="text-center" data-ng-if="bean2.obj_tipousuario.id == 1">
                 <h3>Panel de Administración</h3>
                 <a class="btn btn-default agregar" href="#/editorial/edit/{{bean.id}}">Editar</a>
                 <a class="btn btn-default eliminar" href="#/editorial/remove/{{bean.id}}">Borrar</a>
@@ -90,4 +90,4 @@ THE SOFTWARE.
 </div>
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
-     ng-include="'js/system/footer.html'"></div>
+     data-ng-include="'js/system/footer.html'"></div>

@@ -160,23 +160,6 @@ public class IlustradorDao implements ViewDaoInterface<IlustradorBean>, TableDao
         return pages;
     }
 
-//    @Override
-//    public ArrayList<IlustradorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        ArrayList<IlustradorBean> arrIlustrador = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    IlustradorBean oIlustradorBean = new IlustradorBean();
-//                    arrIlustrador.add(oIlustradorBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrIlustrador;
-//    }
     /**
      * Método SET Ilustrador
      *

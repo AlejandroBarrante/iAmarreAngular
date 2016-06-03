@@ -160,23 +160,6 @@ public class CategoriaDao implements ViewDaoInterface<CategoriaBean>, TableDaoIn
         return pages;
     }
 
-//    @Override
-//    public ArrayList<CategoriaBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        ArrayList<CategoriaBean> arrCategoria = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    CategoriaBean oCategoriaBean = new CategoriaBean();
-//                    arrCategoria.add(oCategoriaBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrCategoria;
-//    }
     /**
      * Método SET Categoría
      *

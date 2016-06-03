@@ -63,50 +63,6 @@ public class IlustradorJuegoDao implements ViewDaoInterface<IlustradorJuegoBean>
         }
     }
 
-//    // OPERACIONES BÁSICAS
-//    @Override
-//    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        int pages = 0;
-//        try {
-//            pages = oMysql.getPages(strSQL, intRegsPerPag);
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-//        }
-//        return pages;
-//    }
-//
-//    @Override
-//    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        int pages = 0;
-//        try {
-//            pages = oMysql.getCount(strSQL);
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-//        }
-//        return pages;
-//    }
-//
-//    @Override
-//    public ArrayList<IlustradorJuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-//        ArrayList<IlustradorJuegoBean> arrIlustradorJuegoBean = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    IlustradorJuegoBean oIlustradorJuegoBean = new IlustradorJuegoBean();
-//                    arrIlustradorJuegoBean.add(oIlustradorJuegoBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrIlustradorJuegoBean;
-//    }
     /**
      * Método GETALL IlustradorJuego
      *

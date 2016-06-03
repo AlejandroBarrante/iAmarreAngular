@@ -66,9 +66,10 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
         oRequest = request;
     }
 
-    /** MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
+    /**
+     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
      *
-     * @return 
+     * @return
      * @throws Exception
      */
     private Boolean checkpermission(String strMethodName) throws Exception {
@@ -80,7 +81,8 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    /** Método para GET de categoría
+    /**
+     * Método para GET de categoría
      *
      * @return data
      * @throws Exception
@@ -114,35 +116,6 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
 
     }
 
-//    @Override
-//    public String getall() throws Exception {
-//
-//        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-//        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-//        String data = null;
-//        Connection oConnection = null;
-//        ConnectionInterface oDataConnectionSource = null;
-//
-//        try {
-//            oDataConnectionSource = getSourceConnection();
-//            oConnection = oDataConnectionSource.newConnection();
-//            CategoriaDao oCategoriaDao = new CategoriaDao(oConnection);
-//            ArrayList<CategoriaBean> arrBeans = oCategoriaDao.getAll(alFilter, hmOrder, 1);
-//            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
-//        } finally {
-//            if (oConnection != null) {
-//                oConnection.close();
-//            }
-//            if (oDataConnectionSource != null) {
-//                oDataConnectionSource.disposeConnection();
-//            }
-//        }
-//
-//        return data;
-//
-//    }
     /**
      *
      * @return data
@@ -268,7 +241,8 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
 
     }
 
-    /** Método para REMOVE de categoría
+    /**
+     * Método para REMOVE de categoría
      *
      * @return resultado
      * @throws Exception
@@ -304,7 +278,8 @@ public class CategoriaService implements TableServiceInterface, ViewServiceInter
         }
     }
 
-    /** Método para SET de categoría
+    /**
+     * Método para SET de categoría
      *
      * @return resultado
      * @throws Exception

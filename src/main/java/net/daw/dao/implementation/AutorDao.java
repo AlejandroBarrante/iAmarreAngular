@@ -63,24 +63,6 @@ public class AutorDao implements ViewDaoInterface<AutorBean>, TableDaoInterface<
         }
     }
 
-//    @Override
-//    public ArrayList<AutorBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-//            Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        ArrayList<AutorBean> arrAutor = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    AutorBean oAutorBean = new AutorBean();
-//                    arrAutor.add(oAutorBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrAutor;
-//    }
     /**
      * Método GET Autor
      *
@@ -299,7 +281,8 @@ public class AutorDao implements ViewDaoInterface<AutorBean>, TableDaoInterface<
         return arrAutorBean;
     }
 
-    /** Método para crear el array de Autor en TotalJuegoBean
+    /**
+     * Método para crear el array de Autor en TotalJuegoBean
      *
      * @param id_juego
      * @param alFilter
@@ -326,7 +309,7 @@ public class AutorDao implements ViewDaoInterface<AutorBean>, TableDaoInterface<
         }
         return arrAutor;
     }
-    
+
     // MÉTODOS NO IMPLEMENTADOS
     /**
      *

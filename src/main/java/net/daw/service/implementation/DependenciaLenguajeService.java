@@ -116,41 +116,6 @@ public class DependenciaLenguajeService implements TableServiceInterface, ViewSe
 
     }
 
-//    /**
-//     * Método GETALL
-//     *
-//     * @return data
-//     * @throws Exception
-//     */
-//    @Override
-//    public String getall() throws Exception {
-//
-//        ArrayList<FilterBeanHelper> alFilter = ParameterCook.prepareFilter(oRequest);
-//        HashMap<String, String> hmOrder = ParameterCook.prepareOrder(oRequest);
-//        String data = null;
-//        Connection oConnection = null;
-//        ConnectionInterface oDataConnectionSource = null;
-//
-//        try {
-//            oDataConnectionSource = getSourceConnection();
-//            oConnection = oDataConnectionSource.newConnection();
-//            DependenciaLenguajeDao oDependenciaLenguajeDao = new DependenciaLenguajeDao(oConnection);
-//            ArrayList<DependenciaLenguajeBean> arrBeans = oDependenciaLenguajeDao.getAll(alFilter, hmOrder, 1);
-//            data = JsonMessage.getJson("200", AppConfigurationHelper.getGson().toJson(arrBeans));
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getAll ERROR: " + ex.getMessage()));
-//        } finally {
-//            if (oConnection != null) {
-//                oConnection.close();
-//            }
-//            if (oDataConnectionSource != null) {
-//                oDataConnectionSource.disposeConnection();
-//            }
-//        }
-//
-//        return data;
-//
-//    }
     /**
      * MÉTODOS PARA OBTENER LOS LISTADOS
      *
@@ -363,13 +328,10 @@ public class DependenciaLenguajeService implements TableServiceInterface, ViewSe
     }
 
     // MÉTODOS NO IMPLEMENTADOS 
-
     /**
      *
-     * @return
-     * @throws Exception
+     * @return @throws Exception
      */
-    
     @Override
     public String getall() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

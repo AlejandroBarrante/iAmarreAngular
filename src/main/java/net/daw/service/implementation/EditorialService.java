@@ -378,6 +378,7 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
             return JsonMessage.getJsonMsg("401", "Unauthorized");
         }
     }
+
     // MÉTODOS NO IMPLEMENTADOS
     /**
      *

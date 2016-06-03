@@ -63,49 +63,6 @@ public class CategoriaJuegoDao implements ViewDaoInterface<CategoriaJuegoBean>, 
         }
     }
 
-//    @Override
-//    public int getPages(int intRegsPerPag, ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        int pages = 0;
-//        try {
-//            pages = oMysql.getPages(strSQL, intRegsPerPag);
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPages ERROR: " + ex.getMessage()));
-//        }
-//        return pages;
-//    }
-//
-//    @Override
-//    public int getCount(ArrayList<FilterBeanHelper> hmFilter) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        int pages = 0;
-//        try {
-//            pages = oMysql.getCount(strSQL);
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getCount ERROR: " + ex.getMessage()));
-//        }
-//        return pages;
-//    }
-//
-//    @Override
-//    public ArrayList<CategoriaJuegoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBeanHelper> hmFilter, HashMap<String, String> hmOrder, Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlWhere(hmFilter);
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        strSQL += SqlBuilder.buildSqlLimit(oMysql.getCount(strSQL), intRegsPerPag, intPage);
-//        ArrayList<CategoriaJuegoBean> arrCategoriaJuegoBean = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    CategoriaJuegoBean oCategoriaJuegoBean = new CategoriaJuegoBean();
-//                    arrCategoriaJuegoBean.add(oCategoriaJuegoBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrCategoriaJuegoBean;
-//    }
     /**
      * Método GETALL CategoriaJuego
      *
@@ -133,27 +90,6 @@ public class CategoriaJuegoDao implements ViewDaoInterface<CategoriaJuegoBean>, 
         return arrCategoriaJuego;
     }
 
-//    // -----------------
-//    // MÉTODO PARA SACAR LA CATEGORÍA EN LA PANTALLA DE JUEGO VIEW
-//    public CategoriaJuegoBean getCategoriaFiltradoPorJuego(CategoriaJuegoBean oCategoriaJuegoBean, Integer expand) throws Exception {
-//        ResultSet oResultSet = null;
-//        try {
-//
-//            oResultSet = oMysql.getAllSql(strSQL + " AND cj.id_juego= " + oCategoriaJuegoBean.getId_juego());
-//
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    oCategoriaJuegoBean = oCategoriaJuegoBean.fill(oResultSet, oConnection, expand);
-//                }
-//            }
-//
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":get ERROR: " + ex.getMessage()));
-//        }
-//
-//        return oCategoriaJuegoBean;
-//    }
-    // 
     /**
      * MÉTODOS PARA HACER CONSULTAS CRUZADAS ENTRE CATEGORÍA Y JUEGO
      *

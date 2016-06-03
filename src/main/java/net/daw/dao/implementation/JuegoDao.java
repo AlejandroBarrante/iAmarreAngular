@@ -235,24 +235,6 @@ public class JuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInterface<
         return pages;
     }
 
-//    @Override
-//    public ArrayList<JuegoBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-//            Integer expand) throws Exception {
-//        strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//        ArrayList<JuegoBean> arrJuego = new ArrayList<>();
-//        try {
-//            ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//            if (oResultSet != null) {
-//                while (oResultSet.next()) {
-//                    JuegoBean oJuegoBean = new JuegoBean();
-//                    arrJuego.add(oJuegoBean.fill(oResultSet, oConnection, expand));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//        }
-//        return arrJuego;
-//    }
     /**
      * Método SET Juego
      *

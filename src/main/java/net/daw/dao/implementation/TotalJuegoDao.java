@@ -101,7 +101,7 @@ public class TotalJuegoDao implements ViewDaoInterface<JuegoBean>, TableDaoInter
     public Integer remove(Integer id) throws Exception {
         int result = 0;
         try {
-            
+
             String strTable = "juego";
             String strTableAJ = "autorJuego";
             String strTableIJ = "ilustradorJuego";

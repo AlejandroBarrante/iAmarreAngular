@@ -161,24 +161,6 @@ public class EditorialDao implements ViewDaoInterface<EditorialBean>, TableDaoIn
         return pages;
     }
 
-//	@Override
-//	public ArrayList<EditorialBean> getAll(ArrayList<FilterBeanHelper> alFilter, HashMap<String, String> hmOrder,
-//			Integer expand) throws Exception {
-//		strSQL += SqlBuilder.buildSqlOrder(hmOrder);
-//		ArrayList<EditorialBean> arrEditorial = new ArrayList<>();
-//		try {
-//			ResultSet oResultSet = oMysql.getAllSql(strSQL);
-//			if (oResultSet != null) {
-//				while (oResultSet.next()) {
-//					EditorialBean oEditorialBean = new EditorialBean();
-//					arrEditorial.add(oEditorialBean.fill(oResultSet, oConnection, expand));
-//				}
-//			}
-//		} catch (Exception ex) {
-//			ExceptionBooster.boost(new Exception(this.getClass().getName() + ":getPage ERROR: " + ex.getMessage()));
-//		}
-//		return arrEditorial;
-//	}
     /**
      * Método SET Editorial
      *

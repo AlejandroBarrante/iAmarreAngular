@@ -243,10 +243,18 @@ public class TotalJuegoBean implements GenericBean {
         this.website = website;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getImagen2() {
         return imagen2;
     }
 
+    /**
+     *
+     * @param imagen2
+     */
     public void setImagen2(String imagen2) {
         this.imagen2 = imagen2;
     }
