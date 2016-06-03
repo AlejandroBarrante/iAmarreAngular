@@ -33,12 +33,18 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
         $scope.id = $routeParams.id;
         $scope.ob = 'juego';
         $scope.op = "edit";
+        $scope.obTotal = "totalJuego";
+        $scope.objTotal = null;
         $scope.result = null;
         $scope.title = "Edición de Juego";
         $scope.icon = "/images/J.png";
         if (sharedSpaceService.getFase() == 0) {
             serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.obj = data.message;
+            });
+
+            serverService.getDataFromPromise(serverService.promise_getTotalJuego($scope.obTotal, $scope.id)).then(function (data) {
+                $scope.objTotal = data.message;
             });
         } else {
             $scope.obj = sharedSpaceService.getObject();
@@ -53,6 +59,9 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
                 $scope.result = data;
             });
         };
+
+
+
 
 
 
@@ -95,9 +104,10 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
         };
 
         $scope.chooseOne2 = function (foreignObjectName) {
+
+            sharedSpaceService.setReturnLink('juego/edit/' + $scope.id);
             sharedSpaceService.setObject($scope.obj);
             sharedSpaceService.setFase(1);
-            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
             $location.path('/' + foreignObjectName + '/selection/1/100');
         }
 
