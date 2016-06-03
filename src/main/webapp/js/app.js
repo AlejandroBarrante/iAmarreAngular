@@ -60,6 +60,8 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         //------------
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
+        $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController'});
+        $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
         //------------
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController'});
@@ -130,6 +132,27 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
 
 
     }]);
+
+
+
+
+
+openAusias.run(function ($rootScope, $location, serverService) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        $rootScope.isSessionActive=false;
+        serverService.getDataFromPromise(serverService.promise_getUserSession()).then(function (result) {
+            if (result) {
+                $rootScope.isSessionActive = true;
+                $rootScope.userid = result.message.id;
+                $rootScope.tipousuario = result.message.obj_tipousuario.id;
+            } else {
+                $rootScope.isSessionActive = false;
+            }
+        });
+    });
+});
+
+
 
 var moduloSistema = angular.module('systemControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
