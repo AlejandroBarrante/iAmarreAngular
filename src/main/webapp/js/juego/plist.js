@@ -29,7 +29,7 @@
 
 'use strict';
 
-moduloJuego.controller('JuegoPListController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope',
+moduloJuego.controller('JuegoPListController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope', '$rootScope',
     function ($scope, $routeParams, serverService, $location, $rootScope) {
 
         $scope.visibles = {};

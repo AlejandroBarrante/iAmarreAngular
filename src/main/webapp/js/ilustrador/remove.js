@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloIlustrador.controller('IlustradorRemoveController', ['$scope', '$routeParams', 'serverService',
-    function ($scope, $routeParams, serverService) {
+moduloIlustrador.controller('IlustradorRemoveController', ['$scope', '$routeParams', 'serverService', '$rootScope',
+    function ($scope, $routeParams, serverService, $rootScope) {
         $scope.result = "";
 
         $scope.ob = 'ilustrador';

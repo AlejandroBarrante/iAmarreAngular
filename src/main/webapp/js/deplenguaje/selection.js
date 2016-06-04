@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloDepLenguaje.controller('DepLenguajeSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService',
-    function ($scope, $routeParams, serverService, $location, sharedSpaceService) {
+moduloDepLenguaje.controller('DepLenguajeSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, $rootScope) {
 
         $scope.ob = "dependenciaLenguaje";
         $scope.op = "selection";

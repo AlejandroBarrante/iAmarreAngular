@@ -27,8 +27,8 @@
  */
 
 'use strict';
-moduloEditorial.controller('EditorialEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloEditorial.controller('EditorialEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $rootScope) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
         $scope.ob = 'editorial';

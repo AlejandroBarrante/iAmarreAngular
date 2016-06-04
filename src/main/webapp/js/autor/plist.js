@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloAutor.controller('AutorPListController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
+moduloAutor.controller('AutorPListController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, $rootScope) {
 
         $scope.visibles = {};
         $scope.visibles.id = true;

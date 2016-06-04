@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloTipousuario.controller('TipousuarioSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService',
-    function ($scope, $routeParams, serverService, $location, sharedSpaceService) {
+moduloTipousuario.controller('TipousuarioSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, $rootScope) {
 
         $scope.ob = "tipousuario";
         $scope.op = "selection";

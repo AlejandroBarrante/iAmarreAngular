@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloCategoria.controller('CategoriaPListController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
+moduloCategoria.controller('CategoriaPListController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, $rootScope) {
 
         $scope.visibles = {};
         $scope.visibles.id = true;

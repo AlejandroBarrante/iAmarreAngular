@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloCategoriaJuego.controller('JuegoCategoriaSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego',
-    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego) {
+moduloCategoriaJuego.controller('JuegoCategoriaSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego, $rootScope) {
 
         $scope.ob = "categoria";
         $scope.op = "selection";

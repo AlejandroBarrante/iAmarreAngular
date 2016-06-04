@@ -28,8 +28,8 @@
 
 
 'use strict';
-moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $rootScope) {
         $scope.id = $routeParams.id;
         $scope.ob = 'juego';
         $scope.op = 'new';

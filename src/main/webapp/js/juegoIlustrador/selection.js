@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloIlustradorJuego.controller('JuegoIlustradorSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego',
-    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego) {
+moduloIlustradorJuego.controller('JuegoIlustradorSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego, $rootScope) {
 
         $scope.ob = "ilustrador";
         $scope.op = "selection";

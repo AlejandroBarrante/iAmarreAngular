@@ -25,7 +25,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
+   
 <div class="panel-heading" style="font-family:Oswald , serif;" data-ng-include="'js/system/header.html'"></div>
+
 <div class="panel-body"  data-ng-cloak>
 
     <div class="row">
@@ -41,7 +43,7 @@ THE SOFTWARE.
 
                                 <select class="selector"
                                         onchange="window.location.href = this.options
-                                                        [this.selectedIndex].value">
+                                                                [this.selectedIndex].value">
                                     <option>Ordenar...</option>
                                     <option
                                         value="#/coleccion/plist/{{numpage}}/{{rpp}}/{{id}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
@@ -163,6 +165,6 @@ THE SOFTWARE.
 </div>
 
 
-<div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
 
+<div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
 

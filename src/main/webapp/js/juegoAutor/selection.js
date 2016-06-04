@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloAutorJuego.controller('JuegoAutorSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego',
-    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego) {
+moduloAutorJuego.controller('JuegoAutorSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', 'sharedSpaceJuego', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, sharedSpaceJuego, $rootScope) { 
 
         $scope.ob = "autor";
         $scope.op = "selection";

@@ -28,8 +28,8 @@
 
 
 'use strict';
-moduloIlustrador.controller('IlustradorNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloIlustrador.controller('IlustradorNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $rootScope) {
         $scope.id = $routeParams.id;
         $scope.ob = 'ilustrador';
         $scope.result = null;

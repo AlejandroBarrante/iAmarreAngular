@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloAutor.controller('AutorRemoveController', ['$scope', '$routeParams', 'serverService',
-    function ($scope, $routeParams, serverService) {
+moduloAutor.controller('AutorRemoveController', ['$scope', '$routeParams', 'serverService', '$rootScope',
+    function ($scope, $routeParams, serverService, $rootScope) {
         $scope.result = "";
 
         $scope.ob = 'autor';

@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloTotalJuego.controller('TotalJuegoRemoveController', ['$scope', '$routeParams', 'serverService',
-    function ($scope, $routeParams, serverService) {
+moduloTotalJuego.controller('TotalJuegoRemoveController', ['$scope', '$routeParams', 'serverService', '$rootScope',
+    function ($scope, $routeParams, serverService, $rootScope) {
         $scope.result = "";
 
         $scope.ob = 'totalJuego';

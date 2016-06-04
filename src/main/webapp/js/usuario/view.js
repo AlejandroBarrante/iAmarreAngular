@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
+moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, $rootScope) {
         $scope.title = "Vista de usuario";
         $scope.icon = "/images/U.png";
         $scope.ob = 'usuario';

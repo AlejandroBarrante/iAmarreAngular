@@ -27,8 +27,8 @@
  */
 
 'use strict';
-moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter) {
+moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$filter', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $filter, $rootScope) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
         $scope.ob = 'usuario';

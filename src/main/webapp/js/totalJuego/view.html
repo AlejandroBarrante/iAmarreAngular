@@ -141,12 +141,12 @@ THE SOFTWARE.
             <div class="coleccion text-center">
                 <div class="btn-group" role="group">
 
-                    <a ng-if="bean2.obj_tipousuario.id == 1 || bean2.obj_tipousuario.id == 2" 
+                    <a ng-if="tipousuario == 1 || tipousuario == 2" 
                        class="btn btn-default action02 añadir" ng-click="go(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-check fa-2g"></i> Añadir a mi colección</a>                   
 
 
-                    <a ng-if="bean2.obj_tipousuario.id == 1 || bean2.obj_tipousuario.id == 2" 
+                    <a ng-if="tipousuario == 1 || tipousuario == 2" 
                        class="btn btn-default action02 eliminar" ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
 
@@ -160,7 +160,7 @@ THE SOFTWARE.
 
             <br />
 
-            <div class="text-center" ng-if="bean2.obj_tipousuario.id == 1">
+            <div class="text-center" ng-if="tipousuario == 1">
 
                 <h3>Panel de Administración</h3>
                 <a class="btn btn-primary agregar" href="#/juego/edit/{{bean.id}}">Editar</a>

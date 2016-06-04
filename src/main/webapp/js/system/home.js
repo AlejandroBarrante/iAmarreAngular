@@ -31,12 +31,7 @@ moduloSistema.controller('HomeController', ['$scope', '$routeParams', '$location
     function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
 
         $scope.op = "Home";
-        $scope.bean = null;
-        $scope.ob = 'usuario';
 
-        serverService.getDataFromPromise(serverService.promise_getUserSession($scope.ob)).then(function (data) {
-            $scope.bean = data.message;
-
-        });
-    }]
+    }
+]
         );

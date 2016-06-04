@@ -50,7 +50,6 @@ var openAusias = angular.module('myApp', [
     'totalJuegoControllers',
     'coleccionControllers',
     'menuControllers',
-    'sessionControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
@@ -139,14 +138,16 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
 
 openAusias.run(function ($rootScope, $location, serverService) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        $rootScope.isSessionActive=false;
+        $rootScope.isSessionActive = false;
         serverService.getDataFromPromise(serverService.promise_getUserSession()).then(function (result) {
-            if (result) {
+            if (result.status == '401') {
+                $rootScope.isSessionActive = false;
+                $rootScope.login = null;
+            } else {
                 $rootScope.isSessionActive = true;
                 $rootScope.userid = result.message.id;
                 $rootScope.tipousuario = result.message.obj_tipousuario.id;
-            } else {
-                $rootScope.isSessionActive = false;
+                $rootScope.login = result.message.login;
             }
         });
     });
@@ -169,6 +170,5 @@ var moduloEditorialJuego = angular.module('editorialJuegoControllers', []);
 var moduloDepLenguaje = angular.module('depLenguajeControllers', []);
 var moduloTotalJuego = angular.module('totalJuegoControllers', []);
 var moduloColeccion = angular.module('coleccionControllers', []);
-var moduloSession = angular.module('sessionControllers', []);
 var moduloMenu = angular.module('menuControllers', []);
 

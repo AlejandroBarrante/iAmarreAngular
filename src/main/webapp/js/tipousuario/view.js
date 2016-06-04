@@ -31,8 +31,8 @@
 
 
 
-moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
+moduloTipousuario.controller('TipousuarioViewController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, $rootScope) {
         $scope.title = "Vista de tipo de usuario";
         $scope.icon = "/images/U.png";
         $scope.ob = 'tipousuario';

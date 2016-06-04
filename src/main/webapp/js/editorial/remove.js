@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloEditorial.controller('EditorialRemoveController', ['$scope', '$routeParams', 'serverService',
-    function ($scope, $routeParams, serverService) {
+moduloEditorial.controller('EditorialRemoveController', ['$scope', '$routeParams', 'serverService', '$rootScope',
+    function ($scope, $routeParams, serverService, $rootScope) {
         $scope.result = "";
 
         $scope.ob = 'editorial';

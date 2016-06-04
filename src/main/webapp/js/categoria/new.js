@@ -28,8 +28,8 @@
 
 
 'use strict';
-moduloCategoria.controller('CategoriaNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloCategoria.controller('CategoriaNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $rootScope) {
         $scope.id = $routeParams.id;
         $scope.ob = 'categoria';
         $scope.result = null;

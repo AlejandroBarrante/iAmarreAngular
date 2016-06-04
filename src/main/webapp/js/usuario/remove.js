@@ -28,8 +28,8 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', 'serverService',
-    function ($scope, $routeParams, serverService) {
+moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', 'serverService', '$rootScope',
+    function ($scope, $routeParams, serverService, $rootScope) {
         $scope.result = "";
         $scope.ob = 'usuario';
         $scope.id = $routeParams.id;

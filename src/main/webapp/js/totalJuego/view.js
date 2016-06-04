@@ -31,8 +31,8 @@
 
 
 
-moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceJuego',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceJuego) {
+moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceJuego', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceJuego, $rootScope) {
         $scope.title = "Vista de Juego";
         $scope.icon = "/images/J.png";
         $scope.ob = 'totalJuego';

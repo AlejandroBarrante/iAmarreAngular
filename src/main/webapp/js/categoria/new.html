@@ -26,13 +26,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
+<div data-ng-if="tipousuario == 1">
+
+    <div class="panel-heading" style="font-family: Oswald, serif;"
+         data-ng-include="'js/system/header.html'"></div>
 
 
-<div class="panel-heading" style="font-family: Oswald, serif;"
-     data-ng-include="'js/system/header.html'"></div>
-
-<div data-ng-if="bean2.obj_tipousuario.id == 1">
-    
     <div class="panel-body">
         <form name="categoriaForm" class="form-horizontal"
               data-ng-show="result == null" novalidate>
@@ -90,6 +89,14 @@ THE SOFTWARE.
 
 </div>
 
-<div data-ng-if="bean2.obj_tipousuario.id != 1">
-    <h3 class="text-center">No tienes permiso para ver esta página</h3>
+<div data-ng-if="tipousuario != 1">
+    <div class="panel-body nopermiso">    
+        <h3 class="text-center">Lo sentimos, no tienes permiso para ver esta página.</h3>
+        <br/>
+        <div class="text-center"><a class="btn btn-primary agregar" href="#/">Volver al Inicio</a></div>
+    </div>
+
+    <div class="panel-footer" style="font-family: Questrial, serif;"
+         data-ng-include="'js/system/footer.html'"></div> 
+
 </div>

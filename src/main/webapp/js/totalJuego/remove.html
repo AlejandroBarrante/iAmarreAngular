@@ -25,149 +25,163 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div class="panel-heading" style="font-family: Oswald, serif;"
-     ng-include="'js/system/header.html'"></div>
-<div class="panel-body">
-    <div class="row-fluid">
-        <div class="col-md-12">
+<div data-ng-if="tipousuario == 1">
 
-            <h3 class="text-center titulo">{{bean.titulo}}</h3>
+    <div class="panel-heading" style="font-family: Oswald, serif;"
+         ng-include="'js/system/header.html'"></div>
+    <div class="panel-body">
+        <div class="row-fluid">
+            <div class="col-md-12">
 
-        </div>
-    </div>
+                <h3 class="text-center titulo">{{bean.titulo}}</h3>
 
-    <br /> <br /> <br /> <br />
-
-    <div class="row">
-
-        <div class="col-md-3 text-center">
-
-            <img alt="imagen2" src="{{bean.imagen2}}" class="img-rounded img-responsive">
-
+            </div>
         </div>
 
+        <br /> <br /> <br /> <br />
 
-        <div class="col-md-9">
+        <div class="row">
 
+            <div class="col-md-3 text-center">
 
-            <p class="descripcion">{{bean.descripcion}}</p>
-
-            <br />
-
-            <div class="col-lg-4 col-md-4 datosjuego"> 
-
-                <table class="table-responsive tablajuego">
-
-
-                    <tr>
-                        <td class="etiqueta">Autores</td>
-                        <td><li class="listados" ng-repeat="autor in bean.array_autor"><a
-                            href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
-                    </tr>
-
-                    <tr>
-                        <td class="etiqueta">Ilustradores</td>
-                        <td><li ng-repeat="ilustrador in bean.array_ilustrador"><a
-                            href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li></td>
-                    </tr>
-
-                    <tr>
-                        <td class="etiqueta">Editorial</td>
-                        <td><a href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</td>
-                    </tr>
-                    <tr>
-                        <td class="etiqueta">Fecha de Publicación</td>
-                        <td>{{bean.fechaPublicacion}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="etiqueta">Número de Jugadores</td>
-                        <td><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
-                                ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
-                    </tr>
-
-                    <tr>
-                        <td class="etiqueta">Duración</td>
-                        <td>{{bean.duracion}} minutos</td>
-                    </tr>
-
-                </table>
+                <img alt="imagen2" src="{{bean.imagen2}}" class="img-rounded img-responsive">
 
             </div>
 
 
-            <div class="col-lg-4 col-md-4 datosjuego"> 
-
-                <table class="table-responsive tablajuego">
-
-                    <tr>
-                        <td class="etiqueta">Categorías</td>
-                        <td><li ng-repeat="categoria in bean.array_categoria"><a
-                            href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li></td>
-                    </tr>
-
-                    <tr>
-                        <td class="etiqueta">Edad</td>
-                        <td>{{bean.edad}}+</td>
-                    </tr>
-                    <tr>
-                        <td  class="etiqueta">Dependencia del Lenguaje</td>
-                        <td>{{bean.obj_dependencialenguaje.descripcion}}</td>
-                    </tr>
+            <div class="col-md-9">
 
 
-                </table>
+                <p class="descripcion">{{bean.descripcion}}</p>
 
-            </div>
+                <br />
 
-            <div class="col-lg-2 col-md-2 enlaces"> 
+                <div class="col-lg-4 col-md-4 datosjuego"> 
 
-                <a ng-if="bean.website != ''" class="btn btn-default text-center" href="{{bean.website}}">Visita la web del juego</a><br/><br/>
-                <p class="compra">Cómpralo en:</p>
-                <a href=""><img src="/images/bannerpatr.jpg"></a>
+                    <table class="table-responsive tablajuego">
+
+
+                        <tr>
+                            <td class="etiqueta">Autores</td>
+                            <td><li class="listados" ng-repeat="autor in bean.array_autor"><a
+                                href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
+                        </tr>
+
+                        <tr>
+                            <td class="etiqueta">Ilustradores</td>
+                            <td><li ng-repeat="ilustrador in bean.array_ilustrador"><a
+                                href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li></td>
+                        </tr>
+
+                        <tr>
+                            <td class="etiqueta">Editorial</td>
+                            <td><a href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</td>
+                        </tr>
+                        <tr>
+                            <td class="etiqueta">Fecha de Publicación</td>
+                            <td>{{bean.fechaPublicacion}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="etiqueta">Número de Jugadores</td>
+                            <td><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
+                                    ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="etiqueta">Duración</td>
+                            <td>{{bean.duracion}} minutos</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+                <div class="col-lg-4 col-md-4 datosjuego"> 
+
+                    <table class="table-responsive tablajuego">
+
+                        <tr>
+                            <td class="etiqueta">Categorías</td>
+                            <td><li ng-repeat="categoria in bean.array_categoria"><a
+                                href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li></td>
+                        </tr>
+
+                        <tr>
+                            <td class="etiqueta">Edad</td>
+                            <td>{{bean.edad}}+</td>
+                        </tr>
+                        <tr>
+                            <td  class="etiqueta">Dependencia del Lenguaje</td>
+                            <td>{{bean.obj_dependencialenguaje.descripcion}}</td>
+                        </tr>
+
+
+                    </table>
+
+                </div>
+
+                <div class="col-lg-2 col-md-2 enlaces"> 
+
+                    <a ng-if="bean.website != ''" class="btn btn-default text-center" href="{{bean.website}}">Visita la web del juego</a><br/><br/>
+                    <p class="compra">Cómpralo en:</p>
+                    <a href=""><img src="/images/bannerpatr.jpg"></a>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+        <div class="row">
 
-    <div class="row">
+            <div class="col-md-12">
 
-        <div class="col-md-12">
+                <br /> <br />
 
-            <br /> <br />
+                <div class="text-center" > 
+                    <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
+                    <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
+                    <a class="btn btn-default inicio" ng-href="#/juego/plist/1/50">No</a>
+                </div>  
 
-            <div class="text-center" > 
-                <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
-                <a class="btn btn-default inicio" ng-href="#/juego/plist/1/50">No</a>
-            </div>  
+                <br />
 
-            <br />
+            </div>
 
         </div>
 
+        <div ng-show="result.status == 200">
+            <br>
+            <h2 ng-show="result.message > 0" class="alert alert-success">No
+                se ha podido eliminar el registro</h2>
+            <h2 ng-show="result.message <= 0" class="alert alert-success">Se
+                ha eliminado el registro</h2>
+            <a class="btn btn-default" ng-href="#/juego/plist/1/50">Volver</a>
+        </div>
+        <div ng-show="result.status && !result.status == 200">
+            <br>
+            <h2>Error al eliminar el registro</h2>
+        </div>
+
+
     </div>
 
-    <div ng-show="result.status == 200">
-        <br>
-        <h2 ng-show="result.message > 0" class="alert alert-success">No
-            se ha podido eliminar el registro</h2>
-        <h2 ng-show="result.message <= 0" class="alert alert-success">Se
-            ha eliminado el registro</h2>
-        <a class="btn btn-default" ng-href="#/juego/plist/1/50">Volver</a>
-    </div>
-    <div ng-show="result.status && !result.status == 200">
-        <br>
-        <h2>Error al eliminar el registro</h2>
-    </div>
 
+    <div class="panel-footer" style="font-family: Questrial, serif;"
+         ng-include="'js/system/footer.html'"></div>
 
 </div>
 
+<div data-ng-if="tipousuario != 1">
+    <div class="panel-body nopermiso">    
+        <h3 class="text-center">Lo sentimos, no tienes permiso para ver esta página.</h3>
+        <br/>
+        <div class="text-center"><a class="btn btn-primary agregar" href="#/">Volver al Inicio</a></div>
+    </div>
 
-<div class="panel-footer" style="font-family: Questrial, serif;"
-     ng-include="'js/system/footer.html'"></div>
+    <div class="panel-footer" style="font-family: Questrial, serif;"
+         data-ng-include="'js/system/footer.html'"></div> 
 
-
+</div>

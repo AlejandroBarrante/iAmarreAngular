@@ -27,8 +27,8 @@
  */
 
 'use strict';
-moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', 'sharedSpaceJuego',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService, sharedSpaceJuego) {
+moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', 'sharedSpaceJuego', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, sharedSpaceJuego, $rootScope) {
         $scope.obj = null;
         $scope.id = $routeParams.id;
         $scope.ob = 'juego';

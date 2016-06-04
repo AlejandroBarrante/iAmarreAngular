@@ -28,8 +28,8 @@
 
 
 'use strict';
-moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService',
-    function ($scope, $routeParams, $location, serverService, sharedSpaceService) {
+moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$location', 'serverService', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, $location, serverService, sharedSpaceService, $rootScope) {
         $scope.id = $routeParams.id;
         $scope.ob = 'autor';
         $scope.result = null;

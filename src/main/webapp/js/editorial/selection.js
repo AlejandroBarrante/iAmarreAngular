@@ -29,8 +29,8 @@
 
 'use strict';
 
-moduloEditorial.controller('EditorialSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService',
-    function ($scope, $routeParams, serverService, $location, sharedSpaceService) {
+moduloEditorial.controller('EditorialSelectionController', ['$scope', '$routeParams', 'serverService', '$location', 'sharedSpaceService', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, sharedSpaceService, $rootScope) {
 
         $scope.ob = "editorial";
         $scope.op = "selection";

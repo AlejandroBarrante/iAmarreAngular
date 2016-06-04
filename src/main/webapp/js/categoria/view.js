@@ -31,8 +31,8 @@
 
 
 
-moduloCategoria.controller('CategoriaViewController', ['$scope', '$routeParams', 'serverService', '$location',
-    function ($scope, $routeParams, serverService, $location) {
+moduloCategoria.controller('CategoriaViewController', ['$scope', '$routeParams', 'serverService', '$location', '$rootScope',
+    function ($scope, $routeParams, serverService, $location, $rootScope) {
         $scope.title = "Vista de Categoría";
         $scope.icon = "/images/C.png";
         $scope.ob = 'categoria';
