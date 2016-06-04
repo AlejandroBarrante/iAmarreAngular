@@ -183,7 +183,7 @@ ul li a:hover {
     text-align: justify;
     margin-left: 10px;
     margin-right: 10px;
-font-size: 16px;
+    font-size: 16px;
 }
 
 /* Barra de Navegación */
@@ -416,16 +416,28 @@ table tr td li {
     opacity: 0.8;
 }
 
-.cablogin {
-    background: #D30707;
-    color: white;
-}
-
-.celdalogin {
-    background: #e7e299;
-    font-weight: bold;
-}
+/* PÁGINAS DE NO-PERMISO */
 
 .nopermiso {
     margin-top: 50px;
+}
+
+/* ANIMACIÓN CORTINILLA BARRA DE NAVEGACIÓN */
+
+.dropdown .dropdown-menu {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.dropdown.open .dropdown-menu {
+    max-height: 250px;
+    opacity: 1;
 }

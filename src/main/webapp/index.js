@@ -7,4 +7,5 @@ openAusias.controller('HeaderController', ['$scope', '$location', 'serverService
         $scope.isSessionActive = function () {
             return $rootScope.isSessionActive;
         };
+
     }]);
