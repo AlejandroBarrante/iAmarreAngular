@@ -58,39 +58,39 @@ THE SOFTWARE.
 
                 <div class="col-lg-4 col-md-4 datosjuego"> 
 
-                    <table class="table-responsive tablajuego">
+                    <table class="table-responsive">
 
 
                         <tr>
                             <td class="etiqueta">Autores</td>
-                            <td><li class="listados" ng-repeat="autor in bean.array_autor"><a
+                            <td class="celdajuego"><li class="listados" ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
                                 href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Ilustradores</td>
-                            <td><li ng-repeat="ilustrador in bean.array_ilustrador"><a
+                            <td class="celdajuego"><li ng-repeat="ilustrador in bean.array_ilustrador"><a class="enlacejuego"
                                 href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Editorial</td>
-                            <td><a href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</td>
+                            <td class="celdajuego"><a class="enlacejuego" href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</td>
                         </tr>
                         <tr>
                             <td class="etiqueta">Fecha de Publicación</td>
-                            <td>{{bean.fechaPublicacion}}</td>
+                            <td class="celdajuego">{{bean.fechaPublicacion}}</td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Número de Jugadores</td>
-                            <td><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
+                            <td class="celdajuego"><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
                                     ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Duración</td>
-                            <td>{{bean.duracion}} minutos</td>
+                            <td class="celdajuego">{{bean.duracion}} minutos</td>
                         </tr>
 
                     </table>
@@ -98,35 +98,27 @@ THE SOFTWARE.
                 </div>
 
 
-                <div class="col-lg-4 col-md-4 datosjuego"> 
+                <div class="col-lg-5 col-md-5 datosjuego"> 
 
-                    <table class="table-responsive tablajuego">
+                    <table class="table-responsive ">
 
                         <tr>
                             <td class="etiqueta">Categorías</td>
-                            <td><li ng-repeat="categoria in bean.array_categoria"><a
+                            <td class="celdajuego"><li ng-repeat="categoria in bean.array_categoria"><a class="enlacejuego"
                                 href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Edad</td>
-                            <td>{{bean.edad}}+</td>
+                            <td class="celdajuego">{{bean.edad}}+</td>
                         </tr>
                         <tr>
-                            <td  class="etiqueta">Dependencia del Lenguaje</td>
-                            <td>{{bean.obj_dependencialenguaje.descripcion}}</td>
+                            <td class="etiqueta">Dependencia del Lenguaje</td>
+                            <td class="celdajuego">{{bean.obj_dependencialenguaje.descripcion}}</td>
                         </tr>
 
 
                     </table>
-
-                </div>
-
-                <div class="col-lg-2 col-md-2 enlaces"> 
-
-                    <a ng-if="bean.website != ''" class="btn btn-default text-center" href="{{bean.website}}">Visita la web del juego</a><br/><br/>
-                    <p class="compra">Cómpralo en:</p>
-                    <a href=""><img src="/images/bannerpatr.jpg"></a>
 
                 </div>
 
