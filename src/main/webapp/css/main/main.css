@@ -273,19 +273,21 @@ ul li a:hover {
 
 /* TotalJuego View */
 
+.imagen2 {
+    margin-bottom: 20px;
+}
 
-.tablajuego a {
+.enlacejuego {
     color: black;
 }
 
-.tablajuego a:hover {
+.enlacejuego:hover {
     color: #D30707; 
     text-decoration: none;
 }
 
-.tablajuego td {
-    font-size: 16px;
-    padding-left: 50px;
+.celdajuego {
+    padding-left: 10px;
 }
 
 .titulo {
@@ -296,6 +298,8 @@ ul li a:hover {
 .descripcion {
     font-size: 16px;
     text-align: justify;
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
 .etiqueta {
@@ -358,6 +362,9 @@ table tr td li {
 .inicio:hover {
     color: white;
     background: black;
+}
+#linkpatro img {
+    padding-top: 30px;
 }
 
 /* Resto de pantallas View */
@@ -440,4 +447,8 @@ table tr td li {
 .dropdown.open .dropdown-menu {
     max-height: 250px;
     opacity: 1;
+}
+
+.website:hover {
+    color: white;
 }
