@@ -298,8 +298,8 @@ ul li a:hover {
 .descripcion {
     font-size: 16px;
     text-align: justify;
-    margin-left: 10px;
-    margin-right: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .etiqueta {
@@ -376,6 +376,10 @@ table tr td li {
 .categoria {
     font-size: 16px;
     text-align: justify;
+    padding-left: 40px;
+    padding-right: 40px;
+
+
 }
 
 /* Página Principal */
@@ -451,4 +455,18 @@ table tr td li {
 
 .website:hover {
     color: white;
+}
+
+.websitetabla {
+    position: relative;
+    bottom: 8px;
+    right: 14px;
+}
+
+.websitetabla a:hover {
+    color: red;
+}
+
+.textotabla {
+    font-size: 16px;
 }
