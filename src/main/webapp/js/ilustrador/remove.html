@@ -48,17 +48,17 @@ THE SOFTWARE.
 
                         <tr class="tablaview">
                             <td class="etiqueta"><p>Fecha de Nacimiento</p></td>
-                            <td><p>{{bean.fechaNac}}</p></td>
+                            <td><p class="textotabla">{{bean.fechaNac}}</p></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta"><p>Biografía</p></td>
-                            <td><p>{{bean.bio}}</p></td>
+                            <td><p class="textotabla">{{bean.bio}}</p></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta"><p>Website</p></td>
-                            <td><a href="{{bean.website}}">{{bean.website}}</a></td>
+                            <td class="websitetabla"><a href="{{bean.website}}">{{bean.website}}</a></td>
                         </tr>
 
                     </table>
@@ -66,21 +66,35 @@ THE SOFTWARE.
 
                     <div class="text-center" > 
                         <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                        <a class="btn btn-default eliminar" ng-click="remove()">Si</a>
+                        <a class="btn btn-default eliminar" ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
                         <a class="btn btn-default inicio" ng-href="#/ilustrador/plist/1/50">No</a>
                     </div>     
                 </div>
 
-                <div ng-show="result.status == 200">
-                    <br>
-                    <h2  ng-show="result.message == 0" class="alert alert-success">No se ha podido eliminar el registro</h2>
-                    <h2  ng-show="result.message == 1" class="alert alert-success">Se ha eliminado el registro</h2>
-                    <a class="btn btn-default" ng-href="#/ilustrador/plist/1/50">Volver</a>
+
+                <!-- MODAL -->
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+
+                                <p class="modal-p" data-ng-show="result.message == 1">El registro ha sido eliminado.</p>
+                                <p class="modal-p" data-ng-show="result.message == 0">El registro no ha podido eliminarse.</p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a data-ng-click="registro()" class="btn btn-default añadir botreg">Ver el listado de ilustradores</a>
+                                <a data-ng-click="close()" class="btn btn-default agregar botreg">Volver al inicio</a>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div ng-show="result.status && !result.status == 200">
-                    <br>
-                    <h2>Error al eliminar el registro</h2>
-                </div>
+
+                <!-- MODAL -->
+
             </div>
         </div>
     </div>

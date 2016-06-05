@@ -77,6 +77,22 @@ moduloCategoria.controller('CategoriaEditController', ['$scope', '$routeParams',
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
             $scope.bean2 = data.message;
         });
+        
+                $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/categoria/view/" + $scope.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.cerrar = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
 
 
 

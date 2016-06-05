@@ -74,5 +74,21 @@ moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$locati
             $scope.bean2 = data.message;
         });
 
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/autor/plist/1/50");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.close = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
 
     }]);

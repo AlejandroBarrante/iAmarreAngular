@@ -230,6 +230,7 @@ ul li a:hover {
 
 }
 
+
 .table tr td a {
     color: black;
     text-decoration: none;
@@ -238,7 +239,7 @@ ul li a:hover {
     top: 14px;
     left: 20px;
 
-}
+} 
 
 .verjuegos {
     position: relative;
@@ -484,4 +485,7 @@ table tr td li {
     text-decoration: none;
 }
 
+.turemove a:hover {
+    color: red;
+}
 

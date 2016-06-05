@@ -43,7 +43,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
 
 
         if (sharedSpaceService.getFase() == 0) {
-            
+
             if ($routeParams.editorial && $routeParams.editorial > 0) {
                 $scope.obj.obj_editorial.id = $routeParams.editorial;
             }
@@ -192,6 +192,22 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
             $scope.bean2 = data.message;
         });
+
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/juego/plist/1/50");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.close = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
 
 
     }]);

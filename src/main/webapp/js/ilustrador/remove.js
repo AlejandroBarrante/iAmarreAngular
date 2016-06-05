@@ -52,4 +52,19 @@ moduloIlustrador.controller('IlustradorRemoveController', ['$scope', '$routePara
             $scope.bean2 = data.message;
         });
 
+        $scope.registro = function () {
+
+            $('.botreg').attr("href", "#/ilustrador/plist/1/50");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
+        $scope.close = function () {
+            $('.botreg').attr("href", "#/");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
     }]);

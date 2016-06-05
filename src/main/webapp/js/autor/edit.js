@@ -77,4 +77,20 @@ moduloAutor.controller('AutorEditController', ['$scope', '$routeParams', '$locat
             $scope.bean2 = data.message;
         });
 
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/autor/view/" + $scope.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.close = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
     }]);

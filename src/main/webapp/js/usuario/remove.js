@@ -50,4 +50,13 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
             $scope.bean2 = data.message;
         });
 
+
+        $scope.close = function () {
+            $('.botreg').attr("href", "#/");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $rootScope.isSessionActive = false;
+        };
+
     }]);

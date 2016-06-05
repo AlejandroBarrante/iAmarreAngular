@@ -59,9 +59,7 @@ moduloIlustrador.controller('IlustradorNewController', ['$scope', '$routeParams'
         $scope.back = function () {
             window.history.back();
         };
-        $scope.close = function () {
-            $location.path('/home');
-        };
+
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist/1/50');
         };
@@ -73,6 +71,22 @@ moduloIlustrador.controller('IlustradorNewController', ['$scope', '$routeParams'
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
             $scope.bean2 = data.message;
         });
+
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/ilustrador/plist/1/50");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.close = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
 
 
     }]);

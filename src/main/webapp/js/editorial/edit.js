@@ -77,6 +77,20 @@ moduloEditorial.controller('EditorialEditController', ['$scope', '$routeParams',
             $scope.bean2 = data.message;
         });
 
+        $scope.registro = function () {
 
+            $('#botreg').attr("href", "#/editorial/view/" + $scope.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.cerrar = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
 
     }]);

@@ -30,7 +30,7 @@ THE SOFTWARE.
 
     <div class="panel-heading" style="font-family: Oswald, serif;" data-ng-include="'js/system/header.html'"></div>
     <div class="panel-body">
-        <form name="autorForm" class="form-horizontal" data-ng-show="result == null" novalidate>
+        <form name="autorForm" class="form-horizontal" novalidate>
 
             <div id="titulo-group" class="form-group">
                 <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
@@ -72,24 +72,14 @@ THE SOFTWARE.
             <div class="control-group text-center">
                 <br />
                 <div class="controls">
-                    <a class="btn btn-primary añadir" data-ng-click="save()" data-ng-disabled="!autorForm.$valid">Guardar</a> <a class="btn btn-default listado" data-ng-click="plist()">Ir al listado de
+                    <a class="btn btn-primary añadir" data-ng-click="save()" data-ng-disabled="!autorForm.$valid" data-toggle="modal" data-target="#myModal">Guardar</a> <a class="btn btn-default listado" data-ng-click="plist()">Ir al listado de
                         Autores</a> <a class="btn btn-default inicio" data-ng-click="close()">Volver al inicio</a>
                 </div>
             </div>
         </form>
-        <div data-ng-show="result != null">
-            <div class="alert alert-success" data-ng-show="result.status == 200">
-                <h2>Se ha modificado el registro</h2>
-                <a data-ng-href="#/autor/plist/1/50">Volver al listado de autores</a>
-                <br />
-            </div>
-            <div class="alert alert-danger" data-ng-show="result.status != 200">
-                <h2>Error al crear el documento: no se ha creado el documento</h2>
-                <h3>Código: {{result.stauts}}</h3>
-                <h3>Mensaje: {{result.message}}</h3>
-            </div>
-        </div>
+
     </div>
+    
     <div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
 
 </div>
@@ -103,5 +93,25 @@ THE SOFTWARE.
 
     <div class="panel-footer" style="font-family: Questrial, serif;"
          data-ng-include="'js/system/footer.html'"></div> 
-
 </div>
+
+<!-- MODAL -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-p" data-ng-show="result.status == 200">El registro ha sido creado.</p>
+                <p class="modal-p" data-ng-show="result.status != 200">El registro no ha podido crearse.</p>
+            </div>
+            <div class="modal-footer">
+                <a data-ng-click="registro()" id="botreg" class="btn btn-default añadir">Ver el listado de autores</a>
+                <a data-ng-click="close()" class="btn btn-default agregar">Volver al inicio</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->

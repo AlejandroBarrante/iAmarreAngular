@@ -78,6 +78,22 @@ moduloIlustrador.controller('IlustradorEditController', ['$scope', '$routeParams
             $scope.bean2 = data.message;
         });
 
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/ilustrador/view/" + $scope.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.cerrar = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
 
 
     }]);

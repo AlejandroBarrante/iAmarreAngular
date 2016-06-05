@@ -31,16 +31,7 @@ THE SOFTWARE.
     <div class="panel-heading" style="font-family: Oswald, serif;"
          ng-include="'js/system/header.html'"></div>
     <div class="panel-body">
-        <form name="ilustradorForm" class="form-horizontal"
-              ng-show="result == null" novalidate>
-
-            <!--   <div id="id-group" class="form-group">
-        <label class="col-sm-2 control-label" for="id">Identificador:</label>
-        <div class="control col-sm-1">
-            <input ng-model="obj.id" type="text" id="id" class="form-control" name="id" size="15" disabled="disabled">
-        </div>
-    </div> -->
-
+        <form name="ilustradorForm" class="form-horizontal" novalidate>
 
             <div id="titulo-group" class="form-group">
                 <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
@@ -99,23 +90,13 @@ THE SOFTWARE.
                 <br />
                 <div class="controls">
                     <a class="btn btn-primary añadir" ng-click="save()"
-                       ng-disabled="!ilustradorForm.$valid">Guardar</a> <a
+                       ng-disabled="!ilustradorForm.$valid" data-toggle="modal" data-target="#myModal">Guardar</a> <a
                        class="btn btn-default listado" ng-click="plist()">Ir al listado de
                         Ilustradores</a> <a class="btn btn-default inicio" ng-click="close()">Volver al inicio</a>
                 </div>
             </div>
         </form>
-        <div ng-show="result != null">
-            <div class="alert alert-success" ng-show="result.status == 200">
-                <h2>Se ha modificado el registro</h2>
-                <a ng-href="#/ilustrador/plist/1/50">Volver al listado de ilustradores</a>
-            </div>
-            <div class="alert alert-danger" ng-show="result.status != 200">
-                <h2>Error al crear el documento: no se ha creado el documento</h2>
-                <h3>Código: {{result.status}}</h3>
-                <h3>Mensaje: {{result.message}}</h3>
-            </div>
-        </div>
+
     </div>
     <div class="panel-footer" style="font-family: Questrial, serif;"
          ng-include="'js/system/footer.html'"></div>
@@ -133,3 +114,24 @@ THE SOFTWARE.
          data-ng-include="'js/system/footer.html'"></div> 
 
 </div>
+
+<!-- MODAL -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-p" data-ng-show="result.status == 200">El registro ha sido creado.</p>
+                <p class="modal-p" data-ng-show="result.status != 200">El registro no ha podido crearse.</p>
+            </div>
+            <div class="modal-footer">
+                <a data-ng-click="registro()" id="botreg" class="btn btn-default añadir">Ver el listado de ilustradores</a>
+                <a data-ng-click="close()" class="btn btn-default agregar">Volver al inicio</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->

@@ -72,7 +72,7 @@ THE SOFTWARE.
 
                 <div class="text-center" > 
                     <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                    <a class="btn btn-default eliminar" data-ng-click="remove()">Si</a>
+                    <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
                     <a class="btn btn-default inicio" data-ng-href="#/editorial/plist/1/100">No</a>
                 </div>  
 
@@ -84,18 +84,28 @@ THE SOFTWARE.
         </div>
 
 
-        <div data-ng-show="result.status == 200">
-            <br>
-            <h2 data-ng-show="result.message == 0" class="alert alert-success">No
-                se ha podido eliminar el registro</h2>
-            <h2 data-ng-show="result.message <= 1" class="alert alert-success">Se
-                ha eliminado el registro</h2>
-            <a class="btn btn-default" data-ng-href="#/editorial/plist/1/50">Volver</a>
+        <!-- MODAL -->
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <p class="modal-p" data-ng-show="result.message <= 1">El registro ha sido eliminado.</p>
+                        <p class="modal-p" data-ng-show="result.message == 0">El registro no ha podido eliminarse.</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a data-ng-click="registro()" class="btn btn-default añadir botreg">Ver el listado de editoriales</a>
+                        <a data-ng-click="close()" class="btn btn-default agregar botreg">Volver al inicio</a>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div data-ng-show="result.status && !result.status == 200">
-            <br>
-            <h2>Error al eliminar el registro</h2>
-        </div>
+
+        <!-- MODAL -->
 
     </div>
 

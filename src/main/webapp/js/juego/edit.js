@@ -57,13 +57,9 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
             //strValues = serverService.array_identificarArray(thisObject.form_getFormValues(strClass));
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
+
             });
         };
-
-
-
-
-
 
         $scope.$watch('obj.obj_editorial.id', function () {
             if ($scope.obj) {
@@ -116,6 +112,20 @@ moduloJuego.controller('JuegoEditController', ['$scope', '$routeParams', '$locat
             $scope.bean2 = data.message;
         });
 
+        $scope.registro = function () {
 
+            $('#botreg').attr("href", "#/totalJuego/view/" + $scope.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.close = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
 
     }]);

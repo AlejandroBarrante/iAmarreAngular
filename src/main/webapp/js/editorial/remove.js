@@ -50,4 +50,20 @@ moduloEditorial.controller('EditorialRemoveController', ['$scope', '$routeParams
             $scope.bean2 = data.message;
         });
 
+
+        $scope.registro = function () {
+
+            $('.botreg').attr("href", "#/editorial/plist/1/50");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
+        $scope.close = function () {
+            $('.botreg').attr("href", "#/");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
     }]);

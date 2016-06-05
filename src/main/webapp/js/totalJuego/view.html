@@ -64,7 +64,7 @@ THE SOFTWARE.
                         <tr>
                             <td class="etiqueta">Autores</td>
                             <td class="celdajuego"><li class="listados" ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
-                                                                                          href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
+                                                                                                             href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
@@ -158,7 +158,7 @@ THE SOFTWARE.
                 <div class="btn-group" role="group">
 
                     <a ng-if="tipousuario == 1 || tipousuario == 2" 
-                       class="btn btn-default action02 añadir" ng-click="go(bean.id)" data-toggle="modal" data-target="#myModal">
+                       class="btn btn-default action02 añadir" ng-click="añadir(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-check fa-2g"></i> Añadir a mi colección</a>                   
 
 
@@ -190,6 +190,7 @@ THE SOFTWARE.
 
 </div>
 
+<!-- MODAL -->
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
      ng-include="'js/system/footer.html'"></div>
@@ -214,5 +215,6 @@ THE SOFTWARE.
     </div>
 </div>
 
-<!-- Modal  data-backdrop=""--> 
+<!-- MODAL -->
+
 
