@@ -470,3 +470,18 @@ table tr td li {
 .textotabla {
     font-size: 16px;
 }
+
+
+.listadoedit {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    right: 40px;
+    top: 5px;
+}
+
+.listadoedit a {
+    text-decoration: none;
+}
+
+
