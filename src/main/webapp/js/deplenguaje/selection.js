@@ -35,7 +35,7 @@ moduloDepLenguaje.controller('DepLenguajeSelectionController', ['$scope', '$rout
         $scope.ob = "dependenciaLenguaje";
         $scope.op = "selection";
         $scope.title = "Elige una Dependencia del Lenguaje";
-        $scope.icon = "/images/lj.png";
+        $scope.icon = "/images/D.png";
         $scope.neighbourhood = 2;
 
         if (!$routeParams.page) {
