@@ -87,26 +87,25 @@ THE SOFTWARE.
             </div>
         </div>
         <div id="datos" data-ng-show="!status">
-            <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
+                       <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                 <thead>             
                     <tr>                                                   
-                        <th>
-                            Nombre
-                        </th>
-                        <th>Acciones</th>
-                    </tr>
+                        <th><div class="cabecera"><p>Nombre</p></div></th>
+                <th><div class="cabecera"><p>Acciones</p></div></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="obj in page">
-                        <td>{{obj.descripcion}}</td>
-                        <td>
+                    <tr ng-repeat="obj in page">
+                        <td class="hovered"><a href="#/autor/view/{{obj.id}}"><p>{{obj.descripcion}}</p></a></td>
+                        <td class="hovered">
                             <div class="btn-group" role="group" aria-label="seleccionar">
-                                <a class="btn btn-default action02" data-ng-click="go(obj.id)"><i class="fa fa-check fa-2g"></i> Seleccionar</a>
-                            </div>
-                        </td>
+                                <a class="action02" ng-click="go(obj.id)"><div class="verjuegos">Seleccionar</div></a>
+                            </div></td>
+
+
                     </tr>
                 </tbody>
-            </table>            
+            </table>     
         </div>
     </div>
     <div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
