@@ -1,236 +1,168 @@
-/*
-Copyright (C) 2015 rafa
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
-/* 
-    Created on : May 7, 2015, 1:30:12 PM
-    Author     : rafa
-*/
 @charset "UTF-8";
-
 * {
     margin: 0 auto;
 }
-
 /* Cuerpo exterior de página */
+
 html,
 body {
     width: 100%;
     background: #56b9ff;
 }
-
 .panel-default {
     background-color: #f9faf1;
 }
-
 /* Cuerpo de página */
+
 .panel-body {
     background-color: #e7e299;
 }
-
 /* Titular de página */
+
 .panel-heading {
     margin-top: 70px;
 }
-
 /* Pie de página */
+
 .panel-footer {
     background-color: #f9faf1;
 }
-
-.textofooter a{
+.textofooter a {
     color: black;
     text-decoration: none;
 }
-
 /*Centrado de textos */
 
 .text-center {
-
     text-align: center;
-
 }
-
 /* Páginas listados */
 
 .textosuperior {
     font-size: 16px;
 }
-
 .textomedio {
     font-size: 18px;
     text-align: justify;
     margin-left: 20px;
-
-
 }
-
 .textoinferior {
     font-size: 12px;
     font-style: italic;
 }
-
 .selector {
     padding: 10px;
     position: relative;
     top: 40px;
     left: 50px;
 }
-
 .cajabusqueda {
     position: relative;
     top: 14px;
 }
-
 ul li a {
     color: black;
     font-size: 16px;
     text-decoration: none;
 }
-
 ul li a:hover {
     color: #D30707;
 }
-
 .galeriaeditorial ul {
     list-style: none;
 }
-
 .galeriaeditorial li {
     display: inline-table;
     position: relative;
     right: 30px;
 }
-
 .galeriaeditorial li a {
     text-decoration: none;
 }
-
-
 .galeriaeditorial img:hover {
     opacity: 0.7;
 }
-
 .galeriajuego ul {
     list-style: none;
 }
-
 .galeriajuego li {
     display: inline-table;
     position: relative;
     right: 30px;
-
 }
-
 .galeriajuego li a {
     text-decoration: none;
 }
-
 .galeriajuego img:hover {
     opacity: 0.7;
 }
-
 .agregar {
     background: #337ab7;
     color: white;
     border: 1px solid black;
 }
-
 .agregar:hover {
     background: black;
     color: white;
-    border: 1px solid black;
 }
-
 .volver {
     background: #5ea82f;
     color: white;
     border: 1px solid black;
 }
-
 .volver:hover {
     background: #D30707;
     color: white;
     border: 1px solid black;
 }
-
 .filtrado {
     font-weight: bold;
     position: relative;
     left: 50px;
 }
-
 .catlist {
     position: relative;
     bottom: 10px;
 }
-
-
 .catlist2 {
     text-align: justify;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 16px;
 }
-
 /* Barra de Navegación */
 
-.navbar-default .navbar-collapse > ul li a{
+.navbar-default .navbar-collapse > ul li a {
     color: white;
 }
-
-.navbar-default .navbar-collapse > ul li a:hover{
+.navbar-default .navbar-collapse > ul li a:hover {
     color: white;
     background-color: black;
 }
-
 .navbar-default {
     background-color: #D30707;
 }
-
 .dropdown-header {
     color: white;
 }
-
 .dropdown-menu {
-    background-color: #D30707;    
+    background-color: #D30707;
 }
-
 .listamenu {
     padding: 5px;
 }
-
 .listamenu img {
     position: relative;
     right: 10px;
 }
-
 /* Tablas */
 
 .table {
     background: #f2f0d6;
 }
-
 .verjuegos {
-
     font-size: 20px;
-
 }
-
-
 .table tr td a {
     color: black;
     text-decoration: none;
@@ -238,128 +170,100 @@ ul li a:hover {
     position: relative;
     top: 14px;
     left: 20px;
-
-} 
-
+}
 .verjuegos {
     position: relative;
     left: -20px;
     font-size: 16px;
 }
-
 .cabecera a {
     padding-left: 10px;
     color: #337ab7;
 }
-
-
-
 .cabecera p {
     padding: 10px;
     color: black;
     font-size: 18px;
     position: relative;
     top: 8px;
-
 }
-
 .fecha {
     margin-top: 15px;
 }
-
 .hovered:hover {
     background: #e7e299;
-
 }
-
 /* TotalJuego View y Remove */
 
 .imagen2 {
     margin-bottom: 20px;
 }
-
 .enlacejuego {
     color: black;
 }
-
 .enlacejuego:hover {
-    color: #D30707; 
+    color: #D30707;
     text-decoration: none;
 }
-
 .celdajuego {
     padding-left: 10px;
 }
-
 .titulo {
     font-size: 30px;
     font-weight: bold;
 }
-
 .descripcion {
     font-size: 16px;
     text-align: justify;
     margin-left: 40px;
     margin-right: 40px;
 }
-
 .etiqueta {
     font-size: 16px;
     font-weight: bold;
 }
-
 table tr td li {
     list-style: none;
 }
-
 .compra {
     font-size: 16px;
 }
-
-.añadir {
+.anyadir {
     margin-right: 5px;
     background: #5ea82f;
     color: white;
     border: 1px solid black;
-
 }
-
+.anyadir:hover {
+    color: white;
+    background: black;
+}
 .eliminar {
     margin-right: 5px;
     background: #D30707;
     color: white;
     border: 1px solid black;
 }
-
 .listado {
     margin-right: 5px;
     background: #337ab7;
     color: white;
     border: 1px solid black;
 }
-
 .inicio {
     margin-right: 5px;
     background: #f5d500;
     color: black;
     border: 1px solid black;
 }
-
-.añadir:hover {
-    color: white;
-    background: black;
-}
-
 .eliminar:hover {
     color: white;
     background: black;
 }
-
 .listado:hover {
     color: white;
     background: black;
 }
-
 .inicio:hover {
     color: white;
     background: black;
@@ -367,73 +271,52 @@ table tr td li {
 #linkpatro img {
     padding-top: 30px;
 }
-
 /* Resto de pantallas View */
 
 .tablaview td p {
     padding: 5px;
 }
-
 .categoria {
     font-size: 16px;
     text-align: justify;
     padding-left: 40px;
     padding-right: 40px;
-
-
 }
-
 /* Página Principal */
 
-
-
 .secbienve p {
-    text-style: justify;
+    text-align: justify;
 }
-
 .secbienve ul {
-    text-style: justify;
+    text-align: justify;
     color: #535353;
 }
-
 .linea {
     border-top: 1px solid white;
 }
-
-
 /* GALERÍA INDEX */
 
 .indexgallery {
     margin-top: 20px;
 }
-
-
 .indexgallery ul {
-
     list-style: none;
-
 }
-
 .indexgallery li {
     display: inline-table;
     padding: 2px;
 }
-
 .indexgallery img {
     width: 250px;
 }
-
-
 .elemento:hover {
     opacity: 0.8;
 }
-
 /* PÁGINAS DE NO-PERMISO */
 
 .nopermiso {
     margin-top: 50px;
 }
-
 /* ANIMACIÓN CORTINILLA BARRA DE NAVEGACIÓN */
 
 .dropdown .dropdown-menu {
@@ -442,37 +325,29 @@ table tr td li {
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
-
     max-height: 0;
     display: block;
     overflow: hidden;
     opacity: 0;
 }
-
 .dropdown.open .dropdown-menu {
     max-height: 250px;
     opacity: 1;
 }
-
 .website:hover {
     color: white;
 }
-
 .websitetabla {
     position: relative;
     bottom: 8px;
     right: 14px;
 }
-
 .websitetabla a:hover {
     color: red;
 }
-
 .textotabla {
     font-size: 16px;
 }
-
-
 .listadoedit {
     list-style: none;
     display: inline-block;
@@ -480,12 +355,9 @@ table tr td li {
     right: 40px;
     top: 5px;
 }
-
 .listadoedit a {
     text-decoration: none;
 }
-
 .turemove a:hover {
     color: red;
 }
-

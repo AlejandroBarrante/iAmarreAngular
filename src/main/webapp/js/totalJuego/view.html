@@ -95,7 +95,7 @@ THE SOFTWARE.
                         </tr>
 
                         <tr>
-                            <td><a ng-if="bean.website != ''" class="btn btn-default website añadir" href="{{bean.website}}">Visita la web del juego</a></td>
+                            <td><a ng-if="bean.website != ''" class="btn btn-default website anyadir" href="{{bean.website}}">Visita la web del juego</a></td>
 
                         </tr>
 
@@ -158,7 +158,7 @@ THE SOFTWARE.
                 <div class="btn-group" role="group">
 
                     <a ng-if="tipousuario == 1 || tipousuario == 2" 
-                       class="btn btn-default action02 añadir" ng-click="añadir(bean.id)" data-toggle="modal" data-target="#myModal">
+                       class="btn btn-default action02 anyadir" ng-click="anyadir(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-check fa-2g"></i> Añadir a mi colección</a>                   
 
 
@@ -207,7 +207,7 @@ THE SOFTWARE.
                 <p class="modal-p">{{mensaje}}</p>
             </div>
             <div class="modal-footer">
-                <a ng-click="coleccion()" id="botcol" class="btn btn-default añadir">Ver colección</a>
+                <a ng-click="coleccion()" id="botcol" class="btn btn-default anyadir">Ver colección</a>
                 <button type="button" class="btn btn-default agregar" data-dismiss="modal">Cerrar</button>
 
             </div>
