@@ -57,7 +57,7 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
         $scope.back = function () {
             window.history.back();
         };
-        $scope.añadir = function (num) {
+        $scope.anyadir = function (num) {
 
             sharedSpaceJuego.setReturnLink('totalJuego/view/' + $scope.id);
             var coleccion = new Object();
