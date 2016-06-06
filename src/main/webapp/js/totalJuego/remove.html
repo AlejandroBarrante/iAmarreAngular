@@ -28,7 +28,7 @@ THE SOFTWARE.
 <div data-ng-if="tipousuario == 1">
 
     <div class="panel-heading" style="font-family: Oswald, serif;"
-         ng-include="'js/system/header.html'"></div>
+         data-ng-include="'js/system/header.html'"></div>
     <div class="panel-body">
         <div class="row-fluid">
             <div class="col-md-12">
@@ -63,19 +63,19 @@ THE SOFTWARE.
 
                         <tr>
                             <td class="etiqueta">Autores</td>
-                            <td class="celdajuego"><li class="listados" ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
+                            <td class="celdajuego"><li class="listados" data-ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
                                                                                                              href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Ilustradores</td>
-                            <td class="celdajuego"><li ng-repeat="ilustrador in bean.array_ilustrador"><a class="enlacejuego"
+                            <td class="celdajuego"><li data-ng-repeat="ilustrador in bean.array_ilustrador"><a class="enlacejuego"
                                                                                                       href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Editorial</td>
-                            <td class="celdajuego"><a class="enlacejuego" href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</td>
+                            <td class="celdajuego"><a class="enlacejuego" href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</a></td>
                         </tr>
                         <tr>
                             <td class="etiqueta">Fecha de Publicación</td>
@@ -84,8 +84,8 @@ THE SOFTWARE.
 
                         <tr>
                             <td class="etiqueta">Número de Jugadores</td>
-                            <td class="celdajuego"><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
-                                    ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
+                            <td class="celdajuego"><span data-ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
+                                    data-ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
                         </tr>
 
                         <tr>
@@ -104,7 +104,7 @@ THE SOFTWARE.
 
                         <tr>
                             <td class="etiqueta">Categorías</td>
-                            <td class="celdajuego"><li ng-repeat="categoria in bean.array_categoria"><a class="enlacejuego"
+                            <td class="celdajuego"><li data-ng-repeat="categoria in bean.array_categoria"><a class="enlacejuego"
                                                                                                     href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li></td>
                         </tr>
 
@@ -134,8 +134,8 @@ THE SOFTWARE.
 
                 <div class="text-center" > 
                     <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                    <a class="btn btn-default eliminar" ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
-                    <a class="btn btn-default inicio" ng-href="#/juego/plist/1/50">No</a>
+                    <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
+                    <a class="btn btn-default inicio" data-ng-href="#/juego/plist/1/50">No</a>
                 </div>  
 
                 <br />
@@ -172,7 +172,7 @@ THE SOFTWARE.
 
 
     <div class="panel-footer" style="font-family: Questrial, serif;"
-         ng-include="'js/system/footer.html'"></div>
+         data-ng-include="'js/system/footer.html'"></div>
 
 </div>
 

@@ -28,7 +28,7 @@ THE SOFTWARE.
 <div data-ng-if="tipousuario == 1">
     
 
-<div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+<div class="panel-heading" style="font-family:Oswald , serif;"  data-ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
     <div class="row-fluid">
         <div class="span6 offset3">                
@@ -47,13 +47,13 @@ THE SOFTWARE.
             <div class="text-right" > 
                 <a class="btn btn-primary" href="#/tipousuario/edit/{{bean.id}}">Editar</a>
                 <a class="btn btn-danger" href="#/tipousuario/remove/{{bean.id}}">Borrar</a>
-                <a class="btn btn-default" ng-click="plist()">Ir al listado de tipos de usuario</a>
-                <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                <a class="btn btn-default" data-ng-click="plist()">Ir al listado de tipos de usuario</a>
+                <a class="btn btn-default" data-ng-click="close()">Cerrar</a>
             </div>
         </div>
     </div>
 </div>
-<div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
+<div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
 
 </div>
 

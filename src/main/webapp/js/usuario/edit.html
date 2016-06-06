@@ -25,50 +25,50 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div ng-if="tipousuario == 1 || login == obj.login && login != null">
+<div data-ng-if="tipousuario == 1 || login == obj.login && login != null">
 
 
     <div class="panel-heading" style="font-family: Oswald, serif;"
-         ng-include="'js/system/header.html'"></div>
+         data-ng-include="'js/system/header.html'"></div>
 
     <div class="panel-body">
         <form name="usuarioForm" class="form-horizontal"
-              ng-show="result == null" novalidate>
+              data-ng-show="result == null" novalidate>
 
             <div id="login-group" class="form-group">
                 <label class="col-sm-2 control-label" for="login">Nombre de
                     Usuario / Login:</label>
                 <div class="control col-sm-3">
-                    <input ng-model="obj.login" type="text" id="login"
+                    <input data-ng-model="obj.login" type="text" id="login"
                            class="form-control" name="login"
-                           ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
+                           data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
                     <span
-                        ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.required">Campo
+                        data-ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.required">Campo
                         requerido.</span> <span
-                        ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.pattern">El
+                        data-ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.pattern">El
                         texto introducido no es correcto. No introducir números ni
                         caracteres especiales.</span>
                 </div>
             </div>
 
             <div id="password-group" class="form-group">
-                <label class="col-sm-2 control-label" for="contenido">Contraseña:</label>
+                <label class="col-sm-2 control-label">Contraseña:</label>
                 <div class="control col-sm-3">
-                    <input ng-model="obj.password" type="password" id="password"
+                    <input data-ng-model="obj.password" type="password" id="password"
                            class="form-control" name="password" required > 
-                    <input type="checkbox" id="mostrar" ng-click="mostrarCont()"> Mostrar Contraseña
+                    <input type="checkbox" id="mostrar" data-ng-click="mostrarCont()"> Mostrar Contraseña
                 </div>
                 <span
-                    ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo requerido.</span>
+                    data-ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo requerido.</span>
             </div>
 
             <div id="ciudad-group" class="form-group">
                 <label class="col-sm-2 control-label" for="ciudad">Ciudad:</label>
                 <div class="control col-sm-3">
-                    <input ng-model="obj.ciudad" type="text" id="ciudad"
+                    <input data-ng-model="obj.ciudad" type="text" id="ciudad"
                            class="form-control" name="ciudad"
-                           ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/"> <span
-                           ng-show="!usuarioForm.$pristine && usuarioForm.ciudad.$error.pattern">El
+                           data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/"> <span
+                           data-ng-show="!usuarioForm.$pristine && usuarioForm.ciudad.$error.pattern">El
                         texto introducido no es correcto. No introducir números ni
                         caracteres especiales.</span>
                 </div>
@@ -77,7 +77,7 @@ THE SOFTWARE.
             <div id="firma-group" class="form-group">
                 <label class="col-sm-2 control-label" for="firma">Firma:</label>
                 <div class="control col-sm-9">
-                    <input ng-model="obj.firma" type="text" id="firma"
+                    <input data-ng-model="obj.firma" type="text" id="firma"
                            class="form-control" name="firma" size="15" placeholder="firma">
                 </div>
             </div>
@@ -85,18 +85,18 @@ THE SOFTWARE.
             <div class="control-group text-center">
                 <br />
                 <div class="controls">
-                    <a class="btn btn-primary anyadir" ng-click="save()" ng-disabled="!usuarioForm.$valid">Guardar</a> 
-                    <a class="btn btn-default agregar" ng-click="close()">Volver al inicio</a>
+                    <a class="btn btn-primary anyadir" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">Guardar</a> 
+                    <a class="btn btn-default agregar" data-ng-click="close()">Volver al inicio</a>
                 </div>
             </div>
         </form>
-        <div ng-show="result != null">
-            <div class="alert alert-success" ng-show="result.status == 200">
+        <div data-ng-show="result != null">
+            <div class="alert alert-success" data-ng-show="result.status == 200">
                 <h2>Se ha modificado el usuario</h2>
-                <a ng-href="#/usuario/view/{{id}}">Ver el usuario modificado</a><br />
-         <!--       <a ng-href="#/usuario/plist/1/50">Volver al listado de usuarios</a><br /> -->
+                <a data-ng-href="#/usuario/view/{{id}}">Ver el usuario modificado</a><br />
+         <!--       <a data-ng-href="#/usuario/plist/1/50">Volver al listado de usuarios</a><br /> -->
             </div>
-            <div class="alert alert-danger" ng-show="result.status != 200">
+            <div class="alert alert-danger" data-ng-show="result.status != 200">
                 <h2>Error al modificar el usuario: no se ha modificado el
                     usuario</h2>
                 <h3>Código: {{result.status}}</h3>
@@ -105,7 +105,7 @@ THE SOFTWARE.
         </div>
     </div>
     <div class="panel-footer" style="font-family: Questrial, serif;"
-         ng-include="'js/system/footer.html'"></div>
+         data-ng-include="'js/system/footer.html'"></div>
 
 </div>
 

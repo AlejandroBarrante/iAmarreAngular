@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-     ng-include="'js/system/header.html'"></div>
+     data-ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
     <div class="row-fluid">
         <div class="col-md-12">
@@ -42,7 +42,7 @@ THE SOFTWARE.
 
         <div class="col-md-3 text-center">
 
-            <img class="imagen2" alt="imagen2" src="{{bean.imagen2}}" class="img-rounded img-responsive">
+            <img alt="imagen2" src="{{bean.imagen2}}" class="img-rounded img-responsive imagen2">
 
         </div>
 
@@ -63,20 +63,20 @@ THE SOFTWARE.
 
                         <tr>
                             <td class="etiqueta">Autores</td>
-                            <td class="celdajuego"><li class="listados" ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
+                            <td class="celdajuego"><li class="listados" data-ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
                                                                                                              href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Ilustradores</td>
                             <td class="celdajuego">
-                        <li ng-repeat="ilustrador in bean.array_ilustrador"><a class="enlacejuego" href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li>
+                        <li data-ng-repeat="ilustrador in bean.array_ilustrador"><a class="enlacejuego" href="#/ilustrador/view/{{ilustrador.id}}">{{ilustrador.nombre}}</a></li>
                         </td>
                         </tr>
 
                         <tr>
                             <td class="etiqueta">Editorial</td>
-                            <td class="celdajuego"><a class="enlacejuego" href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</td>
+                            <td class="celdajuego"><a class="enlacejuego" href="#/editorial/view/{{bean.obj_editorial.id}}">{{bean.obj_editorial.nombre}}</a></td>
                         </tr>
                         <tr>
                             <td class="etiqueta">Fecha de Publicación</td>
@@ -85,8 +85,8 @@ THE SOFTWARE.
 
                         <tr>
                             <td class="etiqueta">Número de Jugadores</td>
-                            <td class="celdajuego"><span ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
-                                    ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
+                            <td class="celdajuego"><span data-ng-if="bean.jugMax == 0">{{bean.jugMin}}</span> <span
+                                    data-ng-if="bean.jugMax != 0">{{bean.jugMin}} - {{bean.jugMax}}</span></td>
                         </tr>
 
                         <tr>
@@ -95,8 +95,7 @@ THE SOFTWARE.
                         </tr>
 
                         <tr>
-                            <td><a ng-if="bean.website != ''" class="btn btn-default website anyadir" href="{{bean.website}}">Visita la web del juego</a></td>
-
+                            <td><a data-ng-if="bean.website != ''" class="btn btn-default website anyadir" href="{{bean.website}}">Visita la web del juego</a></td>
                         </tr>
 
                     </table>
@@ -111,7 +110,7 @@ THE SOFTWARE.
                         <tr>
                             <td class="etiqueta">Categorías</td>
                             <td class="celdajuego">
-                        <li ng-repeat="categoria in bean.array_categoria"><a class="enlacejuego" href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li>
+                        <li data-ng-repeat="categoria in bean.array_categoria"><a class="enlacejuego" href="#/categoria/view/{{categoria.id}}">{{categoria.nombre}}</a></li>
                         </td>
                         </tr>
 
@@ -139,7 +138,7 @@ THE SOFTWARE.
 
             <div class="col-lg-12 col-md-12"> 
 
-                <a href="" id="linkpatro"><img class="img-rounded img-responsive elemento" src="/images/bannerpatr.jpg"></a>
+                <a href="" id="linkpatro"><img alt="banner" class="img-rounded img-responsive elemento" src="/images/bannerpatr.jpg"></a>
 
 
             </div>    
@@ -157,13 +156,13 @@ THE SOFTWARE.
             <div class="coleccion text-center">
                 <div class="btn-group" role="group">
 
-                    <a ng-if="tipousuario == 1 || tipousuario == 2" 
-                       class="btn btn-default action02 anyadir" ng-click="anyadir(bean.id)" data-toggle="modal" data-target="#myModal">
+                    <a data-ng-if="tipousuario == 1 || tipousuario == 2" 
+                       class="btn btn-default action02 anyadir" data-ng-click="anyadir(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-check fa-2g"></i> Añadir a mi colección</a>                   
 
 
-                    <a ng-if="tipousuario == 1 || tipousuario == 2" 
-                       class="btn btn-default action02 eliminar" ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal">
+                    <a data-ng-if="tipousuario == 1 || tipousuario == 2" 
+                       class="btn btn-default action02 eliminar" data-ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
 
                     <a class="btn btn-default listado" href="#/juego/plist/1/50">Ir al listado de Juegos</a> 
@@ -176,7 +175,7 @@ THE SOFTWARE.
 
             <br />
 
-            <div class="text-center" ng-if="tipousuario == 1">
+            <div class="text-center" data-ng-if="tipousuario == 1">
 
                 <h3>Panel de Administración</h3>
                 <a class="btn btn-primary agregar" href="#/juego/edit/{{bean.id}}">Editar</a>
@@ -193,7 +192,7 @@ THE SOFTWARE.
 <!-- MODAL -->
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
-     ng-include="'js/system/footer.html'"></div>
+     data-ng-include="'js/system/footer.html'"></div>
 
 
 
@@ -207,7 +206,7 @@ THE SOFTWARE.
                 <p class="modal-p">{{mensaje}}</p>
             </div>
             <div class="modal-footer">
-                <a ng-click="coleccion()" id="botcol" class="btn btn-default anyadir">Ver colección</a>
+                <a data-ng-click="coleccion()" id="botcol" class="btn btn-default anyadir">Ver colección</a>
                 <button type="button" class="btn btn-default agregar" data-dismiss="modal">Cerrar</button>
 
             </div>

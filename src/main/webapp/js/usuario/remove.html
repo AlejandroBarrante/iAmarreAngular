@@ -25,10 +25,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div ng-if="tipousuario == 1 || login == bean.login && login != null">
+<div data-ng-if="tipousuario == 1 || login == bean.login && login != null">
 
     <div class="panel-heading" style="font-family: Oswald, serif;"
-         ng-include="'js/system/header.html'"></div>
+         data-ng-include="'js/system/header.html'"></div>
     <div class="panel-body">
         <div class="row-fluid">
 
@@ -75,8 +75,8 @@ THE SOFTWARE.
             <div class="text-center">
                 <br /> <br /> <br />
                 <div>¿Está seguro de que desea borrar el registro?</div>
-                <a class="btn btn-default eliminar" ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a> <a
-                    class="btn btn-default anyadir" ng-href="#/usuario/view/{{bean.id}}">No</a>
+                <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a> <a
+                    class="btn btn-default anyadir" data-ng-href="#/usuario/view/{{bean.id}}">No</a>
             </div>
         </div>
 
@@ -106,7 +106,7 @@ THE SOFTWARE.
 
 
     <div class="panel-footer" style="font-family: Questrial, serif;"
-         ng-include="'js/system/footer.html'"></div>
+         data-ng-include="'js/system/footer.html'"></div>
 
 </div>
 

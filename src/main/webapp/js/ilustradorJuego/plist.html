@@ -25,11 +25,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
-<div class="panel-body"  ng-cloak>
+<div class="panel-heading" style="font-family:Oswald , serif;"  data-ng-include="'js/system/header.html'"></div>
+<div class="panel-body"  data-ng-cloak>
 
     <div class="row">
-        <div class="col-xs-12" ng-show="!status">
+        <div class="col-xs-12" data-ng-show="!status">
             <div role="tabpanel">
 
                 <div class="tab-content">
@@ -40,12 +40,12 @@ THE SOFTWARE.
 
                                 <select class="selector"
                                         onchange="window.location.href = this.options
-                                                                [this.selectedIndex].value">
+                                                        [this.selectedIndex].value">
                                     <option>Ordenar...</option>
                                     <option
                                         value="#/ilustradorJuego/plist/{{numpage}}/{{rpp}}/{{id}}?order=titulo&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
                                         por nombre</option>
-                                    <option ng-show="visibles.edad"
+                                    <option data-ng-show="visibles.edad"
                                             value="#/ilustradorJuego/plist/{{numpage}}/{{rpp}}/{{id}}?order=edad&ordervalue=asc{{paramsWithoutOrder}}">Ordenar
                                         por edad recomendada</option>
                                     <option
@@ -62,47 +62,47 @@ THE SOFTWARE.
                             <div class="col-lg-5  col-md-5 col-sm-8 text-center textosuperior">
                                 Paginación: <br>
                                 <ul class="pagination">
-                                    <li><a class="pagination_link" ng-show="numpage > 1" ng-attr-id="{{numpage - 1}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + (numpage - 1) + '/' + rpp + params}}">prev</a></li>
-                                    <li><a class="pagination_link" id="1" ng-attr-href="{{'#/' + ob + '/' + op + '/1/' + rpp + params}}" ng-show="numpage > neighbourhood + 1">1</a></li>
+                                    <li><a class="pagination_link" data-ng-show="numpage > 1" data-ng-attr-id="{{numpage - 1}}" data-ng-attr-href="{{'#/' + ob + '/' + op + '/' + (numpage - 1) + '/' + rpp + params}}">prev</a></li>
+                                    <li><a class="pagination_link" id="1" data-ng-attr-href="{{'#/' + ob + '/' + op + '/1/' + rpp + params}}" data-ng-show="numpage > neighbourhood + 1">1</a></li>
 
-                                    <li class="pagination_link disabled"><a href="#" ng-show="numpage > neighbourhood - -2">ooo</a></li>
+                                    <li class="pagination_link disabled"><a href="#" data-ng-show="numpage > neighbourhood - -2">ooo</a></li>
 
-                                    <li ng-repeat="i in getRangeArray(evaluateMax(1, numpage - neighbourhood), (numpage - 1))">
-                                        <a class="pagination_link" ng-attr-id="{{i}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + i + '/' + rpp + params}}">{{i}}</a>
+                                    <li data-ng-repeat="i in getRangeArray(evaluateMax(1, numpage - neighbourhood), (numpage - 1))">
+                                        <a class="pagination_link" data-ng-attr-id="{{i}}" data-ng-attr-href="{{'#/' + ob + '/' + op + '/' + i + '/' + rpp + params}}">{{i}}</a>
                                     </li>
 
-                                    <li class="active" ng-show="(numpage >= 1) && (numpage <= pages)">
-                                        <a class="pagination_link" ng-attr-id="{{numpage}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + numpage + '/' + rpp + params}}">{{numpage}}</a>
+                                    <li class="active" data-ng-show="(numpage >= 1) && (numpage <= pages)">
+                                        <a class="pagination_link" data-ng-attr-id="{{numpage}}" data-ng-attr-href="{{'#/' + ob + '/' + op + '/' + numpage + '/' + rpp + params}}">{{numpage}}</a>
                                     </li>
 
-                                    <li ng-repeat="j in getRangeArray(numpage - -1, evaluateMin(numpage - -neighbourhood, pages))">
-                                        <a class="pagination_link" ng-attr-id="{{j}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + j + '/' + rpp + params}}">{{j}}</a>
+                                    <li data-ng-repeat="j in getRangeArray(numpage - -1, evaluateMin(numpage - -neighbourhood, pages))">
+                                        <a class="pagination_link" data-ng-attr-id="{{j}}" data-ng-attr-href="{{'#/' + ob + '/' + op + '/' + j + '/' + rpp + params}}">{{j}}</a>
                                     </li>
 
-                                    <li class="pagination_link disabled"><a href="#" ng-show="numpage < (pages - (neighbourhood - -1))">ooo</a></li>
+                                    <li class="pagination_link disabled"><a href="#" data-ng-show="numpage < (pages - (neighbourhood - -1))">ooo</a></li>
 
-                                    <li><a class="pagination_link" ng-show="numpage < pages - neighbourhood" ng-attr-id="{{pages}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + pages + '/' + rpp + params}}">{{pages}}</a></li>
-                                    <li><a class="pagination_link" ng-show="numpage < pages" ng-attr-id="{{numpage - -1}}" ng-attr-href="{{'#/' + ob + '/' + op + '/' + (numpage - -1) + '/' + rpp + params}}">next</a></li>
+                                    <li><a class="pagination_link" data-ng-show="numpage < pages - neighbourhood" data-ng-attr-id="{{pages}}" data-ng-attr-href="{{'#/' + ob + '/' + op + '/' + pages + '/' + rpp + params}}">{{pages}}</a></li>
+                                    <li><a class="pagination_link" data-ng-show="numpage < pages" data-ng-attr-id="{{numpage - -1}}" data-ng-attr-href="{{'#/' + ob + '/' + op + '/' + (numpage - -1) + '/' + rpp + params}}">next</a></li>
 
                                 </ul>
                             </div>
                             <div class="col-lg-3  col-md-3 col-sm-4 text-center textosuperior">
                                 Registros por página: <br>
                                 <ul class="pagination">
-                                    <li class="active" ng-show="rpp == 10"><a class="rpp_link" id="10" href="#/{{ob}}/{{op}}/{{numpage}}/10/{{id + params}}">10</a></li>
-                                    <li ng-show="rpp != 10"><a class="rpp_link" id="10" href="#/{{ob}}/{{op}}/{{numpage}}/10/{{id + params}}">10</a></li>            
-                                    <li class="active" ng-show="rpp == 50"><a class="rpp_link" id="10" href="#/{{ob}}/{{op}}/{{numpage}}/50/{{id + params}}">50</a></li>
-                                    <li ng-show="rpp != 50"><a class="rpp_link" id="10" href="#/{{ob}}/{{op}}/{{numpage}}/50/{{id + params}}">50</a></li>
-                                    <li class="active" ng-show="rpp == 100"><a class="rpp_link" id="10" href="#/{{ob}}/{{op}}/{{numpage}}/100/{{id + params}}">100</a></li>
-                                    <li ng-show="rpp != 100"><a class="rpp_link" id="10" href="#/{{ob}}/{{op}}/{{numpage}}/100/{{id + params}}">100</a></li>
+                                    <li class="active" data-ng-show="rpp == 10"><a class="rpp_link" href="#/{{ob}}/{{op}}/{{numpage}}/10/{{id + params}}">10</a></li>
+                                    <li data-ng-show="rpp != 10"><a class="rpp_link" href="#/{{ob}}/{{op}}/{{numpage}}/10/{{id + params}}">10</a></li>            
+                                    <li class="active" data-ng-show="rpp == 50"><a class="rpp_link" href="#/{{ob}}/{{op}}/{{numpage}}/50/{{id + params}}">50</a></li>
+                                    <li data-ng-show="rpp != 50"><a class="rpp_link" href="#/{{ob}}/{{op}}/{{numpage}}/50/{{id + params}}">50</a></li>
+                                    <li class="active" data-ng-show="rpp == 100"><a class="rpp_link" href="#/{{ob}}/{{op}}/{{numpage}}/100/{{id + params}}">100</a></li>
+                                    <li data-ng-show="rpp != 100"><a class="rpp_link" href="#/{{ob}}/{{op}}/{{numpage}}/100/{{id + params}}">100</a></li>
                                 </ul>
                             </div>
 
 
                             <div class="col-lg-2  col-md-2 col-sm-4 text-center textosuperior">
                                 Buscar: <br>
-                                <form class="navbar-form navbar-center" role="form" action="Controller" method="post" id="empresaForm">
-                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" ng-model="searchText">
+                                <form class="navbar-form navbar-center" action="Controller" method="post" id="empresaForm">
+                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" data-ng-model="searchText">
                                 </form>
                             </div>
                         </div>
@@ -114,10 +114,7 @@ THE SOFTWARE.
         </div>
     </div>
 
-    <!-- --------------------------------- -->
-
-
-    <h1 class="text-center titulo" ng-repeat="obj in page| limitTo:1">{{obj.obj_ilustrador.nombre}}</h1>
+    <h1 class="text-center titulo" data-ng-repeat="obj in page| limitTo:1">{{obj.obj_ilustrador.nombre}}</h1>
 
 
     <div id="datos">
@@ -135,13 +132,11 @@ THE SOFTWARE.
                 <div class="galeriajuego text-center">
 
 
-                    <ul ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center">
-                        <li ng_show="visibles.imagen" style="list-style: none;"> 
+                    <ul data-ng-repeat="obj in page| filter: searchText" style="display: inline-table;" class="text-center">
+                        <li data-ng-show="visibles.imagen" style="list-style: none;"> 
                             <a  href="#/totalJuego/view/{{obj.obj_juego.id}}"><img src="{{obj.obj_juego.imagen}}" alt="mini" class="img-rounded"></a><br/>
                             <a style="text-decoration: none;" href="#/totalJuego/view/{{obj.obj_juego.id}}">{{obj.obj_juego.titulo}}</a>
                         </li>
-
-
 
                     </ul>
 
@@ -164,5 +159,5 @@ THE SOFTWARE.
 
 
 <div class="panel-footer" style="font-family: Questrial, serif;"
-     ng-include="'js/system/footer.html'"></div>
+     data-ng-include="'js/system/footer.html'"></div>
 

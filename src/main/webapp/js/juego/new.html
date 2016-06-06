@@ -38,7 +38,7 @@ THE SOFTWARE.
 
 
             <div id="titulo-group" class="form-group">
-                <label class="col-sm-2 control-label" for="nombre">Nombre:</label>
+                <label class="col-sm-2 control-label">Nombre:</label>
                 <div class="control col-sm-3">
                     <input data-ng-model="obj.titulo" type="text" id="titulo"
                            class="form-control" name="titulo"
@@ -53,7 +53,7 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="obj_editorial">Editorial:</label>
+                <label class="col-sm-2 control-label">Editorial:</label>
                 <div class="control col-sm-1">
                     <div class="input-group foreign" id="obj_editorial_group">
                         <span class="input-group-addon" id="obj_editorial_button"> <span
@@ -70,7 +70,7 @@ THE SOFTWARE.
 
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="fechaPublicacion">Fecha
+                <label class="col-sm-2 control-label">Fecha
                     de Publicación:</label>
                 <div class="control col-sm-1">
                     <input data-ng-model="obj.fechaPublicacion" type="number"
@@ -87,13 +87,13 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="numJugadores">Número
+                <label class="col-sm-2 control-label">Número
                     de Jugadores:</label>
                 <div class="control col-sm-2">
                     <input data-ng-model="obj.jugMin" type="number" id="jugMin"
                            class="form-control" name="jugMin" placeholder="Mínimo"
                            data-ng-maxlength="2" min="1" required> <span
-                           ng-show="!juegoForm.$pristine && juegoForm.jugMin.$error.min">Introduce
+                           data-ng-show="!juegoForm.$pristine && juegoForm.jugMin.$error.min">Introduce
                         al menos un jugador.</span> <span
                         data-ng-show="!juegoForm.$pristine && juegoForm.jugMin.$error.required">Campo
                         requerido.</span> <span
@@ -107,7 +107,7 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="contenido">Duración:</label>
+                <label class="col-sm-2 control-label">Duración:</label>
                 <div class="control col-sm-1">
                     <input data-ng-model="obj.duracion" type="number" id="duracion"
                            class="form-control" name="duracion" data-ng-maxlength="4" min="1"
@@ -122,7 +122,7 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="descripcion">Descripción:</label>
+                <label class="col-sm-2 control-label">Descripción:</label>
                 <div class="control col-sm-9">
                     <textarea class="form-control" data-ng-model="obj.descripcion"
                               id="descripcion" name="descripcion" rows="6"></textarea>
@@ -130,7 +130,7 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="edad">Edad:</label>
+                <label class="col-sm-2 control-label">Edad:</label>
                 <div class="control col-sm-1">
                     <input data-ng-model="obj.edad" type="number" id="edad"
                            class="form-control" name="edad" data-ng-maxlength="2" min="1" required>
@@ -145,7 +145,7 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="obj_dependencialenguaje">Dependencia
+                <label class="col-sm-2 control-label">Dependencia
                     del Lenguaje:</label>
                 <div class="control col-sm-1">
                     <div class="input-group foreign" id="obj_dependencialenguaje_group">
@@ -163,7 +163,7 @@ THE SOFTWARE.
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="website">Website:</label>
+                <label class="col-sm-2 control-label">Website:</label>
                 <div class="control col-sm-3">
                     <input data-ng-model="obj.website" type="text" id="website"
                            class="form-control" name="website" size="15">

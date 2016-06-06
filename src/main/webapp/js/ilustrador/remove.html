@@ -27,7 +27,7 @@ THE SOFTWARE.
 -->
 <div data-ng-if="tipousuario == 1">
 
-    <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+    <div class="panel-heading" style="font-family:Oswald , serif;"  data-ng-include="'js/system/header.html'"></div>
     <div class="panel-body">
 
         <div class="row-fluid">
@@ -41,7 +41,7 @@ THE SOFTWARE.
 
         <div class="row-fluid">
             <div class="col-md-12">      
-                <div ng-show="!result.status">
+                <div data-ng-show="!result.status">
 
 
                     <table class="table table-striped table-condensed tablaview">
@@ -66,8 +66,8 @@ THE SOFTWARE.
 
                     <div class="text-center" > 
                         <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
-                        <a class="btn btn-default eliminar" ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
-                        <a class="btn btn-default inicio" ng-href="#/ilustrador/plist/1/50">No</a>
+                        <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
+                        <a class="btn btn-default inicio" data-ng-href="#/ilustrador/plist/1/50">No</a>
                     </div>     
                 </div>
 
@@ -98,7 +98,7 @@ THE SOFTWARE.
             </div>
         </div>
     </div>
-    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
+    <div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
 
 
 </div>

@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 -->
 <div class="panel-heading" style="font-family: Oswald, serif;"
-     ng-include="'js/system/header.html'"></div>
+     data-ng-include="'js/system/header.html'"></div>
 <div class="panel-body">
 
     <div class="row-fluid">
@@ -73,8 +73,8 @@ THE SOFTWARE.
 
             <div class="text-center">
                 <a class="btn btn-primary eliminar" href="#/ilustradorJuego/plist/1/50/{{bean.id}}">Ver sus juegos</a> 
-                <a class="btn btn-default anyadir" ng-click="plist()">Ir al listado de Ilustradores</a>
-                <a class="btn btn-default agregar" ng-click="close()">Ir al Inicio</a>
+                <a class="btn btn-default anyadir" data-ng-click="plist()">Ir al listado de Ilustradores</a>
+                <a class="btn btn-default agregar" data-ng-click="close()">Ir al Inicio</a>
                 <br/><br/><br/>
             </div>
         </div>
@@ -86,7 +86,7 @@ THE SOFTWARE.
 
     </div>
 
-        <div class="row-fluid" ng-if="tipousuario == 1">
+        <div class="row-fluid" data-ng-if="tipousuario == 1">
 
             <div class="text-center">
                 <h3>Panel de Administración</h3>
@@ -99,4 +99,4 @@ THE SOFTWARE.
 </div>
 
     <div class="panel-footer" style="font-family: Questrial, serif;"
-         ng-include="'js/system/footer.html'"></div>
+         data-ng-include="'js/system/footer.html'"></div>
