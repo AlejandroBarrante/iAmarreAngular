@@ -12,7 +12,7 @@ body {
 .panel-default {
     background-color: #f9faf1;
 }
-/* Cuerpo de página */
+/* Cuerpo interior de página */
 
 .panel-body {
     background-color: #e7e299;
@@ -36,7 +36,7 @@ body {
 .text-center {
     text-align: center;
 }
-/* Páginas listados */
+/* Tamaños y alienados de textos */
 
 .textosuperior {
     font-size: 16px;
@@ -50,6 +50,17 @@ body {
     font-size: 12px;
     font-style: italic;
 }
+.filtrado {
+    font-weight: bold;
+    position: relative;
+    left: 50px;
+}
+.titulo {
+    font-size: 30px;
+    font-weight: bold;
+}
+/* CSS para listados */
+
 .selector {
     padding: 10px;
     position: relative;
@@ -96,6 +107,18 @@ ul li a:hover {
 .galeriajuego img:hover {
     opacity: 0.7;
 }
+.catlist {
+    position: relative;
+    bottom: 10px;
+}
+.catlist2 {
+    text-align: justify;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+/* Botones */
+
 .agregar {
     background: #337ab7;
     color: white;
@@ -104,6 +127,46 @@ ul li a:hover {
 .agregar:hover {
     background: black;
     color: white;
+}
+.anyadir {
+    margin-right: 5px;
+    background: #5ea82f;
+    color: white;
+    border: 1px solid black;
+}
+.anyadir:hover {
+    color: white;
+    background: black;
+}
+.eliminar {
+    margin-right: 5px;
+    background: #D30707;
+    color: white;
+    border: 1px solid black;
+}
+.eliminar:hover {
+    color: white;
+    background: black;
+}
+.listado {
+    margin-right: 5px;
+    background: #337ab7;
+    color: white;
+    border: 1px solid black;
+}
+.listado:hover {
+    color: white;
+    background: black;
+}
+.inicio {
+    margin-right: 5px;
+    background: #f5d500;
+    color: black;
+    border: 1px solid black;
+}
+.inicio:hover {
+    color: white;
+    background: black;
 }
 .volver {
     background: #5ea82f;
@@ -114,21 +177,6 @@ ul li a:hover {
     background: #D30707;
     color: white;
     border: 1px solid black;
-}
-.filtrado {
-    font-weight: bold;
-    position: relative;
-    left: 50px;
-}
-.catlist {
-    position: relative;
-    bottom: 10px;
-}
-.catlist2 {
-    text-align: justify;
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 16px;
 }
 /* Barra de Navegación */
 
@@ -208,10 +256,6 @@ ul li a:hover {
 .celdajuego {
     padding-left: 10px;
 }
-.titulo {
-    font-size: 30px;
-    font-weight: bold;
-}
 .descripcion {
     font-size: 16px;
     text-align: justify;
@@ -227,46 +271,6 @@ table tr td li {
 }
 .compra {
     font-size: 16px;
-}
-.anyadir {
-    margin-right: 5px;
-    background: #5ea82f;
-    color: white;
-    border: 1px solid black;
-}
-.anyadir:hover {
-    color: white;
-    background: black;
-}
-.eliminar {
-    margin-right: 5px;
-    background: #D30707;
-    color: white;
-    border: 1px solid black;
-}
-.listado {
-    margin-right: 5px;
-    background: #337ab7;
-    color: white;
-    border: 1px solid black;
-}
-.inicio {
-    margin-right: 5px;
-    background: #f5d500;
-    color: black;
-    border: 1px solid black;
-}
-.eliminar:hover {
-    color: white;
-    background: black;
-}
-.listado:hover {
-    color: white;
-    background: black;
-}
-.inicio:hover {
-    color: white;
-    background: black;
 }
 #linkpatro img {
     padding-top: 30px;
@@ -294,7 +298,7 @@ table tr td li {
 .linea {
     border-top: 1px solid white;
 }
-/* GALERÍA INDEX */
+/* Galería del Index */
 
 .indexgallery {
     margin-top: 20px;
@@ -312,12 +316,12 @@ table tr td li {
 .elemento:hover {
     opacity: 0.8;
 }
-/* PÁGINAS DE NO-PERMISO */
+/* Página de no-permiso */
 
 .nopermiso {
     margin-top: 50px;
 }
-/* ANIMACIÓN CORTINILLA BARRA DE NAVEGACIÓN */
+/* Animación cortinilla barra de navegación */
 
 .dropdown .dropdown-menu {
     -webkit-transition: all 0.3s;
@@ -334,6 +338,8 @@ table tr td li {
     max-height: 250px;
     opacity: 1;
 }
+/* Pantallas Edit */
+
 .website:hover {
     color: white;
 }
@@ -358,6 +364,8 @@ table tr td li {
 .listadoedit a {
     text-decoration: none;
 }
+/* Pantallas Remove */
+
 .turemove a:hover {
     color: red;
 }
