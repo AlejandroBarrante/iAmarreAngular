@@ -112,7 +112,7 @@ THE SOFTWARE.
                                 <a data-ng-show="visibles.fechaNac" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=fechaNac&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </p></div>   
                     </th>
-                    <th  data-ng-show="visibles.website" class="text-center">
+                    <th  data-ng-show="visibles.website" class="text-center hidden-xs">
                         <div class="cabecera">
                             <p>Website</p>
                         </div>
@@ -131,7 +131,7 @@ THE SOFTWARE.
 
                     <td class="hovered" data-ng-show="visibles.nombre"><a href="#/{{ob}}/view/{{obj.id}}"><div>{{obj.nombre}}</div></a></td>
                     <td class="text-center hovered" data-ng-show="visibles.fechaNac"><p class="fecha">{{obj.fechaNac}}</p></td>
-                    <td class="hovered"   data-ng-show="visibles.website"><a href="{{obj.website}}"><div>{{obj.website}}</div></a></td>   
+                    <td class="hovered hidden-xs"   data-ng-show="visibles.website"><a href="{{obj.website}}"><div>{{obj.website}}</div></a></td>   
                     <td class="text-center hovered"><a class="verjuegos" href="#/ilustradorJuego/plist/1/50/{{obj.id}}"><div class="verjuegos">Ver sus juegos</div></a></td>
                 </tr>
             </tbody>

@@ -127,7 +127,7 @@ THE SOFTWARE.
                             <a data-ng-show="visibles.ciudad"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=ciudad&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                             <a data-ng-show="visibles.ciudad"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=ciudad&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                         </th>
-                        <th data-ng-show="visibles.firma" class="text-center">
+                        <th data-ng-show="visibles.firma" class="text-center hidden-xs">
                             Firma<br/>
                         </th>
                         <th  class="text-center">
@@ -143,7 +143,7 @@ THE SOFTWARE.
 
                         <td data-ng-show="visibles.id_tipousuario"><a href="#/tipousuario/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
                         <td data-ng-show="visibles.ciudad">{{obj.ciudad}}</td>
-                        <td data-ng-show="visibles.firma">{{obj.firma|clipString}}</td>
+                        <td class="hidden-xs" data-ng-show="visibles.firma">{{obj.firma|clipString}}</td>
 
                         <td>
                             <div class="btn-group" role="group">
@@ -160,8 +160,8 @@ THE SOFTWARE.
                     </tr>
                 </tbody>
             </table> 
-            <a class="btn btn-primary" href="#/usuario/new/">Agregar Nuevo Usuario</a>
-            <a class="btn btn-primary" href="#/">Volver al Inicio</a>
+            <a class="btn btn-default anyadir" href="#/usuario/new/">Agregar Nuevo Usuario</a>
+            <a class="btn btn-default agregar" href="#/">Volver al Inicio</a>
         </div>
     </div>
     <div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
