@@ -195,7 +195,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
 
         $scope.registro = function () {
 
-            $('#botreg').attr("href", "#/juego/plist/1/50");
+            $('#botreg').attr("href", "#/juego/plist/1/50?order=titulo&ordervalue=asc");
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
