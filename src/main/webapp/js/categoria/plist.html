@@ -94,48 +94,58 @@ THE SOFTWARE.
         </div>
     </div>
 
+    <div class="row">
 
-    <div id="datos">
-        <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
-            <thead >             
-                <tr> 
-                    <th data-ng-show="visibles.nombre" class="text-center">
-                        <div class="cabecera">
-                            <p class="titulolista"> Nombre 
-                                <a data-ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                <a data-ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                            </p></div>
+        <div id="datos">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
+                    <thead >             
+                        <tr> 
+                            <th data-ng-show="visibles.nombre" class="text-center">
+                    <div class="cabecera">
+                        <p class="titulolista"> Nombre 
+                            <a data-ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                            <a data-ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                        </p></div>
                     </th>
-                    <th data-ng-show="visibles.descripcion" class="text-center">
-                        <div class="cabecera">
-                            <p class="titulolista">Descripción
-                            </p>
-                        </div>   
+                    <th data-ng-show="visibles.descripcion" class="text-center hidden-sm hidden-xs">
+                    <div class="cabecera">
+                        <p class="titulolista">Descripción
+                        </p>
+                    </div>   
                     </th>
 
                     <th class="text-center">
-                        <div class="cabecera">
-                            <p class="titulolista"> Acciones</p>
-                        </div>
+                    <div class="cabecera">
+                        <p class="titulolista"> Acciones</p>
+                    </div>
                     </th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="obj in page| filter: searchText">
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="obj in page| filter: searchText">
 
-                    <td class="hovered" data-ng-show="visibles.nombre" width="400"><a href="#/{{ob}}/view/{{obj.id}}"><div class="catlist">{{obj.nombre}}</div></a></td>
-                    <td class="text-center hovered" data-ng-show="visibles.descripcion"><p class="catlist2">{{obj.descripcion}}</p></td>
-                    <td class="text-center hovered" width="200"><a class="verjuegos" href="#/categoriaJuego/plist/1/50/{{obj.id}}?order=titulo&ordervalue=asc"><div class="verjuegos">Ver sus juegos</div></a></td>
+                            <td class="hovered" data-ng-show="visibles.nombre" width="400"><a href="#/{{ob}}/view/{{obj.id}}"><div class="catlist">{{obj.nombre}}</div></a></td>
+                            <td class="text-center hidden-xs hidden-sm hovered" data-ng-show="visibles.descripcion"><p class="catlist2">{{obj.descripcion}}</p></td>
+                            <td class="text-center hovered" width="200"><a class="verjuegos" href="#/categoriaJuego/plist/1/50/{{obj.id}}?order=titulo&ordervalue=asc"><div class="verjuegos">Ver sus juegos</div></a></td>
 
-                </tr>
-            </tbody>
-        </table>  
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="text-center">
             <a class="btn anyadir" data-ng-if="tipousuario == 1" href="#/categoria/new/">Agregar Nueva Categoría</a>
             <a class="btn agregar" href="#/">Volver al Inicio</a>
         </div>
     </div>
+
 </div>
 <div class="panel-footer" style="font-family: Questrial, serif;" data-ng-include="'js/system/footer.html'"></div>
 

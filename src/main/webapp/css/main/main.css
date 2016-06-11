@@ -236,7 +236,10 @@ ul li a:hover {
     top: 8px;
 }
 .fecha {
-    margin-top: 15px;
+    margin-top: 40px;
+}
+.hovered a {
+    padding: 5px;
 }
 .hovered:hover {
     background: #e7e299;
