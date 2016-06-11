@@ -64,7 +64,7 @@ THE SOFTWARE.
                         <tr>
                             <td class="etiqueta">Autores</td>
                             <td class="celdajuego"><li class="listados" data-ng-repeat="autor in bean.array_autor"><a class="enlacejuego"
-                                                                                                             href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
+                                                                                                                  href="#/autor/view/{{autor.id}}">{{autor.nombre}}</a></li></td>
                         </tr>
 
                         <tr>
@@ -92,10 +92,6 @@ THE SOFTWARE.
                         <tr>
                             <td class="etiqueta">Duración</td>
                             <td class="celdajuego">{{bean.duracion}} minutos</td>
-                        </tr>
-
-                        <tr>
-                            <td><a data-ng-if="bean.website != ''" class="btn btn-default website anyadir" href="{{bean.website}}">Visita la web del juego</a></td>
                         </tr>
 
                     </table>
@@ -136,8 +132,9 @@ THE SOFTWARE.
         <div class="row">
 
 
-            <div class="col-lg-12 col-md-12"> 
-
+            <div class="col-lg-12 col-md-12 text-center"> 
+                
+                <a data-ng-if="bean.website != ''" class="btn btn-default website anyadir" href="{{bean.website}}">Visita la web del juego</a>
                 <a href="" id="linkpatro"><img alt="banner" class="img-rounded img-responsive elemento" src="/images/bannerpatr.jpg"></a>
 
 

@@ -254,7 +254,15 @@ ul li a:hover {
     text-decoration: none;
 }
 .celdajuego {
-    padding-left: 10px;
+    padding: 10px;
+    border-bottom: 1px dotted grey;
+}
+
+.botonweb {
+    position: relative;
+    top: 20px;
+    left: 325px;
+    margin-bottom: 20px;
 }
 .descripcion {
     font-size: 16px;
@@ -353,6 +361,7 @@ table tr td li {
 }
 .textotabla {
     font-size: 16px;
+    text-align: justify;
 }
 .listadoedit {
     list-style: none;
