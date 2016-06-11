@@ -43,7 +43,7 @@ THE SOFTWARE.
 
             <table class="table table-responsive table-striped table-condensed tablaview">
 
-                <tr class="tablaview">
+                <tr data-ng-if="bean.fechaNac != 0" class="tablaview">
                     <td class="etiqueta"><p>Fecha de Nacimiento</p></td>
                     <td><p class="textotabla">{{bean.fechaNac}}</p></td>
                 </tr>
