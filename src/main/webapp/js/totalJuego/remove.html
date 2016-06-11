@@ -135,7 +135,7 @@ THE SOFTWARE.
                 <div class="text-center" > 
                     <div><p class="textosuperior">¿Está seguro de que desea borrar el registro?</p></div>
                     <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a>
-                    <a class="btn btn-default inicio" data-ng-href="#/juego/plist/1/50">No</a>
+                    <a class="btn btn-default inicio" data-ng-href="#/juego/plist/1/50?order=titulo&ordervalue=asc">No</a>
                 </div>  
 
                 <br />
@@ -152,8 +152,7 @@ THE SOFTWARE.
                 <div class="modal-content">
                     <div class="modal-body">
 
-                        <p class="modal-p" data-ng-show="result.message <= 0">El registro ha sido eliminado.</p>
-                        <p class="modal-p" data-ng-show="result.status > 0">El registro no ha podido eliminarse.</p>
+                        <p class="modal-p">El registro ha sido eliminado.</p>
 
                     </div>
                     <div class="modal-footer">

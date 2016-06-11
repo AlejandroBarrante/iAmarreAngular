@@ -55,8 +55,8 @@ THE SOFTWARE.
 
 
             <div class="text-center">
-                <a class="btn btn-primary eliminar" href="#/categoriaJuego/plist/1/50/{{bean.id}}">Ver sus juegos</a> 
-                <a class="btn btn-default anyadir" data-ng-click="plist()">Ir al listado de Categorías</a>
+                <a class="btn btn-primary eliminar" href="#/categoriaJuego/plist/1/50/{{bean.id}}?order=titulo&ordervalue=asc">Ver sus juegos</a> 
+                <a class="btn btn-default agregar" href="#/categoria/plist/1/50?order=nombre&ordervalue=asc">Ir al listado de Categorías</a>
                 <a class="btn btn-default inicio" data-ng-click="close()">Ir al Inicio</a>
                 <br/><br/><br/>
             </div>
@@ -68,7 +68,7 @@ THE SOFTWARE.
 
         <div class="text-center" data-ng-if="tipousuario == 1">
             <h3>Panel de Administración</h3>
-            <a class="btn btn-primary agregar" href="#/categoria/edit/{{bean.id}}">Editar</a>
+            <a class="btn btn-primary anyadir" href="#/categoria/edit/{{bean.id}}">Editar</a>
             <a class="btn btn-danger eliminar" href="#/categoria/remove/{{bean.id}}">Borrar</a>
         </div>
 

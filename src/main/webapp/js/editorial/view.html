@@ -69,8 +69,8 @@ THE SOFTWARE.
 
             <div class="coleccion text-center">
                 <a class="btn btn-default anyadir" href="{{bean.website}}">Web Oficial</a>
-                <a class="btn btn-default eliminar" href="#/editorialJuego/plist/1/50/{{bean.id}}">Ver sus juegos</a>
-                <a class="btn btn-default listado" data-ng-click="plist()">Ir al listado de
+                <a class="btn btn-default eliminar" href="#/editorialJuego/plist/1/50/{{bean.id}}?order=titulo&ordervalue=asc">Ver sus juegos</a>
+                <a class="btn btn-default agregar" href="#/editorial/plist/1/50?order=nombre&ordervalue=asc">Volver al listado de
                     Editoriales</a> <a class="btn btn-default inicio" data-ng-click="close()">Ir al
                     Inicio</a>
                 <br/><br/>
@@ -80,7 +80,7 @@ THE SOFTWARE.
 
             <div class="text-center" data-ng-if="tipousuario == 1">
                 <h3>Panel de Administración</h3>
-                <a class="btn btn-default agregar" href="#/editorial/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-default anyadir" href="#/editorial/edit/{{bean.id}}">Editar</a>
                 <a class="btn btn-default eliminar" href="#/editorial/remove/{{bean.id}}">Borrar</a>
             </div>
         </div>

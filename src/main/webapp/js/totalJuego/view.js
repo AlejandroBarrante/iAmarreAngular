@@ -47,7 +47,7 @@ moduloTotalJuego.controller('TotalJuegoViewController', ['$scope', '$routeParams
 
         $scope.coleccion = function () {
 
-            $('#botcol').attr("href", "#/coleccion/plist/1/50/" + $scope.bean2.id);
+            $('#botcol').attr("href", "#/coleccion/plist/1/50/" + $scope.bean2.id + "?order=titulo&ordervalue=asc");
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();

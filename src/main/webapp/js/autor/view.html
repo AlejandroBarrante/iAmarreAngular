@@ -72,9 +72,9 @@ THE SOFTWARE.
 
 
             <div class="text-center">
-                <a class="btn btn-primary eliminar" href="#/autorJuego/plist/1/50/{{bean.id}}">Ver sus juegos</a> 
-                <a class="btn btn-default anyadir" data-ng-click="plist()">Ir al listado de Autores</a>
-                <a class="btn btn-default agregar" data-ng-click="close()">Ir al Inicio</a>
+                <a class="btn btn-primary eliminar" href="#/autorJuego/plist/1/50/{{bean.id}}?order=titulo&ordervalue=asc">Ver sus juegos</a> 
+                <a class="btn btn-default agregar" href="#/autor/plist/1/50?order=nombre&ordervalue=asc">Ir al listado de Autores</a>
+                <a class="btn btn-default inicio" data-ng-click="close()">Ir al Inicio</a>
                 <br/><br/><br/>
             </div>
         </div>
@@ -90,7 +90,7 @@ THE SOFTWARE.
 
         <div class="text-center">
             <h3>Panel de Administración</h3>
-            <a class="btn btn-primary agregar" href="#/autor/edit/{{bean.id}}">Editar</a>
+            <a class="btn btn-primary anyadir" href="#/autor/edit/{{bean.id}}">Editar</a>
             <a class="btn btn-danger eliminar" href="#/autor/remove/{{bean.id}}">Borrar</a>
         </div>
 

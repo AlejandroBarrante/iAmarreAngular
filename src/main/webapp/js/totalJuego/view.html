@@ -132,7 +132,7 @@ THE SOFTWARE.
         <div class="row">
 
 
-            <div class="col-lg-12 col-md-12 text-center"> 
+            <div class="col-lg-12 col-md-12 text-center botonesinf"> 
                 
                 <a data-ng-if="bean.website != ''" class="btn btn-default website anyadir" href="{{bean.website}}">Visita la web del juego</a>
                 <a href="" id="linkpatro"><img alt="banner" class="img-rounded img-responsive elemento" src="/images/bannerpatr.jpg"></a>
@@ -162,7 +162,7 @@ THE SOFTWARE.
                        class="btn btn-default action02 eliminar" data-ng-click="eliminar(bean.id)" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-times fa-2g"></i> Eliminar de mi colección</a> 
 
-                    <a class="btn btn-default listado" href="#/juego/plist/1/50">Ir al listado de Juegos</a> 
+                    <a class="btn btn-default listado" href="#/juego/plist/1/50?order=titulo&ordervalue=asc">Ir al listado de Juegos</a> 
 
                     <a class="btn btn-default inicio" href="/juegoteca/#/">Ir al
                         Inicio</a>
@@ -175,7 +175,7 @@ THE SOFTWARE.
             <div class="text-center" data-ng-if="tipousuario == 1">
 
                 <h3>Panel de Administración</h3>
-                <a class="btn btn-primary agregar" href="#/juego/edit/{{bean.id}}">Editar</a>
+                <a class="btn btn-primary anyadir" href="#/juego/edit/{{bean.id}}">Editar</a>
                 <a class="btn btn-danger eliminar" href="#/totalJuego/remove/{{bean.id}}">Borrar</a>
 
             </div>

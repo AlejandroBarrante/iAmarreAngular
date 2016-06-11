@@ -76,7 +76,7 @@ moduloAutor.controller('AutorNewController', ['$scope', '$routeParams', '$locati
 
         $scope.registro = function () {
 
-            $('#botreg').attr("href", "#/autor/plist/1/50");
+            $('#botreg').attr("href", "#/autor/plist/1/50?order=nombre&ordervalue=asc");
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();

@@ -182,7 +182,7 @@ moduloJuego.controller('JuegoNewController', ['$scope', '$routeParams', '$locati
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/juego/plist/1/50');
+            $location.path('/juego/plist/1/50?order=titulo&ordervalue=asc');
         };
 
         $scope.view = function () {

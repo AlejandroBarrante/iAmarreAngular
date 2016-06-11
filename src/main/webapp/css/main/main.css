@@ -159,7 +159,7 @@ ul li a:hover {
     background: black;
 }
 .inicio {
-    margin-right: 5px;
+    margin-left: 5px;
     background: #f5d500;
     color: black;
     border: 1px solid black;
@@ -257,12 +257,8 @@ ul li a:hover {
     padding: 10px;
     border-bottom: 1px dotted grey;
 }
-
-.botonweb {
-    position: relative;
-    top: 20px;
-    left: 325px;
-    margin-bottom: 20px;
+.botonesinf {
+    margin-top: 20px;
 }
 .descripcion {
     font-size: 16px;
