@@ -92,5 +92,22 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
         });
 
 
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/usuario/view/" + $scope.id);
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.cerrar = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
+
 
     }]);

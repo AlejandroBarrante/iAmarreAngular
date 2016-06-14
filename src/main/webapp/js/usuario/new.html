@@ -82,7 +82,7 @@ THE SOFTWARE.
         <div class="control-group text-center">
             <br />
             <div class="controls">
-                <a class="btn btn-primary" data-ng-click="save()"
+                <a class="btn btn-primary" data-ng-click="save()" data-toggle="modal" data-target="#myModal"
                    data-ng-disabled="!usuarioForm.$valid">Guardar</a><a class="btn btn-default" data-ng-click="close()">Volver al inicio</a>
             </div>
         </div>
@@ -103,3 +103,23 @@ THE SOFTWARE.
 <div class="panel-footer" style="font-family: Questrial, serif;"
      data-ng-include="'js/system/footer.html'"></div>
 
+<!-- MODAL -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-p" data-ng-show="result.status == 200">El usuario ha sido creado.</p>
+                <p class="modal-p" data-ng-show="result.status != 200">El usuario no ha podido crearse.</p>
+            </div>
+            <div class="modal-footer">
+                <a data-ng-click="registro()" id="botreg" class="btn btn-default anyadir">Inicia Sesión</a>
+                <a data-ng-click="cerrar()" class="btn btn-default agregar">Volver al inicio</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->

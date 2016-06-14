@@ -81,6 +81,22 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
             $location.path('/usuario/plist/1/50');
         };
 
+        $scope.registro = function () {
+
+            $('#botreg').attr("href", "#/login");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+        };
+
+        $scope.cerrar = function () {
+            $location.path('/index.html');
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        };
+
 
 
     }]);

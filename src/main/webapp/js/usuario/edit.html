@@ -41,7 +41,7 @@ THE SOFTWARE.
                 <div class="control col-sm-3">
                     <input data-ng-model="obj.login" type="text" id="login"
                            class="form-control" name="login"
-                           data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
+                           data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required disabled>
                     <span
                         data-ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.required">Campo
                         requerido.</span> <span
@@ -85,23 +85,12 @@ THE SOFTWARE.
             <div class="control-group text-center">
                 <br />
                 <div class="controls">
-                    <a class="btn btn-primary anyadir" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">Guardar</a> 
+                    <a class="btn btn-primary anyadir" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">Guardar</a> 
                     <a class="btn btn-default agregar" data-ng-click="close()">Volver al inicio</a>
                 </div>
             </div>
         </form>
-        <div data-ng-show="result != null">
-            <div class="alert alert-success" data-ng-show="result.status == 200">
-                <h2>Se ha modificado el usuario</h2>
-                <a data-ng-href="#/usuario/view/{{id}}">Ver el usuario modificado</a><br />
-            </div>
-            <div class="alert alert-danger" data-ng-show="result.status != 200">
-                <h2>Error al modificar el usuario: no se ha modificado el
-                    usuario</h2>
-                <h3>Código: {{result.status}}</h3>
-                <h3>Mensaje: {{result.message}}</h3>
-            </div>
-        </div>
+
     </div>
     <div class="panel-footer" style="font-family: Questrial, serif;"
          data-ng-include="'js/system/footer.html'"></div>
@@ -120,4 +109,27 @@ THE SOFTWARE.
          data-ng-include="'js/system/footer.html'"></div> 
 
 </div>
+
+
+<!-- MODAL -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-p" data-ng-show="result.status == 200">El registro ha sido modificado.</p>
+                <p class="modal-p" data-ng-show="result.status != 200">El registro no ha podido modificarse.</p>
+            </div>
+            <div class="modal-footer">
+                <a data-ng-click="registro()" id="botreg" class="btn btn-default anyadir">Ver el registro modificado</a>
+                <a data-ng-click="cerrar()" class="btn btn-default agregar">Volver al inicio</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+
 
