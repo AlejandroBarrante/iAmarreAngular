@@ -44,7 +44,7 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
             serverService.getDataFromPromise(serverService.promise_removeOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.result = data;
             });
-   //         $rootScope.isSessionActive = false;
+            $location.path('#/eliminado');
         };
 
         serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
@@ -57,7 +57,7 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-            
+
         };
 
     }]);
