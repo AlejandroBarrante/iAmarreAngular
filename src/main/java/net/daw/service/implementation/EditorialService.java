@@ -287,8 +287,17 @@ public class EditorialService implements TableServiceInterface, ViewServiceInter
         if (this.checkpermission("set")) {
             String jason = ParameterCook.prepareJson(oRequest);
             String filename = ParameterCook.prepareString("filename", oRequest);
+            String fakepath = "C:\\fakepath\\";
+            String images = "/images/";
+            String nombreCambiado;
 
-            String nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
+            if (filename.contains(fakepath)) {
+
+                nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
+
+            } else {
+                nombreCambiado = images + filename;
+            }
 
             String resultado = null;
             Connection oConnection = null;
