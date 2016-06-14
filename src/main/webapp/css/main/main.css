@@ -377,3 +377,7 @@ table tr td li {
 .turemove a:hover {
     color: red;
 }
+
+.leydatos li {
+    padding: 15px;
+}
