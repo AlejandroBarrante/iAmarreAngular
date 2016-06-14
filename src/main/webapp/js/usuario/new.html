@@ -87,18 +87,6 @@ THE SOFTWARE.
             </div>
         </div>
     </form>
-    <div data-ng-show="result != null">
-        <div class="alert alert-success" data-ng-show="result.status == 200">
-            <h2>Se ha modificado el usuario</h2>
-            <a data-ng-href="#/">Volver a la página principal</a><br />
-        </div>
-        <div class="alert alert-danger" data-ng-show="result.status != 200">
-            <h2>Error al modificar el usuario: no se ha modificado el
-                usuario</h2>
-            <h3>Código: {{result.status}}</h3>
-            <h3>Mensaje: {{result.message}}</h3>
-        </div>
-    </div>
 </div>
 <div class="panel-footer" style="font-family: Questrial, serif;"
      data-ng-include="'js/system/footer.html'"></div>

@@ -61,6 +61,7 @@ openAusias.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/login', {templateUrl: 'js/system/login.html', controller: 'LoginController'});
         $routeProvider.when('/logout', {templateUrl: 'js/system/logout.html', controller: 'LogoutController'});
+        $routeProvider.when('/eliminado', {templateUrl: 'js/system/eliminado.html', controller: 'EliminadoController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
         //------------
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/usuario/edit.html', controller: 'UsuarioEditController'});
