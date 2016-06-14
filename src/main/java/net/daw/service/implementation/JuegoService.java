@@ -418,9 +418,18 @@ public class JuegoService implements TableServiceInterface, ViewServiceInterface
             String jason = ParameterCook.prepareJson(oRequest);
             String filename = ParameterCook.prepareString("filename", oRequest);
             String filename2 = ParameterCook.prepareString("filename2", oRequest);
+            String fakepath = "C:\\fakepath\\";
+            String images = "/images/";
+            String nombreCambiado;
+            String nombreCambiado2;
 
-            String nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
-            String nombreCambiado2 = filename2.replace("C:\\fakepath\\", "/images/");
+            if (filename.contains(fakepath) && filename2.contains(fakepath)) {
+                nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
+                nombreCambiado2 = filename2.replace("C:\\fakepath\\", "/images/");
+            } else {
+                nombreCambiado = images + filename;
+                nombreCambiado2 = images + filename2;
+            }
 
             String resultado = null;
             Connection oConnection = null;
