@@ -98,6 +98,5 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         };
 
 
-
-    }]);
+   }]);
 

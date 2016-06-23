@@ -381,3 +381,11 @@ table tr td li {
 .leydatos li {
     padding: 15px;
 }
+
+.textolista {
+    font-size: 20px;
+}
+
+.textolista li {
+    padding: 5px;
+}
