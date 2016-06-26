@@ -1,36 +1,28 @@
-# openAUSIAS (Ted Mosby Edition)
+# La Juegoteca
 
-  * openAusias is a project whose aim is to build a software that provides you a template to easy build small and medium AJAX projects with the following technologies:
-    * Server: J2EE servlets, MySQL, Gson, Maven
-    * Client: Javascript, Angular
-  * Because software development trends naturaly to be complex openAusias wants to be easy and keep simple all the process. openAusias is used to teach web application development to vocational students and to qualify them to join the workforce maket of developers in a tiny period of time. openAusias was designed to avoid spaghetti code and complexity as far as possible, and brings an aid in structurate code development.
+¡Te damos la bienvenida a La Juegoteca!
 
-  * Server side provides a layered J2EE environment to easy server web development. 
+En esta aplicación web encontrarás una completa base de datos sobre tus juegos favoritos, ya sean de tablero, cartas o miniaturas.
+            
+Explora las distintas opciones que ofrecemos:
+            
+       - Base de Datos Completa: Actualizada con las últimas novedades. ¡Si no encuentras un juego, es porque no existe!
+       - Cuenta de Usuario:</strong> Regístrate ahora para obtener descuentos especiales de nuestro patrocinador.
+       - Colección:Organiza tus juegos on-line y de forma gratuita.
+   
+La Juegoteca es una Aplicación Web realizada según el modelo MVC, que utiliza el proyecto OpenAusiàs (Ted) como estrutura inicial. Las tecnologías que se han empleado en el desarrollo:
 
-  * Front End has been written using Angular and Bootstrap.
+Parte Servidor:
 
-  * The project has low amount of generic code, that makes it perfect to be simple.
+- Java
+- Servlets
+- Ajax
 
-## License
+Parte Cliente:
 
-The MIT License (MIT)
-
-Copyright (c) 2015
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+- HTML5
+- CSS3
+- Angular JS
+- JQuery
+- Bootstrap
+            
