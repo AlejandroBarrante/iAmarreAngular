@@ -115,12 +115,6 @@ body {
 
 /* Tablas */
 
-
-
-.table {
-    background: #f2f0d6;
-}
-
 .table {
     background-color: #f7bd4c;
 }
@@ -207,7 +201,6 @@ body {
 }
 
 
-
 .imagnombre img {
     padding: 5px;
 }
@@ -218,14 +211,54 @@ body {
     background-color: #dbf0f5;
 }
 
-.body {
-    border: 0px;
-    width: 100%;
-}
-
 
 .boton:hover {
-    display: block;
     background-color: #f7bd4c;
-    z-index: -1;
+    cursor: pointer;
+}
+
+.linea {
+    border-top: 1px solid #188fae;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.titulo {
+    font-size: 60px;
+}
+
+.logo {
+    position: relative;
+    bottom: 25px;
+}
+
+.cabecera {
+    padding: 10px;
+}
+
+.cabecera:hover {
+    background-color: #dbf0f5;
+    border: 1px solid #f7bd4c;
+}
+
+.enlace img {
+    text-decoration: none;
+    margin-top:40px;
+}
+
+.textotabla {
+    position: relative;
+    top: 3px;
+}
+
+.nombretabla {
+    position: relative;
+    left: 12px;
+    bottom: 7px;
+}
+
+.editnew {
+    background: #f7bd4c;
+    padding: 20px;
+    border-radius: 5px;
 }

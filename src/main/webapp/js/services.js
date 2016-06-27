@@ -81,9 +81,13 @@ angular.module('Services', [])
                 promise_removeOne: function (strClass, id) {
                     return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
                 },
-                promise_setOne: function (strClass, filename, jsonfile) {
+                promise_setOne: function (strClass, jsonfile) {
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=set' + '&filename=' + filename, {params: jsonfile});
+                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
+                },
+                promise_setImage: function (strClass, filename, jsonfile) {
+                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=setimagen' + '&filename=' + filename, {params: jsonfile});
                 },
                 get: function (objeto, numero) {
                     return $http.get('/' + this.appName + '/json' + objeto + '/' + numero + '/get.json').then(function (result) {

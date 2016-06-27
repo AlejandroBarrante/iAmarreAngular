@@ -311,6 +311,51 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
     public String set() throws Exception {
 
         String jason = ParameterCook.prepareJson(oRequest);
+        String resultado = null;
+        Connection oConnection = null;
+        ConnectionInterface oDataConnectionSource = null;
+        try {
+            oDataConnectionSource = getSourceConnection();
+            oConnection = oDataConnectionSource.newConnection();
+            oConnection.setAutoCommit(false);
+            UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
+            UsuarioBean oUsuarioBean = new UsuarioBean();
+            oUsuarioBean = AppConfigurationHelper.getGson().fromJson(jason, oUsuarioBean.getClass());
+            if (oUsuarioBean != null) {
+                Integer iResult = oUsuarioDao.set(oUsuarioBean);
+                if (iResult >= 1) {
+                    resultado = JsonMessage.getJson("200", iResult.toString());
+                } else {
+                    resultado = JsonMessage.getJson("500", "Error during registry set");
+                }
+            } else {
+                resultado = JsonMessage.getJson("500", "Error during registry set");
+            }
+            oConnection.commit();
+        } catch (Exception ex) {
+            oConnection.rollback();
+            ExceptionBooster.boost(new Exception(this.getClass().getName() + ":set ERROR: " + ex.getMessage()));
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            if (oDataConnectionSource != null) {
+                oDataConnectionSource.disposeConnection();
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Método SET Usuario con Imagen
+     *
+     * @return resultado
+     * @throws Exception
+     */
+
+    public String setimagen() throws Exception {
+
+        String jason = ParameterCook.prepareJson(oRequest);
         String filename = ParameterCook.prepareString("filename", oRequest);
         String fakepath = "C:\\fakepath\\";
         String images = "/images/";
@@ -323,7 +368,7 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         } else {
             nombreCambiado = images + filename;
         }
-        
+
         String resultado = null;
         Connection oConnection = null;
         ConnectionInterface oDataConnectionSource = null;

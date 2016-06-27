@@ -185,7 +185,7 @@ public class UsuarioBean implements GenericBean {
         strPairs += "mail=" + EncodingUtilHelper.quotate(mail) + ",";
         strPairs += "telefono=" + telefono + ",";
         strPairs += "estado=" + EncodingUtilHelper.quotate(estado) + ",";
-        strPairs += "estado=" + EncodingUtilHelper.quotate(imagen);
+        strPairs += "imagen=" + EncodingUtilHelper.quotate(imagen);
 
         return strPairs;
     }

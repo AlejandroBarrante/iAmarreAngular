@@ -35,9 +35,6 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
         $scope.op = 'new';
         $scope.result = null;
 
-        $scope.title = "Alta de nuevo usuario";
-        $scope.icon = "/images/U.png";
-
         $scope.obj = {};
         $scope.obj.obj_tipousuario = {"id": 0};
         $scope.obj.obj_estado = {"id": 0};
@@ -98,12 +95,14 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
 
             $scope.filename = document.getElementById('file').value.toString();
 
-            //FIN UPLOAD     
+            //FIN UPLOAD
 
 
-            serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
+            serverService.getDataFromPromise(serverService.promise_setImage($scope.ob, $scope.filename, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
-            });
+            })
+
+
         };
 
         $scope.back = function () {
