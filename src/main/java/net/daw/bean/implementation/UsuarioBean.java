@@ -49,6 +49,8 @@ public class UsuarioBean implements GenericBean {
     private Integer telefono = 0;
     @Expose
     private String estado = "";
+    @Expose
+    private String imagen = "";
 
     /**
      *
@@ -105,6 +107,15 @@ public class UsuarioBean implements GenericBean {
         this.estado = estado;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    
     // ---------------------------------
     /**
      * Método JSONeador
@@ -119,6 +130,7 @@ public class UsuarioBean implements GenericBean {
         strJson += "mail:" + mail + ",";
         strJson += "telefono:" + telefono + ",";
         strJson += "estado:" + estado + ",";
+        strJson += "imagen:" + imagen + ",";
         strJson += "}";
         return strJson;
 
@@ -136,7 +148,8 @@ public class UsuarioBean implements GenericBean {
         strColumns += "nombre,";
         strColumns += "mail,";
         strColumns += "telefono,";
-        strColumns += "estado";
+        strColumns += "estado,";
+        strColumns += "imagen";
 
         return strColumns;
     }
@@ -153,7 +166,8 @@ public class UsuarioBean implements GenericBean {
         strColumns += EncodingUtilHelper.quotate(nombre) + ",";
         strColumns += EncodingUtilHelper.quotate(mail) + ",";
         strColumns += telefono.toString() + ",";
-        strColumns += EncodingUtilHelper.quotate(estado);
+        strColumns += EncodingUtilHelper.quotate(estado) + ",";
+        strColumns += EncodingUtilHelper.quotate(imagen);
 
         return strColumns;
     }
@@ -170,7 +184,8 @@ public class UsuarioBean implements GenericBean {
         strPairs += "nombre=" + EncodingUtilHelper.quotate(nombre) + ",";
         strPairs += "mail=" + EncodingUtilHelper.quotate(mail) + ",";
         strPairs += "telefono=" + telefono + ",";
-        strPairs += "estado=" + EncodingUtilHelper.quotate(estado);
+        strPairs += "estado=" + EncodingUtilHelper.quotate(estado) + ",";
+        strPairs += "estado=" + EncodingUtilHelper.quotate(imagen);
 
         return strPairs;
     }
@@ -192,6 +207,7 @@ public class UsuarioBean implements GenericBean {
         this.setMail(oResultSet.getString("mail"));
         this.setTelefono(oResultSet.getInt("telefono"));
         this.setEstado(oResultSet.getString("estado"));
+        this.setImagen(oResultSet.getString("imagen"));
 
         return this;
 

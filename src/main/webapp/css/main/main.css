@@ -1,5 +1,6 @@
 @charset "UTF-8";
 * {
+    font-family: 'Dosis', sans-serif;
     margin: 0 auto;
 }
 /* Cuerpo exterior de página */
@@ -9,14 +10,13 @@ body {
     width: 100%;
     background: #188fae;
 }
-.panel-default {
-    background-color: #f9faf1;
-}
-/* Cuerpo interior de página */
 
-.panel-body {
-    background-color: #dbf0f5;
+.container {
+    width: 100%;
+    background-color: #f7bd4c;
 }
+
+
 /* Titular de página */
 
 .panel-heading {
@@ -25,7 +25,9 @@ body {
 /* Pie de página */
 
 .panel-footer {
-    background-color: #f7bd4c;
+    background-image: url(/images/fondomar.png);
+    background-repeat: no-repeat;
+
 }
 .textofooter a {
     color: black;
@@ -47,75 +49,11 @@ body {
     margin-left: 20px;
 }
 .textoinferior {
-    font-size: 12px;
-    font-style: italic;
+    font-size: 8px;
 }
 .filtrado {
     font-weight: bold;
-    position: relative;
-    left: 50px;
-}
-.titulo {
     font-size: 30px;
-    font-weight: bold;
-}
-/* CSS para listados */
-
-.selector {
-    padding: 10px;
-    position: relative;
-    top: 40px;
-    left: 50px;
-}
-.cajabusqueda {
-    position: relative;
-    top: 14px;
-}
-ul li a {
-    color: black;
-    font-size: 16px;
-    text-decoration: none;
-}
-ul li a:hover {
-    color: #D30707;
-}
-.galeriaeditorial ul {
-    list-style: none;
-}
-.galeriaeditorial li {
-    display: inline-table;
-    position: relative;
-    right: 30px;
-}
-.galeriaeditorial li a {
-    text-decoration: none;
-}
-.galeriaeditorial img:hover {
-    opacity: 0.7;
-}
-.galeriajuego ul {
-    list-style: none;
-}
-.galeriajuego li {
-    display: inline-table;
-    position: relative;
-    right: 30px;
-}
-.galeriajuego li a {
-    text-decoration: none;
-}
-.galeriajuego img:hover {
-    opacity: 0.7;
-}
-.catlist {
-    position: relative;
-    bottom: 10px;
-}
-.catlist2 {
-    text-align: justify;
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 16px;
 }
 /* Botones */
 
@@ -168,120 +106,34 @@ ul li a:hover {
     color: white;
     background: black;
 }
-.volver {
-    background: #5ea82f;
-    color: white;
-    border: 1px solid black;
-}
-.volver:hover {
-    background: #D30707;
-    color: white;
-    border: 1px solid black;
-}
 /* Barra de Navegación */
 
-.navbar-default .navbar-collapse > ul li a {
-    color: white;
-}
-.navbar-default .navbar-collapse > ul li a:hover {
-    color: white;
-    background-color: black;
-}
 .navbar-default {
     background-color: #188fae;
+    border: 0px solid black;
 }
-.dropdown-header {
-    color: white;
-}
-.dropdown-menu {
-    background-color: #D30707;
-}
-.listamenu {
-    padding: 5px;
-}
-.listamenu img {
-    position: relative;
-    right: 10px;
-}
+
 /* Tablas */
+
+
 
 .table {
     background: #f2f0d6;
 }
-.verjuegos {
-    font-size: 20px;
-}
+
 .table tr td a {
     color: black;
     text-decoration: none;
-    font-size: 16px;
-    position: relative;
-    top: 14px;
-    left: 20px;
+    font-size: 25px;
 }
-.verjuegos {
-    position: relative;
-    left: -20px;
-    font-size: 16px;
-}
-.cabecera a {
-    padding-left: 10px;
-    color: #337ab7;
-}
-.cabecera p {
-    padding: 10px;
-    color: black;
-    font-size: 18px;
-    position: relative;
-    top: 8px;
-}
-.fecha {
-    margin-top: 40px;
-}
+
 .hovered a {
     padding: 5px;
 }
 .hovered:hover {
-    background: #e7e299;
+    background: #dbf0f5;
 }
-/* TotalJuego View y Remove */
 
-.imagen2 {
-    margin-bottom: 20px;
-}
-.enlacejuego {
-    color: black;
-}
-.enlacejuego:hover {
-    color: #D30707;
-    text-decoration: none;
-}
-.celdajuego {
-    padding: 10px;
-    border-bottom: 1px dotted grey;
-}
-.botonesinf {
-    margin-top: 20px;
-}
-.descripcion {
-    font-size: 16px;
-    text-align: justify;
-    margin-left: 40px;
-    margin-right: 40px;
-}
-.etiqueta {
-    font-size: 16px;
-    font-weight: bold;
-}
-table tr td li {
-    list-style: none;
-}
-.compra {
-    font-size: 16px;
-}
-#linkpatro img {
-    padding-top: 30px;
-}
 /* Resto de pantallas View */
 
 .tablaview td p {
@@ -293,41 +145,7 @@ table tr td li {
     padding-left: 40px;
     padding-right: 40px;
 }
-/* Página Principal */
 
-.secbienve p {
-    text-align: justify;
-}
-.secbienve ul {
-    text-align: justify;
-    color: #535353;
-}
-.linea {
-    border-top: 1px solid white;
-}
-/* Galería del Index */
-
-.indexgallery {
-    margin-top: 20px;
-}
-.indexgallery ul {
-    list-style: none;
-}
-.indexgallery li {
-    display: inline-table;
-    padding: 2px;
-}
-.indexgallery img {
-    width: 250px;
-}
-.elemento:hover {
-    opacity: 0.6;
-}
-/* Página de no-permiso */
-
-.nopermiso {
-    margin-top: 50px;
-}
 /* Animación cortinilla barra de navegación */
 
 .dropdown .dropdown-menu {
@@ -345,47 +163,58 @@ table tr td li {
     max-height: 250px;
     opacity: 1;
 }
-/* Pantallas Edit */
 
-.website:hover {
+/* Otros */
+.jumbotron {
+    background-color: #f7bd4c;
+}
+.tablaview {
+    position: relative;
+    left: 40px;
+}
+
+.tablaview tr td {
+
+    font-size: 22px;
+}
+
+.borrar {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    font-size: 18px;
+}
+
+.nombre {
+
+    background-color: #188fae;
     color: white;
 }
-.websitetabla {
+
+.nombre h3 {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.etiqueta p {
+    margin-left: 10px;
+}
+
+.imagenuser {
+    position: absolute;
+    top: 15px;
+}
+
+.campo {
     position: relative;
-    bottom: 8px;
-    right: 14px;
-}
-.websitetabla a:hover {
-    color: red;
-}
-.textotabla {
-    font-size: 16px;
-    text-align: justify;
-}
-.listadoedit {
-    list-style: none;
-    display: inline-block;
-    position: relative;
-    right: 40px;
-    top: 5px;
-}
-.listadoedit a {
-    text-decoration: none;
-}
-/* Pantallas Remove */
-
-.turemove a:hover {
-    color: red;
+    top: 6px;
 }
 
-.leydatos li {
-    padding: 15px;
+.imagnombre img {
+   padding: 5px;
 }
 
-.textolista {
-    font-size: 20px;
-}
 
-.textolista li {
-    padding: 5px;
-}
+

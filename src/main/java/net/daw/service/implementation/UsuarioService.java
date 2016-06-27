@@ -69,17 +69,6 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
     }
 
     /**
-     * MÉTODO PARA CHEQUEAR QUE EL USUARIO ESTÉ LOGUEADO
-     *
-     * @return
-     * @throws Exception
-     *
-     * private Boolean checkpermission(String strMethodName) throws Exception {
-     * UsuarioBean oUserBean = (UsuarioBean)
-     * oRequest.getSession().getAttribute("userBean"); if (oUserBean != null) {
-     * return true; } else { return false; } }
-     */
-    /**
      * Método GET Usuario
      *
      * @return data
@@ -320,7 +309,21 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
      */
     @Override
     public String set() throws Exception {
+
         String jason = ParameterCook.prepareJson(oRequest);
+        String filename = ParameterCook.prepareString("filename", oRequest);
+        String fakepath = "C:\\fakepath\\";
+        String images = "/images/";
+        String nombreCambiado;
+
+        if (filename.contains(fakepath)) {
+
+            nombreCambiado = filename.replace("C:\\fakepath\\", "/images/");
+
+        } else {
+            nombreCambiado = images + filename;
+        }
+        
         String resultado = null;
         Connection oConnection = null;
         ConnectionInterface oDataConnectionSource = null;
@@ -331,6 +334,7 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
             UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
             UsuarioBean oUsuarioBean = new UsuarioBean();
             oUsuarioBean = AppConfigurationHelper.getGson().fromJson(jason, oUsuarioBean.getClass());
+            oUsuarioBean.setImagen(nombreCambiado);
             if (oUsuarioBean != null) {
                 Integer iResult = oUsuarioDao.set(oUsuarioBean);
                 if (iResult >= 1) {

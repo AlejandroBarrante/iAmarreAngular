@@ -26,51 +26,41 @@ THE SOFTWARE.
 
 -->
 
-<div class="panel-heading" style="font-family:Oswald , serif;"  data-ng-include="'js/system/header.html'"></div>
-<div class="panel-body"  data-ng-cloak >
 
-    <div class="row">
-        <div class="col-xs-12" data-ng-show="!status">
-            <div role="tabpanel">
+<div class="panel-heading">
 
-                <div class="tab-content hidden-xs">
-                    <div role="tabpanel" id="pane0" class="tab-pane fade active in">
-                        <p></p>
+    <div class="jumbotron">
 
-                        <p></p>
-                    </div>
 
+        <div id="datos" data-ng-show="!status">
+            <div class="row"> 
+                <div class="col-lg-4 col-md-3"></div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h2 class="text-center filtrado">Nuestros Usuarios</h2><br/>
+                    <table class="table table-responsive table-bordered table-hover table-condensed dataTable no-footer">
+
+                        <tbody>
+                            <tr data-ng-repeat="obj in page">
+                                <td class="hovered imagnombre" data-ng-show="visibles.login">
+                                    <img alt="mini" class="img-circle" src="{{obj.imagen}}" width="50" height="50"/>
+                                    <a href="#/usuario/view/{{obj.id}}">{{obj.nombre}}</a></td>
+                                <td class="hovered text-center">
+                                    <div class="btn-group" role="group">
+                                        <a href="#/{{ob}}/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
                 </div>
+                <div class="col-lg-4 col-md-3"></div>
             </div>
-        </div>
-    </div>
-
-    <div id="datos" data-ng-show="!status">
-        <div class="row"> 
-            <div class="col-md-3"></div>
-
-            <div class="col-md-6">
-                <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
-
-                    <tbody>
-                        <tr data-ng-repeat="obj in page| filter:searchText">
-                            <td data-ng-show="visibles.login"><a
-                                    href="#/usuario/view/{{obj.id}}">{{obj.nombre}}</a></td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a class="btn btn-default action02" href="#/{{ob}}/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver más datos</a>
-
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> 
+            <br/>
+            <div class="row text-center">
+                <a class="btn btn-default anyadir" href="#/usuario/new">Nuevo Usuario</a>
             </div>
-            <div class="col-md-3"></div>
-        </div>
-        <br/>
-        <div class="row text-center">
-            <a class="btn btn-default anyadir" href="#/usuario/new">Nuevo Usuario</a>
         </div>
     </div>
 </div>

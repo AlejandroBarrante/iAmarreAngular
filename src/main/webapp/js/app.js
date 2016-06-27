@@ -61,17 +61,6 @@ iAmarreUsers.config(['$routeProvider', function ($routeProvider) {
 iAmarreUsers.run(function ($rootScope, $location, serverService) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         $rootScope.isSessionActive = false;
-        serverService.getDataFromPromise(serverService.promise_getUserSession()).then(function (result) {
-            if (result.status == '401') {
-                $rootScope.isSessionActive = false;
-                $rootScope.login = null;
-            } else {
-                $rootScope.isSessionActive = true;
-                $rootScope.userid = result.message.id;
-                $rootScope.tipousuario = result.message.obj_tipousuario.id;
-                $rootScope.login = result.message.login;
-            }
-        });
     });
 });
 

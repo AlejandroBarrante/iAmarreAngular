@@ -26,47 +26,50 @@ THE SOFTWARE.
 
 -->
 
-    <div class="panel-heading" style="font-family: Oswald, serif;"
-         data-ng-include="'js/system/header.html'"></div>
-    <div class="panel-body">
 
-        <div class="row-fluid">
-            <div class="col-md-12">
+<div class="panel-heading">
+    
+    <div class="jumbotron">
 
-                <h3 class="text-left filtrado">{{bean.nombre}}</h3>
+        <div class="row">
+            
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            
+            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs"><img alt="mini" class="img-circle img-responsive imagenuser" src="{{bean.imagen}}" width="250" height="250"/></div>
 
-            </div>
-        </div>
-        <br /> <br /> <br /> <br />
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
-        <div class="row-fluid">
+                <table class="table table-condensed table-responsive tablaview">
 
-            <div class="col-md-12">
-
-                <table class="table table-striped table-condensed tablaview">
-
-                    <tr>
-                        <td>E-Mail</td>
-                        <td>{{bean.mail}}</td>
+                    <tr class="nombre">
+                        <td></td>
+                        <td><h3 class="text-left">{{bean.nombre}}</h3></td>
+                    </tr>        
+                        
+                    <tr class="etiqueta">
+                        <td><p>E-Mail</p></td>
+                        <td class="campo">{{bean.mail}}</td>
                     </tr>
 
-                    <tr>
-                        <td>Teléfono</td>
-                        <td>{{bean.telefono}}</td>
+                    <tr class="etiqueta">
+                        <td><p>Teléfono</p></td>
+                        <td class="campo">{{bean.telefono}}</td>
                     </tr>
 
-                    <tr>
-                        <td>Estado</td>
-                        <td>{{bean.estado}}</td>
+                    <tr class="etiqueta">
+                        <td><p>Estado</p></td>
+                        <td class="campo">{{bean.estado}}</td>
                     </tr>
 
                 </table>
 
             </div>
 
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+            
         </div>
 
-        <div class="row-fluid">
+        <div class="row">
 
             <div class="col-md-12">
 
@@ -74,6 +77,7 @@ THE SOFTWARE.
 
 
                 <div class="text-center">
+                    <a class="btn btn-default anyadir" data-ng-click="volver()">Volver al listado de usuarios</a>
                     <a class="btn btn-default agregar" data-ng-click="close()">Volver al Inicio</a>
                     <br/><br/><br/>
                 </div>
@@ -93,5 +97,7 @@ THE SOFTWARE.
 
     </div>
 
-    <div class="panel-footer" style="font-family: Questrial, serif;"
-         data-ng-include="'js/system/footer.html'"></div>
+</div>
+
+<div class="panel-footer" style="font-family: Questrial, serif;"
+     data-ng-include="'js/system/footer.html'"></div>

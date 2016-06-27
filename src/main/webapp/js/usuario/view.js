@@ -38,6 +38,9 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
         serverService.getDataFromPromise(serverService.promise_getOne($scope.ob, $scope.id)).then(function (data) {
             $scope.bean = data.message;
         });
+        $scope.volver = function () {
+            $location.path('/usuario/plist/1/50');
+        };
         $scope.close = function () {
             $location.path('/home');
         };

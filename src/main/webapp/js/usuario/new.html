@@ -25,67 +25,89 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div class="panel-heading" style="font-family: Oswald, serif;"
-     data-ng-include="'js/system/header.html'"></div>
 
-<div class="panel-body">
-    <form name="usuarioForm" class="form-horizontal"
-          data-ng-show="result == null" novalidate>
+<div class="panel-heading">
 
+    <div class="jumbotron">
 
-        <div id="login-group" class="form-group">
-            <label class="col-sm-2 control-label" for="nombre">Nombre de Usuario:</label>
-            <div class="control col-sm-3">
-                <input data-ng-model="obj.nombre" type="text" id="nombre" class="form-control" name="nombre" data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
-                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.nombre.$error.required">Campo requerido.</span>
-                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.nombre.$error.pattern">El texto introducido no es correcto. No se debe incluir números 
-                    ni caracteres especiales..</span>
-            </div>
+        <div class="row">
+            <div class="text-center"><h2 class="filtrado">Usuario Nuevo</h2></div>
         </div>
+        <br/><br/>
+        <form name="usuarioForm" class="form-horizontal"
+              data-ng-show="result == null" novalidate>
 
 
-        <div id="password-group" class="form-group">
-            <label class="col-sm-2 control-label">E-Mail:</label>
-            <div class="control col-sm-3">
-                <input data-ng-model="obj.mail" type="email" id="email" class="form-control" name="email" required > 
-                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.email.$error.required">Campo requerido.</span>
-                <span class="error" ng-show="usuarioForm.email.$error.email">El e-mail introducido no es correcto.</span>
+            <div id="login-group" class="form-group">
+                <label class="col-sm-2 control-label" for="nombre">Nombre de Usuario:</label>
+                <div class="control col-sm-3">
+                    <input data-ng-model="obj.nombre" type="text" id="nombre" class="form-control" name="nombre" data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required>
+                    <span data-ng-show="!usuarioForm.$pristine && usuarioForm.nombre.$error.required">Campo requerido.</span>
+                    <span data-ng-show="!usuarioForm.$pristine && usuarioForm.nombre.$error.pattern">El texto introducido no es correcto. No se debe incluir números 
+                        ni caracteres especiales..</span>
+                </div>
             </div>
 
-        </div>
 
-        <div id="ciudad-group" class="form-group">
-            <label class="col-sm-2 control-label" for="telefono">Teléfono:</label>
-            <div class="control col-sm-3">
-                <input data-ng-model="obj.telefono" type="text" id="telefono" class="form-control" name="telefono" data-ng-minlength="9" data-ng-maxlength="9" 
-                       data-ng-pattern="/^[0-9 ]*$/" required> 
-                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.telefono.$error.pattern">El texto introducido no es correcto. Sólo debes incluir números.</span>
-                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.telefono.$error.required">Campo requerido.</span>
-                <span class="error" ng-show="usuarioForm.telefono.$error.maxlength">El número es demasiado largo.</span>
-                <span class="error" ng-show="usuarioForm.telefono.$error.minlength">El número es demasiado corto.</span>
+            <div id="password-group" class="form-group">
+                <label class="col-sm-2 control-label">E-Mail:</label>
+                <div class="control col-sm-3">
+                    <input data-ng-model="obj.mail" type="email" id="email" class="form-control" name="email" required > 
+                    <span data-ng-show="!usuarioForm.$pristine && usuarioForm.email.$error.required">Campo requerido.</span>
+                    <span class="error" ng-show="usuarioForm.email.$error.email">El e-mail introducido no es correcto.</span>
+                </div>
+
             </div>
-        </div>
 
-        <div id="firma-group" class="form-group">
-            <label class="col-sm-2 control-label" for="estado">Estado:</label>
-            <div class="control col-sm-9">
-                <input data-ng-model="obj.estado" type="text" id="estado"
-                       class="form-control" name="estado" size="15">
+            <div id="ciudad-group" class="form-group">
+                <label class="col-sm-2 control-label" for="telefono">Teléfono:</label>
+                <div class="control col-sm-3">
+                    <input data-ng-model="obj.telefono" type="text" id="telefono" class="form-control" name="telefono" data-ng-minlength="9" data-ng-maxlength="9" 
+                           data-ng-pattern="/^[0-9 ]*$/" required> 
+                    <span data-ng-show="!usuarioForm.$pristine && usuarioForm.telefono.$error.pattern">El texto introducido no es correcto. Sólo debes incluir números.</span>
+                    <span data-ng-show="!usuarioForm.$pristine && usuarioForm.telefono.$error.required">Campo requerido.</span>
+                    <span class="error" ng-show="usuarioForm.telefono.$error.maxlength">El número es demasiado largo.</span>
+                    <span class="error" ng-show="usuarioForm.telefono.$error.minlength">El número es demasiado corto.</span>
+                </div>
             </div>
-        </div>
 
-
-        <div class="control-group text-center">
-            <br />
-            <div class="controls">
-                <a class="btn btn-default anyadir" data-ng-click="save()" data-toggle="modal" data-target="#myModal"
-                   data-ng-disabled="!usuarioForm.$valid">Guardar</a><a class="btn btn-default agregar" data-ng-click="close()">Volver al inicio</a>
+            <div id="firma-group" class="form-group">
+                <label class="col-sm-2 control-label" for="estado">Estado:</label>
+                <div class="control col-sm-9">
+                    <input data-ng-model="obj.estado" type="text" id="estado"
+                           class="form-control" name="estado" size="15">
+                </div>
             </div>
-        </div>
-    </form>
+
+            <form id="uploadForm" class="form-horizontal" action="upload" method="post" enctype="multipart/form-data">
+                <div class="control">
+                    <label for="file" class="col-sm-2 control-label">Imagen: </label>  
+                    <input type="file" name="file" id="file"/><p class="textoinferior"> La imagen debe tener un tamaño de 100x100 píxeles.</p>
+
+                </div>
+
+            </form>  
+
+
+            <div class="control-group text-center">
+                <br />
+                <div class="controls">
+                    <a class="btn btn-default anyadir" data-ng-click="save()" data-toggle="modal" data-target="#myModal"
+                       data-ng-disabled="!usuarioForm.$valid">Guardar</a>
+                    <a class="btn btn-default agregar" data-ng-click="volver()">Volver al listado de usuarios</a>
+                    <a class="btn btn-default inicio" data-ng-click="close()">Volver al inicio</a>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
 </div>
+
 <div class="panel-footer" style="font-family: Questrial, serif;"
      data-ng-include="'js/system/footer.html'"></div>
+
 
 <!-- MODAL -->
 

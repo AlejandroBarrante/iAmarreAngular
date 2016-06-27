@@ -54,6 +54,9 @@ moduloUsuario.controller('UsuarioEditController', ['$scope', '$routeParams', '$l
         $scope.back = function () {
             window.history.back();
         };
+        $scope.volver = function () {
+            $location.path('/usuario/plist/1/50');
+        };
         $scope.close = function () {
             $location.path('/home');
         };

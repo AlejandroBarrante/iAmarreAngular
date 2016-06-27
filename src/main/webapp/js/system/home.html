@@ -26,30 +26,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div class="panel-heading" style="font-family: Oswald, serif;">
+<body>
 
-    <div class="row">
 
-        <!--     <h1 class="text-center">AQUI VA UNA IMAGEN DE CABECERA DE LA WEB</h1> -->
+    <div class="container">
 
-        <div class="col-md-12 text-center">
 
-            <img alt="cabecera" src="/images/iamarre.png" class="img-rounded img-responsive"><br/>
-            <h1>Users</h1>
+        <section class="panel-heading">
+
+            <div class="row">
+
+                <div class="col-md-12 text-center filtrado">
+
+                    <a class="btn btn-default" href="#/usuario/plist/1/50"><img alt="cabecera" src="/images/iamarre.png" class="img-thumbnail img-responsive"></a><br/>
+                    <h1>Users</h1>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <footer data-ng-include="'js/system/footer.html'"></footer>
+
+            </div>
 
         </div>
 
     </div>
-</div>
 
-<div class="panel-body">
-
-
-    <div class="text-center"><a class="btn btn-default" href="#/usuario/plist/1/50">Ver el listado de Usuarios</a></div>
-
-
-</div>
-
-<div class="panel-footer" style="font-family: Questrial, serif;"
-     data-ng-include="'js/system/footer.html'"></div>
-
+</body>
