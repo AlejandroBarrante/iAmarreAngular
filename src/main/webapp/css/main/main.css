@@ -7,7 +7,7 @@
 html,
 body {
     width: 100%;
-    background: #56b9ff;
+    background: #188fae;
 }
 .panel-default {
     background-color: #f9faf1;
@@ -15,7 +15,7 @@ body {
 /* Cuerpo interior de página */
 
 .panel-body {
-    background-color: #e7e299;
+    background-color: #dbf0f5;
 }
 /* Titular de página */
 
@@ -25,7 +25,7 @@ body {
 /* Pie de página */
 
 .panel-footer {
-    background-color: #f9faf1;
+    background-color: #f7bd4c;
 }
 .textofooter a {
     color: black;
@@ -188,7 +188,7 @@ ul li a:hover {
     background-color: black;
 }
 .navbar-default {
-    background-color: #D30707;
+    background-color: #188fae;
 }
 .dropdown-header {
     color: white;

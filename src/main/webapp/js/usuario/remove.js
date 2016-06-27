@@ -47,10 +47,13 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
             $location.path('#/eliminado');
         };
 
-        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
-            $scope.bean2 = data.message;
-        });
+        $scope.borrado = function () {
+            $('.botreg').attr("href", "#/usuario/plist/1/50");
+            $('#myModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
 
+        };
 
         $scope.close = function () {
             $('.botreg').attr("href", "#/eliminado");

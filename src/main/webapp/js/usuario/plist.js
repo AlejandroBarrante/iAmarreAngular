@@ -149,9 +149,4 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 's
             return false;
         };
 
-        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
-            $scope.bean2 = data.message;
-        });
-
-
     }]);

@@ -25,7 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-<div data-ng-if="tipousuario == 1 || login == bean.login && login != null">
 
     <div class="panel-heading" style="font-family: Oswald, serif;"
          data-ng-include="'js/system/header.html'"></div>
@@ -34,7 +33,7 @@ THE SOFTWARE.
 
             <div class="col-md-12">
 
-                <h3 class="text-center titulo">{{bean.login}}</h3>
+                <h3 class="text-center titulo">{{bean.nombre}}</h3>
 
             </div>
         </div>
@@ -46,19 +45,19 @@ THE SOFTWARE.
                 <table class="table table-striped table-condensed tablaview">
 
                     <tr class="tablaview">
-                        <td class="etiqueta">Tipo de usuario</td>
-                        <td class="turemove">{{bean.obj_tipousuario.descripcion}}
+                        <td class="etiqueta">E-Mail</td>
+                        <td class="turemove">{{bean.mail}}
                         </td>
                     </tr>
 
                     <tr>
-                        <td class="etiqueta">Ciudad</td>
-                        <td>{{bean.ciudad}}</td>
+                        <td class="etiqueta">Teléfono</td>
+                        <td>{{bean.telefono}}</td>
                     </tr>
 
                     <tr>
-                        <td class="etiqueta">Firma</td>
-                        <td>{{bean.firma}}</td>
+                        <td class="etiqueta">Estado</td>
+                        <td>{{bean.estado}}</td>
                     </tr>
 
                 </table>
@@ -93,6 +92,7 @@ THE SOFTWARE.
 
                     </div>
                     <div class="modal-footer">
+                        <a data-ng-click="borrado()" class="btn btn-default anyadir botreg">Volver al listado de usuarios</a>
                         <a data-ng-click="close()" class="btn btn-default agregar botreg">Volver al inicio</a>
 
                     </div>
@@ -108,17 +108,3 @@ THE SOFTWARE.
     <div class="panel-footer" style="font-family: Questrial, serif;"
          data-ng-include="'js/system/footer.html'"></div>
 
-</div>
-
-
-<div data-ng-if="login != bean.login && tipousuario != 1 || login == null">
-    <div class="panel-body nopermiso">    
-        <h3 class="text-center">Lo sentimos, no tienes permiso para ver esta página.</h3>
-        <br/>
-        <div class="text-center"><a class="btn btn-primary agregar" href="#/">Volver al Inicio</a></div>
-    </div>
-
-    <div class="panel-footer" style="font-family: Questrial, serif;"
-         data-ng-include="'js/system/footer.html'"></div> 
-
-</div>

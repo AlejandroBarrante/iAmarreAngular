@@ -206,7 +206,6 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
     public Integer set(UsuarioBean oUsuarioBean) throws Exception {
         Integer iResult = null;
         try {
-            oUsuarioBean.setPassword(getStringMessageDigest(oUsuarioBean.getPassword(), MD5));
 
             if (oUsuarioBean.getId() == 0) {
 
@@ -227,47 +226,6 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
         return iResult;
     }
 
-    // -- MÉTODOS PARA AUTENTICACIÓN --
-    /**
-     * Convierte un arreglo de bytes a String usando valores hexadecimales
-     *
-     * @param byte[] digest
-     * @return hash
-     */
-    private static String toHexadecimal(byte[] digest) {
-        String hash = "";
-        for (byte aux : digest) {
-            int b = aux & 0xff;
-            if (Integer.toHexString(b).length() == 1) {
-                hash += "0";
-            }
-            hash += Integer.toHexString(b);
-        }
-        return hash;
-    }
-
-    // 
-    /**
-     * Encripta un mensaje de texto mediante algoritmo de resumen de mensaje.
-     *
-     * @param message
-     * @param algorithm
-     * @return toHexadecimal
-     */
-    public static String getStringMessageDigest(String message, String algorithm) {
-        byte[] digest = null;
-        byte[] buffer = message.getBytes();
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-            messageDigest.reset();
-            messageDigest.update(buffer);
-            digest = messageDigest.digest();
-        } catch (NoSuchAlgorithmException ex) {
-            System.out.println("Error creando Digest");
-        }
-        return toHexadecimal(digest);
-    }
-
     // ----------------------
     /**
      * Método REMOVE Usuario
@@ -285,35 +243,6 @@ public class UsuarioDao implements ViewDaoInterface<UsuarioBean>, TableDaoInterf
             ExceptionBooster.boost(new Exception(this.getClass().getName() + ":remove ERROR: " + ex.getMessage()));
         }
         return result;
-    }
-
-    /**
-     * Método para el login
-     *
-     * @param oUsuario
-     * @return oUsuario
-     * @throws Exception
-     */
-    public UsuarioBean getFromLogin(UsuarioBean oUsuario) throws Exception {
-        try {
-            String strId = oMysql.getId("usuario", "login", oUsuario.getLogin());
-            if (strId == null) {
-                oUsuario.setId(0);
-            } else {
-                Integer intId = Integer.parseInt(strId);
-                oUsuario.setId(intId);
-                String pass = oUsuario.getPassword();
-                pass = getStringMessageDigest(pass, MD5);
-                oUsuario.setPassword(oMysql.getOne(strSQL, "password", oUsuario.getId()));
-                if (!pass.equals(oUsuario.getPassword())) {
-                    oUsuario.setId(0);
-                }
-                oUsuario = this.get(oUsuario, AppConfigurationHelper.getJsonDepth());
-            }
-            return oUsuario;
-        } catch (Exception e) {
-            throw new Exception("UsuarioDao.getFromLogin: Error: " + e.getMessage());
-        }
     }
 
 }

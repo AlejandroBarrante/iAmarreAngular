@@ -48,8 +48,4 @@ moduloUsuario.controller('UsuarioViewController', ['$scope', '$routeParams', 'se
             window.history.back();
         };
 
-        serverService.getDataFromPromise(serverService.promise_getUserSession("usuario")).then(function (data) {
-            $scope.bean2 = data.message;
-        });
-
     }]);

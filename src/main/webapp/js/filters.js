@@ -67,29 +67,3 @@ angular.module('Filters').filter('booleanizate', function ($filter)
 
     };
 });
-
-//angular.module('Filters').filter('uppercaseo', function ($filter)
-//{
-//    return function (input)
-//    {
-//        if (input == null) {
-//            return "";
-//        }
-//
-//
-//
-//        return input.toUpperCase();
-//
-//    };
-//});
-
-//angular.module('myApp.filters', []).
-//        filter('uppercaseo', ['version', function (version) {
-//                return function (input)
-//                {
-//                    if (input == null) {
-//                        return "";
-//                    }
-//                    return input.toUpperCase();
-//                };
-//            }]);

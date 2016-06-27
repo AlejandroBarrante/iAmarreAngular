@@ -1,114 +1,61 @@
-<!--
-Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+<div class="panel-heading" style="font-family: Oswald, serif;"
+     data-ng-include="'js/system/header.html'"></div>
 
-openAUSIAS: The stunning micro-library that helps you to develop easily 
-            AJAX web applications by using Java and jQuery
-openAUSIAS is distributed under the MIT License (MIT)
-Sources at https://github.com/rafaelaznar/
+<div class="panel-body">
+    <form name="usuarioForm" class="form-horizontal"
+          data-ng-show="result == null" novalidate>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+        <div id="login-group" class="form-group">
+            <label class="col-sm-2 control-label" for="login">Nombre de
+                Usuario:</label>
+            <div class="control col-sm-3">
+                <input data-ng-model="obj.nombre" type="text" id="login" class="form-control" name="login" data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" disabled>
+            </div>
+        </div>
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
--->
-<div data-ng-if="tipousuario == 1 || login == obj.login && login != null">
-
-
-    <div class="panel-heading" style="font-family: Oswald, serif;"
-         data-ng-include="'js/system/header.html'"></div>
-
-    <div class="panel-body">
-        <form name="usuarioForm" class="form-horizontal"
-              data-ng-show="result == null" novalidate>
-
-            <div id="login-group" class="form-group">
-                <label class="col-sm-2 control-label" for="login">Nombre de
-                    Usuario / Login:</label>
-                <div class="control col-sm-3">
-                    <input data-ng-model="obj.login" type="text" id="login"
-                           class="form-control" name="login"
-                           data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/" required disabled>
-                    <span
-                        data-ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.required">Campo
-                        requerido.</span> <span
-                        data-ng-show="!usuarioForm.$pristine && usuarioForm.login.$error.pattern">El
-                        texto introducido no es correcto. No introducir números ni
-                        caracteres especiales.</span>
-                </div>
+        <div id="password-group" class="form-group">
+            <label class="col-sm-2 control-label">E-Mail:</label>
+            <div class="control col-sm-3">
+                <input data-ng-model="obj.mail" type="email" id="email" class="form-control" name="email" required > 
+                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.email.$error.required">Campo requerido.</span>
+                <span class="error" ng-show="usuarioForm.email.$error.email">El e-mail introducido no es correcto.</span>
             </div>
 
-            <div id="password-group" class="form-group">
-                <label class="col-sm-2 control-label">Contraseña:</label>
-                <div class="control col-sm-3">
-                    <input data-ng-model="obj.password" type="password" id="password"
-                           class="form-control" name="password" required > 
-                    <input type="checkbox" id="mostrar" data-ng-click="mostrarCont()"> Mostrar Contraseña
-                </div>
-                <span
-                    data-ng-show="!usuarioForm.$pristine && usuarioForm.password.$error.required">Campo requerido.</span>
-            </div>
+        </div>
 
-            <div id="ciudad-group" class="form-group">
-                <label class="col-sm-2 control-label" for="ciudad">Ciudad:</label>
-                <div class="control col-sm-3">
-                    <input data-ng-model="obj.ciudad" type="text" id="ciudad"
-                           class="form-control" name="ciudad"
-                           data-ng-pattern="/^[a-zA-ZáéíóúàèòçÇñÑ ]*$/"> <span
-                           data-ng-show="!usuarioForm.$pristine && usuarioForm.ciudad.$error.pattern">El
-                        texto introducido no es correcto. No introducir números ni
-                        caracteres especiales.</span>
-                </div>
-            </div>
+        <div id="ciudad-group" class="form-group">
+            <label class="col-sm-2 control-label" for="telefono">Teléfono:</label>
+            <div class="control col-sm-3">
+                <input data-ng-model="obj.telefono" type="text" id="telefono" class="form-control" name="telefono" data-ng-minlength="9" data-ng-maxlength="9" 
+                       data-ng-pattern="/^[0-9 ]*$/" required> 
+                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.telefono.$error.pattern">El texto introducido no es correcto. Sólo debes incluir números.</span>
+                <span data-ng-show="!usuarioForm.$pristine && usuarioForm.telefono.$error.required">Campo requerido.</span>
+                <span class="error" ng-show="usuarioForm.telefono.$error.maxlength">El número es demasiado largo.</span>
+                <span class="error" ng-show="usuarioForm.telefono.$error.minlength">El número es demasiado corto.</span>
 
-            <div id="firma-group" class="form-group">
-                <label class="col-sm-2 control-label" for="firma">Firma:</label>
-                <div class="control col-sm-9">
-                    <input data-ng-model="obj.firma" type="text" id="firma"
-                           class="form-control" name="firma" size="15" placeholder="firma">
-                </div>
             </div>
+        </div>
 
-            <div class="control-group text-center">
-                <br />
-                <div class="controls">
-                    <a class="btn btn-primary anyadir" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">Guardar</a> 
-                    <a class="btn btn-default agregar" data-ng-click="close()">Volver al inicio</a>
-                </div>
+        <div id="firma-group" class="form-group">
+            <label class="col-sm-2 control-label" for="estado">Estado:</label>
+            <div class="control col-sm-9">
+                <input data-ng-model="obj.estado" type="text" id="estado"
+                       class="form-control" name="estado" size="15">
             </div>
-        </form>
+        </div>
 
-    </div>
-    <div class="panel-footer" style="font-family: Questrial, serif;"
-         data-ng-include="'js/system/footer.html'"></div>
+        <div class="control-group text-center">
+            <br />
+            <div class="controls">
+                <a class="btn btn-primary anyadir" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">Guardar</a> 
+                <a class="btn btn-default agregar" data-ng-click="close()">Volver al inicio</a>
+            </div>
+        </div>
+    </form>
 
 </div>
-
-
-<div data-ng-if="login != obj.login && tipousuario != 1 || login == null">
-    <div class="panel-body nopermiso">    
-        <h3 class="text-center">Lo sentimos, no tienes permiso para ver esta página.</h3>
-        <br/>
-        <div class="text-center"><a class="btn btn-primary agregar" href="#/">Volver al Inicio</a></div>
-    </div>
-
-    <div class="panel-footer" style="font-family: Questrial, serif;"
-         data-ng-include="'js/system/footer.html'"></div> 
-
-</div>
+<div class="panel-footer" style="font-family: Questrial, serif;"
+     data-ng-include="'js/system/footer.html'"></div>
 
 
 <!-- MODAL -->

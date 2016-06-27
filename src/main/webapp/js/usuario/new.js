@@ -51,25 +51,12 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
             sharedSpaceService.setFase(0);
         }
 
-        $scope.chooseOne = function (foreignObjectName) {
-            sharedSpaceService.setObject($scope.obj);
-            sharedSpaceService.setReturnLink('/' + $scope.ob + '/' + $scope.op);
-            sharedSpaceService.setFase(1);
-            $location.path('/' + foreignObjectName + '/selection/1/10');
-        }
 
         $scope.save = function () {
             serverService.getDataFromPromise(serverService.promise_setOne($scope.ob, {json: JSON.stringify(serverService.array_identificarArray($scope.obj))})).then(function (data) {
                 $scope.result = data;
             });
         };
-        $scope.$watch('obj.obj_tipousuario.id', function () {
-            if ($scope.obj) {
-                serverService.getDataFromPromise(serverService.promise_getOne('tipousuario', $scope.obj.obj_tipousuario.id)).then(function (data2) {
-                    $scope.obj.obj_tipousuario = data2.message;
-                });
-            }
-        });
 
         $scope.back = function () {
             window.history.back();
@@ -83,7 +70,7 @@ moduloUsuario.controller('UsuarioNewController', ['$scope', '$routeParams', '$lo
 
         $scope.registro = function () {
 
-            $('#botreg').attr("href", "#/login");
+            $('#botreg').attr("href", "#/usuario/plist/1/50");
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
