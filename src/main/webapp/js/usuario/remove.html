@@ -25,87 +25,89 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 -->
-
+<br/><br/>
 <div class="panel-heading">
-    <div class="jumbotron">
 
+    <div class="row">
 
-        <div class="row">
-            
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-            
-            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs"><img alt="mini" class="img-circle img-responsive imagenuser" src="{{bean.imagen}}" width="250" height="250"/></div>
+        <br/><br/>
 
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 
-                <table class="table table-condensed table-responsive tablaview">
+        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs"><img alt="mini" class="img-circle img-responsive imagenuser" src="{{bean.imagen}}" width="250" height="250"/></div>
 
-                    <tr class="nombre">
-                        <td></td>
-                        <td><h3 class="text-left">{{bean.nombre}}</h3></td>
-                    </tr>        
-                        
-                    <tr class="etiqueta">
-                        <td><p>E-Mail</p></td>
-                        <td>{{bean.mail}}</td>
-                    </tr>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
-                    <tr class="etiqueta">
-                        <td><p>Teléfono</p></td>
-                        <td>{{bean.telefono}}</td>
-                    </tr>
+            <table class="table table-condensed table-responsive tablaview">
 
-                    <tr class="etiqueta">
-                        <td><p>Estado</p></td>
-                        <td>{{bean.estado}}</td>
-                    </tr>
+                <th class="nombre"></th>
+                <th class="nombre">
+                <h3 class="text-left">{{bean.nombre}}</h3>
+                </th>        
 
-                </table>
+                <tr class="etiqueta">
+                    <td><p>E-Mail</p></td>
+                    <td class="campo">{{bean.mail}}</td>
+                </tr>
 
-            </div>
+                <tr class="etiqueta">
+                    <td><p>Teléfono</p></td>
+                    <td class="campo">{{bean.telefono}}</td>
+                </tr>
 
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-            
+                <tr class="etiqueta">
+                    <td><p>Estado</p></td>
+                    <td class="campo">{{bean.estado}}</td>
+                </tr>
+
+            </table>
+
         </div>
 
-        <div class="row">
-
-            <div class="text-center">
-                <br /> <br /> <br />
-                <div class="borrar">¿Está seguro de que desea borrar el registro?</div>
-                <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a> <a
-                    class="btn btn-default anyadir" data-ng-href="#/usuario/view/{{bean.id}}">No</a>
-            </div>
-        </div>
-
-        <!-- MODAL -->
-
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-
-                        <p class="modal-p" data-ng-show="result.message == 1">El usuario ha sido eliminado.</p>
-                        <p class="modal-p" data-ng-show="result.message == 0">El usuario no ha podido eliminarse.</p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <a data-ng-click="borrado()" class="btn btn-default anyadir botreg">Volver al listado de usuarios</a>
-                        <a data-ng-click="close()" class="btn btn-default agregar botreg">Volver al inicio</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL -->     
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 
     </div>
 
+    <div class="row">
+
+        <div class="text-center">
+            <br /> <br /> <br /><br/>
+            <div class="borrar">¿Está seguro de que desea borrar el registro?</div>
+            <a class="btn btn-default eliminar" data-ng-click="remove()" data-toggle="modal" data-target="#myModal">Si</a> <a
+                class="btn btn-default anyadir" data-ng-href="#/usuario/view/{{bean.id}}">No</a>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <p class="modal-p" data-ng-show="result.message == 1">El usuario ha sido eliminado.</p>
+                    <p class="modal-p" data-ng-show="result.message == 0">El usuario no ha podido eliminarse.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a data-ng-click="borrado()" class="btn btn-default anyadir botreg">Volver al listado de usuarios</a>
+                    <a data-ng-click="close()" class="btn btn-default agregar botreg">Volver al inicio</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->     
+
 </div>
 
+    <div class="row">
 
-<div class="panel-footer" style="font-family: Questrial, serif;"
-     data-ng-include="'js/system/footer.html'"></div>
 
+
+            <footer data-ng-include="'js/system/footer.html'"></footer>
+
+
+    </div>

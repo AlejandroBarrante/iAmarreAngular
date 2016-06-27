@@ -11,23 +11,23 @@ body {
     background: #188fae;
 }
 
-.container {
-    width: 100%;
-    background-color: #f7bd4c;
+.container-fluid {
+    border: 0px solid black;
 }
 
-
-/* Titular de página */
+/* Titular de página  */
 
 .panel-heading {
     margin-top: 70px;
+    background-color: #dbf0f5;
 }
 /* Pie de página */
 
-.panel-footer {
-    background-image: url(/images/fondomar.png);
-    background-repeat: no-repeat;
-
+.panel-default {
+    border: 0px solid black;
+}
+.ng-scope {
+    margin: 0;
 }
 .textofooter a {
     color: black;
@@ -121,6 +121,10 @@ body {
     background: #f2f0d6;
 }
 
+.table {
+    background-color: #f7bd4c;
+}
+
 .table tr td a {
     color: black;
     text-decoration: none;
@@ -165,9 +169,7 @@ body {
 }
 
 /* Otros */
-.jumbotron {
-    background-color: #f7bd4c;
-}
+
 .tablaview {
     position: relative;
     left: 40px;
@@ -176,6 +178,7 @@ body {
 .tablaview tr td {
 
     font-size: 22px;
+    background-color: #f7bd4c;
 }
 
 .borrar {
@@ -200,21 +203,29 @@ body {
 
 .etiqueta p {
     margin-left: 10px;
+
 }
 
-.imagenuser {
-    position: absolute;
-    top: 15px;
-}
 
-.campo {
-    position: relative;
-    top: 6px;
-}
 
 .imagnombre img {
-   padding: 5px;
+    padding: 5px;
 }
 
 
+.fondo {
+    width: 100%;
+    background-color: #dbf0f5;
+}
 
+.body {
+    border: 0px;
+    width: 100%;
+}
+
+
+.boton:hover {
+    display: block;
+    background-color: #f7bd4c;
+    z-index: -1;
+}
