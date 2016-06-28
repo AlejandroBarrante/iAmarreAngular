@@ -6,6 +6,8 @@
 
     <div class="row">
 
+        <br/>
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 
         <div class="col-lg-2 col-md-2 hidden-sm hidden-xs"><img alt="mini" class="img-circle img-responsive imagenuser" src="{{bean.imagen}}" width="250" height="250"/></div>
@@ -61,9 +63,9 @@
                 </a>
 
             </div>
-            
+
         </div>
-        
+
     </div>
 
     <br/><br/>
@@ -81,31 +83,31 @@
 <!-- MODAL -->
 
 <div class="modal fade" id="myModal" role="dialog">
-    
+
     <div class="modal-dialog modal-lg">
-        
+
         <!-- Modal content-->
         <div class="modal-content">
-            
+
             <div class="modal-body text-center">
-                
+
                 <p class="modal-p" data-ng-show="result.message == 1">El usuario ha sido eliminado.</p>
                 <p class="modal-p" data-ng-show="result.message == 0">El usuario no ha podido eliminarse.</p>
 
             </div>
-            
+
             <div class="modal-footer text-center">
-                
+
                 <a class="enlace" id="botreg" data-ng-click="borrar()">
                     <img class="boton" alt="boton" src="/images/listado.png">
                 </a>
 
             </div>
-            
+
         </div>
-        
+
     </div>
-    
+
 </div>
 
 <!-- MODAL -->     

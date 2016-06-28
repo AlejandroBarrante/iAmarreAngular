@@ -74,11 +74,13 @@ body {
     text-decoration: none;
     font-size: 25px;
 }
+
+.table tr:hover {
+    background: #dbf0f5;
+}
+
 .hovered a {
     padding: 5px;
-}
-.hovered:hover {
-    background: #dbf0f5;
 }
 .textotabla {
     position: relative;
