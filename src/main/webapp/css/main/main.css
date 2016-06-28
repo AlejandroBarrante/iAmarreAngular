@@ -161,6 +161,10 @@ body {
 }
 /* Botones */
 
+.boton {
+padding: 0;
+}
+
 .boton:hover {
     background-color: #f7bd4c;
     cursor: pointer;
