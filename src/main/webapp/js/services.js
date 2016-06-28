@@ -26,231 +26,229 @@
  */
 
 'use strict';
-angular.module('Services', [])
-        .factory('serverService', function ($http) {
-            function getFilter(filter, filteroperator, filtervalue) {
-                var filterParams;
-                if (filter) {
-                    filterParams = "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
-                } else {
-                    filterParams = "";
-                }
-                return filterParams;
-            }
-            ;
-            function getOrder(order, ordervalue) {
-                var orderParams;
-                if (order) {
-                    orderParams = '&order=' + order + '&ordervalue=' + ordervalue;
-                } else {
-                    orderParams = "";
-                }
-                return orderParams;
-            }
-            ;
-            return {
-                date_toDate: function (input) {
-                    var parts = input.split('/');
-                    return new Date(parts[2], parts[1] - 1, parts[0]);
-                },
-                getAppName: function () {
-                    var strPath = window.location.pathname;
-                    return strPath.substr(1, strPath.substr(1, strPath.length).indexOf('/'));
-                },
-                getAppClientUrl: function () {
-                    return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName();
-                },
-                getAppUrl: function () {
-                    return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/json';
-                },
-                promise_getAll: function (strClass, filterParams, orderParams, systemfilterParams) {
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewall' + filterParams + orderParams + systemfilterParams, 'GET', '');
-                },
-                promise_getMeta: function (strClass) {
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getmetainformation', 'GET', '');
-                },
-                promise_getOne: function (strClass, id) {
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
-                },
-                promise_getPromise: function (strClass, operation, params) {
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=' + operation + params, 'GET', '');
-                },
-                promise_getSome: function (strClass, rpp, page, filterParams, orderParams, systemfilterParams) {
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsome' + '&rpp=' + rpp + '&page=' + page + filterParams + orderParams + systemfilterParams, 'GET', '');
-                },
-                promise_removeOne: function (strClass, id) {
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
-                },
-                promise_setOne: function (strClass, jsonfile) {
-                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
-                },
-                promise_setImage: function (strClass, filename, jsonfile) {
-                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=setimagen' + '&filename=' + filename, {params: jsonfile});
-                },
-                get: function (objeto, numero) {
-                    return $http.get('/' + this.appName + '/json' + objeto + '/' + numero + '/get.json').then(function (result) {
-                        return result.data;
-                    });
-                },
-                getDataFromPromise: function (promise) {
-                    return promise.then(function (result) {
-                        return result.data;
-                    });
-                },
-                getFieldNames: function (objeto) {
-                    return $http.get('/' + appName + '/' + objeto + '/getcolumns.json').then(function (result) {
-                        return result.data;
-                    });
-                },
-                getPage: function (objeto, pagina, order, ordervalue, rpp, filter, filteroperator, filtervalue, systemfilter, systemfilteroperator, systemfiltervalue) {
-                    var orderParams = getOrder(order, ordervalue);
-                    var filterParams = getFilter(filter, filteroperator, filtervalue);
-                    var systemfilterParams = getFilter(systemfilter, systemfilteroperator, systemfiltervalue);
-                    //console.log('/' + appName + '/' + objeto + '/' + rpp + '/' + pagina + '/getpage.json?' + filterParams + orderParams + systemfilterParams);
-                    return $http.get('/' + appName + '/' + objeto + '/' + rpp + '/' + pagina + '/getpage.json?' + filterParams + orderParams + systemfilterParams).then(function (result) {
-                        return result.data;
-                    });
-                },
-                getPages: function (objeto, rpp, filter, filteroperator, filtervalue, systemfilter, systemfilteroperator, systemfiltervalue) {
-                    var filterParams = getFilter(filter, filteroperator, filtervalue);
-                    var systemfilterParams = getFilter(systemfilter, systemfilteroperator, systemfiltervalue);
-                    return $http.get('/' + appName + '/' + objeto + '/' + rpp + '/getpages.json?' + filterParams + systemfilterParams).then(function (result) {
-                        return result.data;
-                    });
-                },
-                getPrettyFieldNames: function (objeto) {
-                    return $http.get('/' + appName + '/' + objeto + '/getprettycolumns.json').then(function (result) {
-                        return result.data;
-                    });
-                },
-                remove: function (objeto, numero) {
-                    return $http.get('/' + appName + '/' + objeto + '/' + numero + '/remove.json').then(function (result) {
-                        return result.data;
-                    });
-                },
-                save: function (objeto, datos) {
-                    $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+angular.module('Services', []).factory('serverService', function ($http) {
+
+    function getFilter(filter, filteroperator, filtervalue) {
+        var filterParams;
+        if (filter) {
+            filterParams = "&filter=" + filter + "&filteroperator=" + filteroperator + "&filtervalue=" + filtervalue;
+        } else {
+            filterParams = "";
+        }
+        return filterParams;
+    }
+    ;
+    function getOrder(order, ordervalue) {
+        var orderParams;
+        if (order) {
+            orderParams = '&order=' + order + '&ordervalue=' + ordervalue;
+        } else {
+            orderParams = "";
+        }
+        return orderParams;
+    }
+    ;
+    return {
+        date_toDate: function (input) {
+            var parts = input.split('/');
+            return new Date(parts[2], parts[1] - 1, parts[0]);
+        },
+        getAppName: function () {
+            var strPath = window.location.pathname;
+            return strPath.substr(1, strPath.substr(1, strPath.length).indexOf('/'));
+        },
+        getAppClientUrl: function () {
+            return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName();
+        },
+        getAppUrl: function () {
+            return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/json';
+        },
+        promise_getAll: function (strClass, filterParams, orderParams, systemfilterParams) {
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewall' + filterParams + orderParams + systemfilterParams, 'GET', '');
+        },
+        promise_getMeta: function (strClass) {
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getmetainformation', 'GET', '');
+        },
+        promise_getOne: function (strClass, id) {
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
+        },
+        promise_getPromise: function (strClass, operation, params) {
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=' + operation + params, 'GET', '');
+        },
+        promise_getSome: function (strClass, rpp, page, filterParams, orderParams, systemfilterParams) {
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getaggregateviewsome' + '&rpp=' + rpp + '&page=' + page + filterParams + orderParams + systemfilterParams, 'GET', '');
+        },
+        promise_removeOne: function (strClass, id) {
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
+        },
+        promise_setOne: function (strClass, jsonfile) {
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});
+        },
+        promise_setImage: function (strClass, filename, jsonfile) {
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+            return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=setimagen' + '&filename=' + filename, {params: jsonfile});
+        },
+        get: function (objeto, numero) {
+            return $http.get('/' + this.appName + '/json' + objeto + '/' + numero + '/get.json').then(function (result) {
+                return result.data;
+            });
+        },
+        getDataFromPromise: function (promise) {
+            return promise.then(function (result) {
+                return result.data;
+            });
+        },
+        getFieldNames: function (objeto) {
+            return $http.get('/' + appName + '/' + objeto + '/getcolumns.json').then(function (result) {
+                return result.data;
+            });
+        },
+        getPage: function (objeto, pagina, order, ordervalue, rpp, filter, filteroperator, filtervalue, systemfilter, systemfilteroperator, systemfiltervalue) {
+            var orderParams = getOrder(order, ordervalue);
+            var filterParams = getFilter(filter, filteroperator, filtervalue);
+            var systemfilterParams = getFilter(systemfilter, systemfilteroperator, systemfiltervalue);
+            //console.log('/' + appName + '/' + objeto + '/' + rpp + '/' + pagina + '/getpage.json?' + filterParams + orderParams + systemfilterParams);
+            return $http.get('/' + appName + '/' + objeto + '/' + rpp + '/' + pagina + '/getpage.json?' + filterParams + orderParams + systemfilterParams).then(function (result) {
+                return result.data;
+            });
+        },
+        getPages: function (objeto, rpp, filter, filteroperator, filtervalue, systemfilter, systemfilteroperator, systemfiltervalue) {
+            var filterParams = getFilter(filter, filteroperator, filtervalue);
+            var systemfilterParams = getFilter(systemfilter, systemfilteroperator, systemfiltervalue);
+            return $http.get('/' + appName + '/' + objeto + '/' + rpp + '/getpages.json?' + filterParams + systemfilterParams).then(function (result) {
+                return result.data;
+            });
+        },
+        getPrettyFieldNames: function (objeto) {
+            return $http.get('/' + appName + '/' + objeto + '/getprettycolumns.json').then(function (result) {
+                return result.data;
+            });
+        },
+        remove: function (objeto, numero) {
+            return $http.get('/' + appName + '/' + objeto + '/' + numero + '/remove.json').then(function (result) {
+                return result.data;
+            });
+        },
+        save: function (objeto, datos) {
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
 //
 
 
-                    $http({
-                        url: this.getAppUrl() + '?ob=' + strClass + '&op=set',
-                        method: "GET",
-                        params: jsonfile
-                    });
-                },
-                array_identificarArray: function (arr) {
-                    var newObj = {};
-                    for (var property in arr) {
-                        if (arr.hasOwnProperty(property)) {
-                            if (property.match("^obj_")) {
-                                newObj[property.replace("obj_", "id_")] = arr[property].id;
-                            } else {
-                                newObj[property] = arr[property];
-                            }
-                        }
+            $http({
+                url: this.getAppUrl() + '?ob=' + strClass + '&op=set',
+                method: "GET",
+                params: jsonfile
+            });
+        },
+        array_identificarArray: function (arr) {
+            var newObj = {};
+            for (var property in arr) {
+                if (arr.hasOwnProperty(property)) {
+                    if (property.match("^obj_")) {
+                        newObj[property.replace("obj_", "id_")] = arr[property].id;
+                    } else {
+                        newObj[property] = arr[property];
                     }
-                    return newObj;
-                },
-                getPaginationBar: function (objeto, accion, page_number, total_pages, neighborhood, nrpp) {
-                    page_number = parseInt(page_number);
-                    total_pages = parseInt(total_pages);
-                    neighborhood = parseInt(neighborhood);
-                    var link = '#/' + objeto + '/' + accion + '/';
-                    var vector = "<div class=\"pagination\"><ul>";
-                    if (page_number > 1)
-                        vector += ("<li><a class=\"pagination_link\" id=\"" + (page_number - 1) + "\" href=\"" + link + (page_number - 1) + "/" + nrpp + "\">prev</a></li>");
-                    if (page_number > neighborhood + 1)
-                        vector += ("<li><a class=\"pagination_link\" id=\"1\" href=\"" + link + "1/" + nrpp + "\">1</a></li>");
-                    if (page_number > neighborhood + 2)
-                        vector += ("<li>" + "<a href=\"#\">...</a>" + "</li>");
-                    for (var i = (page_number - neighborhood); i <= (page_number + neighborhood); i++) {
-                        if (i >= 1 && i <= total_pages) {
-                            if (page_number == i) {
-                                vector += ("<li class=\"active\"><a class=\"pagination_link\" id=\"" + i + "\" href=\"" + link + i + "/" + nrpp + "\">" + i + "</a></li>");
-                            } else
-                                vector += ("<li><a class=\"pagination_link\" id=\"" + i + "\" href=\"" + link + i + "/" + nrpp + "\">" + i + "</a></li>");
-                        }
-                    }
-                    if (page_number < total_pages - (neighborhood + 1))
-                        vector += ("<li>" + "<a href=\"#\">...</a>" + "</li>");
-                    if (page_number < total_pages - (neighborhood))
-                        vector += ("<li><a class=\"pagination_link\" id=\"" + total_pages + "\" href=\"" + link + total_pages + "/" + nrpp + "\">" + total_pages + "</a></li>");
-                    if (page_number < total_pages)
-                        vector += ("<li><a class=\"pagination_link\"  id=\"" + (page_number + 1) + "\" href=\"" + link + (page_number + 1) + "/" + nrpp + "\">next</a></li>");
-                    vector += "</ul></div>";
-                    return vector;
-                },
-                getNrppBar: function (objeto, accion, page_number, nrpp) {
-                    var link = '#/' + objeto + '/' + accion + '/';
-                    var vector = "<div class=\"pagination\"><ul>";
-                    if (nrpp == 5)
-                        vector += "<li class=\"active\" >";
-                    else
-                        vector += "<li> ";
-                    vector += "<a class=\"nrpp\" id=\"nrrp5\" href=\"" + link + page_number + "/5" + "\">5</a></li>";
-                    if (nrpp == 10)
-                        vector += "<li class=\"active\" >";
-                    else
-                        vector += "<li> ";
-                    vector += "<a class=\"nrpp\" id=\"nrrp10\" href=\"" + link + page_number + "/10" + "\">10</a></li>";
-                    if (nrpp == 20)
-                        vector += "<li class=\"active\" >";
-                    else
-                        vector += "<li> ";
-                    vector += "<a class=\"nrpp\" id=\"nrrp20\" href=\"" + link + page_number + "/20" + "\">20</a></li>";
-                    if (nrpp == 50)
-                        vector += "<li class=\"active\" >";
-                    else
-                        vector += "<li> ";
-                    ;
-                    vector += "<a class=\"nrpp\" id=\"nrrp50\" href=\"" + link + page_number + "/50" + "\">50</a></li>";
-                    if (nrpp == 100)
-                        vector += "<li class=\"active\" >";
-                    else
-                        vector += "<li> ";
-                    vector += "<a class=\"nrpp\" id=\"nrrp100\" href=\"" + link + page_number + "/100" + "\">100</a></li>";
-                    // http://localhost:8081/AjaxStockUniDaoSpring/index.jsp#/cliente/4/nrpp
-                    vector += "</ul></div>";
-                    return vector;
-                },
-                parameter_printOrderParamsInUrl: function (objParams) {
-                    if (objParams)
-                        if (objParams.order) {
-                            return '&order=' + objParams.order + '&ordervalue=' + objParams.ordervalue;
-                        } else {
-                            return '';
-                        }
-                    else
-                        return '';
-                },
-                parameter_printFilterParamsInUrl: function (objParams) {
-                    if (objParams)
-                        if (objParams.filter) {
-                            return "&filter=" + objParams.filter + "&filteroperator=" + objParams.filteroperator + "&filtervalue=" + objParams.filtervalue;
-                        } else {
-                            return '';
-                        }
-                    else
-                        return '';
-                },
-                parameter_printSystemFilterParamsInUrl: function (objParams) {
-                    if (objParams)
-                        if (objParams.systemfilter) {
-                            return "&systemfilter=" + objParams.systemfilter + "&systemfilteroperator=" + objParams.systemfilteroperator + "&systemfiltervalue=" + objParams.systemfiltervalue;
-                        } else {
-                            return '';
-                        }
-                    else
-                        return '';
                 }
+            }
+            return newObj;
+        },
+        getPaginationBar: function (objeto, accion, page_number, total_pages, neighborhood, nrpp) {
+            page_number = parseInt(page_number);
+            total_pages = parseInt(total_pages);
+            neighborhood = parseInt(neighborhood);
+            var link = '#/' + objeto + '/' + accion + '/';
+            var vector = "<div class=\"pagination\"><ul>";
+            if (page_number > 1)
+                vector += ("<li><a class=\"pagination_link\" id=\"" + (page_number - 1) + "\" href=\"" + link + (page_number - 1) + "/" + nrpp + "\">prev</a></li>");
+            if (page_number > neighborhood + 1)
+                vector += ("<li><a class=\"pagination_link\" id=\"1\" href=\"" + link + "1/" + nrpp + "\">1</a></li>");
+            if (page_number > neighborhood + 2)
+                vector += ("<li>" + "<a href=\"#\">...</a>" + "</li>");
+            for (var i = (page_number - neighborhood); i <= (page_number + neighborhood); i++) {
+                if (i >= 1 && i <= total_pages) {
+                    if (page_number == i) {
+                        vector += ("<li class=\"active\"><a class=\"pagination_link\" id=\"" + i + "\" href=\"" + link + i + "/" + nrpp + "\">" + i + "</a></li>");
+                    } else
+                        vector += ("<li><a class=\"pagination_link\" id=\"" + i + "\" href=\"" + link + i + "/" + nrpp + "\">" + i + "</a></li>");
+                }
+            }
+            if (page_number < total_pages - (neighborhood + 1))
+                vector += ("<li>" + "<a href=\"#\">...</a>" + "</li>");
+            if (page_number < total_pages - (neighborhood))
+                vector += ("<li><a class=\"pagination_link\" id=\"" + total_pages + "\" href=\"" + link + total_pages + "/" + nrpp + "\">" + total_pages + "</a></li>");
+            if (page_number < total_pages)
+                vector += ("<li><a class=\"pagination_link\"  id=\"" + (page_number + 1) + "\" href=\"" + link + (page_number + 1) + "/" + nrpp + "\">next</a></li>");
+            vector += "</ul></div>";
+            return vector;
+        },
+        getNrppBar: function (objeto, accion, page_number, nrpp) {
+            var link = '#/' + objeto + '/' + accion + '/';
+            var vector = "<div class=\"pagination\"><ul>";
+            if (nrpp == 5)
+                vector += "<li class=\"active\" >";
+            else
+                vector += "<li> ";
+            vector += "<a class=\"nrpp\" id=\"nrrp5\" href=\"" + link + page_number + "/5" + "\">5</a></li>";
+            if (nrpp == 10)
+                vector += "<li class=\"active\" >";
+            else
+                vector += "<li> ";
+            vector += "<a class=\"nrpp\" id=\"nrrp10\" href=\"" + link + page_number + "/10" + "\">10</a></li>";
+            if (nrpp == 20)
+                vector += "<li class=\"active\" >";
+            else
+                vector += "<li> ";
+            vector += "<a class=\"nrpp\" id=\"nrrp20\" href=\"" + link + page_number + "/20" + "\">20</a></li>";
+            if (nrpp == 50)
+                vector += "<li class=\"active\" >";
+            else
+                vector += "<li> ";
+            ;
+            vector += "<a class=\"nrpp\" id=\"nrrp50\" href=\"" + link + page_number + "/50" + "\">50</a></li>";
+            if (nrpp == 100)
+                vector += "<li class=\"active\" >";
+            else
+                vector += "<li> ";
+            vector += "<a class=\"nrpp\" id=\"nrrp100\" href=\"" + link + page_number + "/100" + "\">100</a></li>";
+            // http://localhost:8081/AjaxStockUniDaoSpring/index.jsp#/cliente/4/nrpp
+            vector += "</ul></div>";
+            return vector;
+        },
+        parameter_printOrderParamsInUrl: function (objParams) {
+            if (objParams)
+                if (objParams.order) {
+                    return '&order=' + objParams.order + '&ordervalue=' + objParams.ordervalue;
+                } else {
+                    return '';
+                }
+            else
+                return '';
+        },
+        parameter_printFilterParamsInUrl: function (objParams) {
+            if (objParams)
+                if (objParams.filter) {
+                    return "&filter=" + objParams.filter + "&filteroperator=" + objParams.filteroperator + "&filtervalue=" + objParams.filtervalue;
+                } else {
+                    return '';
+                }
+            else
+                return '';
+        },
+        parameter_printSystemFilterParamsInUrl: function (objParams) {
+            if (objParams)
+                if (objParams.systemfilter) {
+                    return "&systemfilter=" + objParams.systemfilter + "&systemfilteroperator=" + objParams.systemfilteroperator + "&systemfiltervalue=" + objParams.systemfiltervalue;
+                } else {
+                    return '';
+                }
+            else
+                return '';
+        }
 
-
-
-            };
-        })
+    };
+})
         .factory('sharedSpaceService', function ($http) {
             var obj = {};
             var link = "";

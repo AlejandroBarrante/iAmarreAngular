@@ -9,66 +9,101 @@ body {
     width: 100%;
     background: #188fae;
 }
-
 /* Titular de página  */
 
 .panel-heading {
     margin-top: 70px;
     background-color: #dbf0f5;
 }
-/* Pie de página */
-
 .ng-scope {
     margin: 0;
 }
-
 /*Centrado de textos */
 
 .text-center {
     text-align: center;
 }
+/* Rótulos y Textos */
+
 .filtrado {
     font-weight: bold;
     font-size: 30px;
 }
-
+.nombre {
+    background-color: #188fae;
+    color: white;
+}
+.nombre h3 {
+    font-weight: bold;
+    font-size: 25px;
+}
+.titulo {
+    font-size: 60px;
+    text-decoration: none;
+}
 /* Barra de Navegación */
 
 .navbar-default {
     background-color: #188fae;
 }
-
+.navbar-default .navbar-collapse > ul li a {
+    color: white;
+    font-size: 20px;
+}
+.navbar-default .navbar-collapse > ul li a:hover {
+    color: white;
+    background-color: #f7bd4c;
+}
+.dropdown-menu {
+    background-color: #188fae;
+}
+.listamenu {
+    padding: 5px;
+}
+.listamenu img {
+    position: relative;
+    right: 10px;
+}
 /* Tablas */
 
 .table {
     background-color: #f7bd4c;
 }
-
 .table tr td a {
     color: black;
     text-decoration: none;
     font-size: 25px;
 }
-
 .hovered a {
     padding: 5px;
 }
 .hovered:hover {
     background: #dbf0f5;
 }
-
+.textotabla {
+    position: relative;
+    top: 3px;
+}
+.nombretabla {
+    position: relative;
+    left: 12px;
+    bottom: 7px;
+}
 /* Resto de pantallas View */
 
+.tablaview {
+    position: relative;
+    left: 40px;
+}
+
+.tablaview tr td {
+
+    font-size: 22px;
+    background-color: #f7bd4c;
+}
 .tablaview td p {
     padding: 5px;
 }
-.categoria {
-    font-size: 16px;
-    text-align: justify;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
 /* Animación cortinilla barra de navegación */
 
 .dropdown .dropdown-menu {
@@ -83,81 +118,53 @@ body {
     opacity: 0;
 }
 .dropdown.open .dropdown-menu {
-    max-height: 250px;
+    max-height: 200px;
     opacity: 1;
 }
-
 /* Otros */
-
-.tablaview {
-    position: relative;
-    left: 40px;
-}
-
-.tablaview tr td {
-
-    font-size: 22px;
-    background-color: #f7bd4c;
-}
 
 .borrar {
     font-size: 20px;
     margin-bottom: 20px;
 }
-
-.form-group {
-    font-size: 18px;
-}
-
-.nombre {
-
-    background-color: #188fae;
-    color: white;
-}
-
-.nombre h3 {
-    font-weight: bold;
-    font-size: 25px;
-}
-
-.etiqueta p {
-    margin-left: 10px;
-
-}
-
-
-.imagnombre img {
-    padding: 5px;
-}
-
-
-.fondo {
-    width: 100%;
-    background-color: #dbf0f5;
-}
-
-
-.boton:hover {
-    background-color: #f7bd4c;
-    cursor: pointer;
-}
-
 .linea {
     border-top: 1px solid #188fae;
     margin-left: 100px;
     margin-right: 100px;
 }
+/* Pantallas New y Edit */
 
-.titulo {
-    font-size: 60px;
-    text-decoration: none;
+.form-group {
+    font-size: 18px;
 }
+.etiqueta p {
+    margin-left: 10px;
+}
+.imagnombre img {
+    padding: 5px;
+}
+.editnew {
+    background: #f7bd4c;
+    padding: 20px;
+    border-radius: 5px;
+}
+/* Pie de Página */
+.fondo {
+    width: 100%;
+    background-color: #dbf0f5;
+}
+/* Botones */
+
+.boton:hover {
+    background-color: #f7bd4c;
+    cursor: pointer;
+}
+/* Elementos de imágenes */
 
 .logo {
     position: relative;
     bottom: 25px;
 }
-
 .cabecera {
     padding: 10px;
 }
@@ -165,37 +172,16 @@ body {
     background-color: #dbf0f5;
     border: 1px solid #f7bd4c;
 }
-
 .enlace {
     text-decoration: none;
-    
 }
-
 .enlace:hover {
     text-decoration: none;
 }
-
 .enlace img{
     margin-top:40px;
 }
-
-.textotabla {
-    position: relative;
-    top: 3px;
-}
-
-.nombretabla {
-    position: relative;
-    left: 12px;
-    bottom: 7px;
-}
-
-.editnew {
-    background: #f7bd4c;
-    padding: 20px;
-    border-radius: 5px;
-}
-
+/* Modal */
 .modal-body {
     background: #f7bd4c;
 }
@@ -207,4 +193,30 @@ body {
 
 .modal-footer {
     background: #dbf0f5;
+}
+
+.footelem {
+    position: relative;
+    bottom: 300px;
+    z-indez: 1;
+}
+/*Páginas legales */
+
+.legal {
+    margin-top: 40px;
+}
+.punto {
+    font-size: 22px;
+    font-weight: bold;
+    color: #188fae;
+}
+.parrafo {
+    font-size: 16px;
+    text-align: justify;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.cajalegal {
+    background: #f7bd4c;
+    border-radius: 10px;
 }

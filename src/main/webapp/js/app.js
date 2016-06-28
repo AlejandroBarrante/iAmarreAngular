@@ -50,21 +50,13 @@ iAmarreUsers.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController'});
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
+        $routeProvider.when('/usuario/legal', {templateUrl: 'js/usuario/legal.html', controller: 'UsuarioLegalController'});
+        $routeProvider.when('/usuario/privacidad', {templateUrl: 'js/usuario/privacidad.html', controller: 'UsuarioPrivacidadController'});
         //------------
         $routeProvider.otherwise({redirectTo: '/'});
 
 
     }]);
-
-
-
-iAmarreUsers.run(function ($rootScope, $location, serverService) {
-    $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        $rootScope.isSessionActive = false;
-    });
-});
-
-
 
 var moduloSistema = angular.module('systemControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
