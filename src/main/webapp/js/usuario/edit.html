@@ -12,7 +12,7 @@
 
             <div class="text-center"><h2 class="filtrado">Editar Usuario</h2></div>
             <br/><br/>
-            
+
             <form name="usuarioForm" class="form-horizontal editnew"
                   data-ng-show="result == null" novalidate>
 
@@ -54,29 +54,29 @@
                                class="form-control" name="estado" size="15">
                     </div>
                 </div>
-                
+
             </form>
 
 
-                <br/><br/><br/>
+            <br/><br/><br/>
 
-                <div class="control-group text-center">
+            <div class="control-group text-center">
 
-                    <div class="text-center">
-                        <a data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">
-                            <img class="boton" alt="boton" src="/images/guardar.png">
-                        </a>
-                        <a data-ng-click="volver()">
-                            <img class="boton" alt="boton" src="/images/listado.png">
-                        </a>
-                        <a data-ng-click="close()">
-                            <img class="boton" alt="boton" src="/images/inicio.png">
-                        </a>
+                <div class="text-center">
+                    <a class="enlace" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">
+                        <img class="boton" alt="boton" src="/images/guardar.png">
+                    </a>
+                    <a class="enlace" data-ng-click="volver()">
+                        <img class="boton" alt="boton" src="/images/listado.png">
+                    </a>
+                    <a class="enlace" data-ng-click="close()">
+                        <img class="boton" alt="boton" src="/images/inicio.png">
+                    </a>
 
-                        <br/><br/><br/>
-                    </div>
-
+                    <br/><br/><br/>
                 </div>
+
+            </div>
         </div>
 
         <br/><br/><br/>
@@ -105,13 +105,17 @@
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body text-center">
                 <p class="modal-p" data-ng-show="result.status == 200">El registro ha sido modificado.</p>
                 <p class="modal-p" data-ng-show="result.status != 200">El registro no ha podido modificarse.</p>
             </div>
-            <div class="modal-footer">
-                <a data-ng-click="registro()" id="botreg" class="btn btn-default anyadir">Ver el registro modificado</a>
-                <a data-ng-click="cerrar()" class="btn btn-default agregar">Volver al inicio</a>
+            <div class="modal-footer text-center">
+                <a class="enlace" id="botreg" data-ng-click="registro()">
+                    <img class="boton" alt="boton" src="/images/listado.png">
+                </a>
+                <a class="enlace" data-ng-click="cerrar()">
+                    <img class="boton" alt="boton" src="/images/inicio.png">
+                </a>
 
             </div>
         </div>

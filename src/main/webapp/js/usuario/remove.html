@@ -54,10 +54,10 @@
 
                 <div class="borrar">¿Está seguro de que desea borrar el registro?</div>
 
-                <a data-toggle="modal" data-target="#myModal" data-ng-click="remove()">
+                <a class="enlace" data-toggle="modal" data-target="#myModal" data-ng-click="remove()">
                     <img class="boton" alt="boton" src="/images/si.png">
                 </a>
-                <a href="#/usuario/view/{{bean.id}}">
+                <a class="enlace" href="#/usuario/view/{{bean.id}}">
                     <img class="boton" alt="boton" src="/images/no.png">
                 </a>
 
@@ -86,15 +86,17 @@
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body text-center">
 
                 <p class="modal-p" data-ng-show="result.message == 1">El usuario ha sido eliminado.</p>
                 <p class="modal-p" data-ng-show="result.message == 0">El usuario no ha podido eliminarse.</p>
 
             </div>
-            <div class="modal-footer">
-                <a data-ng-click="borrado()" class="btn btn-default anyadir botreg">Volver al listado de usuarios</a>
-                <a data-ng-click="close()" class="btn btn-default agregar botreg">Volver al inicio</a>
+            <div class="modal-footer text-center">
+                
+                <a class="enlace" id="botreg" data-ng-click="borrar()">
+                    <img class="boton" alt="boton" src="/images/listado.png">
+                </a>
 
             </div>
         </div>

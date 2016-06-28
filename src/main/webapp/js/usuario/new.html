@@ -62,10 +62,11 @@
                 </form>  
 
                 <form id="uploadForm" class="form-horizontal" action="upload" method="post" enctype="multipart/form-data">
-                    <div class="control">
-                        <label for="file" class="col-sm-2 control-label">Imagen: </label>  
-                        <input type="file" name="file" id="file"/>
-
+                    <div id="imagen-group" class="form-group">
+                        <label for="file" class="col-sm-2 control-label">Imagen: </label> 
+                        <div class="control col-sm-3">
+                            <input type="file" name="file" id="file"/>
+                        </div>
                     </div>
 
                 </form>  
@@ -77,13 +78,13 @@
                 <br/><br/>
                 <div class="controls">
 
-                    <a data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">
+                    <a class="enlace" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">
                         <img class="boton" alt="boton" src="/images/guardar.png">
                     </a>
-                    <a data-ng-click="volver()">
+                    <a class="enlace" data-ng-click="volver()">
                         <img class="boton" alt="boton" src="/images/listado.png">
                     </a>
-                    <a data-ng-click="close()">
+                    <a class="enlace" data-ng-click="close()">
                         <img class="boton" alt="boton" src="/images/inicio.png">
                     </a>
 
@@ -114,12 +115,19 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-body">
-                <p class="modal-p" data-ng-show="result.status == 200">El usuario ha sido creado.</p>
-                <p class="modal-p" data-ng-show="result.status != 200">El usuario no ha podido crearse.</p>
+                <p class="modal-p text-center" data-ng-show="result.status == 200">El usuario ha sido creado.</p>
+                <p class="modal-p text-center" data-ng-show="result.status != 200">El usuario no ha podido crearse.</p>
             </div>
-            <div class="modal-footer">
-                <a data-ng-click="registro()" id="botreg" class="btn btn-default anyadir">Volver al listado de usuarios</a>
-                <a data-ng-click="cerrar()" class="btn btn-default agregar">Volver al inicio</a>
+            <div class="modal-footer text-center">
+
+
+                <a class="enlace" id="botreg" data-ng-click="registro()">
+                    <img class="boton" alt="boton" src="/images/listado.png">
+                </a>
+
+                <a class="enlace" data-ng-click="cerrar()">
+                    <img class="boton" alt="boton" src="/images/inicio.png">
+                </a>
 
             </div>
         </div>

@@ -44,23 +44,23 @@ moduloUsuario.controller('UsuarioRemoveController', ['$scope', '$routeParams', '
             serverService.getDataFromPromise(serverService.promise_removeOne($scope.ob, $scope.id)).then(function (data) {
                 $scope.result = data;
             });
-            $location.path('#/eliminado');
         };
 
-        $scope.borrado = function () {
-            $('.botreg').attr("href", "#/usuario/plist/1/50");
+
+        $scope.borrar = function () {
+
+            $('#botreg').attr("href", "#/usuario/plist/1/50");
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
 
         };
 
-        $scope.close = function () {
-            $('.botreg').attr("href", "#/eliminado");
+        $scope.cerrar = function () {
+            $('#botreg').attr("href", "/index.html");
             $('#myModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-
         };
 
     }]);

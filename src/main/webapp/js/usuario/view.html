@@ -45,16 +45,14 @@
 
     <div class="row">
 
-        <br />
-
         <div class="text-center">
-            <a data-ng-click="volver()">
+            <a class="enlace" data-ng-click="volver()">
                 <img class="boton" alt="boton" src="/images/listado.png">
             </a>
-            <a data-ng-click="close()">
+            <a class="enlace" data-ng-click="close()">
                 <img class="boton" alt="boton" src="/images/inicio.png">
             </a>
-            <br/><br/><br/>
+            <br/><br/>
         </div>
         
     </div>
@@ -69,10 +67,10 @@
 
             <h3>Panel de Administración</h3>
 
-            <a href="#/usuario/edit/{{bean.id}}">
+            <a class="enlace" href="#/usuario/edit/{{bean.id}}">
                 <img class="boton" alt="boton" src="/images/editar.png">
             </a>
-            <a href="#/usuario/remove/{{bean.id}}">
+            <a class="enlace" href="#/usuario/remove/{{bean.id}}">
                 <img class="boton" alt="boton" src="/images/borrar.png">
             </a>
 
