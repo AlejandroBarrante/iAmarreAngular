@@ -1,7 +1,6 @@
 <!-- REMOVE -->
 
-<br/><br/>
-<div class="panel-heading">
+<div class="panel-heading panel">
 
     <br/><br/>
 
@@ -52,7 +51,7 @@
 
             <div class="text-center">
 
-                <div class="borrar">¿Está seguro de que desea borrar el registro?</div>
+                <p class="borrar">¿Está seguro de que desea borrar el registro?</p>
 
                 <a class="enlace" data-toggle="modal" data-target="#myModal" data-ng-click="remove()">
                     <img class="boton" alt="boton" src="/images/si.png">
@@ -62,7 +61,9 @@
                 </a>
 
             </div>
+            
         </div>
+        
     </div>
 
     <br/><br/>
@@ -72,10 +73,7 @@
 
 <div class="row">
 
-
-
     <footer data-ng-include="'js/system/footer.html'"></footer>
-
 
 </div>
 
@@ -83,15 +81,19 @@
 <!-- MODAL -->
 
 <div class="modal fade" id="myModal" role="dialog">
+    
     <div class="modal-dialog modal-lg">
+        
         <!-- Modal content-->
         <div class="modal-content">
+            
             <div class="modal-body text-center">
-
+                
                 <p class="modal-p" data-ng-show="result.message == 1">El usuario ha sido eliminado.</p>
                 <p class="modal-p" data-ng-show="result.message == 0">El usuario no ha podido eliminarse.</p>
 
             </div>
+            
             <div class="modal-footer text-center">
                 
                 <a class="enlace" id="botreg" data-ng-click="borrar()">
@@ -99,8 +101,11 @@
                 </a>
 
             </div>
+            
         </div>
+        
     </div>
+    
 </div>
 
 <!-- MODAL -->     

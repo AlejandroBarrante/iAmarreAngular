@@ -1,7 +1,6 @@
 <!-- VIEW -->
 
-<br/><br/>
-<div class="panel-heading">
+<div class="panel-heading panel">
 
     <br/><br/>
 
@@ -46,49 +45,46 @@
     <div class="row">
 
         <div class="text-center">
+
             <a class="enlace" data-ng-click="volver()">
                 <img class="boton" alt="boton" src="/images/listado.png">
             </a>
             <a class="enlace" data-ng-click="close()">
                 <img class="boton" alt="boton" src="/images/inicio.png">
             </a>
+
             <br/><br/>
-        </div>
-        
-    </div>
-
-        <div class="row text-center">
-            <p class="linea"></p>
-        </div>
-    
-    <div class="row">
-
-        <div class="text-center">
-
-            <h3>Panel de Administración</h3>
-
-            <a class="enlace" href="#/usuario/edit/{{bean.id}}">
-                <img class="boton" alt="boton" src="/images/editar.png">
-            </a>
-            <a class="enlace" href="#/usuario/remove/{{bean.id}}">
-                <img class="boton" alt="boton" src="/images/borrar.png">
-            </a>
 
         </div>
 
     </div>
 
-    <br/><br/>
+    <div class="row text-center">
+        <p class="linea"></p>
+    </div>
+
+    <div class="row text-center">
+
+
+        <h3>Panel de Administración</h3>
+
+        <a class="enlace" href="#/usuario/edit/{{bean.id}}">
+            <img class="boton" alt="boton" src="/images/editar.png">
+        </a>
+        <a class="enlace" href="#/usuario/remove/{{bean.id}}">
+            <img class="boton" alt="boton" src="/images/borrar.png">
+        </a>
+
+    </div>
+
+    <br/>
 
 </div>
 
 
 <div class="row">
 
-
-
     <footer data-ng-include="'js/system/footer.html'"></footer>
-
 
 </div>
 

@@ -1,8 +1,6 @@
 <!-- NEW -->
 
-<br/><br/>
-
-<div class="panel-heading">
+<div class="panel-heading panel">
 
     <div class="row">
 
@@ -15,6 +13,7 @@
             <br/><br/>
 
             <div class="editnew">
+
                 <form name="usuarioForm" class="form-horizontal" novalidate>
 
 
@@ -27,7 +26,6 @@
                                 ni caracteres especiales..</span>
                         </div>
                     </div>
-
 
                     <div id="password-group" class="form-group">
                         <label class="col-sm-2 control-label">E-Mail:</label>
@@ -62,6 +60,7 @@
                 </form>  
 
                 <form id="uploadForm" class="form-horizontal" action="upload" method="post" enctype="multipart/form-data">
+
                     <div id="imagen-group" class="form-group">
                         <label for="file" class="col-sm-2 control-label">Imagen: </label> 
                         <div class="control col-sm-3">
@@ -71,31 +70,38 @@
 
                 </form>  
 
-
             </div>
-
-            <div class="control-group text-center">
-                <br/><br/>
-                <div class="controls">
-
-                    <a class="enlace" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">
-                        <img class="boton" alt="boton" src="/images/guardar.png">
-                    </a>
-                    <a class="enlace" data-ng-click="volver()">
-                        <img class="boton" alt="boton" src="/images/listado.png">
-                    </a>
-                    <a class="enlace" data-ng-click="close()">
-                        <img class="boton" alt="boton" src="/images/inicio.png">
-                    </a>
-
-                </div>
-            </div>
-
-            <br/><br/><br/>
 
         </div>
 
+        <div class="col-md-2"></div>
+
+
     </div>
+
+    <div class="row">
+
+        <div class="control-group text-center">
+
+            <div class="controls">
+
+                <a class="enlace" data-toggle="modal" data-target="#myModal" data-ng-click="save()" data-ng-disabled="!usuarioForm.$valid">
+                    <img class="boton" alt="boton" src="/images/guardar.png">
+                </a>
+                <a class="enlace" data-ng-click="volver()">
+                    <img class="boton" alt="boton" src="/images/listado.png">
+                </a>
+                <a class="enlace" data-ng-click="close()">
+                    <img class="boton" alt="boton" src="/images/inicio.png">
+                </a>
+
+            </div>
+        </div>
+
+        <br/><br/>
+
+    </div>
+
 </div>
 
 <div class="row">
@@ -111,15 +117,20 @@
 <!-- MODAL -->
 
 <div class="modal fade" id="myModal" role="dialog">
+
     <div class="modal-dialog modal-lg">
+
         <!-- Modal content-->
         <div class="modal-content">
+
             <div class="modal-body">
+
                 <p class="modal-p text-center" data-ng-show="result.status == 200">El usuario ha sido creado.</p>
                 <p class="modal-p text-center" data-ng-show="result.status != 200">El usuario no ha podido crearse.</p>
-            </div>
-            <div class="modal-footer text-center">
 
+            </div>
+
+            <div class="modal-footer text-center">
 
                 <a class="enlace" id="botreg" data-ng-click="registro()">
                     <img class="boton" alt="boton" src="/images/listado.png">
@@ -130,8 +141,11 @@
                 </a>
 
             </div>
+
         </div>
+
     </div>
+
 </div>
 
 <!-- MODAL -->

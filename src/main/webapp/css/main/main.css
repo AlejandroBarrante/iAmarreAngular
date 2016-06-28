@@ -118,14 +118,15 @@ body {
     opacity: 0;
 }
 .dropdown.open .dropdown-menu {
-    max-height: 200px;
+    max-height: 220px;
     opacity: 1;
 }
 /* Otros */
 
 .borrar {
     font-size: 20px;
-    margin-bottom: 20px;
+    position: relative;
+    top: 30px;
 }
 .linea {
     border-top: 1px solid #188fae;
@@ -147,6 +148,9 @@ body {
     background: #f7bd4c;
     padding: 20px;
     border-radius: 5px;
+}
+.panel {
+    margin-top: 40px;
 }
 /* Pie de Página */
 .fondo {

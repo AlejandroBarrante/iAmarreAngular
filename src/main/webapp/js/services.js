@@ -28,6 +28,7 @@
 'use strict';
 angular.module('Services', []).factory('serverService', function ($http) {
 
+    // FILTROS
     function getFilter(filter, filteroperator, filtervalue) {
         var filterParams;
         if (filter) {
@@ -38,6 +39,8 @@ angular.module('Services', []).factory('serverService', function ($http) {
         return filterParams;
     }
     ;
+
+    //ORDENACIÓN
     function getOrder(order, ordervalue) {
         var orderParams;
         if (order) {
@@ -48,6 +51,8 @@ angular.module('Services', []).factory('serverService', function ($http) {
         return orderParams;
     }
     ;
+
+    // PROMESAS 
     return {
         date_toDate: function (input) {
             var parts = input.split('/');
@@ -248,8 +253,8 @@ angular.module('Services', []).factory('serverService', function ($http) {
         }
 
     };
-})
-        .factory('sharedSpaceService', function ($http) {
+    // SERVICIO
+}).factory('sharedSpaceService', function ($http) {
             var obj = {};
             var link = "";
             var fase = 0;
